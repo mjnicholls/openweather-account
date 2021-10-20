@@ -1,0 +1,29 @@
+{
+  "extends": ["@imaginary-cloud/react"],
+  "rules": {
+    "no-unused-vars": "warn",
+    "prettier/prettier": "warn",
+    "spaced-comment": "warn",
+    "react/prop-types": "warn",
+    "react/react-in-jsx-scope": 0,
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}
