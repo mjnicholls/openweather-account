@@ -11,6 +11,8 @@ import medium from '../assets/img/icon_medium.png'
 import tele from '../assets/img/icon_telegram.png'
 import twitter from '../assets/img/icon_twitter.png'
 
+
+
 function Footer() {
   return (
     <footer className="page-footer font-small blue pt-4" style={{backgroundColor:"#f2f2f2"}}>
@@ -21,7 +23,7 @@ function Footer() {
         <div className="col-md-3 mt-md-0 mt-3">
             
         <a href="#" className="navbar-brand"><h4 className="ow-font" style={{fontWeight:"bold", marginTop:"30px"}}>Product Collections</h4></a>
-
+<p></p>
     {/*  <button className="navbar-toggler" type="button" data-toggle="collapse"   data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span className="sr-only"></span>
 
