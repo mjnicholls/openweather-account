@@ -14,35 +14,60 @@
 
 }
 
-.ow-font {
+.class-one {
   font-family: $highlight-font-family;
+  font-size: 14px;
+  line-height: 20pt;
+  color: #303055!important;
+}
+
+
+.class-three {
+  margin-top:45px!important;
+}
+
+
+.font-fix{
+  font-family: $default-font-family;
+  color: #48484A!important;
+}
+
+.page-footer {
+  padding-right: 50px!important;
+  padding-left: 50px!important;
+  padding-top:45px!important;
+  background-color: #f2f2f2!important
+}
+
+
+.class-seven {
+  font-family: $highlight-font-family;
+  font-size: 14px;
+  line-height: 20pt;
+  color: #303055!important;
+  margin: left 15px
 }
 
 .nav-link {
-  color: black !important;
+  color: #48484A!important;
   padding: 0px!important;
   margin: 0px!important;
 }
 
-.nav-item {
-  text-align: left!important;
-  padding: 0px;
-  margin:0px;
+a.nav-link:hover{
+  border-bottom: 1px solid #48484A;
 }
 
-a.nav-link.ow-font {
-  padding: 0px!important;
-  margin:0px!important;
+.logos.a:hover {
+display: none;
 }
+
 
 li.nav-item {
   padding: 0px!important;
+  font-size: 14px!important
 }
 
-.navbar.navbar-expand-lg.navbar-light {
-  padding-top: 20px!important;
-
-}
 
 button.navbar-toggler.collapsed {
   padding: 0px!important;
@@ -61,9 +86,6 @@ span.accordion-button::after {
   transform: rotate(180deg); 
 }
 
-.navbar-expand-lg{
-  border-bottom: 1px solid black;
-}
 .logos{
-  margin-left: 25px!important;
+  margin-left: 50px!important;
 }

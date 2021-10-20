@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/Footer';
+// import Header from './components/Header';
 
 function App() {
   return (
@@ -11,14 +12,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       
       </header>
       <Footer />
     </div>
