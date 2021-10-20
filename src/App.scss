@@ -14,7 +14,56 @@
 
 }
 
-
 .ow-font {
   font-family: 'Space Grotesk', sans-serif;
+}
+
+.nav-link {
+  color: black !important;
+  padding: 0px!important;
+  margin: 0px!important;
+}
+
+.nav-item {
+  text-align: left!important;
+  padding: 0px;
+  margin:0px;
+}
+
+a.nav-link.ow-font {
+  padding: 0px!important;
+  margin:0px!important;
+}
+
+li.nav-item {
+  padding: 0px!important;
+}
+
+.navbar.navbar-expand-lg.navbar-light {
+  padding-top: 20px!important;
+
+}
+
+button.navbar-toggler.collapsed {
+  padding: 0px!important;
+}
+
+button.navbar-toggler {
+  padding: 0px!important;
+  transform: rotate(180deg);
+}
+
+span.accordion-button {
+  padding: 0px!important;
+}
+
+span.accordion-button::after {
+  transform: rotate(180deg); 
+}
+
+.navbar-expand-lg{
+  border-bottom: 1px solid black;
+}
+.logos{
+  margin-left: 25px!important;
 }
