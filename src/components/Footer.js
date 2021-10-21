@@ -3,40 +3,17 @@ import { Col, Row } from 'reactstrap'
 import '../App.scss'
 import { gallery } from '../assets/Gallery'
 
+import FooterSection from './FooterSection'
 
 function Footer() {
   return (
-    <footer
-      className="page-footer pt-4" 
-    >
+    <footer className="page-footer">
       <div className="container-fluid text-left text-md-left gap">
         <div className="row">
-          
           <div className="col-md-4 class-three">
-            <h5
-              className="class-one"
-
-            >
-              <b>Product Collections</b>
-            </h5>
-            <nav className="navbar navbar-expand-lg navbar-light">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="accordion-button"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav">
-                <ul
-                  className="nav flex-column"
-               
-                >
-                  <li className="nav-item">
+            <FooterSection header="Product Collections">
+              <ul className="nav flex-column">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweathermap.org/api#current"
                       className="nav-link class-one"
@@ -45,7 +22,7 @@ function Footer() {
                       Current and Forecast APIs
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweathermap.org/api#history"
                       className="nav-link class-one"
@@ -54,7 +31,7 @@ function Footer() {
                       Historical Weather Data
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweathermap.org/api#maps"
                       className="nav-link class-one"
@@ -63,7 +40,7 @@ function Footer() {
                       Weather Maps
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweathermap.org/widgets-constructor"
                       className="nav-link class-one"
@@ -73,35 +50,13 @@ function Footer() {
                     </a>
                   </li>
                 </ul>
-              </div>
-            </nav>
+            </FooterSection>
           </div>
 
-          <div className="col-md-3 class-three text-left">
-            <h5
-              className="class-one"
-         
-            >
-              <b>Subscriptions</b>
-            </h5>
-            <nav className="navbar navbar-expand-lg navbar-light">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav2"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="accordion-button"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav2">
-                <ul
-                  className="nav flex-column"
-               
-                >
-                  <li className="nav-item">
+          <div className="col-md-4 class-three text-left">
+          <FooterSection header="Subscriptions">
+                <ul className="nav flex-column">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweathermap.org/appid"
                       className="nav-link class-one"
@@ -110,7 +65,7 @@ function Footer() {
                       How to start
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweathermap.org/price"
                       className="nav-link class-one"
@@ -119,7 +74,7 @@ function Footer() {
                       Pricing
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://home.openweathermap.org/users/sign_up"
                       className="nav-link class-one"
@@ -128,7 +83,7 @@ function Footer() {
                       Subscribe for free
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweathermap.org/faq"
                       className="nav-link class-one"
@@ -138,30 +93,11 @@ function Footer() {
                     </a>
                   </li>
                 </ul>
-              </div>
-            </nav>
+      </FooterSection>
           </div>
 
-          <div className="col-md-4 text-left class-three">
-            <h5
-              className="class-one"
-         
-            >
-              <b>About Us</b>
-            </h5>
-            <nav className="navbar navbar-expand-lg navbar-light">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav3"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="accordion-button"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav3">
+          <div className="col-md-3 text-left class-three">
+          <FooterSection header="About Us">
                 <ul className="nav flex-column">
                   <li className="nav-item">
                     <p className="class-one">
@@ -173,36 +109,16 @@ function Footer() {
                     </p>
                   </li>
                 </ul>
-              </div>
-            </nav>
+                </FooterSection>
           </div>
         </div>
 
         <div className="row">
-      
-
           <div className="col-md-4 class-three text-left">
-            <h5
-              className="class-one"
-         
-            >
-              <b>Technologies</b>
-            </h5>
-            <nav className="navbar navbar-expand-lg navbar-light">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav4"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="accordion-button"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav4">
+
+          <FooterSection header="Technologies">
                 <ul className="nav flex-column">
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweathermap.org/technology"
                       className="nav-link class-one"
@@ -211,7 +127,7 @@ function Footer() {
                       Our technology
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline underline">
                     <a
                       href="https://openweathermap.org/accuracy-and-quality"
                       className="nav-link class-one"
@@ -220,7 +136,7 @@ function Footer() {
                       Accuracy and quality of weather data
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline underline">
                     <a
                       href="https://openweathermap.org/stations"
                       className="nav-link class-one"
@@ -230,34 +146,13 @@ function Footer() {
                     </a>
                   </li>
                 </ul>
-              </div>
-            </nav>
+                </FooterSection>
           </div>
 
-          <div className="col-md-3 text-left class-three">
-            <h5
-              className="class-one"
-         
-            >
-              <b>Terms and Conditions</b>
-            </h5>
-            <nav className="navbar navbar-expand-lg navbar-light">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav5"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="accordion-button"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav5">
-                <ul
-                  className="nav flex-column"
-                >
-                  <li className="nav-item">
+          <div className="col-md-4 text-left class-three">
+          <FooterSection header="Terms and Conditions">
+                <ul className="nav flex-column">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf"
                       className="nav-link class-one"
@@ -266,7 +161,7 @@ function Footer() {
                       Terms and conditions of sale
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweather.co.uk/privacy-policy"
                       className="nav-link class-one"
@@ -275,7 +170,7 @@ function Footer() {
                       Privacy Policy
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweather.co.uk/storage/app/media/Terms/Openweather_website_terms_and_conditions_of_use.pdf"
                       className="nav-link class-one"
@@ -285,35 +180,13 @@ function Footer() {
                     </a>
                   </li>
                 </ul>
-              </div>
-            </nav>
+                </FooterSection>
           </div>
 
-          <div className="col-md-4 text-left class-three">
-            <h5
-              className="class-one"
+          <div className="col-md-3 text-left class-three">
          
-            >
-              
-            </h5>
-            <nav className="navbar navbar-expand-lg navbar-light">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav6"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="accordion-button"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav6">
-                <ul
-                  className="nav flex-column"
-                  
-                >
-                  <li className="nav-item">
+                <ul className="nav flex-column">
+                  <li className="nav-item underline">
                     <a
                       href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf"
                       className="nav-link class-one"
@@ -322,7 +195,7 @@ function Footer() {
                       Blog
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="https://home.openweathermap.org/questions"
                       className="nav-link class-one"
@@ -331,7 +204,7 @@ function Footer() {
                       Ask a Question
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item underline">
                     <a
                       href="mailto:info@openweathermap.org"
                       className="nav-link class-one"
@@ -341,20 +214,14 @@ function Footer() {
                     </a>
                   </li>
                 </ul>
+               
               </div>
-            </nav>
-          </div>
         </div>
       </div>
       <br />
       <div className="row">
-       
         <div className="col-md-12 text-left class-seven">
-          <h5
-            className="class-one"
-          >
-            Download OpenWeather App
-          </h5>
+          <h5 className="class-one">Download OpenWeather App</h5>
           <a href="https://apps.apple.com/gb/app/openweather/id1535923697">
             <img src={gallery.badge.src} alt="app_store_badge"></img>
           </a>
@@ -363,24 +230,20 @@ function Footer() {
             <img
               src={gallery.appbadge.src}
               alt="googleplay_badge"
-              width="140"
+              width="160"
               height="60"
             ></img>
           </a>
         </div>
-
       </div>
       <br />
       <div className="row">
-       
-
         <div className="col-md-4 text-left class-seven">
           <p className="font-fix">Supplier of Achilles UVDB community</p>
           <p className="font-fix">
             © 2012 — 2021 OpenWeather ® All rights reserved
           </p>
         </div>
-  
 
         <div className="col-md-6 text-right">
           <a href="https://www.facebook.com/groups/270748973021342">

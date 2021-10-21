@@ -34,9 +34,9 @@
 }
 
 .page-footer {
-  padding-right: 50px!important;
-  padding-left: 50px!important;
-  padding-top:45px!important;
+  padding-right: 30px!important;
+  padding-left: 25px!important;
+  padding-top: 35px!important;
   background-color: #f2f2f2!important
 }
 
@@ -46,7 +46,7 @@
   font-size: 14px;
   line-height: 20pt;
   color: #303055!important;
-  margin: left 15px
+  margin-left: 15px
 }
 
 .nav-link {
@@ -55,8 +55,8 @@
   margin: 0px!important;
 }
 
-a.nav-link:hover{
-  border-bottom: 1px solid #48484A;
+.underline:hover {
+  text-decoration: underline;
 }
 
 .logos.a:hover {

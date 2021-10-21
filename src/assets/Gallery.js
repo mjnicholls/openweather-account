@@ -1,6 +1,12 @@
 import appStoreBadge from './img/app_store_badge.svg'
-
-
+import appGoogleBadge from './img/google_play_badge.png'
+import facebookLogo from './img/icon_facebook.png'
+import githubLogo from './img/icon_github.png'
+import instaLogo from './img/icon_instagram.png'
+import linkedInLogo from './img/icon_linkedin.png'
+import mediumLogo from './img/icon_medium.png'
+import telegramLogo from './img/icon_telegram.png'
+import twitterLogo from './img/icon_twitter.png'
 
 export const gallery = {
   badge: {
@@ -10,40 +16,40 @@ export const gallery = {
 
   appbadge: {
     name: 'App Badge',
-    src: '../assets/img/google_play_badge.png',
+    src: appGoogleBadge
   },
 
   facebook: {
     name: 'Facebook Logo',
-    src: '../assets/img/icon_facebook.png',
+    src: facebookLogo
   },
 
   github: {
     name: 'Github Logo',
-    src: './assets/img/icon_github.png',
+    src: githubLogo
   },
   insta: {
     name: 'Instagram Logo',
-    src: '../assets/img/icon_instagram.png',
+    src: instaLogo
   },
 
   linked: {
     name: 'LinkedIn Logo',
-    src: '../assets/img/icon_linkedin.png',
+    src: linkedInLogo
   },
 
   medium: {
     name: 'Medium Logo',
-    src: '../assets/img/icon_medium.png',
+    src: mediumLogo
   },
 
   telegram: {
     name: 'Telegram Logo',
-    src: '../assets/img/icon_telegram.png',
+    src: telegramLogo
   },
 
   twitter: {
     name: 'Twitter Logo',
-    src: '../assets/img/icon_twitter.png',
+    src: twitterLogo
   },
 }
