@@ -1,7 +1,10 @@
+import appStoreBadge from './img/app_store_badge.svg'
+
+
 export const gallery = {
   badge: {
     name: 'Badge',
-    src: '../assets/img/app_store_badge.svg',
+    src: appStoreBadge,
   },
 
   appbadge: {

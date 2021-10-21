@@ -1,4 +1,6 @@
 /* eslint-disable */
+import icon_down_black from '../assets/img/icon_down_black.svg'
+
 import {useState} from 'react'
 
 const FooterSection = (props) => {
@@ -7,9 +9,9 @@ const FooterSection = (props) => {
 
   return (
     <div>
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="d-flex align-items-center justify-content-between" onClick={() => setOpen(!open)} >
         <h5>{props.header}</h5>
-        <div onClick={() => setOpen(!open)}>Arrow</div>
+        <img  src={icon_down_black} alt="arrow" style={{transform: open ? "rotate(180deg)" : ""}}/>
       </div>
 
       <div className="d-lg-none" style={{display: open ? "block" : "none"}}>{props.children}</div>
