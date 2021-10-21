@@ -7,6 +7,7 @@ import linkedInLogo from './img/icon_linkedin.png'
 import mediumLogo from './img/icon_medium.png'
 import telegramLogo from './img/icon_telegram.png'
 import twitterLogo from './img/icon_twitter.png'
+import owLogo from './img/logo_white.png'
 
 export const gallery = {
   badge: {
@@ -51,5 +52,10 @@ export const gallery = {
   twitter: {
     name: 'Twitter Logo',
     src: twitterLogo
+  },
+
+  logo_white: {
+    name: 'Open Weather Logo',
+    src: owLogo
   },
 }

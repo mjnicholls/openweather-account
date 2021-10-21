@@ -10,16 +10,23 @@
   color: $brand-black;
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: $highlight-font-family;
+    font-family: $default-font-family;
   }
 
 }
 
-.class-one {
+// Footer classes
+
+h5.class-one {
   font-family: $highlight-font-family;
+  font-weight: bold;
+}
+
+.class-one {
+  font-family: $default-font-family;
   font-size: 14px;
   line-height: 20pt;
-  color: #303055!important;
+  color: #48484A!important;
 }
 
 
@@ -28,16 +35,18 @@
 }
 
 
-.font-fix{
-  font-family: $default-font-family;
-  color: #48484A!important;
-}
-
 .page-footer {
   padding-right: 30px!important;
   padding-left: 25px!important;
   padding-top: 35px!important;
+  padding-bottom: 30px!important;
   background-color: #f2f2f2!important
+}
+
+p.noBottom {
+  margin-bottom: 0px!important;
+  font-family: $default-font-family;
+  color: #48484A!important;
 }
 
 
@@ -45,7 +54,7 @@
   font-family: $highlight-font-family;
   font-size: 14px;
   line-height: 20pt;
-  color: #303055!important;
+  color: #48484A!important;
   margin-left: 15px
 }
 
@@ -87,6 +96,30 @@ span.accordion-button::after {
   transform: rotate(180deg); 
 }
 
-.logos{
-  margin-left: 50px!important;
+
+img.logos {
+  margin-right: 46px;
 }
+
+.logos2 {
+  margin-right: 0px;
+}
+
+// Header classes
+
+.navbar.ow-nav {
+  background-color: #48484a!important;
+
+}
+
+a.nav-link.header-link {
+  color: white!important;
+}
+
+.ow-item {
+  margin-right: 20px;
+  font-family: $default-font-family;
+}
+
+
+

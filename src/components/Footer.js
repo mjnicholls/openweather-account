@@ -1,5 +1,4 @@
 import React from 'react'
-import { Col, Row } from 'reactstrap'
 import '../App.scss'
 import { gallery } from '../assets/Gallery'
 
@@ -238,14 +237,14 @@ function Footer() {
       </div>
       <br />
       <div className="row">
-        <div className="col-md-4 text-left class-seven">
-          <p className="font-fix">Supplier of Achilles UVDB community</p>
-          <p className="font-fix">
+        <div className="col-md-6 text-left class-seven">
+          <p className="noBottom">Supplier of Achilles UVDB community</p>
+          <p className="noBottom">
             © 2012 — 2021 OpenWeather ® All rights reserved
           </p>
         </div>
 
-        <div className="col-md-6 text-right">
+        <div className="col-md-4 text-right">
           <a href="https://www.facebook.com/groups/270748973021342">
             <img
               className="logos"
@@ -303,7 +302,7 @@ function Footer() {
           <a href="https://twitter.com/OpenWeatherMap">
             <img
               src={gallery.twitter.src}
-              className="logos"
+              className="logos2"
               alt="twitter_logo"
               height="15px"
               width="15px"
