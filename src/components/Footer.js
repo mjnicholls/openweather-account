@@ -3,39 +3,16 @@ import { Col, Row } from 'reactstrap'
 import '../App.scss'
 import { gallery } from '../assets/Gallery'
 
+import FooterSection from './FooterSection'
 
 function Footer() {
   return (
-    <footer
-      className="page-footer pt-4" 
-    >
+    <footer className="page-footer pt-4">
       <div className="container-fluid text-left text-md-left gap">
         <div className="row">
-          
           <div className="col-md-4 class-three">
-            <h5
-              className="class-one"
-
-            >
-              <b>Product Collections</b>
-            </h5>
-            <nav className="navbar navbar-expand-lg navbar-light">
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="accordion-button"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav">
-                <ul
-                  className="nav flex-column"
-               
-                >
+            <FooterSection header="Product Collections">
+              <ul className="nav flex-column">
                   <li className="nav-item">
                     <a
                       href="https://openweathermap.org/api#current"
@@ -73,15 +50,11 @@ function Footer() {
                     </a>
                   </li>
                 </ul>
-              </div>
-            </nav>
+            </FooterSection>
           </div>
 
           <div className="col-md-3 class-three text-left">
-            <h5
-              className="class-one"
-         
-            >
+            <h5 className="class-one">
               <b>Subscriptions</b>
             </h5>
             <nav className="navbar navbar-expand-lg navbar-light">
@@ -97,10 +70,7 @@ function Footer() {
                 <span className="accordion-button"></span>
               </button>
               <div className="collapse navbar-collapse" id="navbarNav2">
-                <ul
-                  className="nav flex-column"
-               
-                >
+                <ul className="nav flex-column">
                   <li className="nav-item">
                     <a
                       href="https://openweathermap.org/appid"
@@ -143,10 +113,7 @@ function Footer() {
           </div>
 
           <div className="col-md-4 text-left class-three">
-            <h5
-              className="class-one"
-         
-            >
+            <h5 className="class-one">
               <b>About Us</b>
             </h5>
             <nav className="navbar navbar-expand-lg navbar-light">
@@ -179,13 +146,9 @@ function Footer() {
         </div>
 
         <div className="row">
-      
-
           <div className="col-md-4 class-three text-left">
-            <h5
-              className="class-one"
-         
-            >
+
+            <h5 className="class-one">
               <b>Technologies</b>
             </h5>
             <nav className="navbar navbar-expand-lg navbar-light">
@@ -235,10 +198,7 @@ function Footer() {
           </div>
 
           <div className="col-md-3 text-left class-three">
-            <h5
-              className="class-one"
-         
-            >
+            <h5 className="class-one">
               <b>Terms and Conditions</b>
             </h5>
             <nav className="navbar navbar-expand-lg navbar-light">
@@ -254,9 +214,7 @@ function Footer() {
                 <span className="accordion-button"></span>
               </button>
               <div className="collapse navbar-collapse" id="navbarNav5">
-                <ul
-                  className="nav flex-column"
-                >
+                <ul className="nav flex-column">
                   <li className="nav-item">
                     <a
                       href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf"
@@ -290,12 +248,7 @@ function Footer() {
           </div>
 
           <div className="col-md-4 text-left class-three">
-            <h5
-              className="class-one"
-         
-            >
-              
-            </h5>
+            <h5 className="class-one"></h5>
             <nav className="navbar navbar-expand-lg navbar-light">
               <button
                 className="navbar-toggler"
@@ -309,10 +262,7 @@ function Footer() {
                 <span className="accordion-button"></span>
               </button>
               <div className="collapse navbar-collapse" id="navbarNav6">
-                <ul
-                  className="nav flex-column"
-                  
-                >
+                <ul className="nav flex-column">
                   <li className="nav-item">
                     <a
                       href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf"
@@ -348,13 +298,8 @@ function Footer() {
       </div>
       <br />
       <div className="row">
-       
         <div className="col-md-12 text-left class-seven">
-          <h5
-            className="class-one"
-          >
-            Download OpenWeather App
-          </h5>
+          <h5 className="class-one">Download OpenWeather App</h5>
           <a href="https://apps.apple.com/gb/app/openweather/id1535923697">
             <img src={gallery.badge.src} alt="app_store_badge"></img>
           </a>
@@ -368,19 +313,15 @@ function Footer() {
             ></img>
           </a>
         </div>
-
       </div>
       <br />
       <div className="row">
-       
-
         <div className="col-md-4 text-left class-seven">
           <p className="font-fix">Supplier of Achilles UVDB community</p>
           <p className="font-fix">
             © 2012 — 2021 OpenWeather ® All rights reserved
           </p>
         </div>
-  
 
         <div className="col-md-6 text-right">
           <a href="https://www.facebook.com/groups/270748973021342">

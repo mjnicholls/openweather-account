@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import './App.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from './components/Footer';
+import logo from './logo.svg'
+import './App.scss'
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from './components/Footer'
 // import Header from './components/Header';
 
 function App() {
@@ -12,12 +12,10 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-       
       </header>
       <Footer />
     </div>
-
-  );
+  )
 }
 
-export default App;
+export default App
