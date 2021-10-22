@@ -1,4 +1,5 @@
 /* eslint-disable */
+{/*
 import React from 'react'
 import { gallery } from '../assets/Gallery'
 import { Nav } from 'reactstrap'
@@ -99,3 +100,5 @@ function Navbar() {
 }
 
 export default Navbar
+
+*/}
