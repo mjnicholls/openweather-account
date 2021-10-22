@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { gallery } from '../assets/Gallery'
 import { Nav } from 'reactstrap'
 import '../App.scss'

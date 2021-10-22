@@ -13,13 +13,10 @@ const FooterSection = (props) => {
         className="d-flex align-items-center justify-content-between"
         onClick={() => setOpen(!open)}
       >
-        <h5 className="class-one" style={{ fontWeight: 'bold' }}>
+        <h5>
           {props.header}
         </h5>
-        {/*<div*/}
-        {/*className="d-lg-none"*/}
-        {/*style={{ borderBottom: !open ? '1px solid #ced4da' : '' }}*/}
-        {/*></div>*/}
+
         <img
           className="d-lg-none"
           src={icon_down_black}
@@ -31,10 +28,6 @@ const FooterSection = (props) => {
       <div
         className="d-lg-none pb-3"
         style={{ borderBottom: '1px solid #ced4da' }}
-        // style={{
-        //   display: open ? 'block' : 'none',
-        //   borderBottom: open ? '1px solid #ced4da' : '',
-        // }}
       >
         <div
           style={{
@@ -45,10 +38,7 @@ const FooterSection = (props) => {
         </div>
       </div>
       <div className="d-none d-lg-block">{props.children}</div>
-      {/*<div*/}
-      {/*className="d-lg-none"*/}
-      {/*style={{ borderBottom: open ? '' : '1px solid #ced4da' }}*/}
-      {/*></div>*/}
+      
     </div>
   )
 }

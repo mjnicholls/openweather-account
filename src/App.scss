@@ -1,6 +1,6 @@
 @import 'assets/scss/colors.scss';
 @import 'assets/scss/typography.scss';
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 
 .body {
   font-family: $default-font-family;
@@ -9,10 +9,14 @@
   -moz-osx-font-smoothing: grayscale;
   color: $brand-black;
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: $default-font-family;
   }
-
 }
 
 // Footer classes
@@ -22,124 +26,43 @@
   font-size: $font-size-sm;
   color: $brand-black;
 
+  h5 {
+    font-family: $highlight-font-family;
+    font-weight: bold;
+    font-size: 14px;
+  }
 
   ul {
     list-style: none;
     padding-left: 0;
+    line-height: 20pt;
+    text-decoration: none;
+
     li {
       padding: 0;
-      &:hover {
-        text-decoration: underline;
+
+      a {
+        color: $brand-black;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
 }
 
-
-
-
-
-h5.class-one {
-  font-family: $highlight-font-family;
-  font-weight: bold;
-}
-
-.class-one {
-  //font-family: $default-font-family;
-  font-size: 14px;
-  line-height: 20pt;
-  color: #48484A!important;
-}
-
-
-.class-three {
-  margin-top:45px!important;
-}
-
-
-
-
-p.noBottom {
-  margin-bottom: 0px!important;
-  //font-family: $default-font-family;
-  color: $brand-black!important;
-}
-
-
-.class-seven {
-  //font-family: $highlight-font-family;
-  font-size: 14px;
-  line-height: 20pt;
-  color: $brand-black;
-  margin-left: 15px
-}
-
-.nav-link {
-  color: #48484A!important;
-  padding: 0px!important;
-  margin: 0px!important;
-}
-
-.underline:hover {
-  text-decoration: underline;
-}
-
-.logos.a:hover {
-display: none;
-}
-
-
-li.nav-item {
-  padding: 0px!important;
-  //font-size: 14px!important
-}
-
-
-button.navbar-toggler.collapsed {
-  padding: 0px!important;
-}
-
-button.navbar-toggler {
-  padding: 0px!important;
-  transform: rotate(180deg);
-}
-
-span.accordion-button {
-  padding: 0px!important;
-}
-
-span.accordion-button::after {
-  transform: rotate(180deg); 
-}
-
-
-img.logos {
-  margin-right: 46px;
-}
-
-.logos2 {
-  margin-right: 0px;
-}
-
-
-
-
-
-// Header classes
+// Header classes (to be removed / nested) 
 
 .navbar.ow-nav {
-  background-color: #48484a!important;
-
+  background-color: #48484a !important;
 }
 
 a.nav-link.header-link {
-  color: white!important;
+  color: white !important;
 }
 
 .ow-item {
   margin-right: 20px;
   font-family: $default-font-family;
 }
-
-
-
