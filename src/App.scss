@@ -58,6 +58,62 @@
 
 // Header classes (to be removed / nested) 
 
+.page-header {
+  background-color: $brand-black;
+  font-family: $highlight-font-family;
+  font-size: $font-size-sm;
+
+  button{
+    border-color: none;
+
+    .navbar-toggler-icon {
+      color: white;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    line-height: 20pt;
+    text-decoration: none;
+
+    li {
+      padding: 0;
+
+      a {
+        color: $brand-black;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      button {
+        background-color: $brand-black;
+        border: none;
+        
+        &:hover {
+          background-color: $brand-black;
+        }
+        
+      }
+
+      input {
+        background-color: $brand-black;
+        border: none;
+      }
+
+   
+    }
+  }
+
+  div.section-body-mobile {
+    border-bottom: 1px solid #ced4da;
+  }
+}
+
+
+
 .navbar.ow-nav {
   background-color: #48484a !important;
 }

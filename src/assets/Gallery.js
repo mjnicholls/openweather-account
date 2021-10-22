@@ -8,6 +8,7 @@ import mediumLogo from './img/icon_medium.png'
 import telegramLogo from './img/icon_telegram.png'
 import twitterLogo from './img/icon_twitter.png'
 import owLogo from './img/logo_white.png'
+import searchIcon from './img/icon_search.svg'
 
 export const gallery = {
   badge: {
@@ -58,4 +59,9 @@ export const gallery = {
     name: 'Open Weather Logo',
     src: owLogo,
   },
+
+  search_bar_logo: {
+    name: "Search Bar Icon",
+    src: searchIcon
+  }
 }
