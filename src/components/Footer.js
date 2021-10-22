@@ -171,7 +171,7 @@ const Footer = () => (
         <div className="col">
           <h5>Download OpenWeather App</h5>
           <a href="https://apps.apple.com/gb/app/openweather/id1535923697">
-            <img src={gallery.badge.src} alt="app_store_badge"></img>
+            <img src={gallery.badge.src} alt="app_store_badge"/>
           </a>
           <a href="https://play.google.com/store/apps/details?id=uk.co.openweather">
             <img
@@ -179,7 +179,7 @@ const Footer = () => (
               alt="googleplay_badge"
               width="135"
               height="60"
-            ></img>
+            />
           </a>
         </div>
       </div>
@@ -190,91 +190,73 @@ const Footer = () => (
           <p>© 2012 — 2021 OpenWeather ® All rights reserved</p>
         </div>
 
-        <div className="col-lg-6 mt-4">
-          <div className="row">
-            <div className="col ">
-              <a href="https://github.com/search?q=openweathermap&ref=cmdform">
+        <div className="col-sm-10 col-md-8 col-lg-6 mt-4">
+          <div className="d-flex justify-content-between align-items-center social-media-icons">
+            <a href="https://github.com/search?q=openweathermap&ref=cmdform">
                 <img
                   className="logos"
                   src={gallery.github.src}
                   alt="github_logo"
                   height="16px"
                   width="16px"
-                ></img>
+                />
               </a>
-            </div>
-            <div className="col">
-              <a href="https://t.me/openweathermap">
-                <img
-                  src={gallery.telegram.src}
-                  className="logos"
-                  alt="telegram_logo"
-                  height="16px"
-                  width="19px"
-                ></img>
-              </a>
-            </div>
-
-            <div className="col">
-              <a href="https://medium.com/@openweathermap">
+            <a href="https://t.me/openweathermap">
+              <img
+                src={gallery.telegram.src}
+                className="logos"
+                alt="telegram_logo"
+                height="16px"
+                width="19px"
+              />
+            </a>
+            <a href="https://medium.com/@openweathermap">
                 <img
                   src={gallery.medium.src}
                   className="logos"
                   alt="medium_logo"
                   height="16px"
                   width="16px"
-                ></img>
+                />
               </a>
-            </div>
-
-            <div className="col">
-              <a href="https://www.linkedin.com/company/9816754">
+             <a href="https://www.linkedin.com/company/9816754">
                 <img
                   src={gallery.linked.src}
                   className="logos"
                   alt="linkedin_logo"
                   height="16px"
                   width="16px"
-                ></img>
+                />
               </a>
-            </div>
-
-            <div className="col">
-              <a href="https://twitter.com/OpenWeatherMap">
+            <a href="https://twitter.com/OpenWeatherMap">
                 <img
                   src={gallery.twitter.src}
                   className="logos2"
                   alt="twitter_logo"
                   height="16px"
                   width="18.4px"
-                ></img>
+                />
               </a>
-            </div>
-
-            <div className="col">
-              <a href="https://www.facebook.com/groups/270748973021342">
+            <a href="https://www.facebook.com/groups/270748973021342">
                 <img
                   className="logos"
                   src={gallery.facebook.src}
                   alt="facebook_logo"
                   height="16px"
                   width="7.76px"
-                ></img>
+                />
               </a>
-            </div>
-
-            <div className="col">
-              <a href="https://www.instagram.com/openweathermap/">
+            <a href="https://www.instagram.com/openweathermap/">
                 <img
                   className="logos"
                   src={gallery.insta.src}
                   alt="instagram_logo"
                   height="17px"
                   width="17px"
-                ></img>
+                />
               </a>
-            </div>
           </div>
+
         </div>
       </div>
     </div>
