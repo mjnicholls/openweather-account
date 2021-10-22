@@ -17,45 +17,45 @@ export const gallery = {
 
   appbadge: {
     name: 'App Badge',
-    src: appGoogleBadge
+    src: appGoogleBadge,
   },
 
   facebook: {
     name: 'Facebook Logo',
-    src: facebookLogo
+    src: facebookLogo,
   },
 
   github: {
     name: 'Github Logo',
-    src: githubLogo
+    src: githubLogo,
   },
   insta: {
     name: 'Instagram Logo',
-    src: instaLogo
+    src: instaLogo,
   },
 
   linked: {
     name: 'LinkedIn Logo',
-    src: linkedInLogo
+    src: linkedInLogo,
   },
 
   medium: {
     name: 'Medium Logo',
-    src: mediumLogo
+    src: mediumLogo,
   },
 
   telegram: {
     name: 'Telegram Logo',
-    src: telegramLogo
+    src: telegramLogo,
   },
 
   twitter: {
     name: 'Twitter Logo',
-    src: twitterLogo
+    src: twitterLogo,
   },
 
   logo_white: {
     name: 'Open Weather Logo',
-    src: owLogo
+    src: owLogo,
   },
 }
