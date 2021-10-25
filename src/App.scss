@@ -63,31 +63,34 @@
   font-family: $highlight-font-family;
   font-size: $font-size-sm;
 
-  button{
-    border-color: none;
 
-    .navbar-toggler-icon {
-      color: white;
+  button{
+    border: none;
+    &:focus {
+      box-shadow: none;
     }
   }
 
   ul {
-    list-style: none;
-    padding-left: 0;
-    line-height: 20pt;
-    text-decoration: none;
-
+    
     li {
       padding: 0;
+      margin-left: 1px;
 
       a {
-        color: $brand-black;
+        color: white;
         text-decoration: none;
         &:hover {
-          text-decoration: underline;
+          text-decoration: none;
+          color: white;
         }
-      }
+        &:focus {
+          text-decoration: none;
+          color: white;
+        }
 
+      }
+      
       button {
         background-color: $brand-black;
         border: none;
@@ -101,28 +104,43 @@
       input {
         background-color: $brand-black;
         border: none;
+        color: white;
+        &:focus {
+          background-color: $brand-black;
+          color: white;
+          box-shadow: none;
+        }
       }
 
+      .marketplace {
+        border-radius: 16pt;
+        padding: 5pt 7pt;
+        background-color: rgba(242, 242, 242, 0.4);
+    }
+
+
+    .dropdown-item {
+      color: #48484a;
+      vertical-align: middle;
+      
+      &:hover {
+        background-color: $brand-grey;
+        color: $brand-black
+      }
+      &:focus {
+        background-color: white;
+      }
+
+    }
    
     }
   }
 
   div.section-body-mobile {
     border-bottom: 1px solid #ced4da;
+
+
+    
   }
 }
 
-
-
-.navbar.ow-nav {
-  background-color: #48484a !important;
-}
-
-a.nav-link.header-link {
-  color: white !important;
-}
-
-.ow-item {
-  margin-right: 20px;
-  font-family: $default-font-family;
-}

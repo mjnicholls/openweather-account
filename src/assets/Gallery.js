@@ -9,6 +9,8 @@ import telegramLogo from './img/icon_telegram.png'
 import twitterLogo from './img/icon_twitter.png'
 import owLogo from './img/logo_white.png'
 import searchIcon from './img/icon_search.svg'
+import hamburgerIcon from './img/icon_hamburger.svg'
+import userIcon from './img/icon_user.png'
 
 export const gallery = {
   badge: {
@@ -63,5 +65,15 @@ export const gallery = {
   search_bar_logo: {
     name: "Search Bar Icon",
     src: searchIcon
+  },
+
+  hamburger: {
+    name: "Search Bar Icon",
+    src: hamburgerIcon
+  },
+
+  user_icon: {
+    name: "Search Bar Icon",
+    src: userIcon
   }
 }
