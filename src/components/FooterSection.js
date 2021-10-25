@@ -18,14 +18,14 @@ const FooterSection = (props) => {
         <h5>{props.header}</h5>
 
         <img
-          className="d-lg-none"
+          className="d-xl-none"
           src={iconDownBlack}
           alt="arrow"
           style={{ transform: open ? 'rotate(180deg)' : 'none' }}
         />
       </div>
 
-      <div className="d-lg-none pb-3 section-body-mobile">
+      <div className="d-xl-none pb-3 section-body-mobile">
         <div
           style={{
             display: open ? 'block' : 'none',
@@ -34,7 +34,7 @@ const FooterSection = (props) => {
           {props.children}
         </div>
       </div>
-      <div className="d-none d-lg-block">{props.children}</div>
+      <div className="d-none d-xl-block">{props.children}</div>
     </div>
   )
 }

@@ -4,10 +4,10 @@ import React from 'react'
 import { gallery } from '../assets/Gallery'
 import '../App.scss'
 
-function Navbar() {
+const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg page-header">
-      <div className="container-lg">
+    <nav className="navbar navbar-expand-xl page-header">
+      <div className="container-xl">
         <a className="navbar-brand" href="/">
           <img
             src={gallery.logo_white.src}

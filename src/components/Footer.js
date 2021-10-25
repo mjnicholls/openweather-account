@@ -5,9 +5,9 @@ import FooterSection from './FooterSection'
 
 const Footer = () => (
   <footer className="page-footer p-4">
-    <div className="container-lg">
+    <div className="container-xl">
       <div className="row">
-        <div className="col-lg-4 mt-4">
+        <div className="col-xl-4 mt-4">
           <FooterSection header="Product Collections">
             <ul>
               <li>
@@ -43,7 +43,7 @@ const Footer = () => (
           </FooterSection>
         </div>
 
-        <div className="col-lg-4 mt-4">
+        <div className="col-xl-4 mt-4">
           <FooterSection header="Subscriptions">
             <ul>
               <li>
@@ -73,7 +73,7 @@ const Footer = () => (
           </FooterSection>
         </div>
 
-        <div className="col-lg-4 mt-4">
+        <div className="col-xl-4 mt-4">
           <FooterSection header="About Us">
             <ul>
               <li>
@@ -89,7 +89,7 @@ const Footer = () => (
       </div>
 
       <div className="row">
-        <div className="col-lg-4 mt-4">
+        <div className="col-xl-4 mt-4">
           <FooterSection header="Technologies">
             <ul>
               <li>
@@ -114,7 +114,7 @@ const Footer = () => (
           </FooterSection>
         </div>
 
-        <div className="col-lg-4 mt-4">
+        <div className="col-xl-4 mt-4">
           <FooterSection header="Terms and Conditions">
             <ul>
               <li>
@@ -142,7 +142,7 @@ const Footer = () => (
           </FooterSection>
         </div>
 
-        <div className="col-lg-4 mt-4">
+        <div className="col-xl-4 mt-4">
           <h5>&nbsp;</h5>
           <ul>
             <li>
