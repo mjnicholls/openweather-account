@@ -56,6 +56,8 @@
   }
 }
 
+
+
 // Header classes (to be removed / nested) 
 
 .page-header {
@@ -63,11 +65,12 @@
   font-family: $highlight-font-family;
   font-size: $font-size-sm;
 
-  //width: 100%;
-  //position: fixed;
-  //top:0px;
-  //left:0px;
-  //height:100%;
+  .navbar-collapse.show {
+    .navbar-nav {
+      height: calc(100vh - 50px);
+      overflow: scroll;
+    }
+  }
 
 
 
@@ -120,8 +123,20 @@
       a {
         color: white;
         text-decoration: none;
-          display: block;
-          padding: 0.5rem 1rem;
+        display: block;
+        padding: 0.5rem 1rem;
+        padding-left:0.5rem;
+        padding-right:0.5rem;
+        text-decoration: none;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+        img {
+          height: 10pt;
+          width: 10pt;
+          display: inline-block;
+          margin-right: 4px,
+        }
+      
         &:hover {
           text-decoration: none;
           color: white;
@@ -154,8 +169,10 @@
 
       border: 1px solid #ccc;
       border: 1px solid rgba(0,0,0,.15);
-      border-radius: 8px;
-      box-shadow: 0 6px 12px;
+      border-radius: 8pt;
+      box-shadow: 0 6px 24px RGB(0 0 0 / 15%);
+    
+     
 
       &:before {
           content: "";
@@ -172,9 +189,9 @@
 
       
 
-    .dropdown-item {
+    a {
       color: #48484a;
-      vertical-align: middle;
+      text-align: center;
       
       &:hover {
         background-color: $brand-grey;

@@ -49,7 +49,6 @@ const Navbar = () => {
               placeholder="Weather in your city"
               name="q"
             />
-            <input style={{ display: 'none' }} type="submit" />
           </form>
         </div>
 
@@ -83,17 +82,13 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <a
-                className="nav-link header-link"
-                href="https://openweathermap.org/guide"
-                target="_blank"
-              >
+              <a href="https://openweathermap.org/guide" target="_blank">
                 Guide
               </a>
             </li>
             <li>
               <a
-                className="nav-link header-link"
+                className
                 href="https://openweathermap.org/api"
                 target="_blank"
               >
@@ -102,7 +97,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                className="nav-link header-link"
+                className=" header-link"
                 href="https://openweathermap.org/price"
                 target="_blank"
               >
@@ -110,17 +105,13 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a
-                className="nav-link header-link"
-                href="https://openweathermap.org/weathermap"
-                target="_blank"
-              >
+              <a href="https://openweathermap.org/weathermap" target="_blank">
                 Maps
               </a>
             </li>
             <li>
               <a
-                className="nav-link header-link text-nowrap"
+                className="text-nowrap"
                 href="https://openweathermap.org/our-initiatives"
                 target="_blank"
               >
@@ -128,17 +119,12 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a
-                className="nav-link header-link"
-                href="https://openweathermap.org/examples"
-                target="_blank"
-              >
+              <a href="https://openweathermap.org/examples" target="_blank">
                 Partners
               </a>
             </li>
             <li>
               <a
-                className="nav-link header-link"
                 href="https://openweather.co.uk/blog/category/weather"
                 target="_blank"
               >
@@ -147,7 +133,6 @@ const Navbar = () => {
             </li>
             <li className="d-xl-none">
               <a
-                className="nav-link header-link"
                 href="https://openweather.co.uk/blog/category/weather"
                 target="_blank"
               >
@@ -157,7 +142,7 @@ const Navbar = () => {
 
             <li>
               <a
-                className="nav-link header-link marketplace"
+                className="marketplace"
                 href="https://home.openweathermap.org/marketplace"
                 target="_blank"
               >
@@ -168,7 +153,7 @@ const Navbar = () => {
               <>
                 <li>
                   <a
-                    className="nav-link header-link text-nowrap"
+                    className="text-nowrap"
                     href="https://home.openweathermap.org/users/sign_in"
                     target="_blank"
                   >
@@ -178,27 +163,17 @@ const Navbar = () => {
                 <li className="nav-item dropdown d-none d-xl-block">
                   <a
                     href="/"
-                    className="nav-link dropdown-toggle header-link"
+                    className="dropdown-toggle"
                     data-toggle="dropdown"
                   >
                     Support
                   </a>
                   <div className="dropdown-menu">
-                    <a
-                      className="dropdown-item"
-                      href="https://openweathermap.org/faq"
-                    >
-                      FAQ
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      href="https://openweathermap.org/appid"
-                      target="_blank"
-                    >
+                    <a href="https://openweathermap.org/faq">FAQ</a>
+                    <a href="https://openweathermap.org/appid" target="_blank">
                       How to Start
                     </a>
                     <a
-                      className="dropdown-item"
                       href="https://home.openweathermap.org/questions"
                       target="_blank"
                     >
@@ -210,56 +185,40 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item dropdown text-nowrap d-none d-lg-block">
-                  <a className="nav-link header-link text-nowrap" href="\">
+                  <a className="text-nowrap" href="\">
                     <a
                       href="/"
-                      className="nav-link dropdown-toggle header-link text-nowrap username"
+                      className="dropdown-toggle header-link text-nowrap username"
                       data-toggle="dropdown"
                     >
-                      <img
-                        src={gallery.user_icon.src}
-                        style={{
-                          height: '10pt',
-                          width: '10pt',
-                          display: 'inline-block',
-                          marginRight: '4px',
-                        }}
-                        alt="user icon"
-                      />
-
                       {userName}
                     </a>
                     <div className="dropdown-menu text-nowrap">
                       <a
-                        className="dropdown-item"
                         href="https://home.openweathermap.org/myservices"
                         target="_blank"
                       >
                         My Services
                       </a>
                       <a
-                        className="dropdown-item"
                         href="https://home.openweathermap.org/api_keys"
                         target="_blank"
                       >
                         My API Keys
                       </a>
                       <a
-                        className="dropdown-item"
                         href="https://home.openweathermap.org/payments"
                         target="_blank"
                       >
                         My Payments
                       </a>
                       <a
-                        className="dropdown-item"
                         href="https://home.openweathermap.org/home"
                         target="_blank"
                       >
                         My Profile
                       </a>
                       <a
-                        className="dropdown-item"
                         href="https://home.openweathermap.org/users/sign_out"
                         target="_blank"
                       >
@@ -272,28 +231,19 @@ const Navbar = () => {
                 <li className="nav-item dropdown d-none d-xl-block">
                   <a
                     href="/"
-                    className="nav-link dropdown-toggle header-link"
+                    className="dropdown-toggle header-link"
                     data-toggle="dropdown"
                   >
                     Support
                   </a>
                   <div className="dropdown-menu">
-                    <a
-                      className="dropdown-item"
-                      href="https://openweathermap.org/faq"
-                      target="_blank"
-                    >
+                    <a href="https://openweathermap.org/faq" target="_blank">
                       FAQ
                     </a>
-                    <a
-                      className="dropdown-item"
-                      href="https://openweathermap.org/appid"
-                      target="_blank"
-                    >
+                    <a href="https://openweathermap.org/appid" target="_blank">
                       How to Start
                     </a>
                     <a
-                      className="dropdown-item"
                       href="https://home.openweathermap.org/questions"
                       target="_blank"
                     >
@@ -303,28 +253,13 @@ const Navbar = () => {
                 </li>
 
                 <li className="nav-item d-lg-none text-nowrap">
-                  <a
-                    className="nav-link header-link"
-                    href="https://home.openweathermap.org/"
-                  >
-                    <img
-                      src={gallery.user_icon.src}
-                      style={{
-                        height: '10pt',
-                        width: '10pt',
-                        display: 'inline-block',
-                        marginRight: '4px',
-                      }}
-                      alt="user icon"
-                    />
+                  <a className href="https://home.openweathermap.org/">
+                    <img src={gallery.user_icon.src} alt="user icon" />
                     {userName}
                   </a>
                 </li>
                 <li className="d-lg-none">
-                  <a
-                    className="nav-link header-link"
-                    href="https://home.openweathermap.org/users/sign_out"
-                  >
+                  <a href="https://home.openweathermap.org/users/sign_out">
                     Logout
                   </a>
                 </li>
