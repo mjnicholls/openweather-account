@@ -63,6 +63,13 @@
   font-family: $highlight-font-family;
   font-size: $font-size-sm;
 
+  //width: 100%;
+  //position: fixed;
+  //top:0px;
+  //left:0px;
+  //height:100%;
+
+
 
   button{
     border: none;
@@ -71,15 +78,50 @@
     }
   }
 
+
+
+
+  .btn.btn-secondary {
+    background-color: $brand-black;
+    border: none;
+    
+    &:hover {
+      background-color: $brand-black;
+    }
+    
+  }
+
+  input {
+    background-color: $brand-black;
+    border: none;
+    color: white;
+    &:focus {
+      background-color: $brand-black;
+      color: white;
+      box-shadow: none;
+    }
+    &:-webkit-autofill, #nav-website form input :-webkit-autofill:focus {
+      background-color: #48484A !important;
+      -webkit-box-shadow: 0 0 0 50px #48484a inset;
+      -webkit-text-fill-color: #F2F2F2;
+  }
+  }
+
+
   ul {
+
+    align-items: center;
+    justify-content: space-between;
     
     li {
       padding: 0;
-      margin-left: 1px;
+      
 
       a {
         color: white;
         text-decoration: none;
+          display: block;
+          padding: 0.5rem 1rem;
         &:hover {
           text-decoration: none;
           color: white;
@@ -89,35 +131,46 @@
           color: white;
         }
 
-      }
-      
-      button {
-        background-color: $brand-black;
-        border: none;
-        
-        &:hover {
-          background-color: $brand-black;
+        a.username {
+          max-width: 40pt;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
-        
-      }
+     
 
-      input {
-        background-color: $brand-black;
-        border: none;
-        color: white;
-        &:focus {
-          background-color: $brand-black;
-          color: white;
-          box-shadow: none;
-        }
       }
 
       .marketplace {
         border-radius: 16pt;
         padding: 5pt 7pt;
         background-color: rgba(242, 242, 242, 0.4);
+  
+        
     }
 
+
+    .dropdown-menu {
+
+      border: 1px solid #ccc;
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 8px;
+      box-shadow: 0 6px 12px;
+
+      &:before {
+          content: "";
+          position: absolute;
+          left: 48pt;
+          top: -10px;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 10px 10px 10px;
+          border-color: transparent transparent #fff transparent;
+          z-index: 99;
+      }
+
+      
 
     .dropdown-item {
       color: #48484a;
@@ -132,12 +185,14 @@
       }
 
     }
+  }
    
     }
   }
 
   div.section-body-mobile {
     border-bottom: 1px solid #ced4da;
+  
 
 
     

@@ -63,17 +63,17 @@ export const gallery = {
   },
 
   search_bar_logo: {
-    name: "Search Bar Icon",
-    src: searchIcon
+    name: 'Search Bar Icon',
+    src: searchIcon,
   },
 
   hamburger: {
-    name: "Search Bar Icon",
-    src: hamburgerIcon
+    name: 'Search Bar Icon',
+    src: hamburgerIcon,
   },
 
   user_icon: {
-    name: "Search Bar Icon",
-    src: userIcon
-  }
+    name: 'Search Bar Icon',
+    src: userIcon,
+  },
 }
