@@ -1,28 +1,27 @@
 import './App.scss'
 import Footer from './components/Footer'
+import SimpleMap from './components/GoogleMaps'
 import Header from './components/Header'
+// import Map from './components/RecycleCentersMap'
 import logo from './logo.svg'
+//const API_KEY = 'AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY'
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <div className="container-xl">
-        <div className="d-flex justify-content-between align-items-center my-3">
-          <h2>New Trigger</h2>
-          <ul className="d-flex align-items-center ">
-            <li>Triggers</li>
-            <li>Maps</li>
-            <li>Road Risk</li>
-          </ul>
-        </div>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
-      </div>
+
+      {/*  <Map 
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `600px`, width: `100%` }} />}
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
+
+    */}
+
+      <SimpleMap />
+
       <Footer />
     </div>
   )
