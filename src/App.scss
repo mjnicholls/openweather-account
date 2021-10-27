@@ -87,6 +87,7 @@
   .btn.btn-secondary {
     background-color: $brand-black;
     border: none;
+    margin-left: 15px;
     
     &:hover {
       background-color: $brand-black;
@@ -166,12 +167,17 @@
 
 
     .dropdown-menu {
-
-      border: 1px solid #ccc;
-      border: 1px solid rgba(0,0,0,.15);
+      margin-top: 20px;
       border-radius: 8pt;
       box-shadow: 0 6px 24px RGB(0 0 0 / 15%);
-    
+      position: absolute;
+    top: 30px;
+    font-size: 14px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: none;
+    padding: 8pt;
+    z-index: 99;
      
 
       &:before {
@@ -191,14 +197,18 @@
 
     a {
       color: #48484a;
-      text-align: center;
+      text-align: left;
+      margin-left: 8px;
+      margin-right: 5px;
       
       &:hover {
         background-color: $brand-grey;
-        color: $brand-black
+        color: $brand-black;
+        border-radius: 5pt;
       }
       &:focus {
         background-color: white;
+       
       }
 
     }
