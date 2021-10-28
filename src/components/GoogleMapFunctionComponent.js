@@ -24,53 +24,28 @@ const placeMarker = (position, map, lat, lng) => {
   }
 
 
-  const contentString = `<div class="mapPop" style="width:300px!important">
-    <h5 >Custom Location</h5>
+  const contentString = `<div class="mapPop">
+    <h5>Custom Location</h5>
     <hr/>
 
-    <div style=" display: flex; justify-content: space-between; padding-top: 0pt; flex-wrap: nowrap;">
+    <div class="main">
 
-    <div style="background: white;
-    display: inline-block;
-    width: 60%;
-    margin-right:0px;  
-    vertical-align:top;">
- 
-      <p style="margin: 0; font-size: 1rem; font-family: Arial, sans-serif;"><b style="font-weight: bold">Latitude:</b> ${myLatlng.lat.toFixed(
+    <div>
+ <p>
+      <b>Latitude:</b> ${myLatlng.lat.toFixed(
         6,
       )} </p>
-      <p style="margin: 0; font-size: 1rem; font-family: Arial, sans-serif;"><b style="font-weight: bold">Longitude:</b> ${myLatlng.lng.toFixed(
+      <p>
+      <b>Longitude:</b> ${myLatlng.lng.toFixed(
         6,
       )} </p>
 
       </div>
 
-      <div style="background: white;
-      display: inline-block;
-      width:v40%;
-      margin-right:0x;  
-      vertical-align:top;">
+      <div 
+      class="body">
 
-    <button click="addMarker" style="
-    display: inline-block;
-    font-weight: 400;
-    font-family: Arial, sans-serif;
-    text-align: left;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.8rem 1.5rem;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 16pt;
-    color: #fff;
-    background-color: #343a40;
-    border-color: #343a40;
-    ">
+    <button class="add" click="addMarker">
       Add location
     </button>
     </div>

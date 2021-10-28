@@ -6,7 +6,7 @@ import Header from './components/Header'
 //import Map from './components/RecycleCentersMap'
 
 import MyMapComponent from './components/GoogleMapFunctionComponent'
-import SearchBox from './components/SearchBox'
+import AutoCompleteForm from './components/AutoCompleteForm'
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
       {/* <SimpleMap /> */}
 
       <Row>
-        <SearchBox />
+        <AutoCompleteForm />
 
         <MyMapComponent />
       </Row>
