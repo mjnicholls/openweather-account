@@ -4,19 +4,28 @@ import { Col } from 'reactstrap'
 import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
 
+/* eslint-disable-next-line */
+var newMarker
+
 const placeMarker = (position, map, lat, lng) => {
+
   const myLatlng = { lat: position.lat(), lng: position.lng() }
 
-  /* eslint-disable-next-line */
-  const newMarker = new google.maps.Marker({
-    position,
-    map,
-    lat,
-    lng,
-  })
+  if (!newMarker) {
+    /* eslint-disable-next-line */
+    newMarker = new google.maps.Marker({
+      position,
+      map,
+      lat,
+      lng,
+    })
+  } else {
+    newMarker.setPosition(position);
+  }
 
-  const contentString = `<div className="mapPop" style="width:300px!important">
-    <h5 style="font-weight:bold; font-family:'Space Grotesk', Arial, sans-serif;">Custom Location</h5>
+
+  const contentString = `<div class="mapPop" style="width:300px!important">
+    <h5 >Custom Location</h5>
     <hr/>
 
     <div style=" display: flex; justify-content: space-between; padding-top: 0pt; flex-wrap: nowrap;">
