@@ -23,7 +23,7 @@ function App() {
       {/*/>*/}
 
 
-      <SimpleMap />
+      {/*<SimpleMap />*/}
       <MyMapComponent />
       <Footer />
     </div>
