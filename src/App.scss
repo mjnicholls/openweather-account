@@ -219,10 +219,77 @@
 
   div.section-body-mobile {
     border-bottom: 1px solid #ced4da;
-  
-
-
-    
+   
   }
 }
 
+// Map popup
+
+.mapPop {
+  padding-right: 0px;
+  padding-bottom: 0px;
+  max-width: 390px;
+  max-height: 403px;
+  min-width: 0px;
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: -140px;
+  left: 10px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 7px 1px RGB(0 0 0 / 30%);
+  border-radius: 8pt;
+  box-shadow: 1px;
+
+
+  .icon-close {
+    color: $brand-black;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 101;
+  }
+  .pop-up-header {
+    border-bottom: 1px solid grey;
+    line-height: 1.4rem;
+    padding-bottom: 8pt;
+
+    h3 {
+      font-size: 1.4rem;
+      margin: 0;
+    }
+  }
+  .pop-up-content {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 8pt;
+    flex-wrap: nowrap;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+
+    &.error {
+      color: darkred;
+      font-weight: 600;
+    }
+  }
+  button {
+    font-size: 0.9rem;
+    height: 28pt;
+  }
+}
+
+@media screen and (min-width: desktop) {
+  .pop-up-marker {
+    bottom: 48%;
+  }
+}
+
+
+   

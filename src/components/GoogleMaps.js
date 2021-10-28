@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react'
 import { mapStyles } from '../assets/MapStyles'
+import '../App.scss'
 
 const handleApiLoaded = (map, maps, marker) => {
   map.addListener('click', function (e) {
@@ -46,7 +47,24 @@ const handleApiLoaded = (map, maps, marker) => {
 
 // style as pop up
 const AnyReactComponent = ({ lat, lng, text }) =>
-  <div style={{backgroundColor: "#ffffff", padding: "20px", width: "200px", height: "200px" }}>{text} {lat} {lng}</div>
+<div class="mapPop" click="close">
+<div class="pop-up-header">
+      <h3>{text}</h3><i click="close" />
+    </div>
+
+    <div class="pop-up-content">
+      <div class="text">
+        <p v-if="error" class="error">Location has already been added.</p>
+        <p><span class="accented">Latitude:</span> {lat} </p>
+        <p><span class="accented">Longitude:</span> {lng} </p>
+      </div>
+      <button v-if="!error" click="addMarker" class="button-round dark">
+        Add location
+      </button>
+    </div>
+
+    
+   </div>
 
 const createMapOptions = () =>  ({
   scrollwheel: false,
@@ -59,15 +77,15 @@ class SimpleMap extends Component {
   constructor(props) {
     super(props);
     this.state =  {
-      lat: 59.95,
-      lng: 30.33
+      lat: 51.509865,
+      lng: -0.118092,
     }
   }
 
   static defaultProps = {
     center: {
-      lat: 59.95,
-      lng: 30.33,
+      lat: 51.509865,
+      lng: -0.118092,
     },
     zoom: 11,
   }
