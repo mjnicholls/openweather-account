@@ -49,7 +49,7 @@ const handleApiLoaded = (map, maps, marker) => {
 const AnyReactComponent = ({ lat, lng, text }) =>
 <div class="mapPop" click="close">
 <div class="pop-up-header">
-      <h3>{text}</h3><i click="close" />
+      <h3>{text}</h3>
     </div>
 
     <div class="pop-up-content">

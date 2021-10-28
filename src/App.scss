@@ -228,6 +228,8 @@
 .mapPop {
   padding-right: 0px;
   padding-bottom: 0px;
+  width: 400px;
+  height: 150px;
   max-width: 390px;
   max-height: 403px;
   min-width: 0px;
@@ -261,6 +263,7 @@
     h3 {
       font-size: 1.4rem;
       margin: 0;
+      font-family: $highlight-font-family;
     }
   }
   .pop-up-content {
