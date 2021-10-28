@@ -44,15 +44,41 @@ const handleApiLoaded = (map, maps, marker) => {
   }
 }
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>
+// style as pop up
+const AnyReactComponent = ({ lat, lng, text }) =>
+  <div style={{backgroundColor: "#ffffff", padding: "20px", width: "200px", height: "200px" }}>{text} {lat} {lng}</div>
+
+const createMapOptions = () =>  ({
+  scrollwheel: false,
+  styles: mapStyles.styles
+})
+
 
 class SimpleMap extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state =  {
+      lat: 59.95,
+      lng: 30.33
+    }
+  }
+
   static defaultProps = {
     center: {
       lat: 59.95,
       lng: 30.33,
     },
     zoom: 11,
+  }
+
+  _onClick = (obj) => {
+    console.log(obj.lat, obj.lng);
+    this.setState({
+      lat: obj.lat,
+      lng: obj.lng
+    })
+    console.log(this.state)
   }
 
   render() {
@@ -62,15 +88,18 @@ class SimpleMap extends Component {
         id="map"
         style={{ height: '100vh', width: '100%' }}
       >
+        {/*<div style={{backgroundColor: "#ffffff", width: "200px", height: "200px", position: "absolute", zIndex: 99, top: "50%", left: "50%"}}>Pop up</div>*/}
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY' }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-          styles={mapStyles}
+          // styles={mapStyles}
+          options={createMapOptions}
+          onClick={this._onClick}
         >
-          <AnyReactComponent lat={59.955413} lng={30.337844} />
+          <AnyReactComponent lat={this.state.lat} lng={this.state.lng} text="Custom location"/>
         </GoogleMapReact>
       </div>
     )
