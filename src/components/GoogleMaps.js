@@ -46,37 +46,40 @@ const handleApiLoaded = (map, maps, marker) => {
 }
 
 // style as pop up
-const AnyReactComponent = ({ lat, lng, text }) =>
-<div class="mapPop" click="close">
-<div class="pop-up-header">
+const AnyReactComponent = ({ lat, lng, text }) => (
+  <div class="mapPop" click="close">
+    <div class="pop-up-header">
       <h3>{text}</h3>
     </div>
 
     <div class="pop-up-content">
       <div class="text">
-        <p v-if="error" class="error">Location has already been added.</p>
-        <p><span class="accented">Latitude:</span> {lat} </p>
-        <p><span class="accented">Longitude:</span> {lng} </p>
+        <p v-if="error" class="error">
+          Location has already been added.
+        </p>
+        <p>
+          <span class="accented">Latitude:</span> {lat}{' '}
+        </p>
+        <p>
+          <span class="accented">Longitude:</span> {lng}{' '}
+        </p>
       </div>
-      <button v-if="!error" click="addMarker" class="button-round dark">
+      <button click="addMarker" class="button-round dark">
         Add location
       </button>
     </div>
+  </div>
+)
 
-    
-   </div>
-
-const createMapOptions = () =>  ({
+const createMapOptions = () => ({
   scrollwheel: false,
-  styles: mapStyles.styles
+  styles: mapStyles.styles,
 })
 
-
 class SimpleMap extends Component {
-
   constructor(props) {
-    super(props);
-    this.state =  {
+    super(props)
+    this.state = {
       lat: 51.509865,
       lng: -0.118092,
     }
@@ -91,10 +94,10 @@ class SimpleMap extends Component {
   }
 
   _onClick = (obj) => {
-    console.log(obj.lat, obj.lng);
+    console.log(obj.lat, obj.lng)
     this.setState({
       lat: obj.lat,
-      lng: obj.lng
+      lng: obj.lng,
     })
     console.log(this.state)
   }
@@ -117,7 +120,11 @@ class SimpleMap extends Component {
           options={createMapOptions}
           onClick={this._onClick}
         >
-          <AnyReactComponent lat={this.state.lat} lng={this.state.lng} text="Custom location"/>
+          <AnyReactComponent
+            lat={this.state.lat}
+            lng={this.state.lng}
+            text="Custom location"
+          />
         </GoogleMapReact>
       </div>
     )

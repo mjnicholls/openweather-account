@@ -11,6 +11,7 @@ const Footer = () => (
           <FooterSection header="Product Collections">
             <ul>
               <li>
+                asc
                 <a
                   href="https://openweathermap.org/api#current"
                   target="_blank"

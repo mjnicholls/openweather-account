@@ -223,76 +223,87 @@
   }
 }
 
-// Map popup
-
-.mapPop {
-  padding-right: 0px;
-  padding-bottom: 0px;
-  width: 400px;
-  height: 150px;
-  max-width: 390px;
-  max-height: 403px;
-  min-width: 0px;
-  position: absolute;
-  box-sizing: border-box;
-  overflow: hidden;
-  top: -140px;
-  left: 10px;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 8px;
-  padding: 12px;
-  box-shadow: 0 2px 7px 1px RGB(0 0 0 / 30%);
-  border-radius: 8pt;
-  box-shadow: 1px;
+// SearchBox
 
 
-  .icon-close {
-    color: $brand-black;
+.search-box {
+  position: relative;
+
+  .search {
+    display: inline-block;
+    width: 50%;
+    @media screen and (min-width: tablet) {
+      width: 65%;
+    }
+    input {
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid grey;
+      border-radius: 0;
+      outline: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -webkit-transition: border-color 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out;
+      transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out;
+      height: auto;
+      padding: .6rem 0 .4rem 0;
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-clip: padding-box;
+    }
+
+    .coordinates {
+      display: inline-block;
+      width: 50%;
+    }
+  }
+  .date-picker {
+    width: 50%;
+
+    @media screen and (min-width: tablet) {
+      width: 35%;
+    }
+  }
+
+  .search-pop-up {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    z-index: 101;
-  }
-  .pop-up-header {
-    border-bottom: 1px solid grey;
-    line-height: 1.4rem;
-    padding-bottom: 8pt;
-
-    h3 {
-      font-size: 1.4rem;
-      margin: 0;
-      font-family: $highlight-font-family;
-    }
-  }
-  .pop-up-content {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 8pt;
-    flex-wrap: nowrap;
-  }
-
-  p {
+    z-index: 10;
+    background-color: white;
+    width: 100%;
+    box-shadow: 8px;
     margin: 0;
-    font-size: 0.9rem;
+    padding: 15px 10px;
+    outline: none;
 
-    &.error {
-      color: darkred;
-      font-weight: 600;
+    input[type=file] {
+      width: 1px;
+      visibility: hidden;
+    }
+
+    .import-block {
+      font-size: 14px;
+      margin: 15px 5px 5px 5px;
     }
   }
+
+  button.flat {
+    margin-right: 0px;
+  }
+
+}
+.material-table td {
+  padding: 0.5rem;
+}
+.import-block {
   button {
-    font-size: 0.9rem;
-    height: 28pt;
-  }
-}
-
-@media screen and (min-width: desktop) {
-  .pop-up-marker {
-    bottom: 48%;
+    float: right;
   }
 }
 
 
-   
