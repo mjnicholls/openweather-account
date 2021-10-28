@@ -192,7 +192,6 @@
           border-color: transparent transparent #fff transparent;
           z-index: 99;
       }
-
       
 
     a {
@@ -303,6 +302,13 @@
 .import-block {
   button {
     float: right;
+  }
+}
+
+.mapPop {
+  h5 {
+    font-weight:bold;
+    font-family: $highlight-font-family;
   }
 }
 
