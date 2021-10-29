@@ -8,7 +8,10 @@ import {
 } from 'reactstrap'
 import Autocomplete from 'react-google-autocomplete'
 
+
 // https://www.npmjs.com/package/react-google-autocomplete
+
+
 
 
 const AutoCompleteForm = () => (
@@ -30,6 +33,7 @@ const AutoCompleteForm = () => (
               componentRestrictions: { country: 'gb' },
             }}
             defaultValue="London"
+      
           />
         </FormGroup>
       </Form>

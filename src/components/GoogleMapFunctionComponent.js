@@ -1,11 +1,11 @@
-import React, {useRef} from 'react'
+import React, { useRef, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import { Col } from 'reactstrap'
 import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
 
 /* eslint-disable-next-line */
-var newMarker
+var newMarker;
 
 export const placeMarker = (position, map, lat, lng, name) => {
   // eslint-disable-next-line
@@ -81,6 +81,7 @@ const createMapOptions = () => ({
 
 const SimpleMap = () => {
 
+
   const mapRef = useRef(null)
 
   const defaultProps = {
@@ -90,6 +91,20 @@ const SimpleMap = () => {
     },
     zoom: 11,
   }
+
+  useEffect(
+    () => {
+
+      mapRef.current.focus();
+
+      if (mapRef.current) {
+         console.log(mapRef.current)
+      }
+    },
+    [],
+  )
+
+
 
   return (
     <Col md="5">
