@@ -29,18 +29,13 @@ const SimpleMap = ({ mapRef }) => {
     zoom: 11,
   }
 
-  /* eslint-disable-next-line */
-{/*
-
-  useEffect(
-    () => {
-      if (mapRef.current) {
-         console.log(mapRef.current)
-      }
-    }, [],
-  )
-  */}
-
+  // useEffect(
+  //   () => {
+  //     if (mapRef.current) {
+  //        console.log(mapRef.current)
+  //     }
+  //   }, [],
+  // )
 
   return (
     <Col md="5">
