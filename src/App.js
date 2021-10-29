@@ -1,3 +1,4 @@
+import React, {useRef} from 'react'
 import './App.scss'
 import { Row } from 'reactstrap'
 import Footer from './components/Footer'
@@ -8,7 +9,10 @@ import Header from './components/Header'
 import MyMapComponent from './components/GoogleMapFunctionComponent'
 import AutoCompleteForm from './components/AutoCompleteForm'
 
-function App() {
+const App = () => {
+
+  const mapRef = useRef(null)
+
   return (
     <div className="App">
       <Header />
@@ -23,9 +27,9 @@ function App() {
       {/* <SimpleMap /> */}
 
       <Row>
-        <AutoCompleteForm />
+        <AutoCompleteForm mapRef={mapRef}/>
 
-        <MyMapComponent />
+        <MyMapComponent mapRef={mapRef} />
       </Row>
       <Footer />
     </div>
