@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import GoogleMapReact from 'google-map-react'
 import { Col } from 'reactstrap'
 import { mapStyles } from '../assets/MapStyles'
@@ -7,8 +7,9 @@ import '../App.scss'
 /* eslint-disable-next-line */
 var newMarker
 
-const placeMarker = (position, map, lat, lng) => {
-
+export const placeMarker = (position, map, lat, lng, name) => {
+  // eslint-disable-next-line
+  name = name || 'Custom location'
   const myLatlng = { lat: position.lat(), lng: position.lng() }
 
   if (!newMarker) {
@@ -23,9 +24,8 @@ const placeMarker = (position, map, lat, lng) => {
     newMarker.setPosition(position);
   }
 
-
   const contentString = `<div class="mapPop">
-    <h5>Custom Location</h5>
+    <h5>${name}</h5>
     <hr/>
 
     <div class="main">
@@ -45,7 +45,7 @@ const placeMarker = (position, map, lat, lng) => {
       <div 
       class="body">
 
-    <button class="add" click="addMarker">
+    <button click="addMarker">
       Add location
     </button>
     </div>
@@ -80,6 +80,9 @@ const createMapOptions = () => ({
 })
 
 const SimpleMap = () => {
+
+  const mapRef = useRef(null)
+
   const defaultProps = {
     center: {
       lat: 51.509865,
@@ -96,6 +99,7 @@ const SimpleMap = () => {
         style={{ height: '100vh', width: '100%' }}
       >
         <GoogleMapReact
+          ref={mapRef}
           bootstrapURLKeys={{ key: 'AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY' }}
           defaultCenter={defaultProps.center}
           defaultZoom={defaultProps.zoom}
