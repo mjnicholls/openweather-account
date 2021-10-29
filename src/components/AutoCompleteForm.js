@@ -12,8 +12,6 @@ import Autocomplete from 'react-google-autocomplete'
 // https://www.npmjs.com/package/react-google-autocomplete
 
 
-
-
 const AutoCompleteForm = () => (
   <Col md="7">
     <Row className="search-header">

@@ -92,19 +92,17 @@ const SimpleMap = () => {
     zoom: 11,
   }
 
+  /* eslint-disable-next-line */
+{/*
+
   useEffect(
     () => {
-
-      mapRef.current.focus();
-
-      if (mapRef.current) {
-         console.log(mapRef.current)
-      }
+      mapRef.current;
     },
     [],
   )
 
-
+  */}
 
   return (
     <Col md="5">
