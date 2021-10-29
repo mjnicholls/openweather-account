@@ -1,7 +1,6 @@
 /* eslint-disable-next-line */
 var newMarker;
 
-// TODO position to lat, lon
 export const placeMarker = (position, map, name) => {
   // eslint-disable-next-line
   name = name || 'Custom location'
