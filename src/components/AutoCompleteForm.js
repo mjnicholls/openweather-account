@@ -68,8 +68,8 @@ const AutoCompleteForm = ({ mapRef }) => {
             Trigger coordinates
             </Label>
 
-     //TODO check why fields data is not being sent
-     //TODO create conditional for 2 buttons
+     {/* TODO check why fields data is not being sent
+     //TODO create conditional for 2 buttons*/}
           <Autocomplete
             apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
             style={{ width: '80%' }}
