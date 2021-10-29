@@ -22,7 +22,8 @@ const AutoCompleteForm = ({ mapRef }) => {
   const onPlaceSelected = (place) => {
     console.log(place)
     if (mapRef && mapRef.current) {
-      placeMarker(place.geometry.location, mapRef.current.map_, place.address_components[0].long_name)
+      // lat = place.geometry.location.lat(),
+      placeMarker(place.geometry.location, mapRef.current.map_, place.formatted_address)
     }
   }
 
