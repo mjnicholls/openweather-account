@@ -15,10 +15,6 @@ import { placeMarker } from './mapBase'
 // https://www.npmjs.com/package/react-google-autocomplete
 
 
-<<<<<<< HEAD
-const AutoCompleteForm = () => (
-  <Col md="7">
-=======
 
 
 const AutoCompleteForm = ({ mapRef }) => {
@@ -31,7 +27,6 @@ const AutoCompleteForm = ({ mapRef }) => {
   }
 
   return (<Col md="7">
->>>>>>> 2e10ee89cdc0f207573205e841a15f11098c26a5
     <Row className="search-header">
       <h1>Header</h1>
     </Row>

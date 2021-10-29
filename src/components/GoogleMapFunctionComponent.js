@@ -34,22 +34,14 @@ const SimpleMap = ({ mapRef }) => {
 
   useEffect(
     () => {
-<<<<<<< HEAD
-      mapRef.current;
-    },
-    [],
-  )
-
-  */}
-
-=======
       if (mapRef.current) {
          console.log(mapRef.current)
       }
     }, [],
   )
+  */}
 
->>>>>>> 2e10ee89cdc0f207573205e841a15f11098c26a5
+
   return (
     <Col md="5">
       <div
@@ -72,3 +64,4 @@ const SimpleMap = ({ mapRef }) => {
 }
 
 export default SimpleMap
+
