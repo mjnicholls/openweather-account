@@ -5,9 +5,9 @@ import { Col } from 'reactstrap'
 import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
 
-import { placeMarker } from './mapBase'
+import placeMarker from './placeMarker'
 
-const handleApiLoaded = (mapInstance, marker) => {
+const handleApiLoaded = (mapInstance) => {
   mapInstance.addListener('click', (e) => {
     placeMarker(e.latLng, mapInstance, null)
   })
@@ -19,7 +19,6 @@ const createMapOptions = () => ({
 })
 
 const SimpleMap = ({ mapRef }) => {
-
   // TODO set default to London - as in Marketplace
   const defaultProps = {
     center: {
@@ -28,14 +27,6 @@ const SimpleMap = ({ mapRef }) => {
     },
     zoom: 11,
   }
-
-  // useEffect(
-  //   () => {
-  //     if (mapRef.current) {
-  //        console.log(mapRef.current)
-  //     }
-  //   }, [],
-  // )
 
   return (
     <Col md="5">
@@ -59,4 +50,3 @@ const SimpleMap = ({ mapRef }) => {
 }
 
 export default SimpleMap
-
