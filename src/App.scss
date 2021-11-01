@@ -56,9 +56,7 @@
   }
 }
 
-
-
-// Header classes (to be removed / nested) 
+// Header classes (to be removed / nested)
 
 .page-header {
   background-color: $brand-black;
@@ -72,27 +70,21 @@
     }
   }
 
-
-
-  button{
+  button {
     border: none;
     &:focus {
       box-shadow: none;
     }
   }
 
-
-
-
   .btn.btn-secondary {
     background-color: $brand-black;
     border: none;
     margin-left: 15px;
-    
+
     &:hover {
       background-color: $brand-black;
     }
-    
   }
 
   input {
@@ -104,40 +96,39 @@
       color: white;
       box-shadow: none;
     }
-    &:-webkit-autofill, #nav-website form input :-webkit-autofill:focus {
-      background-color: #48484A !important;
+    &:-webkit-autofill,
+    #nav-website form input :-webkit-autofill:focus {
+      background-color: #48484a !important;
       -webkit-box-shadow: 0 0 0 50px #48484a inset;
-      -webkit-text-fill-color: #F2F2F2;
+      -webkit-text-fill-color: #f2f2f2;
+    }
   }
-  }
-
 
   ul {
-
     align-items: center;
     justify-content: space-between;
-    
+
     li {
       padding: 0;
-      
 
       a {
         color: white;
         text-decoration: none;
         display: block;
         padding: 0.5rem 1rem;
-        padding-left:0.5rem;
-        padding-right:0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
         text-decoration: none;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+          border-color 0.15s ease-in-out;
 
         img {
           height: 10pt;
           width: 10pt;
           display: inline-block;
-          margin-right: 4px,
+          margin-right: 4px;
         }
-      
+
         &:hover {
           text-decoration: none;
           color: white;
@@ -153,35 +144,29 @@
           white-space: nowrap;
           overflow: hidden;
         }
-     
-
       }
 
       .marketplace {
         border-radius: 16pt;
         padding: 5pt 7pt;
         background-color: rgba(242, 242, 242, 0.4);
-  
-        
-    }
+      }
 
+      .dropdown-menu {
+        margin-top: 20px;
+        border-radius: 8pt;
+        box-shadow: 0 6px 24px RGB(0 0 0 / 15%);
+        position: absolute;
+        top: 30px;
+        font-size: 14px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border: none;
+        padding: 8pt;
+        z-index: 99;
 
-    .dropdown-menu {
-      margin-top: 20px;
-      border-radius: 8pt;
-      box-shadow: 0 6px 24px RGB(0 0 0 / 15%);
-      position: absolute;
-    top: 30px;
-    font-size: 14px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    border: none;
-    padding: 8pt;
-    z-index: 99;
-     
-
-      &:before {
-          content: "";
+        &:before {
+          content: '';
           position: absolute;
           left: 48pt;
           top: -10px;
@@ -191,57 +176,55 @@
           border-width: 0 10px 10px 10px;
           border-color: transparent transparent #fff transparent;
           z-index: 99;
-      }
-      
+        }
 
-    a {
-      color: #48484a;
-      text-align: left;
-      margin-left: 8px;
-      margin-right: 5px;
-      
-      &:hover {
-        background-color: $brand-grey;
-        color: $brand-black;
-        border-radius: 5pt;
-      }
-      &:focus {
-        background-color: white;
-       
-      }
+        a {
+          color: #48484a;
+          text-align: left;
+          margin-left: 8px;
+          margin-right: 5px;
 
-    }
-  }
-   
+          &:hover {
+            background-color: $brand-grey;
+            color: $brand-black;
+            border-radius: 5pt;
+          }
+          &:focus {
+            background-color: white;
+          }
+        }
+      }
     }
   }
 
   div.section-body-mobile {
     border-bottom: 1px solid #ced4da;
-   
   }
 }
-
 
 // map popup styles
 
 .mapPop {
-
-  width:300px!important;
+  width: 300px !important;
 
   h5 {
-    font-weight:bold;
+    font-weight: bold;
     font-family: $highlight-font-family;
   }
 
   .main {
-    display: flex; justify-content: space-between; padding-top: 0pt; flex-wrap: nowrap;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0pt;
+    flex-wrap: nowrap;
 
     p {
-      margin: 0; font-size: 0.8rem; font-family: Arial, sans-serif;
+      margin: 0;
+      font-size: 0.8rem;
+      font-family: Arial, sans-serif;
 
       b {
-      font-weight: bold
+        font-weight: bold;
       }
     }
   }
@@ -250,36 +233,32 @@
     background: white;
     display: inline-block;
     width: 40%;
-    margin-right:0x;  
-    vertical-align:top;
-
+    margin-right: 0x;
+    vertical-align: top;
   }
   button {
     display: inline-block;
-      font-weight: 400;
-      font-family: Arial, sans-serif;
-      text-align: left;
-      vertical-align: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      background-color: transparent;
-      border: 1px solid transparent;
-      padding: 0.8rem 1.5rem;
-      font-size: 12px;
-      line-height: 1.5;
-      border-radius: 16pt;
-      color: #fff;
-      background-color: #343a40;
-      border-color: #343a40;
+    font-weight: 400;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.8rem 1.5rem;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 16pt;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
   }
-
 }
 
-
 // Autocomplete form styles
-
 
 .search-header {
   margin: 20px 0px 20px 40px;
@@ -301,7 +280,14 @@
     font-family: $default-font-family;
   }
 
-  Button {
+  .form-control {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  /* .form-control {
     display: inline-block;
       font-family: Arial, sans-serif;
       padding: 0.8rem 1.5rem;
@@ -313,5 +299,15 @@
       border-color: #343a40;
       margin-left: 5px;
   }
+  */
 }
 
+// tabs
+
+.button {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  padding: 0.8rem 1.5rem;
+  font-size: 12px;
+  line-height: 1.5;
+}

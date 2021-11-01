@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import GoogleMapReact from 'google-map-react'
 
 import { Col } from 'reactstrap'
@@ -19,13 +19,13 @@ const createMapOptions = () => ({
 })
 
 const SimpleMap = ({ mapRef }) => {
-  // TODO set default to London - as in Marketplace
+
   const defaultProps = {
     center: {
       lat: 51.509865,
       lng: -0.118092,
     },
-    zoom: 11,
+    zoom: 9,
   }
 
   return (
