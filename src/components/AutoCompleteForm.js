@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react'
 import '../App.scss'
-import { Button, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import Autocomplete from 'react-google-autocomplete'
 import TabsSelector from './TabsSelector'
 import placeMarker from './placeMarker'
+import classnames from 'classnames'
 
 
 // https://www.npmjs.com/package/react-google-autocomplete
@@ -23,23 +24,12 @@ const AutoCompleteForm = ({ mapRef }) => {
   const [name, setName] = useState('')
   const [error, setError] = useState({})
   const noBlankErrorMessage = "Cannot be blank"
-
+  const latRangeError = "Value cannot be below -90 or above 90"
+  const lngRangeError = "Value cannot be below -180 or above 180"
 
  // Search by Coordinates
 
- const checkCoordinates = (e) => {
 
-  setError({})
-  
-  if (!lng && !lat & !name) {
-    setError({
-      name: noBlankErrorMessage,
-      lat: noBlankErrorMessage,
-      lng: noBlankErrorMessage,
-    })
-    return
-  }
-}
 
   const onKeyDownFunc = (e) => {
     if (e.keyCode === 13) {
@@ -53,6 +43,54 @@ const AutoCompleteForm = ({ mapRef }) => {
     } else {
       setLng(e.target.value)
     }
+
+    
+  setError({})
+  
+  if (!lng && !lat) {
+    setError({
+      lat: noBlankErrorMessage,
+      lng: noBlankErrorMessage,
+    })
+    return
+  }
+
+  if (name) {
+    setError({
+      name: noBlankErrorMessage,
+    })
+    return
+  }
+
+  if (lat < -90) {
+    setError({
+      lat: latRangeError,
+    })
+    return
+  }
+
+  if (lat > 90) {
+    setError({
+      lat: latRangeError,
+    })
+    return
+  }
+
+  if (lng < -180) {
+    setError({
+      lng: lngRangeError,
+    })
+    return
+  }
+
+  if (lng > 180) {
+    setError({
+      lng: lngRangeError,
+    })
+    return
+  }
+
+
   }
 
 
@@ -70,14 +108,17 @@ const onPlaceSelected = (place) => {
   return (
     <Col md="7">
       <Row className="search-header">
-        <h1 className="head">Triggers:</h1>
+        <h1 className="head">Triggers</h1>
       </Row>
 
       {activeTab.id === 'location' ? (
         <Row className="search-box">
-          <Form>
+            <Col md="4">
+            <Label>Trigger location</Label>
+          </Col>
+          <Col md="8">
             <FormGroup>
-              <Label>Trigger location</Label>
+             
               <Autocomplete
                 apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
                 style={{ width: '80%' }}
@@ -93,28 +134,49 @@ const onPlaceSelected = (place) => {
                 
               />
             </FormGroup>
-          </Form>
+
+            <div
+              className={classnames(
+                'invalid-feedback ',
+                error.name ? 'd-block' : '',
+              )}
+            >
+              {error.name}
+            </div>
+            </Col>
+
+      
         </Row>
       ) : (
 
 
         <Row className="search-box">
-          <Col>
+            <Col md="4">
             <Label>Trigger coordinates</Label>
           </Col>
-          <Col>
-         
+          
+          <Col md="1">Lat</Col>
+          <Col md="3">
             <FormGroup>
-            <Label>Lat</Label>
+       
               <Input type="number"
                 className={error.lat ? 'danger-border' : ''}
                      value={lat}
                      onChange={e => {setLat(e.target.value)}}
               />
             </FormGroup>
+
+            <div
+              className={classnames(
+                'invalid-feedback ',
+                error.lat ? 'd-block' : '',
+              )}
+            >
+              {error.lat}
+            </div>
           </Col>
-          <Col>
-            <Label>Lng</Label>
+          <Col md="1">Lng</Col>
+          <Col md="3">
             <FormGroup>
               <Input
                 type="number"
@@ -122,8 +184,19 @@ const onPlaceSelected = (place) => {
                 value={lng}
                 onChange={e => {setLng(e.target.value)}}
                 onKeyDown={e => {onKeyDownFunc(e)}}
+    
               />
             </FormGroup>
+
+            <div
+              className={classnames(
+                'invalid-feedback ',
+                error.lng ? 'd-block' : '',
+              )}
+            >
+              {error.lng}
+            </div>
+
   
           </Col>
         </Row>
@@ -138,6 +211,7 @@ const onPlaceSelected = (place) => {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             options={tabsOptions}
+            className="tabs"
           />
         </Col>
       </Row>
