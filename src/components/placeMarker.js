@@ -41,6 +41,7 @@ const getContentString = (name, lat, lng) =>
   </div>`
 
 const placeMarker = (position, map, name) => {
+
   const marker = MarkerSingleton.getInstance(position, map)
 
   const contentString = getContentString(

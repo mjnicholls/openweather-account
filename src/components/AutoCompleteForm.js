@@ -18,8 +18,8 @@ const AutoCompleteForm = ({ mapRef }) => {
   ]
 
   const [activeTab, setActiveTab] = useState(tabsOptions[0])
-  const [lat, setLat] = useState('')
-  const [lng, setLng] = useState('')
+  const [lat, setLat] = useState(0)
+  const [lng, setLng] = useState(0)
   const [name, setName] = useState('')
   const [error, setError] = useState({})
   const noBlankErrorMessage = "Cannot be blank"
@@ -27,7 +27,7 @@ const AutoCompleteForm = ({ mapRef }) => {
 
  // Search by Coordinates
 
- const checkCoordinates = () => {
+ const checkCoordinates = (e) => {
 
   setError({})
   
@@ -40,6 +40,20 @@ const AutoCompleteForm = ({ mapRef }) => {
     return
   }
 }
+
+  const onKeyDownFunc = (e) => {
+    if (e.keyCode === 13) {
+
+      let pos = new google.maps.LatLng(lat, lng);
+      console.log("pos", pos)
+      if (mapRef && mapRef.current) {
+        placeMarker(pos, mapRef.current.map_)
+      }
+      // enter == submit
+    } else {
+      setLng(e.target.value)
+    }
+  }
 
 
 const onPlaceSelected = (place) => {
@@ -86,14 +100,16 @@ const onPlaceSelected = (place) => {
 
         <Row className="search-box">
           <Col>
-            <Label>Trigger location</Label>
+            <Label>Trigger coordinates</Label>
           </Col>
           <Col>
          
             <FormGroup>
             <Label>Lat</Label>
-              <Input type="text"
-              className={error.lat ? 'danger-border' : ''}
+              <Input type="number"
+                className={error.lat ? 'danger-border' : ''}
+                     value={lat}
+                     onChange={e => {setLat(e.target.value)}}
               />
             </FormGroup>
           </Col>
@@ -101,10 +117,11 @@ const onPlaceSelected = (place) => {
             <Label>Lng</Label>
             <FormGroup>
               <Input
-                type="text"
-                value=""
+                type="number"
                 className={error.lng ? 'danger-border' : ''}
-                
+                value={lng}
+                onChange={e => {setLng(e.target.value)}}
+                onKeyDown={e => {onKeyDownFunc(e)}}
               />
             </FormGroup>
   
