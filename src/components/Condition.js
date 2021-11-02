@@ -21,7 +21,7 @@ const Condition = ({ condition, setCondition }) => {
 
   const conditions = [
     { value: '<', label: '<' },
-    { value: '<', label: '>' },
+    { value: '>', label: '>' },
   ]
 
   const handleChange = (key, value) => {
