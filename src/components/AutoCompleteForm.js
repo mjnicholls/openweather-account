@@ -7,6 +7,8 @@ import Autocomplete from 'react-google-autocomplete'
 import placeMarker from './placeMarker'
 import classnames from 'classnames'
 
+const noBlankErrorMessage = 'Cannot be blank'
+
 
 const AutoCompleteForm = ({ mapRef, setLocation }) => {
   
@@ -53,7 +55,7 @@ const onPlaceSelected = (place) => {
 
               <Autocomplete
                 apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
-                style={{ width: '80%' }}
+                style={{ width: '100%' }}
                 onPlaceSelected={(place) => {
                   onPlaceSelected(place)
                 }}

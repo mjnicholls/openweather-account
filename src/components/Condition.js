@@ -8,6 +8,8 @@ import classnames from 'classnames'
 
 const Condition = ({ condition, setCondition }) => {
 
+  const [message, setMessage] = useState('')
+
   const variables = [
     { value: 'temp', label: 'Air temperature' },
     { value: 'wind', label: 'Wind speed' },
@@ -24,11 +26,33 @@ const Condition = ({ condition, setCondition }) => {
     { value: '>', label: '>' },
   ]
 
+
   const handleChange = (key, value) => {
     let newCondition = {...condition}
     newCondition[key] = value
     setCondition(newCondition)
   }
+
+
+{/*
+
+  const humanReadable = (condition) => {  
+    setMessage({});
+  
+    if (// ) {
+
+      setMessage({
+        message: ``
+      })
+
+      return
+    }
+  }
+
+*/}
+
+
+  
 
   return (
     <Row className="search-box">
@@ -58,6 +82,8 @@ const Condition = ({ condition, setCondition }) => {
         <Label className="conditions">Condition</Label>
         <FormGroup>
           <Select
+          value={conditions.find(el => el.value === condition.condition)}
+          onChange={(option) => handleChange("condition", option.value)}
             classNamePrefix="react-select"
             options={conditions}
           />
@@ -67,6 +93,10 @@ const Condition = ({ condition, setCondition }) => {
         <Label className="conditions">Level</Label>
         <FormGroup>
           <Input type="number"
+               onChange={(e) =>
+                handleChange('value', e.target.value)
+              }
+              value={condition.value}
          />
         </FormGroup>
       </Col>
@@ -75,11 +105,22 @@ const Condition = ({ condition, setCondition }) => {
         <FormGroup>
           <Select
             classNamePrefix="react-select"
+            value={units.find(el => el.value === condition.units)}
+            onChange={(option) => handleChange("units", option.value)}
             options={units}
 
           />
         </FormGroup>
       </Col>
+      <div
+          className={classnames(
+            'invalid-feedback ',
+            message ? 'd-block' : '',
+          )}
+        //  value={message}
+        >
+
+        </div>
     </Row>
   )
 }
