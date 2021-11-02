@@ -45,10 +45,10 @@ const onPlaceSelected = (place) => {
   return (
    <div>
         <Row className="search-box">
-            <Col md="4">
+            <Col>
             <Label>Trigger location</Label>
           </Col>
-          <Col md="8">
+          <Col>
             <FormGroup>
 
               <Autocomplete

@@ -110,6 +110,7 @@ const CoordinatesSearch = ({ mapRef, setLocation }) => {
                      onKeyDown={onKeyDownLat}
               />
             </FormGroup>
+         
 
             <div
               className={classnames(
