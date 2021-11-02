@@ -205,7 +205,10 @@
 // map popup styles
 
 .mapPop {
-  width: 300px !important;
+  width: 300px;
+  background-color: #ffffff;
+  padding: 8pt;
+  border-radius: 8pt;
 
   h5 {
     font-weight: bold;
@@ -215,39 +218,23 @@
   .main {
     display: flex;
     justify-content: space-between;
-    padding-top: 0pt;
+    padding-top: 0;
     flex-wrap: nowrap;
 
     p {
       margin: 0;
       font-size: 0.8rem;
-      font-family: Arial, sans-serif;
+      font-family: $default-font-family;
 
-      b {
-        font-weight: bold;
-      }
     }
   }
 
-  .body {
-    background: white;
-    display: inline-block;
-    width: 40%;
-    margin-right: 0x;
-    vertical-align: top;
-  }
   button {
     display: inline-block;
     font-weight: 400;
-    font-family: Arial, sans-serif;
-    text-align: left;
+    white-space: nowrap;
     vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
     padding: 0.8rem 1.5rem;
     font-size: 12px;
     line-height: 1.5;

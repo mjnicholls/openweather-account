@@ -1,7 +1,5 @@
 import React from 'react'
 
-import InfoWindowEx from './InfoWindowEx'
-
 const MarkerSingleton = (() => {
   let instance
 
@@ -54,24 +52,16 @@ const placeMarker = (position, map, name) => {
   )
 
   /* eslint-disable-next-line */
-  const infoWindow = new google.maps.InfoWindow({
-    content: contentString,
-    position,
-  })
-
-  //   const infoWindow = <InfoWindowEx
-  //         marker={marker}
-  //         visible>
-  //         <button type="button" onClick={() => setLocation(position.lat(), position.lng(), name || 'Custom location')}>
-  //             Show details
-  //         </button>
-  // </InfoWindowEx>
-
-  infoWindow.open({
-    anchor: marker,
-    map,
-    shouldFocus: false,
-  })
+  // const infoWindow = new google.maps.InfoWindow({
+  //   content: contentString,
+  //   position,
+  // })
+  //
+  // infoWindow.open({
+  //   anchor: marker,
+  //   map,
+  //   shouldFocus: false,
+  // })
 
   map.panTo(position)
 }

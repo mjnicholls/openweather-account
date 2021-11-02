@@ -11,7 +11,7 @@ import classnames from 'classnames'
 
 // https://www.npmjs.com/package/react-google-autocomplete
 
-const AutoCompleteForm = ({ mapRef }) => {
+const AutoCompleteForm = ({ mapRef, setLocation }) => {
   
   const tabsOptions = [
     { id: 'location', label: 'Location' },
@@ -29,17 +29,18 @@ const AutoCompleteForm = ({ mapRef }) => {
 
  // Search by Coordinates
 
-
-
   const onKeyDownFunc = (e) => {
     if (e.keyCode === 13) {
-
+      // TODO run checks before placing marker
       let pos = new google.maps.LatLng(lat, lng);
-      console.log("pos", pos)
       if (mapRef && mapRef.current) {
         placeMarker(pos, mapRef.current.map_)
       }
-      // enter == submit
+      setLocation({
+        name: "Custom Location",
+        lat: parseFloat(lat),
+        lon: parseFloat(lng)
+      })
     } else {
       setLng(e.target.value)
     }
@@ -89,14 +90,18 @@ const AutoCompleteForm = ({ mapRef }) => {
     })
     return
   }
-
-
   }
 
 
 const onPlaceSelected = (place) => {
-  console.log(place)
   if (mapRef && mapRef.current) {
+
+    setLocation({
+        name: place.formatted_address,
+        lat: place.geometry.location.lat(),
+        lon: place.geometry.location.lng()
+      })
+
     placeMarker(
       place.geometry.location,
       mapRef.current.map_,
@@ -106,19 +111,15 @@ const onPlaceSelected = (place) => {
 }
 
   return (
-    <Col md="7">
-      <Row className="search-header">
-        <h1 className="head">Triggers</h1>
-      </Row>
-
-      {activeTab.id === 'location' ? (
+   <div>
+    { activeTab.id === 'location' ? (
         <Row className="search-box">
             <Col md="4">
             <Label>Trigger location</Label>
           </Col>
           <Col md="8">
             <FormGroup>
-             
+
               <Autocomplete
                 apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
                 style={{ width: '80%' }}
@@ -131,7 +132,7 @@ const onPlaceSelected = (place) => {
                 }}
                 defaultValue=""
                 className={error.name ? 'danger-border' : ''}
-                
+
               />
             </FormGroup>
 
@@ -145,20 +146,18 @@ const onPlaceSelected = (place) => {
             </div>
             </Col>
 
-      
+
         </Row>
       ) : (
-
-
         <Row className="search-box">
             <Col md="4">
             <Label>Trigger coordinates</Label>
           </Col>
-          
+
           <Col md="1">Lat</Col>
           <Col md="3">
             <FormGroup>
-       
+
               <Input type="number"
                 className={error.lat ? 'danger-border' : ''}
                      value={lat}
@@ -184,7 +183,7 @@ const onPlaceSelected = (place) => {
                 value={lng}
                 onChange={e => {setLng(e.target.value)}}
                 onKeyDown={e => {onKeyDownFunc(e)}}
-    
+
               />
             </FormGroup>
 
@@ -196,14 +195,9 @@ const onPlaceSelected = (place) => {
             >
               {error.lng}
             </div>
-
-  
           </Col>
         </Row>
    )}
-      
-     
-      
       <Row className="search-box">
     
         <Col>
@@ -215,8 +209,9 @@ const onPlaceSelected = (place) => {
           />
         </Col>
       </Row>
-    </Col>
+     </div>
   )
+
 }
 
 export default AutoCompleteForm
