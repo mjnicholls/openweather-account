@@ -87,7 +87,6 @@ const SimpleMap = ({ mapRef, location, setLocation }) => {
       lon: lng,
       name: "Custom location"
     })
-    console.log("temp location", tempLocation)
   }
 
   return (

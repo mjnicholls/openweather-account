@@ -14,62 +14,84 @@ const CoordinatesSearch = ({ mapRef, setLocation }) => {
   const noBlankErrorMessage = "Cannot be blank"
   const latRangeError = "Value cannot be below -90 or above 90"
   const lngRangeError = "Value cannot be below -180 or above 180"
+  const notANumberError = "Value should be a number"
 
+  const validate = () => {
+    setError({})
+    let newError = {}
 
-   const onKeyDownFunc = (e) => {
-    if (e.keyCode === 13) {
-      // TODO run checks before placing marker
-      let pos = new google.maps.LatLng(lat, lng);
-      if (mapRef && mapRef.current) {
-        placeMarker(pos, mapRef.current.map_)
+    if (!lng && !lat) {
+      newError = {
+        lat: noBlankErrorMessage,
+        lng: noBlankErrorMessage,
       }
-      setLocation({
-        name: "Custom Location",
-        lat: parseFloat(lat),
-        lon: parseFloat(lng)
-      })
+    }
+
+    // if (lat && typeof lat !== "number") {
+    //   newError = {
+    //     lat: notANumberError,
+    //     ...newError,
+    //
+    //   }
+    // }
+    // if (lng && typeof lng !== "number") {
+    //   newError = {
+    //     lng: notANumberError,
+    //     ...newError,
+    //   }
+    // }
+
+    if (lat && (lat < -90 || lat > 90)) {
+      newError = {
+        ...newError,
+        lat: latRangeError,
+      }
+    }
+
+    if (lng && (lng < -180 || lng > 180)) {
+      newError = {
+        ...newError,
+        lng: lngRangeError,
+      }
+    }
+   console.log("2", newError)
+    if (Object.keys(newError).length) {
+      setError(newError)
+      return false
+    }
+
+
+  return true
+  }
+
+  const submit = () => {
+    if (validate()) {
+        let pos = new google.maps.LatLng(lat, lng);
+        if (mapRef && mapRef.current) {
+        placeMarker(pos, mapRef.current.map_)
+        setLocation({
+          name: "Custom Location",
+          lat: parseFloat(lat),
+          lon: parseFloat(lng)
+        })
+      }
+      }
+  }
+
+  const onKeyDownLon = (e) => {
+    if (e.keyCode === 13) {
+      submit()
     } else {
       setLng(e.target.value)
     }
-
-    
-  setError({})
-  
-  if (!lng && !lat) {
-    setError({
-      lat: noBlankErrorMessage,
-      lng: noBlankErrorMessage,
-    })
-    return
   }
 
-  if (lat < -90) {
-    setError({
-      lat: latRangeError,
-    })
-    return
-  }
-
-  if (lat > 90) {
-    setError({
-      lat: latRangeError,
-    })
-    return
-  }
-
-  if (lng < -180) {
-    setError({
-      lng: lngRangeError,
-    })
-    return
-  }
-
-  if (lng > 180) {
-    setError({
-      lng: lngRangeError,
-    })
-    return
-  }
+  const onKeyDownLat = (e) => {
+    if (e.keyCode === 13) {
+      if (lng) {
+        submit()
+      }
+    }
   }
 
   return (
@@ -81,11 +103,11 @@ const CoordinatesSearch = ({ mapRef, setLocation }) => {
           <Col md="1">Lat</Col>
           <Col md="3">
             <FormGroup>
-
               <Input type="number"
                 className={error.lat ? 'danger-border' : ''}
                      value={lat}
                      onChange={e => {setLat(e.target.value)}}
+                     onKeyDown={onKeyDownLat}
               />
             </FormGroup>
 
@@ -106,7 +128,7 @@ const CoordinatesSearch = ({ mapRef, setLocation }) => {
                 className={error.lng ? 'danger-border' : ''}
                 value={lng}
                 onChange={e => {setLng(e.target.value)}}
-                onKeyDown={e => {onKeyDownFunc(e)}}
+                onKeyDown={onKeyDownLon}
 
               />
             </FormGroup>
