@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+import '../App.scss'
 
 const TriggerName = ({ location, name, setName }) => {
   const [isNameEdited, setIsNameEdited] = useState(false)
@@ -17,7 +19,27 @@ const TriggerName = ({ location, name, setName }) => {
     }
   }, [location, isNameEdited])
 
-  return <input value={name} onChange={onNameChange} />
+
+  return(
+    <Row className="search-box">
+    <Col>
+      <Label>Trigger name</Label>
+    </Col>
+
+
+    <Col>
+      <FormGroup>
+        <Input
+          type="number"
+          value={name}
+          onChange={onNameChange}
+        />
+      </FormGroup>
+
+    </Col>
+  
+  </Row>
+  )
 }
 
 export default TriggerName
