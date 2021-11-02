@@ -6,7 +6,7 @@ import placeMarker from './placeMarker'
 import classnames from 'classnames'
 
 
-const CoordinatesSearch = ({ mapRef }) => {
+const CoordinatesSearch = ({ mapRef, setLocation }) => {
 
   const [lat, setLat] = useState(0)
   const [lng, setLng] = useState(0)
