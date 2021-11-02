@@ -7,21 +7,25 @@ import AutoCompleteForm from './AutoCompleteForm'
 import TabsSelector from './TabsSelector'
 
 const tabsOptions = [
-    { id: 'location', label: 'Location' },
-    { id: 'coordinates', label: 'Coordinates' },
-  ]
+  { id: 'location', label: 'Location' },
+  { id: 'coordinates', label: 'Coordinates' },
+]
 
-
-const SearchBox = ({mapRef, setLocation}) => {
-
+const SearchBox = ({ mapRef, location, setLocation }) => {
   const [activeTab, setActiveTab] = useState(tabsOptions[0])
   // only logic and html for coordinates search
-  return <>
-    <Row className="search-box">
-      { activeTab.id === 'location' ?
-        <AutoCompleteForm mapRef={mapRef} setLocation={setLocation}/> :
-        <CoordinatesSearch mapRef={mapRef} setLocation={setLocation}/>
-      }
+  return (
+    <>
+      <Row className="search-box">
+        {activeTab.id === 'location' ? (
+          <AutoCompleteForm mapRef={mapRef} setLocation={setLocation} />
+        ) : (
+          <CoordinatesSearch
+            mapRef={mapRef}
+            setLocation={setLocation}
+            location={location}
+          />
+        )}
         <Col>
           <TabsSelector
             activeTab={activeTab}
@@ -31,7 +35,8 @@ const SearchBox = ({mapRef, setLocation}) => {
           />
         </Col>
       </Row>
-  </>
+    </>
+  )
 }
 
 export default SearchBox
