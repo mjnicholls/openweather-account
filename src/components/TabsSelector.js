@@ -14,10 +14,7 @@ const TabsSelector = ({ activeTab, setActiveTab, options }) => {
 
   return (
     <>
-      <ButtonGroup
-        className="button"
-        data-toggle="buttons"
-      >
+      <ButtonGroup className="button" data-toggle="buttons">
         {options.map((option) => (
           <Button
             id={option.id}

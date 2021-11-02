@@ -1,3 +1,7 @@
+import React from 'react'
+
+import InfoWindowEx from './InfoWindowEx'
+
 const MarkerSingleton = (() => {
   let instance
 
@@ -33,7 +37,7 @@ const getContentString = (name, lat, lng) =>
         <p><b>Longitude:</b> ${lng}</p>
       </div>
       <div class="body">
-        <button click="addMarker">
+        <button id="addLocationButton">
           Add location
         </button>
       </div>
@@ -41,7 +45,6 @@ const getContentString = (name, lat, lng) =>
   </div>`
 
 const placeMarker = (position, map, name) => {
-
   const marker = MarkerSingleton.getInstance(position, map)
 
   const contentString = getContentString(
@@ -55,6 +58,14 @@ const placeMarker = (position, map, name) => {
     content: contentString,
     position,
   })
+
+  //   const infoWindow = <InfoWindowEx
+  //         marker={marker}
+  //         visible>
+  //         <button type="button" onClick={() => setLocation(position.lat(), position.lng(), name || 'Custom location')}>
+  //             Show details
+  //         </button>
+  // </InfoWindowEx>
 
   infoWindow.open({
     anchor: marker,
