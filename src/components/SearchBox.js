@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 import { Col, Row } from 'reactstrap'
 
-import CoordinatesSearch from './CoordinatesSeacrh'
+import CoordinatesSearch from './CoordinatesSearch'
 import AutoCompleteForm from './AutoCompleteForm'
 import TabsSelector from './TabsSelector'
 
