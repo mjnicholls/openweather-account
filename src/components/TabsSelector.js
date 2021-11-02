@@ -7,14 +7,6 @@ import { Button, ButtonGroup } from 'reactstrap'
 
 const TabsSelector = ({ activeTab, setActiveTab, options }) => {
   const customStyles = {
-    // menu: (provided) => ({
-    //   ...provided,
-    //   minHeight: '230px',
-    // }),
-    // menuList: (provided) => ({
-    //   ...provided,
-    //   minHeight: '210px',
-    // }),
     input: (provided) => ({
       ...provided,
     }),
@@ -32,11 +24,11 @@ const TabsSelector = ({ activeTab, setActiveTab, options }) => {
             size="sm"
             tag="label"
             key={option.id}
-            className={classNames('btn-simple', {
+            className={classNames('btn-primary', {
               active: activeTab.id === option.id,
             })}
             onClick={() => setActiveTab(option)}
-            style={{ padding: '5px 10px' }}
+            style={{ padding: '10px 15px', borderRadius: "8pt" }}
           >
             <span>{option.label}</span>
           </Button>
