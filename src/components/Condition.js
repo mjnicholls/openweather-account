@@ -20,8 +20,8 @@ const Condition = ({ condition, setCondition }) => {
   ]
 
   const conditions = [
-    { value: 'lessthan', label: '<' },
-    { value: 'morethan', label: '>' },
+    { value: '<', label: '<' },
+    { value: '<', label: '>' },
   ]
 
   const handleChange = (key, value) => {
