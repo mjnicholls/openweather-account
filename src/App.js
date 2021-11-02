@@ -11,7 +11,7 @@ import CreateTrigger from './pages/CreateTrigger'
 const App = () => (
   <div className="App">
     <Header />
-    <Container fluid="xl" style={{marginTop: "60px"}}>
+    <Container fluid="xl" style={{ marginTop: '60px' }}>
       <BrowserRouter>
         <Route path="/create">
           <CreateTrigger />
