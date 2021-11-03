@@ -7,8 +7,6 @@ import Autocomplete from 'react-google-autocomplete'
 import placeMarker from './placeMarker'
 import classnames from 'classnames'
 
-const noBlankErrorMessage = 'Cannot be blank'
-
 
 const AutoCompleteForm = ({ mapRef, setLocation }) => {
   
@@ -46,11 +44,11 @@ const onPlaceSelected = (place) => {
 
   return (
    <div>
-        <Row className="search-box">
-            <Col>
+        <Row>
+            <Col md="3">
             <Label>Trigger location</Label>
           </Col>
-          <Col>
+          <Col md="9">
             <FormGroup>
 
               <Autocomplete

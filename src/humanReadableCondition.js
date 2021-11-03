@@ -1,6 +1,5 @@
 /* eslint-disable */
-import { variables, conditions, units} from './config'
-
+import { variables } from './config'
 
 var structure = {
   temp: 'degrees'
@@ -15,20 +14,9 @@ const getValue = (variable, units) => {
 
 const humanReadable = (condition) => {
 
-  if (condition.value < 0){
-
-  }
-
-  if (condition.variable > 10) {
-    
-  }
-  
-  // The temperature falls below 0°C degrees
-  // The wind speed exceeds 10 m/sec  m/s (metric) mph (F)
-  // The precipitation level exceeds 15mm
-
-  let res = `${variables.find(el => el.value === condition.variable).label} ${condition.condition === ">" ? "exceeds" : "falls below"} ${condition.value}`
+  let res = `You will be notified if the ${variables.find(el => el.value === condition.variable).label} ${condition.condition === ">" ? "exceeds" : "falls below"} ${condition.value}  ${condition.units === "metric" ? "°C, m/s" : "°F, mph"}`
   return res
 }
+
 
 export default humanReadable

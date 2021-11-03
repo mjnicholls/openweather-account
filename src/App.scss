@@ -225,7 +225,6 @@
       margin: 0;
       font-size: 0.8rem;
       font-family: $default-font-family;
-
     }
   }
 
@@ -255,8 +254,14 @@
   }
 }
 
-.search-box {
+.btn-primary:active {
+  background-color: black;
+  &:focus {
+    background-color: black;
+  }
+}
 
+.search-box {
   margin-bottom: 20px;
 
   .form-group {
@@ -268,17 +273,29 @@
       font-size: 1rem;
       line-height: 1.5;
       background-color: #fff;
-      border: 0.5 px solid #ced4da!important;
+      border: 0.5 px solid #ced4da !important;
     }
 
-    .react-select__control.css-1s2u09g-control{
+    .react-select__control.css-1s2u09g-control {
       padding-top: 4px;
       padding-bottom: 4px;
     }
   }
-  
 
-  .conditions{
+  .human-readable {
+    font-style: italic;
+    font-size: 9pt;
+    font-family: $default-font-family;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .centered {
+    margin-top: 10px;
+    font-size: 10pt;
+  }
+
+  .conditions {
     font-family: $default-font-family;
     text-align: center;
     margin-left: 0px;
@@ -291,7 +308,7 @@
     text-align: center;
     margin-left: 0px;
     font-weight: bold;
-
+    font-size: 10pt;
   }
 
   .form-control {
@@ -306,7 +323,7 @@
 
   .btn-primary {
     padding: '5px 10px';
-    border-radius: "8pt" 
+    border-radius: '8pt';
   }
 }
 
@@ -330,6 +347,5 @@
     border-color: #86b7fe;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-    
   }
 }

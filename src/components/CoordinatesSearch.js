@@ -91,8 +91,8 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
   }
 
   return (
-    <Row className="search-box">
-      <Col md="4">
+    <Row>
+      <Col md="3">
         <Label>Trigger coordinates</Label>
       </Col>
 

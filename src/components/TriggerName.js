@@ -22,11 +22,11 @@ const TriggerName = ({ location, name, setName }) => {
 
   return(
     <Row className="search-box">
-    <Col>
+    <Col md="3">
       <Label>Trigger name</Label>
     </Col>
 
-    <Col>
+    <Col md="9">
       <FormGroup>
         <Input
           type="text"

@@ -6,6 +6,8 @@ import MyMapComponent from '../components/GoogleMapCreate'
 import SearchBox from '../components/SearchBox'
 import Condition from '../components/Condition'
 import TriggerName from '../components/TriggerName'
+import PriorNotifs from '../components/PriorNotifications'
+import EmailNotifs from '../components/EmailNotifcation'
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
@@ -23,6 +25,8 @@ const CreateTrigger = () => {
     value: 0,
     units: 'metric',
   })
+
+  const [days, setDays] = useState(0)
 
   const [recipients, setRecipients] = useState([])
 
@@ -44,6 +48,8 @@ const CreateTrigger = () => {
               setLocation={setLocation}
             />
             <Condition condition={condition} setCondition={setCondition} />
+            <PriorNotifs days={days} setDays={setDays} />
+            <EmailNotifs recipients={recipients} setRecipients={setRecipients}/>
           </div>
         </Col>
         <Col md="5">

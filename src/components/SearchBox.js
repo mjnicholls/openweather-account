@@ -26,12 +26,12 @@ const SearchBox = ({ mapRef, location, setLocation }) => {
             location={location}
           />
         )}
-        <Col>
+        <Col md="3"></Col>
+        <Col md="5">
           <TabsSelector
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             options={tabsOptions}
-            className="tabs"
           />
         </Col>
       </Row>
