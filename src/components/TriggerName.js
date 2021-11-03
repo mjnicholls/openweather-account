@@ -26,27 +26,15 @@ const TriggerName = ({ location, name, setName }) => {
       <Label>Trigger name</Label>
     </Col>
 
-{isNameEdited === false ? (
     <Col>
       <FormGroup>
         <Input
-          type="number"
+          type="text"
           value={name}
           onChange={onNameChange}
         />
       </FormGroup>
     </Col>
-) : (
-  <Col>
-  <FormGroup>
-    <Input
-      type="number"
-      value={name}
-     // disabled
-    />
-  </FormGroup>
-</Col>
-)}
   
   </Row>
   )

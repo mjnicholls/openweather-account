@@ -4,17 +4,14 @@ import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import Select from 'react-select'
 import '../App.scss'
 import classnames from 'classnames'
-
+import humanReadableCondition from '../humanReadableCondition'
+import { variables } from '../config'
 
 const Condition = ({ condition, setCondition }) => {
 
   const [message, setMessage] = useState('')
 
-  const variables = [
-    { value: 'temp', label: 'Air temperature' },
-    { value: 'wind', label: 'Wind speed' },
-    { value: 'rain', label: 'Precipitation' },
-  ]
+
 
   const units = [
     { value: 'metric', label: '°C, m/s' },
@@ -33,28 +30,10 @@ const Condition = ({ condition, setCondition }) => {
     setCondition(newCondition)
   }
 
-
-{/*
-
-  const humanReadable = (condition) => {  
-    setMessage({});
-  
-    if (// ) {
-
-      setMessage({
-        message: ``
-      })
-
-      return
-    }
-  }
-
-*/}
-
-
   
 
   return (
+    <>
     <Row className="search-box">
       <Col>
         <Label>Trigger condition</Label>
@@ -122,6 +101,13 @@ const Condition = ({ condition, setCondition }) => {
 
         </div>
     </Row>
+
+      <Row>
+        <Col>
+          {humanReadableCondition(condition)}
+        </Col>
+      </Row>
+      </>
   )
 }
 
