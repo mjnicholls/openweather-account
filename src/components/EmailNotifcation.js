@@ -9,7 +9,8 @@ const EmailNotifs = ({recipients, setRecipients}) => {
   const [email, setEmail] = useState('')
 
   const [error, setError] = useState('')
-  const [activeEmail, setActiveEmail] = useState('') // email in the list
+  const [activeEmail, setActiveEmail] = useState(null) // email in the list
+  const [activeEmailContent, setActiveEmailContent] = useState('')
 
   const handleChange = (key, value) => {
     let newMail = { ...activeEmail }
@@ -28,9 +29,10 @@ const EmailNotifs = ({recipients, setRecipients}) => {
 
   const saveEmail = (index) => {
     let recipientsCopy = [...recipients]
-    recipientsCopy[index] = activeEmail
+    recipientsCopy[index] = activeEmailContent
     setRecipients(recipientsCopy)
     setActiveEmail(null)
+    setActiveEmailContent('')
   }
 
   const deleteEmail = (index) => {
@@ -86,14 +88,15 @@ const EmailNotifs = ({recipients, setRecipients}) => {
     </Row>
       <Row>
         <Col>
+
         {recipients.map((email, index) => {
         return email === activeEmail ? (
           <div key={`${email}_${index}`} className="d-flex justify-content-between">
             <Input
               type="text"
-              onChange={(e) => {setActiveEmail(e.target.value)}}
+              onChange={(e) => {setActiveEmailContent(e.target.value)}}
               // onBlur={() => setActiveEmail(null)}
-              value={email}
+              value={activeEmailContent}
             />
               <Button onClick={() => saveEmail(index)}>Save</Button>
               <Button onClick={() => deleteEmail(email)}>Delete</Button>
@@ -101,7 +104,7 @@ const EmailNotifs = ({recipients, setRecipients}) => {
           ) : (
             <div key={`${email}_${index}`} className="d-flex justify-content-between">
               <p>{email}</p>
-              <Button onClick={() => setActiveEmail(email)}>Edit</Button>
+              <Button onClick={() => {setActiveEmail(email); setActiveEmailContent(email)}}>Edit</Button>
               <Button onClick={() => deleteEmail(index)}>Delete</Button>
             </div>
           )
