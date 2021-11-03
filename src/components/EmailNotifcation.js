@@ -4,10 +4,12 @@ import { Button, Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import '../App.scss'
 import { validateEmail } from '../features/validation'
 
-const EmailNotifs = () => {
-  const [recipients, setRecipients] = useState([])
-  const [activeEmail, setActiveEmail] = useState(null)
+const EmailNotifs = ({recipients, setRecipients}) => {
+
+  const [email, setEmail] = useState('')
+
   const [error, setError] = useState('')
+  const [activeEmail, setActiveEmail] = useState('') // email in the list
 
   const handleChange = (key, value) => {
     let newMail = { ...activeEmail }
@@ -15,22 +17,47 @@ const EmailNotifs = () => {
     setActiveEmail(newMail)
   }
 
+  const addEmail = () => {
+    if (validationEmail(email)) {
+      setRecipients([
+        ...recipients,
+        email
+      ])
+    }
+  }
+
+  const saveEmail = (index) => {
+    let recipientsCopy = [...recipients]
+    recipientsCopy[index] = activeEmail
+    setRecipients(recipientsCopy)
+    setActiveEmail(null)
+  }
+
+  const deleteEmail = (index) => {
+    let recipientsCopy = [...recipients]
+    recipientsCopy.splice(index, 1)
+    setRecipients(recipientsCopy)
+    setActiveEmail(null)
+  }
+
   const validationEmail = () => {
     setError({})
-    let newError = {}
+    /*let newError = {}
 
     if (!activeEmail.length) {
       setError(true)
-      return
+      return false
     }
 
     if (!validateEmail(activeEmail)) {
       setError(true)
-      return
-    }
+      return false
+    }*/
+    return true
   }
 
   return (
+    <>
     <Row className="search-box">
       <Col>
         <Label>Email Notification</Label>
@@ -41,8 +68,8 @@ const EmailNotifs = () => {
           <Input
             className={error.activeEmail ? 'danger-border' : ''}
             type="text"
-            //onChange={(e) => setEmail(e.target.value)}
-            value={activeEmail}
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
         </FormGroup>
       </Col>
@@ -50,32 +77,37 @@ const EmailNotifs = () => {
         <FormGroup>
           <Button
             className="btn-primary"
-            onChange={(e) => {
-              handleChange(index, e.target.value)
-            }}
+            onClick={addEmail}
           >
             Add email
           </Button>
         </FormGroup>
       </Col>
-
-      {recipients.map((email, index) => {
-        email === activeEmail ? (
-          <input
-            onChange={(e) => {
-              handleChange(index, e.target.value)
-            }}
-            onBlur={() => setActiveEmail(null)}
-            value={email}
-          />
-        ) : (
-          <div>
-            <p>{email}</p>
-            <Button onClick={() => setActiveEmail(email)}>email</Button>
-          </div>
-        )
-      })}
     </Row>
+      <Row>
+        <Col>
+        {recipients.map((email, index) => {
+        return email === activeEmail ? (
+          <div key={`${email}_${index}`} className="d-flex justify-content-between">
+            <Input
+              type="text"
+              onChange={(e) => {setActiveEmail(e.target.value)}}
+              // onBlur={() => setActiveEmail(null)}
+              value={email}
+            />
+              <Button onClick={() => saveEmail(index)}>Save</Button>
+              <Button onClick={() => deleteEmail(email)}>Delete</Button>
+            </div>
+          ) : (
+            <div key={`${email}_${index}`} className="d-flex justify-content-between">
+              <p>{email}</p>
+              <Button onClick={() => setActiveEmail(email)}>Edit</Button>
+              <Button onClick={() => deleteEmail(index)}>Delete</Button>
+            </div>
+          )
+        })}
+      </Col></Row>
+      </>
   )
 }
 

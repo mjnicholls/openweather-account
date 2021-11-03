@@ -28,7 +28,7 @@ const CreateTrigger = () => {
 
   const [days, setDays] = useState(0)
 
-  const [recipients, setRecipients] = useState([])
+  const [recipients, setRecipients] = useState(['email1', 'email2'])
 
   return (
     <>
