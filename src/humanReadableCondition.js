@@ -27,7 +27,7 @@ const humanReadable = (condition) => {
   // The wind speed exceeds 10 m/sec  m/s (metric) mph (F)
   // The precipitation level exceeds 15mm
 
-  let res = `${variables.find(el => el.value === condition.variable).label} ${condition.condition === ">" ? "exceeds" : "falls below"}`
+  let res = `${variables.find(el => el.value === condition.variable).label} ${condition.condition === ">" ? "exceeds" : "falls below"} ${condition.value}`
   return res
 }
 

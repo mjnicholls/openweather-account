@@ -24,6 +24,8 @@ const CreateTrigger = () => {
     units: 'metric',
   })
 
+  const [recipients, setRecipients] = useState([])
+
   return (
     <>
       <Row>
