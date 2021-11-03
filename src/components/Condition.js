@@ -21,7 +21,7 @@ const Condition = ({ condition, setCondition }) => {
         <Col md="3">
           <Label>Trigger condition</Label>
         </Col>
-        <Col md="4">
+        <Col md="5">
           <Label className="conditions">Weather parameter</Label>
           <FormGroup>
             <Select
@@ -41,7 +41,7 @@ const Condition = ({ condition, setCondition }) => {
             />
           </FormGroup>
         </Col>
-        <Col md="5">
+        <Col md="4">
           <Label className="conditions">Level</Label>
           <FormGroup>
             <Input

@@ -2,7 +2,11 @@
 import React, { useState } from 'react'
 import { Button, Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import '../App.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faPenSquare, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { validateEmail } from '../features/validation'
+import classnames from 'classnames'
+
 
 const EmailNotifs = ({recipients, setRecipients}) => {
 
@@ -11,6 +15,9 @@ const EmailNotifs = ({recipients, setRecipients}) => {
   const [error, setError] = useState('')
   const [activeEmail, setActiveEmail] = useState(null) // email in the list
   const [activeEmailContent, setActiveEmailContent] = useState('')
+
+  const noBlankErrorMessage = 'Cannot be blank'
+  const emailErrorMessage = 'Must be a proper email address'
 
   const handleChange = (key, value) => {
     let newMail = { ...activeEmail }
@@ -42,41 +49,60 @@ const EmailNotifs = ({recipients, setRecipients}) => {
     setActiveEmail(null)
   }
 
-  const validationEmail = () => {
+  const validationEmail = (email) => {
     setError({})
-    /*let newError = {}
+    let newError = {}
 
-    if (!activeEmail.length) {
-      setError(true)
+    if (email === "") {
+      newError = {
+        email: noBlankErrorMessage,
+      }
+    }
+
+    if (!validateEmail(email)) {
+      newError = {
+        email: emailErrorMessage,
+      }
+    }
+
+
+    if (Object.keys(newError).length) {
+      setError(newError)
       return false
     }
 
-    if (!validateEmail(activeEmail)) {
-      setError(true)
-      return false
-    }*/
     return true
   }
 
   return (
     <>
     <Row className="search-box">
-      <Col>
+      <Col md="3">
         <Label>Email Notification</Label>
       </Col>
 
-      <Col>
+      <Col md="6">
         <FormGroup>
           <Input
-            className={error.activeEmail ? 'danger-border' : ''}
+            className={error.email ? 'danger-border' : ''}
             type="text"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
         </FormGroup>
+        <div
+          className={classnames(
+            'invalid-feedback',
+            error.email ? 'd-block' : '',
+            
+          )}
+        >
+          {error.email}
+        </div>
       </Col>
-      <Col>
+      <Col md="3">
         <FormGroup>
+      
           <Button
             className="btn-primary"
             onClick={addEmail}
@@ -86,30 +112,50 @@ const EmailNotifs = ({recipients, setRecipients}) => {
         </FormGroup>
       </Col>
     </Row>
-      <Row>
-        <Col>
+    {recipients.map((email, index) => {
 
-        {recipients.map((email, index) => {
+
         return email === activeEmail ? (
-          <div key={`${email}_${index}`} className="d-flex justify-content-between">
+
+            <>
+            <Row>
+                <Col md="3"></Col>
+           
+          <Col md="6" key={`${email}_${index}`}>
             <Input
               type="text"
               onChange={(e) => {setActiveEmailContent(e.target.value)}}
-              // onBlur={() => setActiveEmail(null)}
+              className={error.email ? 'danger-border' : ''}
               value={activeEmailContent}
             />
-              <Button onClick={() => saveEmail(index)}>Save</Button>
-              <Button onClick={() => deleteEmail(email)}>Delete</Button>
-            </div>
+      
+            </Col>
+            <Col md="1" className="icons">
+            <FontAwesomeIcon icon={faThumbsUp} onClick={() => saveEmail(index)} />
+            </Col>
+            <Col md="1" className="icons">
+              <FontAwesomeIcon icon={faTrash} onClick={() => deleteEmail(email)} />
+            </Col>
+            </Row>
+            </>
           ) : (
-            <div key={`${email}_${index}`} className="d-flex justify-content-between">
+            <>
+              <Row>
+              <Col md="3"></Col>
+            <Col md="6" key={`${email}_${index}`}>
               <p>{email}</p>
-              <Button onClick={() => {setActiveEmail(email); setActiveEmailContent(email)}}>Edit</Button>
-              <Button onClick={() => deleteEmail(index)}>Delete</Button>
-            </div>
+              </Col>
+              <Col md="1" className="icons">
+             <FontAwesomeIcon icon={faPenSquare} onClick={() => {setActiveEmail(email); setActiveEmailContent(email)}} />
+             </Col>
+             <Col md="1" className="icons">
+             <FontAwesomeIcon icon={faTrash} onClick={() => deleteEmail(index)} />
+            </Col>
+            </Row>
+            </>
           )
         })}
-      </Col></Row>
+        
       </>
   )
 }

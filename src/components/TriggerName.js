@@ -4,10 +4,22 @@ import '../App.scss'
 
 const TriggerName = ({ location, name, setName }) => {
   const [isNameEdited, setIsNameEdited] = useState(false)
+  const [error, setError] = useState('');
+
+  const noBlankErrorMessage = 'Cannot be blank'
 
   const onNameChange = (e) => {
     setIsNameEdited(true)
     setName(e.target.value)
+
+    setError({})
+    let newError = {}
+
+    if (!name) {
+      newError = {
+        name: noBlankErrorMessage,
+      }
+    }
   }
 
   useEffect(() => {
@@ -18,6 +30,8 @@ const TriggerName = ({ location, name, setName }) => {
       setName(newName)
     }
   }, [location, isNameEdited])
+
+
 
 
   return(
@@ -32,6 +46,7 @@ const TriggerName = ({ location, name, setName }) => {
           type="text"
           value={name}
           onChange={onNameChange}
+          className={error.name ? 'danger-border' : ''}
         />
       </FormGroup>
     </Col>

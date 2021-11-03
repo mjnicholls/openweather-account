@@ -34,7 +34,7 @@ const CreateTrigger = () => {
     <>
       <Row>
         <Col md="7">
-          <div className="pt-5">
+          <div className="pt-5 pb-5">
             {/*<div className="my-5">*/}
             {/*<h4>Location in state</h4>*/}
             {/*<p><b>Name: </b>{location.name}</p>*/}

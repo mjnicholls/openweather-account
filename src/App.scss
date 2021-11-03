@@ -254,6 +254,11 @@
   }
 }
 
+p {
+  font-family: $default-font-family;
+}
+
+
 .btn-primary:active {
   background-color: black;
   &:focus {
@@ -261,8 +266,13 @@
   }
 }
 
+.icons {
+  align-items: center;
+  margin-left: 10px
+}
+
 .search-box {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 
   .form-group {
     margin-bottom: 0px;
@@ -281,6 +291,13 @@
       padding-bottom: 4px;
     }
   }
+
+  .danger-border{
+    outline: none;
+    &:focus {
+    outline:3px solid red;
+  }
+}
 
   .human-readable {
     font-style: italic;
@@ -319,6 +336,7 @@
     font-weight: 400;
     line-height: 1.5;
     background-color: #fff;
+
   }
 
   .btn-primary {
