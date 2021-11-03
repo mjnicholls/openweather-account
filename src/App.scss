@@ -294,8 +294,10 @@ p {
 
   .danger-border{
     outline: none;
+    overflow: visible;
+    border-color: red;
     &:focus {
-    outline:3px solid red;
+    outline:2px solid red;
   }
 }
 
@@ -353,6 +355,11 @@ p {
   font-size: 12px;
   line-height: 1.5;
   margin-left: 10px;
+
+  &:focus {
+    background-color: black;
+  }
+
 }
 
 //
