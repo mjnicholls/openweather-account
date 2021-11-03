@@ -5,23 +5,12 @@ import Select from 'react-select'
 import '../App.scss'
 import classnames from 'classnames'
 import humanReadableCondition from '../humanReadableCondition'
-import { variables } from '../config'
+import { variables, units, conditions } from '../config'
 
 const Condition = ({ condition, setCondition }) => {
 
   const [message, setMessage] = useState('')
 
-
-
-  const units = [
-    { value: 'metric', label: '°C, m/s' },
-    { value: 'imperial', label: '°F, mph' },
-  ]
-
-  const conditions = [
-    { value: '<', label: '<' },
-    { value: '>', label: '>' },
-  ]
 
 
   const handleChange = (key, value) => {
@@ -91,15 +80,7 @@ const Condition = ({ condition, setCondition }) => {
           />
         </FormGroup>
       </Col>
-      <div
-          className={classnames(
-            'invalid-feedback ',
-            message ? 'd-block' : '',
-          )}
-        //  value={message}
-        >
-
-        </div>
+   
     </Row>
 
       <Row>

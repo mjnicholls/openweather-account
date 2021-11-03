@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {variables} from './config'
+import { variables, conditions, units} from './config'
 
 
 var structure = {
@@ -14,6 +14,15 @@ const getValue = (variable, units) => {
 }
 
 const humanReadable = (condition) => {
+
+  if (condition.value < 0){
+
+  }
+
+  if (condition.variable > 10) {
+    
+  }
+  
   // The temperature falls below 0°C degrees
   // The wind speed exceeds 10 m/sec  m/s (metric) mph (F)
   // The precipitation level exceeds 15mm
