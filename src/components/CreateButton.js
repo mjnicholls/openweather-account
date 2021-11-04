@@ -5,25 +5,16 @@ import Select from 'react-select'
 import '../App.scss'
 
 const CreateButton = () => {
- 
-
-
   return (
     <>
       <Row className="search-box">
-        <Col md="8">
+        <Col md="8"></Col>
+        <Col md="2">
+          <Button>Cancel</Button>
         </Col>
         <Col md="2">
-       <Button>
-           Cancel
-       </Button>
-          </Col>
-          <Col md="2">
-       <Button>
-           Create
-       </Button>
-          </Col>
-
+          <Button>Create</Button>
+        </Col>
       </Row>
     </>
   )

@@ -19,7 +19,11 @@ const SearchBox = ({ mapRef, location, setLocation, error }) => {
     <>
       <Row className="search-box">
         {activeTab.id === 'location' ? (
-          <AutoCompleteForm mapRef={mapRef} setLocation={setLocation} error={error} />
+          <AutoCompleteForm
+            mapRef={mapRef}
+            setLocation={setLocation}
+            error={error}
+          />
         ) : (
           <CoordinatesSearch
             mapRef={mapRef}

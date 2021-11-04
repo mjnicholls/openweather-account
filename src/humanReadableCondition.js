@@ -1,4 +1,3 @@
-
 import { variables } from './config'
 
 /* 
@@ -17,10 +16,12 @@ const getValue = (variable, units) => {
 */
 
 const humanReadable = (condition) => {
-
-  const res = `You will be notified if the ${variables.find(el => el.value === condition.variable).label} ${condition.condition === ">" ? "exceeds" : "falls below"} ${condition.value}  ${condition.units === "metric" ? "°C, m/s" : "°F, mph"}`
+  const res = `You will be notified if the ${
+    variables.find((el) => el.value === condition.variable).label
+  } ${condition.condition === '>' ? 'exceeds' : 'falls below'} ${
+    condition.value
+  }  ${condition.units === 'metric' ? '°C, m/s' : '°F, mph'}`
   return res
 }
-
 
 export default humanReadable

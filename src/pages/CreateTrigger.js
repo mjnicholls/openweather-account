@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react'
 
 import { Button, Col, Row } from 'reactstrap'
@@ -9,7 +8,7 @@ import Condition from '../components/Condition'
 import TriggerName from '../components/TriggerName'
 import PriorNotifs from '../components/PriorNotifications'
 import EmailNotifs from '../components/EmailNotifcation'
-import classnames from 'classnames'
+import '../App.scss'
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
@@ -36,18 +35,15 @@ const CreateTrigger = () => {
 
   const noBlankErrorMessage = 'Cannot be blank'
 
-
-  
   const createTrigger = () => {
-
     const data = {
       location,
       condition,
       days,
-      name, 
+      name,
       recipients,
       status: true,
-      user_id: null
+      user_id: null,
     }
 
     console.log(data)
@@ -63,7 +59,7 @@ const CreateTrigger = () => {
     if (!location.lat || !location.lon || !location.name) {
       newError.location = noBlankErrorMessage
     }
-    console.log("newError", newError)
+    console.log('newError', newError)
 
     if (Object.keys(newError).length) {
       setError(newError)
@@ -80,10 +76,9 @@ const CreateTrigger = () => {
     setLocation(newLocation)
   }
 
-
-
   return (
     <>
+      <h2>New Trigger</h2>
       <Row>
         <Col md="7">
           <div className="pt-5 pb-5">
@@ -93,7 +88,12 @@ const CreateTrigger = () => {
             {/*<p><b>Lat: </b>{location.lat}</p>*/}
             {/*<p><b>Lon: </b>{location.lon}</p>*/}
             {/*</div>*/}
-            <TriggerName name={name} setName={setName} location={location} error={error}/>
+            <TriggerName
+              name={name}
+              setName={setName}
+              location={location}
+              error={error}
+            />
             <SearchBox
               mapRef={mapRef}
               location={location}
@@ -102,34 +102,22 @@ const CreateTrigger = () => {
               className={error.location ? 'danger-border' : ''}
               error={error}
             />
-                       <div
-          className={classnames(
-            'invalid-feedback ',
-            error.location ? 'd-block' : '',
-          )}
-        >
-          {error.location}
-        </div>
             <Condition condition={condition} setCondition={setCondition} />
             <PriorNotifs days={days} setDays={setDays} />
-            <EmailNotifs recipients={recipients} setRecipients={setRecipients}/>
+            <EmailNotifs
+              recipients={recipients}
+              setRecipients={setRecipients}
+            />
             <Row className="search-box">
-        <Col md="8">
-        </Col>
-        <Col md="2">
-       <Button>
-           Cancel
-       </Button>
-          </Col>
-          <Col md="2">
-       <Button 
-       className="btn-primary"
-       onClick={createTrigger}>
-           Create
-       </Button>
-          </Col>
+              <Col md="7"></Col>
+              <Col md="5">
+                <Button className="bottom-buttons">Cancel</Button>
 
-      </Row>
+                <Button className="bottom-buttons" onClick={createTrigger}>
+                  Create trigger
+                </Button>
+              </Col>
+            </Row>
           </div>
         </Col>
         <Col md="5">

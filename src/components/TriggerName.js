@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+import classnames from 'classnames'
 import '../App.scss'
 
 const TriggerName = ({ location, name, setName, error }) => {
-
   const [isNameEdited, setIsNameEdited] = useState(false)
 
   const onNameChange = (e) => {
@@ -20,28 +20,32 @@ const TriggerName = ({ location, name, setName, error }) => {
     }
   }, [location, isNameEdited])
 
-
-  return(
+  return (
     <Row className="search-box">
-    <Col md="3">
-      <Label>Trigger name</Label>
-    </Col>
+      <Col md="3">
+        <Label>Trigger name</Label>
+      </Col>
 
-    <Col md="9">
-      <FormGroup>
-        <Input
-          type="text"
-          value={name}
-          onChange={onNameChange}
-          className={error.name ? 'danger-border' : ''}
-        />
-      </FormGroup>
-      {error.name}
-    </Col>
-  
-  </Row>
+      <Col md="9">
+        <FormGroup>
+          <Input
+            type="text"
+            value={name}
+            onChange={onNameChange}
+            className={error.name ? 'danger-border' : ''}
+          />
+        </FormGroup>
+        <div
+          className={classnames(
+            'invalid-feedback ',
+            error.name ? 'd-block' : '',
+          )}
+        >
+          {error.name}
+        </div>
+      </Col>
+    </Row>
   )
 }
-
 
 export default TriggerName

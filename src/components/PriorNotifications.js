@@ -5,22 +5,19 @@ import '../App.scss'
 
 const PriorNotifs = () => {
   const [days, setDays] = useState(0)
-  
-  const priors = [
-    { value: 0, label: '0'},
-    { value: 1, label: '1'},
-    { value: 2, label: '2'},
-    { value: 3, label: '3'},
-  ]
 
+  const priors = [
+    { value: 0, label: '0' },
+    { value: 1, label: '1' },
+    { value: 2, label: '2' },
+    { value: 3, label: '3' },
+  ]
 
   const handleChange = (key, value) => {
     const newDays = { ...days }
     newDays[key] = value
     setDays(newDays)
   }
-
-
 
   return (
     <>
@@ -30,7 +27,7 @@ const PriorNotifs = () => {
         </Col>
         <Col md="2">
           <p className="centered">Up to</p>
-          </Col>
+        </Col>
         <Col md="2">
           <FormGroup>
             <Select
@@ -42,9 +39,7 @@ const PriorNotifs = () => {
           </FormGroup>
         </Col>
         <Col md="4">
-
-        <p className="centered">days before an event starts</p>
-
+          <p className="centered">days before an event starts</p>
         </Col>
       </Row>
     </>

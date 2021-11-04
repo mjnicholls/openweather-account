@@ -6,7 +6,6 @@ import humanReadableCondition from '../humanReadableCondition'
 import { variables, units, conditions } from '../config'
 
 const Condition = ({ condition, setCondition }) => {
-   
   const handleChange = (key, value) => {
     const newCondition = { ...condition }
     newCondition[key] = value
@@ -62,8 +61,6 @@ const Condition = ({ condition, setCondition }) => {
           {humanReadableCondition(condition)}
         </div>
       </Row>
-
-   
     </>
   )
 }

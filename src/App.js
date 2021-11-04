@@ -7,6 +7,7 @@ import { Container } from 'reactstrap'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import CreateTrigger from './pages/CreateTrigger'
+import TriggerList from './pages/TriggersList'
 
 const App = () => (
   <div className="App">
@@ -17,6 +18,10 @@ const App = () => (
           <CreateTrigger />
         </Route>
         <Redirect from="/" to="/create" />
+        <Route path="/trigger-list">
+          <TriggerList />
+        </Route>
+        <Redirect from="/" to="/trigger-list" />
       </BrowserRouter>
     </Container>
     <Footer />

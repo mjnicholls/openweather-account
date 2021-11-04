@@ -23,14 +23,12 @@ const TabsSelector = ({ activeTab, setActiveTab, options }) => {
               active: activeTab.id === option.id,
             })}
             onClick={() => setActiveTab(option)}
-            style={{ padding: '10px 15px', borderRadius: "8pt" }}
+            style={{ padding: '10px 15px', borderRadius: '8pt' }}
           >
             <span>{option.label}</span>
           </Button>
         ))}
       </ButtonGroup>
-
-
     </>
   )
 }

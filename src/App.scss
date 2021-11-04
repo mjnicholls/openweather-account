@@ -258,7 +258,6 @@ p {
   font-family: $default-font-family;
 }
 
-
 .btn-primary:active {
   background-color: black;
   &:focus {
@@ -268,7 +267,7 @@ p {
 
 .icons {
   align-items: center;
-  margin-left: 10px
+  margin-left: 10px;
 }
 
 .search-box {
@@ -292,14 +291,11 @@ p {
     }
   }
 
-  .danger-border{
+  .danger-border {
     outline: none;
     overflow: visible;
     border-color: red;
-    &:focus {
-    outline:2px solid red;
   }
-}
 
   .human-readable {
     font-style: italic;
@@ -338,12 +334,16 @@ p {
     font-weight: 400;
     line-height: 1.5;
     background-color: #fff;
-
   }
 
   .btn-primary {
     padding: '5px 10px';
     border-radius: '8pt';
+  }
+
+  .btn.btn-secondary {
+    background-color: $brand-black;
+    font-family: $default-font-family;
   }
 }
 
@@ -359,10 +359,8 @@ p {
   &:focus {
     background-color: black;
   }
-
 }
 
-//
 .pac-target-input {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
@@ -373,4 +371,24 @@ p {
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
   }
+}
+
+// Trigger page
+
+
+.content {
+
+  font-family: $default-font-family;
+
+  h1 {
+    margin-bottom: 25px;
+  }
+Table {
+  margin-bottom: 15px;
+}
+
+Button.bottom {
+  margin-top: 30px;
+  margin-bottom: 30px
+}
 }
