@@ -2,24 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import '../App.scss'
 
-const TriggerName = ({ location, name, setName }) => {
-  const [isNameEdited, setIsNameEdited] = useState(false)
-  const [error, setError] = useState('');
+const TriggerName = ({ location, name, setName, error }) => {
 
-  const noBlankErrorMessage = 'Cannot be blank'
+  const [isNameEdited, setIsNameEdited] = useState(false)
 
   const onNameChange = (e) => {
     setIsNameEdited(true)
     setName(e.target.value)
-
-    setError({})
-    let newError = {}
-
-    if (!name) {
-      newError = {
-        name: noBlankErrorMessage,
-      }
-    }
   }
 
   useEffect(() => {
@@ -30,8 +19,6 @@ const TriggerName = ({ location, name, setName }) => {
       setName(newName)
     }
   }, [location, isNameEdited])
-
-
 
 
   return(
@@ -49,6 +36,7 @@ const TriggerName = ({ location, name, setName }) => {
           className={error.name ? 'danger-border' : ''}
         />
       </FormGroup>
+      {error.name}
     </Col>
   
   </Row>

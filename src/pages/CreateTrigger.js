@@ -32,7 +32,7 @@ const CreateTrigger = () => {
 
   const [recipients, setRecipients] = useState([])
 
-  const [error, setError] = useState('')
+  const [error, setError] = useState({})
 
   const noBlankErrorMessage = 'Cannot be blank'
 
@@ -54,18 +54,24 @@ const CreateTrigger = () => {
 
     setError({})
 
-    if (location) {
-      setError({
-        location: noBlankErrorMessage,
-      })
-    }
-
     const newError = {}
 
-    if (Object.keys(newError).length) {
-      setError(newError) 
+    if (!name) {
+      newError.name = noBlankErrorMessage
     }
 
+    if (!location.lat || !location.lon || !location.name) {
+      newError.location = noBlankErrorMessage
+    }
+    console.log("newError", newError)
+
+    if (Object.keys(newError).length) {
+      setError(newError)
+      /* eslint-disable-next-line */
+      return
+    }
+
+    // POST logic
   }
 
   const handleChange = (key, value) => {
@@ -87,13 +93,14 @@ const CreateTrigger = () => {
             {/*<p><b>Lat: </b>{location.lat}</p>*/}
             {/*<p><b>Lon: </b>{location.lon}</p>*/}
             {/*</div>*/}
-            <TriggerName name={name} setName={setName} location={location} />
+            <TriggerName name={name} setName={setName} location={location} error={error}/>
             <SearchBox
               mapRef={mapRef}
               location={location}
               setLocation={setLocation}
               onChange={(e) => handleChange('location', e.target.value)}
               className={error.location ? 'danger-border' : ''}
+              error={error}
             />
                        <div
           className={classnames(
@@ -117,7 +124,7 @@ const CreateTrigger = () => {
           <Col md="2">
        <Button 
        className="btn-primary"
-       onclick={createTrigger}>
+       onClick={createTrigger}>
            Create
        </Button>
           </Col>

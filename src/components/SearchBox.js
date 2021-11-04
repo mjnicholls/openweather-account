@@ -12,14 +12,14 @@ const tabsOptions = [
   { id: 'coordinates', label: 'Coordinates' },
 ]
 
-const SearchBox = ({ mapRef, location, setLocation }) => {
+const SearchBox = ({ mapRef, location, setLocation, error }) => {
   const [activeTab, setActiveTab] = useState(tabsOptions[0])
   // only logic and html for coordinates search
   return (
     <>
       <Row className="search-box">
         {activeTab.id === 'location' ? (
-          <AutoCompleteForm mapRef={mapRef} setLocation={setLocation} />
+          <AutoCompleteForm mapRef={mapRef} setLocation={setLocation} error={error} />
         ) : (
           <CoordinatesSearch
             mapRef={mapRef}

@@ -3,9 +3,10 @@ import '../App.scss'
 import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import Autocomplete from 'react-google-autocomplete'
 import placeMarker from './placeMarker'
+import classnames from "classnames/index";
 
 
-const AutoCompleteForm = ({ mapRef, setLocation }) => {
+const AutoCompleteForm = ({ mapRef, setLocation, error }) => {
   
 
 const onPlaceSelected = (place) => {
@@ -35,7 +36,6 @@ const onPlaceSelected = (place) => {
           </Col>
           <Col md="9">
             <FormGroup>
-
               <Autocomplete
                 apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
                 style={{ width: '100%' }}
@@ -48,10 +48,16 @@ const onPlaceSelected = (place) => {
                 }}
                 defaultValue=""
 
-
               />
             </FormGroup>
-
+             <div
+          className={classnames(
+            'invalid-feedback ',
+            error.location ? 'd-block' : '',
+          )}
+        >
+          {error.location}
+        </div>
             </Col>
 
 
