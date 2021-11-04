@@ -30,6 +30,18 @@ const CreateTrigger = () => {
 
   const [recipients, setRecipients] = useState(['email1', 'email2'])
 
+  const createTrigger = () => {
+
+    // TODO run validation - location is not empty: border and message
+
+    const data = {
+      location,
+    }
+
+    console.log(data)
+
+  }
+
   return (
     <>
       <Row>
