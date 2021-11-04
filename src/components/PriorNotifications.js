@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react'
 import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import Select from 'react-select'
@@ -16,7 +15,7 @@ const PriorNotifs = () => {
 
 
   const handleChange = (key, value) => {
-    let newDays = { ...days }
+    const newDays = { ...days }
     newDays[key] = value
     setDays(newDays)
   }

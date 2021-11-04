@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 import React, { useState } from 'react'
 import { Button, Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import '../App.scss'
@@ -20,7 +20,7 @@ const EmailNotifs = ({recipients, setRecipients}) => {
   const emailErrorMessage = 'Must be a proper email address'
 
   const handleChange = (key, value) => {
-    let newMail = { ...activeEmail }
+    const newMail = { ...activeEmail }
     newMail[key] = value
     setActiveEmail(newMail)
   }
@@ -35,7 +35,7 @@ const EmailNotifs = ({recipients, setRecipients}) => {
   }
 
   const saveEmail = (index) => {
-    let recipientsCopy = [...recipients]
+    const recipientsCopy = [...recipients]
     recipientsCopy[index] = activeEmailContent
     setRecipients(recipientsCopy)
     setActiveEmail(null)
@@ -43,13 +43,13 @@ const EmailNotifs = ({recipients, setRecipients}) => {
   }
 
   const deleteEmail = (index) => {
-    let recipientsCopy = [...recipients]
+    const recipientsCopy = [...recipients]
     recipientsCopy.splice(index, 1)
     setRecipients(recipientsCopy)
     setActiveEmail(null)
   }
 
-  const validationEmail = (email) => {
+  const validationEmail = () => {
     setError({})
     let newError = {}
 
@@ -112,16 +112,19 @@ const EmailNotifs = ({recipients, setRecipients}) => {
         </FormGroup>
       </Col>
     </Row>
-    {recipients.map((email, index) => {
+
+    
+    {/* eslint-disable-next-line */}
+    {recipients.map((email, index) => 
 
 
-        return email === activeEmail ? (
+         email === activeEmail ? (
 
             <>
             <Row>
                 <Col md="3"></Col>
            
-          <Col md="6" key={`${email}_${index}`}>
+          <Col md="6" key={email}>
             <Input
               type="text"
               onChange={(e) => {setActiveEmailContent(e.target.value)}}
@@ -142,7 +145,7 @@ const EmailNotifs = ({recipients, setRecipients}) => {
             <>
               <Row>
               <Col md="3"></Col>
-            <Col md="6" key={`${email}_${index}`}>
+            <Col md="6" key={email}>
               <p>{email}</p>
               </Col>
               <Col md="1" className="icons">
@@ -154,7 +157,7 @@ const EmailNotifs = ({recipients, setRecipients}) => {
             </Row>
             </>
           )
-        })}
+        )}
         
       </>
   )

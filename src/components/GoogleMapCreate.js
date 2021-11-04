@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react'
 
 import GoogleMapReact from 'google-map-react'
@@ -86,7 +85,7 @@ const SimpleMap = ({ mapRef, location, setLocation }) => {
 
   const onClickMap = ({ lat, lng }) => {
     setTempLocation({
-      lat: lat,
+      lat,
       lon: lng,
       name: 'Custom location',
     })

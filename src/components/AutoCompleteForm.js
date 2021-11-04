@@ -1,20 +1,12 @@
-/* eslint-disable */
-
 import React, { useState } from 'react'
 import '../App.scss'
 import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import Autocomplete from 'react-google-autocomplete'
 import placeMarker from './placeMarker'
-import classnames from 'classnames'
 
 
 const AutoCompleteForm = ({ mapRef, setLocation }) => {
   
-
-  const [name, setName] = useState('')
-  const [error, setError] = useState({})
-  const noBlankErrorMessage = "Cannot be blank"
-
 
 const onPlaceSelected = (place) => {
   if (mapRef && mapRef.current) {
@@ -27,19 +19,12 @@ const onPlaceSelected = (place) => {
 
     placeMarker(
       place.geometry.location,
-      mapRef.current.map_,
+      mapRef.current.map,
       place.formatted_address,
     )
   }
 
-  setError({})
 
-  if (name) {
-    setError({
-      name: noBlankErrorMessage,
-    })
-    return
-  }
 }
 
   return (
@@ -62,19 +47,11 @@ const onPlaceSelected = (place) => {
                   componentRestrictions: { country: 'gb' },
                 }}
                 defaultValue=""
-                className={error.name ? 'danger-border' : ''}
+
 
               />
             </FormGroup>
 
-            <div
-              className={classnames(
-                'invalid-feedback ',
-                error.name ? 'd-block' : '',
-              )}
-            >
-              {error.name}
-            </div>
             </Col>
 
 

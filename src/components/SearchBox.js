@@ -5,6 +5,7 @@ import { Col, Row } from 'reactstrap'
 import CoordinatesSearch from './CoordinatesSearch'
 import AutoCompleteForm from './AutoCompleteForm'
 import TabsSelector from './TabsSelector'
+import '../App.scss'
 
 const tabsOptions = [
   { id: 'location', label: 'Location' },

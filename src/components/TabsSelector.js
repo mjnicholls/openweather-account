@@ -1,8 +1,6 @@
-/*eslint-disable*/
 import React from 'react'
 import '../App.scss'
 import classNames from 'classnames'
-import Select from 'react-select'
 import { Button, ButtonGroup } from 'reactstrap'
 
 const TabsSelector = ({ activeTab, setActiveTab, options }) => {
@@ -32,16 +30,7 @@ const TabsSelector = ({ activeTab, setActiveTab, options }) => {
         ))}
       </ButtonGroup>
 
-      <Select
-        className="react-select info d-lg-none float-right"
-        classNamePrefix="react-select"
-        name="singleSelect"
-        value={activeTab.label}
-        onChange={(tab) => setActiveTab(tab)}
-        options={options}
-        placeholder={activeTab.label}
-        styles={customStyles}
-      />
+
     </>
   )
 }

@@ -1,16 +1,14 @@
-/* eslint-disable */
-import React, { useState } from 'react'
+import React from 'react'
 import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import Select from 'react-select'
 import '../App.scss'
-import classnames from 'classnames'
 import humanReadableCondition from '../humanReadableCondition'
 import { variables, units, conditions } from '../config'
 
 const Condition = ({ condition, setCondition }) => {
- 
+   
   const handleChange = (key, value) => {
-    let newCondition = { ...condition }
+    const newCondition = { ...condition }
     newCondition[key] = value
     setCondition(newCondition)
   }
