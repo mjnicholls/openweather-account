@@ -7,6 +7,7 @@ export const variables = [
 export const units = [
   { value: 'metric', label: '°C, m/s' },
   { value: 'imperial', label: '°F, mph' },
+  { value: 'mm', label: 'mm' },
 ]
 
 export const conditions = [

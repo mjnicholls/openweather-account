@@ -12,114 +12,131 @@ import {
   CardBody,
   Row,
   Col,
+  Label,
   Table,
   UncontrolledTooltip,
   Button,
 } from 'reactstrap'
 import '../App.scss'
+import { Link } from 'react-router-dom'
+import humanReadableCondition from '../humanReadableCondition'
 
 // import AgroPagination from '../agro-components/AgroPagination'
 
+import TabsSelector from '../components/TabsSelector.js'
+import '../App.scss'
+
+const tabsOptions = [
+  { id: 'active', label: 'A' },
+  { id: 'disabled', label: 'D' },
+]
+
 const TriggerList = () => {
+  const [activeTab, setActiveTab] = useState(tabsOptions[0])
+
+  const handleCheckBoxClick = (key, value) => {
+    const newObj = { ...isActivated }
+    newObj[key] = value
+    setisActivated(newObj)
+  }
 
   const pageData = [
     {
       id: 1,
       condition: {
-        condition: ">",
-        units: "metric",
+        condition: '>',
+        units: 'metric',
         value: 20,
-        variable: "temp"
+        variable: 'temp',
       },
       days: 3,
-      name: "Trigger 1",
-      recipients: ["email1", "email2", "email3"],
+      name: 'Trigger 1',
+      recipients: ['email1', 'email2', 'email3'],
       status: true,
       location: {
         name: 'Paris',
         lat: 40.4,
         lon: 28.8,
       },
-      user_id: 1
+      user_id: 1,
     },
     {
       id: 2,
       condition: {
-        condition: ">",
-        units: "metric",
+        condition: '>',
+        units: 'metric',
         value: 10,
-        variable: "wind"
+        variable: 'wind',
       },
       days: 3,
-      name: "Trigger 1",
-      recipients: ["email1", "email2", "email3", "email2", "email3"],
+      name: 'Trigger 1',
+      recipients: ['email1', 'email2', 'email3', 'email2', 'email3'],
       status: true,
       location: {
         name: 'Paris',
         lat: 40.4,
         lon: 28.8,
       },
-      user_id: 1
+      user_id: 1,
     },
     {
       id: 3,
       condition: {
-        condition: "<",
-        units: "metric",
+        condition: '<',
+        units: 'metric',
         value: 5,
-        variable: "rain"
+        variable: 'rain',
       },
       days: 3,
-      name: "Trigger 1",
-      recipients: ["email2", "email3"],
+      name: 'Trigger 1',
+      recipients: ['email2', 'email3'],
       status: true,
       location: {
         name: 'Paris',
         lat: 40.4,
         lon: 28.8,
       },
-      user_id: 1
+      user_id: 1,
     },
     {
       id: 4,
       condition: {
-        condition: "<",
-        units: "metric",
+        condition: '<',
+        units: 'metric',
         value: 0,
-        variable: "temp"
+        variable: 'temp',
       },
       days: 1,
-      name: "Trigger 1",
-      recipients: ["email1", "email2"],
+      name: 'Trigger 1',
+      recipients: ['email1', 'email2'],
       status: true,
       location: {
         name: 'Paris',
         lat: 40.4,
         lon: 28.8,
       },
-      user_id: 1
+      user_id: 1,
     },
     {
       id: 5,
       condition: {
-        condition: ">",
-        units: "metric",
+        condition: '>',
+        units: 'metric',
         value: 20,
-        variable: "temp"
+        variable: 'temp',
       },
       days: 2,
-      name: "Trigger 1",
-      recipients: ["email1", "email2", "email3", "email2", "email3"],
+      name: 'Trigger 1',
+      recipients: ['email1', 'email2', 'email3', 'email2', 'email3'],
       status: true,
       location: {
         name: 'Paris',
         lat: 40.4,
         lon: 28.8,
       },
-      user_id: 1
+      user_id: 1,
     },
   ]
-
 
   {
     /*}
@@ -224,38 +241,53 @@ const TriggerList = () => {
                     ))}
                   </tbody>
                     */}
+
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Trigger 1</td>
-                      <td>The temperature exceeds 30°C degrees</td>
-                      <td>Paris, France</td>
-                      <td>Up to one day</td>
-                      <td>3</td>
-                      <td>
-                        <Button>Deactivate</Button>
-                      </td>
-                      <td>
-                        <Button>Edit</Button>
-                      </td>
-                      <td>
-                        <Button>Delete</Button>
-                      </td>
-                    </tr>
+                    {pageData.map((triggers) => (
+                      <tr>
+                        <td>{triggers.id}</td>
+
+                        <td>{triggers.name}</td>
+                        <td>
+                          {' '}
+                          {humanReadableCondition(triggers.condition).substring(
+                            23,
+                          )}
+                        </td>
+                        <td>{triggers.location.name}</td>
+                        <td>Up to {triggers.days} days</td>
+                        <td>{triggers.recipients.length}</td>
+                        <td>
+                          <label class="switch">
+                            <input type="checkbox" checked={triggers.status} />
+                            <div class="slider"></div>
+                          </label>
+                        </td>
+                        <td>
+                          <FontAwesomeIcon icon={faPenSquare} />
+                        </td>
+                        <td>
+                          <FontAwesomeIcon icon={faTrash} />
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </CardBody>
-
             </Card>
           </Col>
         </Row>
         <Row>
           <Col md="8"></Col>
           <Col md="2">
-            <Button className="bottom">List of Forecasted Events</Button>
+            <Link to="/">
+              <Button className="bottom">List of Forecasted Events</Button>
+            </Link>
           </Col>
           <Col md="2">
-            <Button className="bottom">Create new trigger</Button>
+            <Link to="/create">
+              <Button className="bottom">Create new trigger</Button>
+            </Link>
           </Col>
         </Row>
       </div>
@@ -265,12 +297,13 @@ const TriggerList = () => {
 
 export default TriggerList
 
-
-  {/*}  <AgroPagination
+{
+  /*}  <AgroPagination
                 count={trigger.length}
                 itemsPerPage={itemsPerPage}
                 page={page}
                 setPage={setPage}
               />
 
-                    */}
+                    */
+}
