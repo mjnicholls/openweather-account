@@ -26,19 +26,8 @@ import humanReadableCondition from '../humanReadableCondition'
 import TabsSelector from '../components/TabsSelector.js'
 import '../App.scss'
 
-const tabsOptions = [
-  { id: 'active', label: 'A' },
-  { id: 'disabled', label: 'D' },
-]
-
 const TriggerList = () => {
-  const [activeTab, setActiveTab] = useState(tabsOptions[0])
-
-  const handleCheckBoxClick = (key, value) => {
-    const newObj = { ...isActivated }
-    newObj[key] = value
-    setisActivated(newObj)
-  }
+  const [singular, setSingular] = useState('')
 
   const pageData = [
     {
@@ -179,7 +168,7 @@ const TriggerList = () => {
                 <Table className="mb-0">
                   <thead>
                     <tr>
-                      <th></th>
+                      <th>#</th>
                       <th>Trigger Name</th>
                       <th>Trigger Condition</th>
                       <th>Location</th>
@@ -251,16 +240,19 @@ const TriggerList = () => {
                         <td>
                           {' '}
                           {humanReadableCondition(triggers.condition).substring(
-                            23,
+                            27,
                           )}
                         </td>
                         <td>{triggers.location.name}</td>
-                        <td>Up to {triggers.days} days</td>
+                        <td>
+                          Up to {triggers.days}{' '}
+                          {triggers.days === 1 ? 'day' : 'days'}
+                        </td>
                         <td>{triggers.recipients.length}</td>
                         <td>
                           <label class="switch">
                             <input type="checkbox" checked={triggers.status} />
-                            <div class="slider"></div>
+                            <span class="slider round"></span>
                           </label>
                         </td>
                         <td>
