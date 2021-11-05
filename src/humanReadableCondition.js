@@ -15,12 +15,24 @@ const getValue = (variable, units) => {
 
 */
 
+const getUnits = (variable, units) => {
+  let res = ""
+  if (variable === "temp") {
+    res = (units === "metric") ? "°C" : "°F"
+  }
+  // TODO
+  // rain => mm (always)
+  // wind => m/s for metric, or mph for imperial
+  return res
+
+}
+
 const humanReadable = (condition) => {
   const res = `You will be notified if the ${
     variables.find((el) => el.value === condition.variable).label
   } ${condition.condition === '>' ? 'exceeds' : 'falls below'} ${
     condition.value
-  }  ${condition.units === 'metric' ? '°C, m/s' : '°F, mph'}`
+  }  ${getUnits(condition.variable, condition.units)}`
   return res
 }
 

@@ -17,11 +17,10 @@ const App = () => (
         <Route path="/create">
           <CreateTrigger />
         </Route>
-        <Redirect from="/" to="/create" />
         <Route path="/trigger-list">
           <TriggerList />
         </Route>
-        <Redirect from="/" to="/trigger-list" />
+        {/*<Redirect from="/" to="/trigger-list" />*/}
       </BrowserRouter>
     </Container>
     <Footer />

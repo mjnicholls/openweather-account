@@ -21,6 +21,106 @@ import '../App.scss'
 // import AgroPagination from '../agro-components/AgroPagination'
 
 const TriggerList = () => {
+
+  const pageData = [
+    {
+      id: 1,
+      condition: {
+        condition: ">",
+        units: "metric",
+        value: 20,
+        variable: "temp"
+      },
+      days: 3,
+      name: "Trigger 1",
+      recipients: ["email1", "email2", "email3"],
+      status: true,
+      location: {
+        name: 'Paris',
+        lat: 40.4,
+        lon: 28.8,
+      },
+      user_id: 1
+    },
+    {
+      id: 2,
+      condition: {
+        condition: ">",
+        units: "metric",
+        value: 10,
+        variable: "wind"
+      },
+      days: 3,
+      name: "Trigger 1",
+      recipients: ["email1", "email2", "email3", "email2", "email3"],
+      status: true,
+      location: {
+        name: 'Paris',
+        lat: 40.4,
+        lon: 28.8,
+      },
+      user_id: 1
+    },
+    {
+      id: 3,
+      condition: {
+        condition: "<",
+        units: "metric",
+        value: 5,
+        variable: "rain"
+      },
+      days: 3,
+      name: "Trigger 1",
+      recipients: ["email2", "email3"],
+      status: true,
+      location: {
+        name: 'Paris',
+        lat: 40.4,
+        lon: 28.8,
+      },
+      user_id: 1
+    },
+    {
+      id: 4,
+      condition: {
+        condition: "<",
+        units: "metric",
+        value: 0,
+        variable: "temp"
+      },
+      days: 1,
+      name: "Trigger 1",
+      recipients: ["email1", "email2"],
+      status: true,
+      location: {
+        name: 'Paris',
+        lat: 40.4,
+        lon: 28.8,
+      },
+      user_id: 1
+    },
+    {
+      id: 5,
+      condition: {
+        condition: ">",
+        units: "metric",
+        value: 20,
+        variable: "temp"
+      },
+      days: 2,
+      name: "Trigger 1",
+      recipients: ["email1", "email2", "email3", "email2", "email3"],
+      status: true,
+      location: {
+        name: 'Paris',
+        lat: 40.4,
+        lon: 28.8,
+      },
+      user_id: 1
+    },
+  ]
+
+
   {
     /*}
   const [trigger, setTrigger] = useState([])
@@ -133,10 +233,10 @@ const TriggerList = () => {
                       <td>Up to one day</td>
                       <td>3</td>
                       <td>
-                        <Button>Edit</Button>
+                        <Button>Deactivate</Button>
                       </td>
                       <td>
-                        <Button>Deactivate</Button>
+                        <Button>Edit</Button>
                       </td>
                       <td>
                         <Button>Delete</Button>
@@ -145,14 +245,7 @@ const TriggerList = () => {
                   </tbody>
                 </Table>
               </CardBody>
-              {/*}  <AgroPagination
-                count={trigger.length}
-                itemsPerPage={itemsPerPage}
-                page={page}
-                setPage={setPage}
-              />
 
-                    */}
             </Card>
           </Col>
         </Row>
@@ -171,3 +264,13 @@ const TriggerList = () => {
 }
 
 export default TriggerList
+
+
+  {/*}  <AgroPagination
+                count={trigger.length}
+                itemsPerPage={itemsPerPage}
+                page={page}
+                setPage={setPage}
+              />
+
+                    */}
