@@ -49,12 +49,8 @@ const ViewTrigger = (props) => {
 
   const saveName = () => {
     setIsEditName(false)
-    // const nameSet = activeNameContent
     validationName(activeName)
-    // setActiveName('')
-    // setActiveNameContent(nameSet)
   }
-
 
 
   const data = {
@@ -67,7 +63,7 @@ const ViewTrigger = (props) => {
       },
       days: 3,
       name: 'Trigger 1',
-      recipients: ['email1', 'email2', 'email3'] || {},
+      recipients: ['email1', 'email2', 'email3', 'email4'],
       status: false,
       location: {
         name: 'Paris',
@@ -83,6 +79,7 @@ const ViewTrigger = (props) => {
 
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
+  
 
   const saveMethod = () => {
 
@@ -92,6 +89,9 @@ const ViewTrigger = (props) => {
       data.name = activeName
     }
 
+    if (status !== tempStatus){
+      data.status = tempStatus
+    }
 
     console.log("saving", data)
 
@@ -99,117 +99,15 @@ const ViewTrigger = (props) => {
 
   return (
     <>
-    <Row>
+    <Row className="trigger-card">
       <Col md="7">
-    <Row>
-    {name === activeName ? (
-        
-            <Row>
-              <Col md="4"><h3>Trigger Card</h3></Col>
+        <h2>Trigger Card</h2>
 
-              <Col md="4" key={name}>
-                <Input
-                  type="text"
-                  onChange={(e) => {
-                    setActiveNameContent(e.target.value)
-                  }}
-                  className={error.name ? 'danger-border' : ''}
-                  value={activeName}
-                  name="name"
-                />
-              </Col>
-              <Col md="1" className="icons">
-                <FontAwesomeIcon
-                  icon={faThumbsUp}
-                  onClick={() => saveName()}
-                />
-              </Col>
-              <Col md="2">
-                {status === true ? (
-        <Button>
-          Active
-        </Button>
-                ) : (
-                  <Button>
-                  Deactivated
-                </Button>
-                )}
-      </Col>
-            </Row>
-          
-        ) : (
-    <Row>
-            <Col md="4"><h3>Trigger Card</h3></Col>
-              <Col md="4" key={name}>
-              <p>{name}</p>
-              </Col>
-              <Col md="1" className="icons">
-                <FontAwesomeIcon
-                  icon={faPenSquare}
-                  onClick={() => {
-                    setActiveName(name)
-                    setActiveNameContent(name)
-                  }}
-                />
-              </Col>
-              <Col md="2">
-        <Button>
-          Active
-        </Button>
-      </Col>
-          
-            </Row>
-        )}
-    </Row>
-      <Row className="search-box">
-        <Col md="3">
-          <Label>Location</Label>
-        </Col>
-
-        <Col md="9">
-          <Label type="text" value={location} className="cardContent">
-          {location.name} ({location.lat}, {location.lon})
-          </Label>
-        </Col>
-      </Row>
-      <Row className="search-box">
-        <Col md="3">
-          <Label>Trigger Condition</Label>
-        </Col>
-
-        <Col md="9">
-          <Label type="text" value={condition} className="cardContent">
-          {humanReadableCondition(condition).substring(27)}
-          </Label>
-        </Col>
-      </Row>
-      <Row className="search-box">
-        <Col md="3">
-          <Label>Email recipients</Label>
-        </Col>
-
-        <Col md="9">
-          <Label type="text" className="cardContent">
-            <p>{recipients[0]}</p>
-            <p>{recipients[1]}</p>
-            <p>{recipients[2]}</p>
-            <FontAwesomeIcon
-                  icon={faArrowDown}
-                  onClick={() => saveName()}
-                />
-          </Label>
-        </Col>
-      </Row>
-      <Row>
-        <Col md="7">
-          <Row>
-            <Col md="4">
-              <h3>Trigger Card</h3>
-            </Col>
-
-
-            {isEditName ?  (
+    {isEditName ?  (
               <Row>
+                       <Col md="4">
+          <Label>Trigger Name</Label>
+        </Col>
                 <Col md="4" key={name}>
                   <Input
                     type="text"
@@ -227,16 +125,20 @@ const ViewTrigger = (props) => {
                     onClick={() => saveName()}
                   />
                 </Col>
+                
                 <Col md="2">
-                  {status === true ? (
-                    <Button>Active</Button>
-                  ) : (
-                    <Button>Deactivated</Button>
-                  )}
+                  
+                <label className="switch">
+                            <input type="checkbox" onClick={() => setTempStatus()}/>
+                            <span className="slider round"></span>
+                          </label>
                 </Col>
               </Row>
             ) : (
               <Row>
+                       <Col md="4">
+          <Label>Trigger Name</Label>
+        </Col>
                 <Col md="4" key={name}>
                   <p>{activeName}</p>
                 </Col>
@@ -249,66 +151,94 @@ const ViewTrigger = (props) => {
                   />
                 </Col>
                 <Col md="2">
-                  <Button>Active</Button>
+                <label className="switch">
+                <input type="checkbox" onClick={() => setTempStatus(true)}/>
+                            <span className="slider round"></span>
+                          </label>
                 </Col>
               </Row>
             )}
-          </Row>
-          <Row className="search-box">
-            <Col md="3">
-              <Label>Location</Label>
-            </Col>
+  
+      <Row className="search-box">
+        <Col md="4">
+          <Label>Location</Label>
+        </Col>
 
-            <Col md="9">
-              <Label type="text" value={location} className="cardContent">
-                {location.name} ({location.lat}, {location.lon})
-              </Label>
-            </Col>
-          </Row>
-          <Row className="search-box">
-            <Col md="3">
-              <Label>Trigger Condition</Label>
-            </Col>
+        <Col md="8">
+          <Label type="text" value={location} className="cardContent">
+          {location.name} ({location.lat}, {location.lon})
+          </Label>
+        </Col>
+      </Row>
+      <Row className="search-box">
+        <Col md="4">
+          <Label>Trigger Condition</Label>
+        </Col>
 
-            <Col md="9">
-              <Label type="text" value={condition} className="cardContent">
-                {humanReadableCondition(condition).substring(27)}
-              </Label>
-            </Col>
-          </Row>
-          <Row className="search-box">
-            <Col md="3">
-              <Label>Email recipients</Label>
-            </Col>
+        <Col md="8">
+          <Label type="text" value={condition} className="cardContent">
+          {humanReadableCondition(condition).substring(27)}
+          </Label>
+        </Col>
+      </Row>
+      <Row className="search-box">
+        <Col md="4">
+          <Label>Email recipients</Label>
+        </Col>
 
-            <Col md="9">
+        <Col md="8">
+        {recipients === 2 ? (
+          <Label type="text" className="cardContent">
+        
+            <p>{recipients[0]}</p>
+            <p>{recipients[1]}</p>
+            <p>{recipients[2]}</p>
+          
+            <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <FontAwesomeIcon
+                  icon={faArrowDown}
+                  onClick={() => saveName()}
+                />
+  </a>
+  <p class="collapse" id="collapseExample">
+  {recipients[2]}
+</p>
+</Label>
+            ) : (
               <Label type="text" className="cardContent">
-                <p>{recipients[0]}</p>
-                <p>{recipients[1]}</p>
-                <p>{recipients[2]}</p>
+              <p>{recipients[0]}</p>
+              <p>{recipients[1]}</p>
+              <p>{recipients[2]}</p>
               </Label>
-            </Col>
-          </Row>
+            )}
+         
+      
+        </Col>
+      </Row>
+      <Row>
+        <Col md="7">
+     
+       
           <Row>
             <h3>Events List</h3>
           </Row>
           <Row className="search-box">
-            <Col md="3">
+            <Col md="4">
               <Label>Active Events</Label>
             </Col>
 
-            <Col md="9">
+            <Col md="8">
               <Label type="text" value={recipients} className="cardContent">
                 27 October 2021
               </Label>
             </Col>
           </Row>
           <Row className="search-box">
-            <Col md="3">
+            <Col md="4">
               <Label>Archive</Label>
             </Col>
 
-            <Col md="9">
+            <Col md="8">
               <Label type="text" value={recipients} className="cardContent">
                 27 September 2021
               </Label>
@@ -317,35 +247,12 @@ const ViewTrigger = (props) => {
           <Row className="search-box">
             <Col md="7"></Col>
             <Col md="5">
-
-
               <Button className="bottom-buttons">Delete</Button>
               <Button className="bottom-buttons" onClick={saveMethod}>Save</Button>
             </Col>
           </Row>
         </Col>
       </Row>
-      <Row className="search-box">
-        <Col md="3">
-          <Label>Archive</Label>
-        </Col>
-
-        <Col md="9">
-          <Label type="text" value={recipients} className="cardContent">
-         27 September 2021
-         </Label>
-        </Col>
-      </Row>
-      <Row className="search-box">
-              <Col md="7"></Col>
-              <Col md="5">
-                <Button className="bottom-buttons">Edit</Button>
-
-                <Button className="bottom-buttons">
-                 Delete
-                </Button>
-              </Col>
-            </Row>
       </Col>
       <Col md="5">
           <MyMapComponent
