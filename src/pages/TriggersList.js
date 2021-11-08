@@ -52,7 +52,7 @@ const TriggerList = () => {
       days: 3,
       name: 'Trigger 1',
       recipients: ['email1', 'email2', 'email3', 'email2', 'email3'],
-      status: true,
+      status: false,
       location: {
         name: 'Paris',
         lat: 40.4,
@@ -90,7 +90,7 @@ const TriggerList = () => {
       days: 1,
       name: 'Trigger 1',
       recipients: ['email1', 'email2'],
-      status: true,
+      status: false,
       location: {
         name: 'Paris',
         lat: 40.4,

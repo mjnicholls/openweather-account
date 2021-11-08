@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useRef, useState } from 'react'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,8 +13,10 @@ const ViewTrigger = (props) => {
   const mapRef = useRef(null)
   const [locations, setLocation] = useState('')
   const [error, setError] = useState('')
-  const [activeName, setActiveName] = useState('')
-  const [activeNameContent, setActiveNameContent] = useState('')
+
+  const [isEditName, setIsEditName] = useState(false)
+
+
 
   const validationName = () => {
     setError({})
@@ -34,10 +37,11 @@ const ViewTrigger = (props) => {
   }
 
   const saveName = () => {
-    const nameSet = activeNameContent
-    validationName(name)
-    setActiveName('')
-    setActiveNameContent(nameSet)
+    setIsEditName(false)
+    // const nameSet = activeNameContent
+    validationName(activeName)
+    // setActiveName('')
+    // setActiveNameContent(nameSet)
   }
 
   const data = {
@@ -62,22 +66,39 @@ const ViewTrigger = (props) => {
 
   const { condition, days, id, location, name, recipients, status } = data
 
+  const [activeName, setActiveName] = useState(name)
+  const [tempStatus, setTempStatus] = useState(status)
+
+  const saveMethod = () => {
+
+    let data = {}
+
+    if (name !== activeName) {
+      data.name = activeName
+    }
+
+
+    console.log("saving", data)
+
+  }
+
   return (
     <>
       <Row>
         <Col md="7">
           <Row>
-            {name === activeName ? (
-              <Row>
-                <Col md="4">
-                  <h3>Trigger Card</h3>
-                </Col>
+            <Col md="4">
+              <h3>Trigger Card</h3>
+            </Col>
 
+
+            {isEditName ?  (
+              <Row>
                 <Col md="4" key={name}>
                   <Input
                     type="text"
                     onChange={(e) => {
-                      setActiveNameContent(e.target.value)
+                      setActiveName(e.target.value)
                     }}
                     className={error.name ? 'danger-border' : ''}
                     value={activeName}
@@ -100,18 +121,14 @@ const ViewTrigger = (props) => {
               </Row>
             ) : (
               <Row>
-                <Col md="4">
-                  <h3>Trigger Card</h3>
-                </Col>
                 <Col md="4" key={name}>
-                  <p>{name}</p>
+                  <p>{activeName}</p>
                 </Col>
                 <Col md="1" className="icons">
                   <FontAwesomeIcon
                     icon={faPenSquare}
                     onClick={() => {
-                      setActiveName(name)
-                      setActiveNameContent(name)
+                      setIsEditName(true)
                     }}
                   />
                 </Col>
@@ -184,9 +201,10 @@ const ViewTrigger = (props) => {
           <Row className="search-box">
             <Col md="7"></Col>
             <Col md="5">
-              <Button className="bottom-buttons">Edit</Button>
+
 
               <Button className="bottom-buttons">Delete</Button>
+              <Button className="bottom-buttons" onClick={saveMethod}>Save</Button>
             </Col>
           </Row>
         </Col>
