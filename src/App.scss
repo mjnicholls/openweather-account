@@ -261,7 +261,7 @@ p {
 .btn-primary:active {
   background-color: black;
   &:focus {
-    background-color: black;
+    background-color: white;
   }
 }
 
@@ -339,6 +339,9 @@ p {
   .btn-primary {
     padding: '5px 10px';
     border-radius: '8pt';
+       &:focus {
+      border: 2px solid white;
+    }
   }
 
   .btn.btn-secondary {
@@ -346,6 +349,24 @@ p {
     font-family: $default-font-family;
   }
 }
+
+
+.btn-primary.btn.btn-secondary.btn-sm.active {
+  padding: 10px 15px;
+  border-radius: 8pt;
+  &:hover{
+    background-color: $brand-turquoise;
+  }
+  &:active{
+    background-color: white;
+    &:focus {
+      border: 2px solid white;
+    }
+    &:visited{
+      background-color: white;
+    }
+  }
+} 
 
 // tabs
 
@@ -358,7 +379,12 @@ p {
 
   &:focus {
     background-color: black;
-  }
+  };
+  &:active{
+    background-color: white;
+  };
+
+  
 }
 
 .pac-target-input {
@@ -466,4 +492,18 @@ Button.bottom {
   margin-top: 30px;
   margin-bottom: 30px
 }
+}
+
+// view trigger page
+
+h2, h3 {
+  margin-bottom: 25px;
+}
+
+
+
+label.cardContent {
+  font-family: $default-font-family;
+  text-align: center;
+  font-weight: normal;
 }

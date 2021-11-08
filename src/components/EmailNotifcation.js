@@ -20,12 +20,6 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
   const noBlankErrorMessage = 'Cannot be blank'
   const emailErrorMessage = 'Must be a proper email address'
 
-  const handleChange = (key, value) => {
-    const newMail = { ...activeEmail }
-    newMail[key] = value
-    setActiveEmail(newMail)
-  }
-
   const addEmail = () => {
     if (validationEmail(email)) {
       setRecipients([...recipients, email])

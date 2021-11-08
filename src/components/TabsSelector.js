@@ -19,11 +19,12 @@ const TabsSelector = ({ activeTab, setActiveTab, options }) => {
             size="sm"
             tag="label"
             key={option.id}
-            className={classNames('btn-primary', {
+            className={classNames('btn-primary active', {
               active: activeTab.id === option.id,
             })}
             onClick={() => setActiveTab(option)}
             style={{ padding: '10px 15px', borderRadius: '8pt' }}
+            aria-pressed="true"
           >
             <span>{option.label}</span>
           </Button>

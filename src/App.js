@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import CreateTrigger from './pages/CreateTrigger'
 import TriggerList from './pages/TriggersList'
+import ViewTrigger from './pages/ViewTrigger'
 
 const App = () => (
   <div className="App">
@@ -19,6 +20,9 @@ const App = () => (
         </Route>
         <Route path="/trigger-list">
           <TriggerList />
+        </Route>
+        <Route path="/view-trigger">
+          <ViewTrigger />
         </Route>
         {/*<Redirect from="/" to="/trigger-list" />*/}
       </BrowserRouter>

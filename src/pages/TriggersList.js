@@ -7,16 +7,7 @@ import {
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  Card,
-  CardBody,
-  Row,
-  Col,
-  Label,
-  Table,
-  UncontrolledTooltip,
-  Button,
-} from 'reactstrap'
+import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import '../App.scss'
 import { Link } from 'react-router-dom'
 import humanReadableCondition from '../humanReadableCondition'
@@ -257,11 +248,19 @@ const TriggerList = () => {
                           </label>
                         </td>
                         <td>
-                          <Edit fontSize="23px" borderWidth={1} color="#48484a"/>
+                          <Edit
+                            fontSize="23px"
+                            borderWidth={1}
+                            color="#48484a"
+                          />
                           {/*<FontAwesomeIcon icon={faPenSquare} />*/}
                         </td>
                         <td>
-                          <Close fontSize="23px" borderWidth={1} color="#48484a" />
+                          <Close
+                            fontSize="23px"
+                            borderWidth={1}
+                            color="#48484a"
+                          />
                           {/*<FontAwesomeIcon icon={faTrash} />*/}
                         </td>
                       </tr>
@@ -273,10 +272,12 @@ const TriggerList = () => {
           </Col>
         </Row>
         <Row>
-          <Col md="8"></Col>
-          <Col md="2">
+          <Col md="7"></Col>
+          <Col md="3">
             <Link to="/">
-              <Button className="bottom">List of Forecasted Events</Button>
+              <Button className="bottom" style={{ width: '250px' }}>
+                List of Forecasted Events
+              </Button>
             </Link>
           </Col>
           <Col md="2">
