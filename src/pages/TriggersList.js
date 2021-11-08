@@ -23,6 +23,7 @@ import humanReadableCondition from '../humanReadableCondition'
 
 // import AgroPagination from '../agro-components/AgroPagination'
 
+import { Close, Edit } from 'react-ikonate'
 import TabsSelector from '../components/TabsSelector.js'
 import '../App.scss'
 
@@ -41,7 +42,7 @@ const TriggerList = () => {
       days: 3,
       name: 'Trigger 1',
       recipients: ['email1', 'email2', 'email3'],
-      status: true,
+      status: false,
       location: {
         name: 'Paris',
         lat: 40.4,
@@ -79,7 +80,7 @@ const TriggerList = () => {
       days: 3,
       name: 'Trigger 1',
       recipients: ['email2', 'email3'],
-      status: true,
+      status: false,
       location: {
         name: 'Paris',
         lat: 40.4,
@@ -250,16 +251,18 @@ const TriggerList = () => {
                         </td>
                         <td>{triggers.recipients.length}</td>
                         <td>
-                          <label class="switch">
+                          <label className="switch">
                             <input type="checkbox" checked={triggers.status} />
-                            <span class="slider round"></span>
+                            <span className="slider round"></span>
                           </label>
                         </td>
                         <td>
-                          <FontAwesomeIcon icon={faPenSquare} />
+                          <Edit fontSize="23px" borderWidth={1} color="#48484a"/>
+                          {/*<FontAwesomeIcon icon={faPenSquare} />*/}
                         </td>
                         <td>
-                          <FontAwesomeIcon icon={faTrash} />
+                          <Close fontSize="23px" borderWidth={1} color="#48484a" />
+                          {/*<FontAwesomeIcon icon={faTrash} />*/}
                         </td>
                       </tr>
                     ))}
