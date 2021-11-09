@@ -14,7 +14,6 @@ import '../App.scss'
 const noBlankErrorMessage = 'Cannot be blank'
 
 const ViewTrigger = () => {
-  
   //const state = useLocation().state
 
   //const {condition, days, id, location, name, recipients, status} = state
@@ -72,10 +71,9 @@ const ViewTrigger = () => {
 
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
-  
+  const [isOpen, setIsOpen] = useState()
 
   const saveMethod = () => {
-
     /*eslint-disable-next-line*/
     const data = {}
 
@@ -90,6 +88,7 @@ const ViewTrigger = () => {
     console.log('saving', data.status)
   }
 
+
   return (
     <>
       <Row className="trigger-card">
@@ -97,7 +96,7 @@ const ViewTrigger = () => {
           <h2>Trigger Card</h2>
 
           {isEditName ? (
-                <Row className="search-box">
+            <Row className="search-box">
               <Col md="4">
                 <Label>Trigger Name</Label>
               </Col>
@@ -112,13 +111,16 @@ const ViewTrigger = () => {
                   name="name"
                 />
               </Col>
-              <Col md="1" className="icons">
+              <Col md="1" className="icons moveCentre">
                 <FontAwesomeIcon icon={faThumbsUp} onClick={() => saveName()} />
               </Col>
 
               <Col md="2">
                 <label className="switch">
-                  <input type="checkbox" onClick={() => setTempStatus()} />
+                  <input
+                    type="checkbox"
+                    onClick={() => setTempStatus(tempStatus ? 'false' : 'true')}
+                  />
                   <span className="slider round"></span>
                 </label>
               </Col>
@@ -141,7 +143,10 @@ const ViewTrigger = () => {
               </Col>
               <Col md="2">
                 <label className="switch">
-                  <input className="cardContent" type="checkbox" onClick={() => setTempStatus(true)} />
+                  <input
+                    type="checkbox"
+                    onClick={() => setTempStatus(tempStatus ? 'false' : 'true')}
+                  />
                   <span className="slider round"></span>
                 </label>
               </Col>
@@ -200,8 +205,11 @@ const ViewTrigger = () => {
                   role="button"
                   aria-expanded="false"
                   aria-controls="collapseExample"
+                  className="test"
+                  onClick={() => setIsOpen(!isOpen)}
                 >
-                  <FontAwesomeIcon icon={faArrowDown} className="bottom" />
+                  
+                  <FontAwesomeIcon icon={faArrowDown} className="bottom" style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }} />
                 </a>
                 <p className="collapse" id="collapseExample">
                   {Object.keys(recipients).map((recip) => (
@@ -213,49 +221,49 @@ const ViewTrigger = () => {
               </Label>
             </Col>
           </Row>
- 
-            <Col md="12">
-                <h3>Events List</h3>
-              </Col>
-              <Row className="search-box">
-                <Col md="4">
-                  <Label>Active Events</Label>
-                </Col>
 
-                <Col md="8">
-                  <Label type="text" value={recipients} className="cardContent">
-                    27 October 2021
-                  </Label>
-                </Col>
-              </Row>
-              <Row className="search-box">
-                <Col md="4">
-                  <Label>Archive</Label>
-                </Col>
+          <Col md="12">
+            <h3>Events List</h3>
+          </Col>
+          <Row className="search-box">
+            <Col md="4">
+              <Label>Active Events</Label>
+            </Col>
 
-                <Col md="8">
-                  <Label type="text" value={recipients} className="cardContent">
-                    27 September 2021
-                  </Label>
-                </Col>
-              </Row>
-              <Row className="search-box">
-                <Col md="9">
-                <Link to="/trigger-list">
-              <Button className="bottom">
-                Back
+            <Col md="8">
+              <Label type="text" className="cardContent">
+                27 October 2021
+              </Label>
+            </Col>
+          </Row>
+          <Row className="search-box">
+            <Col md="4">
+              <Label>Archive</Label>
+            </Col>
+
+            <Col md="8">
+              <Label type="text" className="cardContent">
+                27 September 2021
+              </Label>
+            </Col>
+          </Row>
+          <Row className="search-box">
+            <Col md="9">
+              <Link to="/trigger-list">
+                <Button className="bottom">Back</Button>
+              </Link>
+            </Col>
+            <Col md="3">
+              <Button className="bottom-buttons">Delete</Button>
+              <Button
+                className="bottom-buttons"
+                style={{ marginLeft: '5px' }}
+                onClick={saveMethod}
+              >
+                Save
               </Button>
-            </Link>
-                </Col>
-                <Col md="3">
-                  <Button className="bottom-buttons">Delete</Button>
-                  <Button className="bottom-buttons" style={{marginLeft:"5px"}} onClick={saveMethod}>
-                    Save
-                  </Button>
-                </Col>
-              </Row>
-            
-  
+            </Col>
+          </Row>
         </Col>
         <Col md="5">
           <ViewOnlyMap mapRef={mapRef} location={location} />

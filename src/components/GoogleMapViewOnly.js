@@ -18,6 +18,7 @@ const handleApiLoaded = (mapInstance, coords) => {
 const createMapOptions = () => ({
   scrollwheel: false,
   styles: mapStyles.styles,
+  draggable: false
 })
 /*eslint-disable-next-line */
 const InfoWindow = ({ show, location }) => {
@@ -72,7 +73,7 @@ const ViewOnlyMap = ({ mapRef, location }) => {
         defaultCenter={{lat: location.lat, lng: location.lon}}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals
-       onGoogleApiLoaded={({ map }) => handleApiLoaded(map, {lat: location.lat, lng: location.lon})}
+        onGoogleApiLoaded={({ map }) => handleApiLoaded(map, {lat: location.lat, lng: location.lon})}
         options={createMapOptions}
 
       >
@@ -80,7 +81,7 @@ const ViewOnlyMap = ({ mapRef, location }) => {
           show={isInfoWindow}
           setIsInfoWindow={setIsInfoWindow}
           location={tempLocation}
-
+          style={{paddingTop:"20px"}}
         />
       </GoogleMapReact>
     </div>

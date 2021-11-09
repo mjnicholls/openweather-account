@@ -490,11 +490,32 @@ p {
 // view trigger page
 
 .trigger-card {
-  .bottom {
-    margin-bottom: 15px;
+
+  h2,
+  h3 {
+    margin-bottom: 40px;
   }
 
+
+  .mapPop {
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+  .bottom {
+    margin-bottom: 15px;
+    
+  }
+
+
+label.cardContent {
+  font-family: $default-font-family;
+  text-align: center;
+  font-weight: normal;
+}
+
   .moveCentre {
+
     p {
       margin-top: 10px;
     }
@@ -566,14 +587,5 @@ p {
     border-radius: 50%;
   }
 
-  h2,
-  h3 {
-    margin-bottom: 40px;
-  }
 
-  label.cardContent {
-    font-family: $default-font-family;
-    text-align: center;
-    font-weight: normal;
-  }
 }
