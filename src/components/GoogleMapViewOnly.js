@@ -76,8 +76,9 @@ const ViewOnlyMap = ({ mapRef, location }) => {
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals
-       // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         options={createMapOptions}
+
       >
         <InfoWindow
           show={isInfoWindow}

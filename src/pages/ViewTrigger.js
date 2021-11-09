@@ -41,7 +41,7 @@ const ViewTrigger = () => {
   const { condition, days, id, location, name, recipients, status } = data
 
   const mapRef = useRef(null)
-  const [locations, setLocation] = useState('')
+  
   const [error, setError] = useState('')
 
   const [isEditName, setIsEditName] = useState(false)
@@ -203,7 +203,7 @@ const ViewTrigger = () => {
                             onClick={() => saveName()}
                           />
                         </a>
-                        <p class="collapse" id="collapseExample">
+                        <p className="collapse" id="collapseExample">
                           {recipients}
                         </p>
                       </>
@@ -243,8 +243,8 @@ const ViewTrigger = () => {
                 </Col>
               </Row>
               <Row className="search-box">
-                <Col md="7"></Col>
-                <Col md="5">
+                <Col></Col>
+                <Col>
                   <Button className="bottom-buttons">Delete</Button>
                   <Button className="bottom-buttons" onClick={saveMethod}>
                     Save
