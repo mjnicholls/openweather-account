@@ -21,7 +21,7 @@ const App = () => (
         <Route path="/trigger-list">
           <TriggerList />
         </Route>
-        <Route path="/view-trigger">
+        <Route path="/view-trigger" component={ViewTrigger}>
           <ViewTrigger />
         </Route>
         {/*<Redirect from="/" to="/trigger-list" />*/}

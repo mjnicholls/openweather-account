@@ -18,7 +18,7 @@ const createMapOptions = () => ({
   styles: mapStyles.styles,
 })
 
-const InfoWindow = ({ show, location, setLocation, setIsInfoWindow }) => {
+const InfoWindow = ({ show, location, setLocation, showButton }) => {
   const onSetLocationClick = (e) => {
     setLocation(location)
     e.stopPropagation()
@@ -47,9 +47,9 @@ const InfoWindow = ({ show, location, setLocation, setIsInfoWindow }) => {
           </p>
         </div>
         <div className="body">
-          <button type="button" onClick={onSetLocationClick}>
+          {showButton && <button type="button" onClick={onSetLocationClick}>
             Set location
-          </button>
+          </button>}
         </div>
       </div>
     </div>
@@ -107,6 +107,7 @@ const SimpleMap = ({ mapRef, location, setLocation }) => {
           setIsInfoWindow={setIsInfoWindow}
           location={tempLocation}
           setLocation={setLocation}
+          showButton
         />
       </GoogleMapReact>
     </div>

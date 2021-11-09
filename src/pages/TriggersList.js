@@ -9,9 +9,9 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import '../App.scss'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import humanReadableCondition from '../humanReadableCondition'
-
+import ViewTrigger from './ViewTrigger'
 // import AgroPagination from '../agro-components/AgroPagination'
 
 import { Close, Edit } from 'react-ikonate'
@@ -119,6 +119,8 @@ const TriggerList = () => {
     },
   ]
 
+
+
   {
     /*}
   const [trigger, setTrigger] = useState([])
@@ -224,26 +226,27 @@ const TriggerList = () => {
                     */}
 
                   <tbody>
-                    {pageData.map((triggers) => (
+                    {pageData.map((trigger) => (
                       <tr>
-                        <td>{triggers.id}</td>
-
-                        <td>{triggers.name}</td>
+                        <td>{trigger.id}</td>
+                        <td>
+                          <Link to={{ pathname: '/view-trigger', state: trigger }}>{trigger.name}</Link>
+                        </td>
                         <td>
                           {' '}
-                          {humanReadableCondition(triggers.condition).substring(
+                          {humanReadableCondition(trigger.condition).substring(
                             27,
                           )}
                         </td>
-                        <td>{triggers.location.name}</td>
+                        <td>{trigger.location.name}</td>
                         <td>
-                          Up to {triggers.days}{' '}
-                          {triggers.days === 1 ? 'day' : 'days'}
+                          Up to {trigger.days}{' '}
+                          {trigger.days === 1 ? 'day' : 'days'}
                         </td>
-                        <td>{triggers.recipients.length}</td>
+                        <td>{trigger.recipients.length}</td>
                         <td>
                           <label className="switch">
-                            <input type="checkbox" checked={triggers.status} />
+                            <input type="checkbox" checked={trigger.status} />
                             <span className="slider round"></span>
                           </label>
                         </td>
