@@ -1,25 +1,18 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import {
-  faTrash,
-  faPenSquare,
-  faThumbsUp,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import '../App.scss'
 import { Link, Route } from 'react-router-dom'
 import humanReadableCondition from '../humanReadableCondition'
-import ViewTrigger from './ViewTrigger'
+
 // import AgroPagination from '../agro-components/AgroPagination'
 
 import { Close, Edit } from 'react-ikonate'
-import TabsSelector from '../components/TabsSelector.js'
+
 import '../App.scss'
 
 const TriggerList = () => {
-  const [singular, setSingular] = useState('')
 
   const pageData = [
     {

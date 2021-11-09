@@ -1,6 +1,6 @@
-/* eslint-disable */
 import React, { useRef, useState } from 'react'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowDown,
@@ -14,6 +14,7 @@ import '../App.scss'
 const noBlankErrorMessage = 'Cannot be blank'
 
 const ViewTrigger = () => {
+  
   //const state = useLocation().state
 
   //const {condition, days, id, location, name, recipients, status} = state
@@ -28,7 +29,7 @@ const ViewTrigger = () => {
     },
     days: 3,
     name: 'Trigger 1',
-    recipients: ['email1', 'email2', 'email3'],
+    recipients: ['email1', 'email2', 'email3', 'email4', 'email5', 'email6'],
     status: false,
     location: {
       name: 'Paris',
@@ -41,7 +42,7 @@ const ViewTrigger = () => {
   const { condition, days, id, location, name, recipients, status } = data
 
   const mapRef = useRef(null)
-  
+
   const [error, setError] = useState('')
 
   const [isEditName, setIsEditName] = useState(false)
@@ -71,9 +72,12 @@ const ViewTrigger = () => {
 
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
+  
 
   const saveMethod = () => {
-    let data = {}
+
+    /*eslint-disable-next-line*/
+    const data = {}
 
     if (name !== activeName) {
       data.name = activeName
@@ -83,7 +87,7 @@ const ViewTrigger = () => {
       data.status = tempStatus
     }
 
-    console.log('saving', data)
+    console.log('saving', data.status)
   }
 
   return (
@@ -93,7 +97,7 @@ const ViewTrigger = () => {
           <h2>Trigger Card</h2>
 
           {isEditName ? (
-            <Row>
+                <Row className="search-box">
               <Col md="4">
                 <Label>Trigger Name</Label>
               </Col>
@@ -120,14 +124,14 @@ const ViewTrigger = () => {
               </Col>
             </Row>
           ) : (
-            <Row>
+            <Row className="search-box">
               <Col md="4">
                 <Label>Trigger Name</Label>
               </Col>
-              <Col md="4" key={name}>
+              <Col md="4" key={name} className="moveCentre">
                 <p>{activeName}</p>
               </Col>
-              <Col md="1" className="icons">
+              <Col md="1" className="icons moveCentre">
                 <FontAwesomeIcon
                   icon={faPenSquare}
                   onClick={() => {
@@ -137,7 +141,7 @@ const ViewTrigger = () => {
               </Col>
               <Col md="2">
                 <label className="switch">
-                  <input type="checkbox" onClick={() => setTempStatus(true)} />
+                  <input className="cardContent" type="checkbox" onClick={() => setTempStatus(true)} />
                   <span className="slider round"></span>
                 </label>
               </Col>
@@ -187,39 +191,32 @@ const ViewTrigger = () => {
               <Label type="text" className="cardContent">
                 {Object.keys(recipients).map((recip) => (
                   <>
-                    <p key={recip}>{recipients[recip]}</p>
-
-                    {recip >= 2 ? (
-                      <>
-                        <a
-                          data-toggle="collapse"
-                          href="#collapseExample"
-                          role="button"
-                          aria-expanded="false"
-                          aria-controls="collapseExample"
-                        >
-                          <FontAwesomeIcon
-                            icon={faArrowDown}
-                            onClick={() => saveName()}
-                          />
-                        </a>
-                        <p className="collapse" id="collapseExample">
-                          {recipients}
-                        </p>
-                      </>
-                    ) : (
-                      <p></p>
-                    )}
+                    <p key={recip}>{recipients.slice(0, 3)[recip]}</p>
                   </>
                 ))}
+                <a
+                  data-toggle="collapse"
+                  href="#collapseExample"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  <FontAwesomeIcon icon={faArrowDown} className="bottom" />
+                </a>
+                <p className="collapse" id="collapseExample">
+                  {Object.keys(recipients).map((recip) => (
+                    <>
+                      <p key={recip}>{recipients.slice(3)[recip]}</p>
+                    </>
+                  ))}
+                </p>
               </Label>
             </Col>
           </Row>
-          <Row>
-            <Col md="7">
-              <Row>
+ 
+            <Col md="12">
                 <h3>Events List</h3>
-              </Row>
+              </Col>
               <Row className="search-box">
                 <Col md="4">
                   <Label>Active Events</Label>
@@ -243,16 +240,22 @@ const ViewTrigger = () => {
                 </Col>
               </Row>
               <Row className="search-box">
-                <Col></Col>
-                <Col>
+                <Col md="9">
+                <Link to="/trigger-list">
+              <Button className="bottom">
+                Back
+              </Button>
+            </Link>
+                </Col>
+                <Col md="3">
                   <Button className="bottom-buttons">Delete</Button>
-                  <Button className="bottom-buttons" onClick={saveMethod}>
+                  <Button className="bottom-buttons" style={{marginLeft:"5px"}} onClick={saveMethod}>
                     Save
                   </Button>
                 </Col>
               </Row>
-            </Col>
-          </Row>
+            
+  
         </Col>
         <Col md="5">
           <ViewOnlyMap mapRef={mapRef} location={location} />
