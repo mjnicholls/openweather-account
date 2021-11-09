@@ -8,10 +8,10 @@ import '../App.scss'
 import placeMarker from './placeMarker'
 
 
-const handleApiLoaded = (mapInstance) => {
-  mapInstance.addListener('click', (e) => {
-    placeMarker(e.latLng, mapInstance, null)
-  })
+const handleApiLoaded = (mapInstance, coords) => {
+  /* eslint-disable-next-line */
+  const position = new google.maps.LatLng(coords.lat, coords.lng)
+  placeMarker(position, mapInstance, null)
 }
 
 
@@ -60,10 +60,6 @@ const ViewOnlyMap = ({ mapRef, location }) => {
 
 
   const defaultProps = {
-    center: {
-      lat: 51.509865,
-      lng: -0.118092,
-    },
     zoom: 9,
   }
 
@@ -73,17 +69,17 @@ const ViewOnlyMap = ({ mapRef, location }) => {
       <GoogleMapReact
         ref={mapRef}
         bootstrapURLKeys={{ key: 'AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY' }}
-        defaultCenter={defaultProps.center}
+        defaultCenter={{lat: location.lat, lng: location.lon}}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals
-       // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+       onGoogleApiLoaded={({ map }) => handleApiLoaded(map, {lat: location.lat, lng: location.lon})}
         options={createMapOptions}
       >
         <InfoWindow
           show={isInfoWindow}
           setIsInfoWindow={setIsInfoWindow}
           location={tempLocation}
-          showButton
+
         />
       </GoogleMapReact>
     </div>

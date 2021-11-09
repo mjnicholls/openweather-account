@@ -203,7 +203,7 @@ const ViewTrigger = () => {
                             onClick={() => saveName()}
                           />
                         </a>
-                        <p class="collapse" id="collapseExample">
+                        <p className="collapse" id="collapseExample">
                           {recipients}
                         </p>
                       </>
