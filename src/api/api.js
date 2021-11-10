@@ -1,7 +1,7 @@
 import React from 'react'
 
 import axios from 'axios'
-import { getIndexURL, postTriggerURL } from './index'
+import { getIndexURL, postTriggerURL, patchTriggerURL } from './index'
 
 export const getTriggers = (userId) => {
   /** Get a list of triggers  */
@@ -15,4 +15,11 @@ export const postTrigger = async (params) => {
 
   const url = `${postTriggerURL}`
   return axios.post(url, { timeout: 15000 }, params)
+}
+
+export const patchTrigger = async (params) => {
+  /** Create a new trigger  */
+
+  const url = `${patchTriggerURL}`
+  return axios.patch(url, { timeout: 15000 }, params)
 }

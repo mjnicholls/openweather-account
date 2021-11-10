@@ -9,7 +9,8 @@ import TriggerName from '../components/TriggerName'
 import PriorNotifs from '../components/PriorNotifications'
 import EmailNotifs from '../components/EmailNotifcation'
 import '../App.scss'
-import { postTrigger } from '../api/api'
+import { patchTrigger, postTrigger } from '../api/api'
+import TriggerList from './TriggersList'
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
@@ -39,7 +40,7 @@ const CreateTrigger = () => {
   // const status  = true / false
   // const status = "on" / "off" / "deleted"
 
-  const createTrigger = () => {
+  const createTrigger = ({isNew}) => {
     const data = {
       location,
       condition,
@@ -71,6 +72,8 @@ const CreateTrigger = () => {
       return
     }
 
+     // POST logic
+
     postTrigger(data)
       .then(() => {
         console.log('data', data)
@@ -79,7 +82,25 @@ const CreateTrigger = () => {
       .catch((error) => {
         console.log(error)
       })
-    // POST logic
+
+      // PATCH logic
+
+      patchTrigger({
+        "id": "345",
+        "name": name,
+        "user_id": 1,
+        "status" : "off"
+    })
+      .then(() => {
+        console.log('data', data)
+      })
+       // eslint-disable-next-line
+      .catch((error) => {
+        console.log(error)
+      })
+
+      
+   
   }
 
   const handleChange = (key, value) => {
@@ -125,7 +146,7 @@ const CreateTrigger = () => {
               <Col md="5">
                 <Button className="bottom-buttons">Cancel</Button>
 
-                <Button className="bottom-buttons" onClick={createTrigger}>
+                <Button className="bottom-buttons create" onClick={createTrigger}>
                   Create trigger
                 </Button>
               </Col>

@@ -52,16 +52,16 @@ const placeMarker = (position, map, name) => {
   )
 
   /* eslint-disable-next-line */
-   const infoWindow = new google.maps.InfoWindow({
-    content: contentString,
-    position,
-   })
+  // const infoWindow = new google.maps.InfoWindow({
+  //   content: contentString,
+  //   position,
+  // })
   //
-   infoWindow.open({
-   anchor: marker,
-   map,
-   shouldFocus: false,
-   })
+  // infoWindow.open({
+  //   anchor: marker,
+  //   map,
+  //   shouldFocus: false,
+  // })
 
   map.panTo(position)
 }
