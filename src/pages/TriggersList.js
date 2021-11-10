@@ -1,18 +1,34 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from 'react'
+
+import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import '../App.scss'
 import { Link, Route } from 'react-router-dom'
 import humanReadableCondition from '../humanReadableCondition'
-
+import { getTriggers } from '../api/api'
 // import AgroPagination from '../agro-components/AgroPagination'
 
 import { Close, Edit } from 'react-ikonate'
 
 import '../App.scss'
 
+const selectUserId = (state) => state.auth.user_id
+
 const TriggerList = () => {
+  const userId = useSelector(selectUserId)
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getTriggers(userId)
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+  }, [userId])
 
   const pageData = [
     {
@@ -114,9 +130,9 @@ const TriggerList = () => {
 
 
 
+
   {
     /*}
-  const [trigger, setTrigger] = useState([])
 
   const [page, setPage] = useState(0)
   const [pageData, setPageData] = useState([])
@@ -125,11 +141,6 @@ const TriggerList = () => {
     return axios.get("https://openweathermap.org/api/trigger/all")
     .then((response) => console.log(response.data));
 }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
   
   useEffect(() => {
     setPageData(trigger.slice(page * itemsPerPage, (page + 1) * itemsPerPage))
@@ -167,63 +178,16 @@ const TriggerList = () => {
                     </tr>
                   </thead>
 
-                  {/*      
                   <tbody>
-                    {pageData.map((triggers) => (
-                  
-                      <tr>
-                          <td></td>
-                        <td>
-                          {triggers.trigger.name}
-                        </td>
-                        <td>{triggers.trigger.condition}</td>
-                      <td>{triggers.trigger.location.name}</td> 
-                        <td>{triggers.trigger.days}</td>
-                      <td>  {/* {trigger.status}*/}
-                  {/*}
-                      </td> 
-                        <td className="text-right">
-                          <a
-                            role="button"
-                            href="/"
-                            className="btn-link btn-icon btn-neutral"
-                          >
-                            <FontAwesomeIcon icon={faThumbsUp} />
-                          </a>
-                          <UncontrolledTooltip
-                            delay={0}
-                            target="download"
-                            placement="top"
-                          >
-                            Download
-                          </UncontrolledTooltip>
-                          <a
-                            role="button"
-                            href="/"
-                            target="_blank"
-                            className="btn-link btn-icon btn-neutral"
-                          >
-                            <FontAwesomeIcon icon={faThumbsUp} />
-                          </a>
-                          <UncontrolledTooltip
-                            delay={0}
-                            target="view"
-                            placement="top"
-                          >
-                            View
-                          </UncontrolledTooltip>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                    */}
-
-                  <tbody>
-                    {pageData.map((trigger) => (
+                    {data.map((trigger) => (
                       <tr>
                         <td>{trigger.id}</td>
                         <td>
-                          <Link to={{ pathname: '/view-trigger', state: trigger }}>{trigger.name}</Link>
+                          <Link
+                            to={{ pathname: '/view-trigger', state: trigger }}
+                          >
+                            {trigger.name}
+                          </Link>
                         </td>
                         <td>
                           {' '}
@@ -288,14 +252,3 @@ const TriggerList = () => {
 }
 
 export default TriggerList
-
-{
-  /*}  <AgroPagination
-                count={trigger.length}
-                itemsPerPage={itemsPerPage}
-                page={page}
-                setPage={setPage}
-              />
-
-                    */
-}

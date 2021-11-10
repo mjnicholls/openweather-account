@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react'
+/* eslint-disable */
+import React, { useEffect, useRef, useState } from 'react'
+
 import { Row, Col, Input, Label, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -73,6 +75,10 @@ const ViewTrigger = () => {
   const [tempStatus, setTempStatus] = useState(status)
   const [isOpen, setIsOpen] = useState()
 
+  useEffect(() => {
+    console.log('tempStatus', tempStatus)
+  }, [tempStatus])
+
   const saveMethod = () => {
     /*eslint-disable-next-line*/
     const data = {}
@@ -85,9 +91,8 @@ const ViewTrigger = () => {
       data.status = tempStatus
     }
 
-    console.log('saving', data.status)
+    console.log('saving', data)
   }
-
 
   return (
     <>
@@ -119,7 +124,11 @@ const ViewTrigger = () => {
                 <label className="switch">
                   <input
                     type="checkbox"
-                    onClick={() => setTempStatus(tempStatus ? 'false' : 'true')}
+                    onChange={(e) => {
+                      console.log('click')
+                      setTempStatus(e.target.checked)
+                    }}
+                    checked={true}
                   />
                   <span className="slider round"></span>
                 </label>
@@ -208,8 +217,11 @@ const ViewTrigger = () => {
                   className="test"
                   onClick={() => setIsOpen(!isOpen)}
                 >
-                  
-                  <FontAwesomeIcon icon={faArrowDown} className="bottom" style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }} />
+                  <FontAwesomeIcon
+                    icon={faArrowDown}
+                    className="bottom"
+                    style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
+                  />
                 </a>
                 <p className="collapse" id="collapseExample">
                   {Object.keys(recipients).map((recip) => (

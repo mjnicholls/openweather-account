@@ -47,9 +47,11 @@ const InfoWindow = ({ show, location, setLocation, showButton }) => {
           </p>
         </div>
         <div className="body">
-          {showButton && <button type="button" onClick={onSetLocationClick}>
-            Set location
-          </button>}
+          {showButton && (
+            <button type="button" onClick={onSetLocationClick}>
+              Set location
+            </button>
+          )}
         </div>
       </div>
     </div>

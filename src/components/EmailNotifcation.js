@@ -7,7 +7,7 @@ import {
   faPenSquare,
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
-import { validateEmail } from '../features/validation'
+import { validateEmail } from '../utils/validation'
 import classnames from 'classnames'
 
 const EmailNotifs = ({ recipients, setRecipients }) => {

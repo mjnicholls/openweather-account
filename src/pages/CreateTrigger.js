@@ -35,6 +35,9 @@ const CreateTrigger = () => {
 
   const noBlankErrorMessage = 'Cannot be blank'
 
+  // const status  = true / false
+  // const status = "on" / "off" / "deleted"
+
   const createTrigger = () => {
     const data = {
       location,
@@ -42,7 +45,7 @@ const CreateTrigger = () => {
       days,
       name,
       recipients,
-      status: true,
+      status: "on",
       user_id: null,
     }
 

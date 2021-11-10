@@ -257,9 +257,10 @@
 p {
   font-family: $default-font-family;
 }
+//btn-primary:
+.active {
+  background-color: red !important;
 
-.btn-primary:active {
-  background-color: black;
   &:focus {
     background-color: white;
   }
@@ -504,7 +505,7 @@ p {
 
   .bottom {
     margin-bottom: 15px;
-    
+
   }
 
 

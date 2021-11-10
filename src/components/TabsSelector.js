@@ -13,13 +13,14 @@ const TabsSelector = ({ activeTab, setActiveTab, options }) => {
   return (
     <>
       <ButtonGroup className="button" data-toggle="buttons">
-        {options.map((option) => (
-          <Button
+        {options.map((option) =>{
+          console.log("option", option, "activetab", activeTab, activeTab.id === option.id)
+          return (<Button
             id={option.id}
             size="sm"
             tag="label"
             key={option.id}
-            className={classNames('btn-primary active', {
+            className={classNames('btn-primary ', {
               active: activeTab.id === option.id,
             })}
             onClick={() => setActiveTab(option)}
@@ -28,7 +29,7 @@ const TabsSelector = ({ activeTab, setActiveTab, options }) => {
           >
             <span>{option.label}</span>
           </Button>
-        ))}
+        )})}
       </ButtonGroup>
     </>
   )
