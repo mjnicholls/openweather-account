@@ -9,6 +9,7 @@ import TriggerName from '../components/TriggerName'
 import PriorNotifs from '../components/PriorNotifications'
 import EmailNotifs from '../components/EmailNotifcation'
 import '../App.scss'
+import { postTrigger } from '../api/api'
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
@@ -70,6 +71,14 @@ const CreateTrigger = () => {
       return
     }
 
+    postTrigger(data)
+      .then(() => {
+        console.log('data', data)
+      })
+       // eslint-disable-next-line
+      .catch((error) => {
+        console.log(error)
+      })
     // POST logic
   }
 
