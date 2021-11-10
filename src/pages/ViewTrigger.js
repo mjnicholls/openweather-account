@@ -12,6 +12,7 @@ import {
 import humanReadableCondition from '../humanReadableCondition'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import '../App.scss'
+import DeleteTriggerCard from '../components/DeleteTriggerCard'
 
 const noBlankErrorMessage = 'Cannot be blank'
 
@@ -93,6 +94,9 @@ const ViewTrigger = () => {
 
     console.log('saving', data)
   }
+
+
+  
 
   return (
     <>
@@ -266,7 +270,7 @@ const ViewTrigger = () => {
               </Link>
             </Col>
             <Col md="3">
-              <Button className="bottom-buttons">Delete</Button>
+              <DeleteTriggerCard />
               <Button
                 className="bottom-buttons"
                 style={{ marginLeft: '5px' }}

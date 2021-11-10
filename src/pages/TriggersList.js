@@ -10,9 +10,10 @@ import humanReadableCondition from '../humanReadableCondition'
 import { getTriggers } from '../api/api'
 // import AgroPagination from '../agro-components/AgroPagination'
 
-import { Close, Edit } from 'react-ikonate'
+import { Edit } from 'react-ikonate'
 
 import '../App.scss'
+import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 
 const selectUserId = (state) => state.auth.user_id
 
@@ -216,11 +217,8 @@ const TriggerList = () => {
                           {/*<FontAwesomeIcon icon={faPenSquare} />*/}
                         </td>
                         <td>
-                          <Close
-                            fontSize="23px"
-                            borderWidth={1}
-                            color="#48484a"
-                          />
+                          
+                          <DeleteTriggerCardX />
                           {/*<FontAwesomeIcon icon={faTrash} />*/}
                         </td>
                       </tr>

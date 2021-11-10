@@ -30,7 +30,7 @@ const SearchBox = ({ mapRef, location, setLocation, error }) => {
         </Col>
       </Row>
       <Row>
-        <Col className="text-end">
+        <Col className="text-end move-up">
           <Button
             size="sm"
             className={classNames('btn-primary ', {

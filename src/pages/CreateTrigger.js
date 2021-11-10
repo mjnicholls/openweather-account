@@ -85,8 +85,9 @@ const CreateTrigger = () => {
 
       // PATCH logic
 
+      /*
       patchTrigger({
-        "id": "345",
+        "id": "618ba9ef3355472c2628b52a",
         "name": name,
         "user_id": 1,
         "status" : "off"
@@ -99,7 +100,7 @@ const CreateTrigger = () => {
         console.log(error)
       })
 
-      
+*/
    
   }
 
@@ -108,6 +109,8 @@ const CreateTrigger = () => {
     newLocation[key] = value
     setLocation(newLocation)
   }
+
+
 
   return (
     <>

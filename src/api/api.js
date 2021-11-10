@@ -1,7 +1,7 @@
 import React from 'react'
 
 import axios from 'axios'
-import { getIndexURL, postTriggerURL, patchTriggerURL } from './index'
+import { getIndexURL, postTriggerURL, patchTriggerURL, deleteTriggerURL } from './index'
 
 axios.defaults.timeout = 15000
 
@@ -18,8 +18,16 @@ export const postTrigger = async (params) => {
 }
 
 export const patchTrigger = async (params) => {
-  /** Create a new trigger  */
+  /** Update a trigger  */
 
   const url = `${patchTriggerURL}`
-  return axios.patch(url, { timeout: 15000 }, params)
+  return axios.patch(url, params)
+}
+
+
+export const deleteTrigger = async (id, userId) => {
+  /** Delete a trigger  */
+
+  const url = `${deleteTriggerURL}?user_id=${userId}`
+  return axios.delete(url, {params: id})
 }
