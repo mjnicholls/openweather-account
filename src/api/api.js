@@ -29,8 +29,8 @@ export const deleteTrigger = async () => {
   /** Delete a trigger  */
 
   const userId=1;
-  const id ="trigger"
+  const id ="618bbfd20ae1c044ced3d3e4"
 
-  const url = `${deleteTriggerURL}?${id}?user_id=${userId}`
-  return axios.delete(url + id)
+  const url = `${deleteTriggerURL}/${id}?user_id=${userId}`
+  return axios.delete(url, {params: {user_id: userId}})
 }
