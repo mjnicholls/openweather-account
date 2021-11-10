@@ -14,6 +14,7 @@ import { Edit } from 'react-ikonate'
 
 import '../App.scss'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
+import EditTriggerCard from '../components/EditTriggerCard'
 
 const selectUserId = (state) => state.auth.user_id
 
@@ -209,11 +210,7 @@ const TriggerList = () => {
                           </label>
                         </td>
                         <td>
-                          <Edit
-                            fontSize="23px"
-                            borderWidth={1}
-                            color="#48484a"
-                          />
+                       <EditTriggerCard />
                           {/*<FontAwesomeIcon icon={faPenSquare} />*/}
                         </td>
                         <td>

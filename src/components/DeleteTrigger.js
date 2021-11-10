@@ -3,13 +3,11 @@ import React from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { deleteTrigger } from '../api/api'
 
-const DeleteTrigger = ({ close, id }) => {
+const DeleteTrigger = ({ close }) => {
   const confirmDeleteTrigger = () => {
-    const data = {
-      id,
-    }
+  
 
-    deleteTrigger(data).then(() => {
+    deleteTrigger().then(() => {
       console.log('deleted')
     })
 

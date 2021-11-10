@@ -83,24 +83,8 @@ const CreateTrigger = () => {
         console.log(error)
       })
 
-      // PATCH logic
 
-      /*
-      patchTrigger({
-        "id": "618ba9ef3355472c2628b52a",
-        "name": name,
-        "user_id": 1,
-        "status" : "off"
-    })
-      .then(() => {
-        console.log('data', data)
-      })
-       // eslint-disable-next-line
-      .catch((error) => {
-        console.log(error)
-      })
 
-*/
    
   }
 
