@@ -75,8 +75,8 @@ const CreateTrigger = () => {
      // POST logic
 
     postTrigger(data)
-      .then(() => {
-        console.log('data', data)
+      .then((res) => {
+        console.log('data', res)
       })
        // eslint-disable-next-line
       .catch((error) => {

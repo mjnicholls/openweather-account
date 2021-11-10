@@ -18,7 +18,6 @@ const TabsSelector = ({ activeTab, setActiveTab, options }) => {
           return (<Button
             id={option.id}
             size="sm"
-            tag="label"
             key={option.id}
             className={classNames('btn-primary ', {
               active: activeTab.id === option.id,

@@ -25,44 +25,9 @@ const MarkerSingleton = (() => {
   }
 })()
 
-const getContentString = (name, lat, lng) =>
-  `<div class="mapPop">
-    <h5>${name || 'Custom location'}</h5>
-    <hr/>
-    <div class="main">
-      <div>
-        <p><b>Latitude:</b> ${lat} </p>
-        <p><b>Longitude:</b> ${lng}</p>
-      </div>
-      <div class="body">
-        <button id="addLocationButton">
-          Add location
-        </button>
-      </div>
-    </div> 
-  </div>`
 
-const placeMarker = (position, map, name) => {
-  const marker = MarkerSingleton.getInstance(position, map)
-
-  const contentString = getContentString(
-    name,
-    position.lat().toFixed(6),
-    position.lng().toFixed(6),
-  )
-
-  /* eslint-disable-next-line */
-  // const infoWindow = new google.maps.InfoWindow({
-  //   content: contentString,
-  //   position,
-  // })
-  //
-  // infoWindow.open({
-  //   anchor: marker,
-  //   map,
-  //   shouldFocus: false,
-  // })
-
+const placeMarker = (position, map) => {
+  MarkerSingleton.getInstance(position, map)
   map.panTo(position)
 }
 

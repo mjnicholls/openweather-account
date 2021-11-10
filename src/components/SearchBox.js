@@ -1,24 +1,20 @@
 import React, { useState } from 'react'
 
-import { Col, Row } from 'reactstrap'
+import { Button, Col, Row } from 'reactstrap'
 
 import CoordinatesSearch from './CoordinatesSearch'
 import AutoCompleteForm from './AutoCompleteForm'
-import TabsSelector from './TabsSelector'
 import '../App.scss'
-
-const tabsOptions = [
-  { id: 'location', label: 'Location' },
-  { id: 'coordinates', label: 'Coordinates' },
-]
+import classNames from "classnames/index";
 
 const SearchBox = ({ mapRef, location, setLocation, error }) => {
-  const [activeTab, setActiveTab] = useState(tabsOptions[0])
+  const [activeTab, setActiveTab] = useState("location")
   // only logic and html for coordinates search
   return (
     <>
       <Row className="search-box">
-        {activeTab.id === 'location' ? (
+        <Col>
+        {activeTab === 'location' ? (
           <AutoCompleteForm
             mapRef={mapRef}
             setLocation={setLocation}
@@ -31,13 +27,32 @@ const SearchBox = ({ mapRef, location, setLocation, error }) => {
             location={location}
           />
         )}
-        <Col md="3"></Col>
-        <Col md="5">
-          <TabsSelector
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            options={tabsOptions}
-          />
+        </Col>
+      </Row>
+      <Row>
+        <Col className="text-end">
+          <Button
+            size="sm"
+            className={classNames('btn-primary ', {
+              active: activeTab === "location",
+            })}
+            onClick={() => setActiveTab("location")}
+            style={{ padding: '10px 15px', borderRadius: '8pt' }}
+            aria-pressed="true"
+          >
+            <span>Location</span>
+          </Button>
+          <Button
+            size="sm"
+            className={classNames('btn-primary ', {
+              active: activeTab === "coordinates",
+            })}
+            onClick={() => setActiveTab("coordinates")}
+            style={{ padding: '10px 15px', borderRadius: '8pt' }}
+            aria-pressed="true"
+          >
+            <span>Coordinates</span>
+          </Button>
         </Col>
       </Row>
     </>
