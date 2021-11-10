@@ -257,9 +257,8 @@
 p {
   font-family: $default-font-family;
 }
-//btn-primary:
 .active {
-  background-color: red !important;
+  background-color: black !important;
 
   &:focus {
     background-color: white;

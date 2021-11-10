@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../App.scss'
-import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+import { Col, Row, FormGroup, Label } from 'reactstrap'
 import Autocomplete from 'react-google-autocomplete'
 import placeMarker from './placeMarker'
 import classnames from 'classnames/index'
@@ -16,8 +16,8 @@ const AutoCompleteForm = ({ mapRef, setLocation, error }) => {
 
       placeMarker(
         place.geometry.location,
-        mapRef.current.map,
-        place.formatted_address,
+        // eslint-disable-next-line
+        mapRef.current.map_,
       )
     }
   }
