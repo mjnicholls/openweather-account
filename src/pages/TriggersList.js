@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
-import axios from 'axios'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import '../App.scss'
 import { Link, Route } from 'react-router-dom'
@@ -181,7 +180,7 @@ const TriggerList = () => {
                   </thead>
 
                   <tbody>
-                    {data.map((trigger) => (
+                    {data.map((trigger) => (trigger.status !== "deleted") && (
                       <tr>
                         <td>{trigger.id}</td>
                         <td>
@@ -205,18 +204,15 @@ const TriggerList = () => {
                         <td>{trigger.recipients.length}</td>
                         <td>
                           <label className="switch">
-                            <input type="checkbox" checked={trigger.status} />
+                            <input type="checkbox" checked={trigger.status === "on"} />
                             <span className="slider round"></span>
                           </label>
                         </td>
                         <td>
                        <EditTriggerCard />
-                          {/*<FontAwesomeIcon icon={faPenSquare} />*/}
                         </td>
                         <td>
-                          
                           <DeleteTriggerCardX />
-                          {/*<FontAwesomeIcon icon={faTrash} />*/}
                         </td>
                       </tr>
                     ))}

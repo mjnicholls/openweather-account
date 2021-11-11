@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useRef, useState } from 'react'
 
 import { Button, Col, Row } from 'reactstrap'
@@ -48,7 +49,7 @@ const CreateTrigger = () => {
       name,
       recipients,
       status: "on",
-      user_id: null,
+      user_id: "1",
     }
 
     console.log(data)

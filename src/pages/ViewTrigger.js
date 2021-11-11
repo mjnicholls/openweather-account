@@ -1,8 +1,7 @@
-/* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react'
 
 import { Row, Col, Input, Label, Button } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowDown,
@@ -17,9 +16,9 @@ import DeleteTriggerCard from '../components/DeleteTriggerCard'
 const noBlankErrorMessage = 'Cannot be blank'
 
 const ViewTrigger = () => {
-  //const state = useLocation().state
+  const { state } = useLocation()
 
-  //const {condition, days, id, location, name, recipients, status} = state
+  const {condition, days, id, location, name, recipients, status} = state
 
   const data = {
     id: 1,
@@ -41,7 +40,7 @@ const ViewTrigger = () => {
     user_id: 1,
   }
 
-  const { condition, days, id, location, name, recipients, status } = data
+  // const { condition, days, id, location, name, recipients, status } = data
 
   const mapRef = useRef(null)
 
@@ -92,6 +91,9 @@ const ViewTrigger = () => {
       data.status = tempStatus
     }
 
+    if (Object.keys(data).length) {
+      // call API
+    }
     console.log('saving', data)
   }
 
@@ -129,10 +131,9 @@ const ViewTrigger = () => {
                   <input
                     type="checkbox"
                     onChange={(e) => {
-                      console.log('click')
                       setTempStatus(e.target.checked)
                     }}
-                    checked={true}
+                    checked={status === "on"}
                   />
                   <span className="slider round"></span>
                 </label>

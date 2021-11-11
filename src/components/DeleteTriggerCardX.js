@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import { Button } from 'reactstrap'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
