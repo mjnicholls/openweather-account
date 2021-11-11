@@ -5,9 +5,9 @@ import { useLocation, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowDown,
-  faPenSquare,
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
+import { Edit, Delete } from 'react-ikonate'
 import humanReadableCondition from '../humanReadableCondition'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import '../App.scss'
@@ -18,7 +18,7 @@ const noBlankErrorMessage = 'Cannot be blank'
 const ViewTrigger = () => {
   const { state } = useLocation()
 
-  const {condition, days, id, location, name, recipients, status} = state
+  const { condition, days, id, location, name, recipients, status } = state
 
   const data = {
     id: 1,
@@ -97,75 +97,63 @@ const ViewTrigger = () => {
     console.log('saving', data)
   }
 
-
-  
-
   return (
     <>
       <Row className="trigger-card">
         <Col md="7">
           <h2>Trigger Card</h2>
-
-          {isEditName ? (
-            <Row className="search-box">
-              <Col md="4">
-                <Label>Trigger Name</Label>
-              </Col>
-              <Col md="4" key={name}>
-                <Input
-                  type="text"
-                  onChange={(e) => {
-                    setActiveName(e.target.value)
-                  }}
-                  className={error.name ? 'danger-border' : ''}
-                  value={activeName}
-                  name="name"
-                />
-              </Col>
-              <Col md="1" className="icons moveCentre">
-                <FontAwesomeIcon icon={faThumbsUp} onClick={() => saveName()} />
-              </Col>
-
-              <Col md="2">
-                <label className="switch">
-                  <input
-                    type="checkbox"
+          <Row className="search-box">
+            {isEditName ? (
+              <>
+                <Col md="4">
+                  <Label>Trigger Name</Label>
+                </Col>
+                <Col md="4" key={name}>
+                  <Input
+                    type="text"
                     onChange={(e) => {
-                      setTempStatus(e.target.checked)
+                      setActiveName(e.target.value)
                     }}
-                    checked={status === "on"}
+                    className={error.name ? 'danger-border' : ''}
+                    value={activeName}
+                    name="name"
                   />
-                  <span className="slider round"></span>
-                </label>
-              </Col>
-            </Row>
-          ) : (
-            <Row className="search-box">
-              <Col md="4">
-                <Label>Trigger Name</Label>
-              </Col>
-              <Col md="4" key={name} className="moveCentre">
-                <p>{activeName}</p>
-              </Col>
-              <Col md="1" className="icons moveCentre">
-                <FontAwesomeIcon
-                  icon={faPenSquare}
-                  onClick={() => {
-                    setIsEditName(true)
-                  }}
+                </Col>
+                <Col md="1" className="icons moveCentre">
+                  <FontAwesomeIcon
+                    icon={faThumbsUp}
+                    onClick={() => saveName()}
+                  />
+                </Col>
+              </>
+            ) : (
+              <>
+                <Col md="4">
+                  <Label>Trigger Name</Label>
+                </Col>
+                <Col md="4" key={name} className="moveCentre">
+                  <p>{activeName}</p>
+                </Col>
+                <Col md="1" className="icons moveCentre">
+                  <Edit
+                    onClick={() => {
+                      setIsEditName(true)
+                    }}
+                  />
+                </Col>
+              </>
+            )}
+
+            <Col md="2">
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  onClick={() => setTempStatus(tempStatus ? 'false' : 'true')}
                 />
-              </Col>
-              <Col md="2">
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    onClick={() => setTempStatus(tempStatus ? 'false' : 'true')}
-                  />
-                  <span className="slider round"></span>
-                </label>
-              </Col>
-            </Row>
-          )}
+                <span className="slider round"></span>
+              </label>
+            </Col>
+          </Row>
 
           <Row className="search-box">
             <Col md="4">
@@ -267,13 +255,13 @@ const ViewTrigger = () => {
           <Row className="search-box">
             <Col md="9">
               <Link to="/trigger-list">
-                <Button className="bottom">Back</Button>
+                <Button className="button-active">Back</Button>
               </Link>
             </Col>
             <Col md="3">
               <DeleteTriggerCard />
               <Button
-                className="bottom-buttons"
+                className="button-active"
                 style={{ marginLeft: '5px' }}
                 onClick={saveMethod}
               >

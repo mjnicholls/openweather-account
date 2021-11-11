@@ -7,6 +7,7 @@ import {
   faPenSquare,
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
+import { Edit, Close } from 'react-ikonate'
 import { validateEmail } from '../utils/validation'
 import classnames from 'classnames'
 
@@ -92,7 +93,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
         </Col>
         <Col md="3">
           <FormGroup>
-            <Button className="btn-primary" onClick={addEmail}>
+            <Button className="button-active" onClick={addEmail}>
               Add email
             </Button>
           </FormGroup>
@@ -122,9 +123,8 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
                   onClick={() => saveEmail(index)}
                 />
               </Col>
-              <Col md="1" className="icons">
-                <FontAwesomeIcon
-                  icon={faTrash}
+              <Col md="1" className="icons" style={{marginBottom:"30px"}}>
+                <Close
                   onClick={() => deleteEmail(email)}
                 />
               </Col>
@@ -138,19 +138,14 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
                 <p>{email}</p>
               </Col>
               <Col md="1" className="icons">
-                <FontAwesomeIcon
-                  icon={faPenSquare}
-                  onClick={() => {
+                <Edit 
+                onClick={() => {
                     setActiveEmail(email)
                     setActiveEmailContent(email)
-                  }}
-                />
+                  }}/>
               </Col>
-              <Col md="1" className="icons">
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  onClick={() => deleteEmail(index)}
-                />
+              <Col md="1" className="icons" style={{marginBottom:"30px"}}>
+                <Close name="Delete" onClick={() => deleteEmail(index)}/>
               </Col>
             </Row>
           </>

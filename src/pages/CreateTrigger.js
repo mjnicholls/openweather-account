@@ -41,7 +41,7 @@ const CreateTrigger = () => {
   // const status  = true / false
   // const status = "on" / "off" / "deleted"
 
-  const createTrigger = ({isNew}) => {
+  const createTrigger = () => {
     const data = {
       location,
       condition,
@@ -130,11 +130,11 @@ const CreateTrigger = () => {
               setRecipients={setRecipients}
             />
             <Row className="search-box">
-              <Col md="7"></Col>
-              <Col md="5">
-                <Button className="bottom-buttons">Cancel</Button>
+     
+              <Col className="text-end">
+                <Button className="button-neutral">Cancel</Button>
 
-                <Button className="bottom-buttons create" onClick={createTrigger}>
+                <Button className="button-active" onClick={createTrigger}>
                   Create trigger
                 </Button>
               </Col>

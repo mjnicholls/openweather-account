@@ -35,17 +35,16 @@ const EditTrigger = ({ close }) => {
         </Col>
       </Row>
       <br />
-      <div className="footer">
+      <Col className="text-end">
       <Button
-          className="btn-danger"
-          color="danger"
+          className="button-active"
           data-dismiss="modal"
           type="button"
           onClick={confirmEditTrigger}
         >
           Update
         </Button>
-      </div>
+      </Col>
     </div>
   )
 }

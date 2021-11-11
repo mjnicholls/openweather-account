@@ -5,7 +5,8 @@ import '../App.scss'
 
 const PriorNotifs = () => {
   const [days, setDays] = useState(0)
-
+  const [text, setText] = useState('')
+  
   const priors = [
     { value: 0, label: '0' },
     { value: 1, label: '1' },
@@ -13,11 +14,13 @@ const PriorNotifs = () => {
     { value: 3, label: '3' },
   ]
 
+
   const handleChange = (key, value) => {
     const newDays = { ...days }
     newDays[key] = value
     setDays(newDays)
   }
+
 
   return (
     <>
@@ -39,7 +42,9 @@ const PriorNotifs = () => {
           </FormGroup>
         </Col>
         <Col md="4">
-          <p className="centered">days before an event starts</p>
+          <p className="centered">
+            {text}
+            before an event starts</p>
         </Col>
       </Row>
     </>

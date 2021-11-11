@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useTable } from 'react'
 
 import { useSelector } from 'react-redux'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
@@ -9,15 +9,15 @@ import humanReadableCondition from '../humanReadableCondition'
 import { getTriggers } from '../api/api'
 // import AgroPagination from '../agro-components/AgroPagination'
 
-import { Edit } from 'react-ikonate'
-
 import '../App.scss'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
+import { faRainbow } from '@fortawesome/free-solid-svg-icons'
 
 const selectUserId = (state) => state.auth.user_id
 
 const TriggerList = () => {
+
   const userId = useSelector(selectUserId)
   const [data, setData] = useState([])
 
@@ -130,8 +130,6 @@ const TriggerList = () => {
   ]
 
 
-
-
   {
     /*}
 
@@ -157,14 +155,14 @@ const TriggerList = () => {
       <div className="content">
         <Row>
           <Col>
-            <h1>Trigger List</h1>
+            <h2>Trigger List</h2>
           </Col>
         </Row>
         <Row>
           <Col className="mb-0" md="12" mt="20">
             <Card>
               <CardBody>
-                <Table className="mb-0">
+                <Table className="mb-3">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -182,7 +180,9 @@ const TriggerList = () => {
                   <tbody>
                     {data.map((trigger) => (trigger.status !== "deleted") && (
                       <tr>
-                        <td>{trigger.id}</td>
+                        <td>
+                     #
+                        </td>
                         <td>
                           <Link
                             to={{ pathname: '/view-trigger', state: trigger }}
@@ -222,18 +222,16 @@ const TriggerList = () => {
             </Card>
           </Col>
         </Row>
-        <Row>
+        <Row className="search-box">
           <Col md="7"></Col>
-          <Col md="3">
+          <Col md="5" className="text-end">
             <Link to="/">
-              <Button className="bottom" style={{ width: '250px' }}>
+              <Button className="button-neutral" style={{ width: '250px' }}>
                 List of Forecasted Events
               </Button>
             </Link>
-          </Col>
-          <Col md="2">
             <Link to="/create">
-              <Button className="bottom">Create new trigger</Button>
+              <Button className="button-active">Create new trigger</Button>
             </Link>
           </Col>
         </Row>

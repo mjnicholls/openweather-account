@@ -4,11 +4,12 @@ import React from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { deleteTrigger } from '../api/api'
 
-const DeleteTrigger = ({ close, userId }) => {
+const DeleteTrigger = ({ close, params }) => {
   const confirmDeleteTrigger = () => {
-  
 
-    deleteTrigger(userId).then(() => {
+    
+
+    deleteTrigger(params).then(() => {
       console.log('deleted')
     })
 
@@ -16,7 +17,7 @@ const DeleteTrigger = ({ close, userId }) => {
   }
 
   return (
-    <div>
+    <>
       <hr />
       <Row>
         <Col>
@@ -25,18 +26,17 @@ const DeleteTrigger = ({ close, userId }) => {
         </Col>
       </Row>
       <br />
-      <div className="footer">
+      <Col className="text-end">
         <Button
-          className="btn-danger"
-          color="danger"
+          className="button-active"
           data-dismiss="modal"
           type="button"
           onClick={confirmDeleteTrigger}
         >
           Delete
         </Button>
-      </div>
-    </div>
+        </Col>
+</>
   )
 }
 

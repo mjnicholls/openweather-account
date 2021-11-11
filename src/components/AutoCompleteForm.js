@@ -39,7 +39,6 @@ const AutoCompleteForm = ({ mapRef, setLocation, error }) => {
               }}
               options={{
                 types: ['(regions)'],
-                componentRestrictions: { country: 'gb' },
               }}
               defaultValue=""
             />

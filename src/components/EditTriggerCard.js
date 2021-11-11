@@ -30,14 +30,15 @@ const EditTriggerCard = () => {
     <>
       {alert}
       <Button
-      style={{backgroundColor: "white"}}
+       style={{backgroundColor: "transparent", border:"none", marginTop:"2px"}}
         title="Update"
+        className="text-end"
         onClick={(e) => {
           htmlAlert()
           e.stopPropagation()
         }}
       >
-           <Edit fontSize="23px" borderWidth={1} color="#48484a" />
+           <Edit color="#48484a" />
       </Button>
     </>
   )

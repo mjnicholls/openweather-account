@@ -246,10 +246,17 @@
 
 // Autocomplete form styles
 
+h2 {
+  font-family: $highlight-font-family;
+  font-weight: bold;
+  padding-top: 30px;
+}
+
 .search-header {
   margin: 20px 0px 20px 40px;
 
-  h1 {
+  h1,
+  h2 {
     font-family: $highlight-font-family;
   }
 }
@@ -339,33 +346,35 @@ p {
     background-color: #fff;
   }
 
-  .btn-primary {
-    padding: '5px 10px';
-    border-radius: '8pt';
-    &:focus {
-      border: 2px solid white;
+  Button.button-active {
+    border-radius: 16pt;
+    padding: 6pt 8pt;
+    text-decoration: none;
+    background-color: #48484a;
+    border-color: #48484a;
+    color: #f2f2f2;
+    cursor: pointer;
+    border-style: none;
+    white-space: nowrap;
+    margin-left: 4pt;
+    &:hover {
+      background-color: rgba(72, 72, 74, 0.85);
+      border-color: rgba(72, 72, 74, 0.85);
     }
   }
 
-  .btn.btn-secondary {
-    background-color: $brand-black;
-    font-family: $default-font-family;
-  }
-}
-
-.btn-primary.btn.btn-secondary.btn-sm.active {
-  padding: 10px 15px;
-  border-radius: 8pt;
-  &:hover {
-    background-color: $brand-turquoise;
-  }
-  &:active {
-    background-color: white;
-    &:focus {
-      border: 2px solid white;
-    }
-    &:visited {
-      background-color: white;
+  Button.button-neutral {
+    border: 1px solid rgba(72, 72, 74, 0.4);
+    background-color: transparent !important;
+    border-radius: 16pt;
+    padding: 6pt 8pt;
+    text-decoration: none;
+    color: #48484a;
+    cursor: pointer;
+    white-space: nowrap;
+    &:hover {
+      background-color: #f2f2f2 !important;
+      border-color: #f2f2f2;
     }
   }
 }
@@ -387,7 +396,7 @@ p {
   }
 }
 
-.create:active{
+.create:active {
   background-color: red;
 }
 
@@ -481,10 +490,44 @@ p {
     Table {
       margin-bottom: 15px;
       text-align: center;
+      border-bottom-width: 1px !important;
+      font-family: $default-font-family;
 
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
+      thead {
+        border-bottom-width: 1px !important;
+
+        tr:hover {
+          background-color: white;
+        }
       }
+
+      th {
+        border-top: none;
+        top: 0;
+        background-color: #fff;
+        font-weight: 600;
+        box-shadow: 0 1px #48484a;
+        vertical-align: bottom;
+        text-align: left;
+        border-bottom-width: 1px !important;
+      }
+
+      tr {
+        &:hover {
+          background-color: #f2f2f2;
+        }
+
+        td {
+          font-weight: 300;
+          border-top: 1px solid #f2f2f2;
+          vertical-align: top;
+          padding: 8pt;
+          text-align: left;
+          font-size: 0.9rem;
+          white-space: pre-wrap;
+        }
+      }
+    
     }
   }
 
@@ -497,12 +540,10 @@ p {
 // view trigger page
 
 .trigger-card {
-
   h2,
   h3 {
     margin-bottom: 40px;
   }
-
 
   .mapPop {
     padding-bottom: 20px;
@@ -511,18 +552,15 @@ p {
 
   .bottom {
     margin-bottom: 15px;
-
   }
 
-
-label.cardContent {
-  font-family: $default-font-family;
-  text-align: center;
-  font-weight: normal;
-}
+  label.cardContent {
+    font-family: $default-font-family;
+    text-align: center;
+    font-weight: normal;
+  }
 
   .moveCentre {
-
     p {
       margin-top: 10px;
     }
@@ -593,6 +631,22 @@ label.cardContent {
   .slider.round:before {
     border-radius: 50%;
   }
+}
 
-
+//
+Button.button-active {
+  border-radius: 16pt;
+  padding: 6pt 8pt;
+  text-decoration: none;
+  background-color: #48484a;
+  border-color: #48484a;
+  color: #f2f2f2;
+  cursor: pointer;
+  border-style: none;
+  white-space: nowrap;
+  margin-left: 4pt;
+  &:hover {
+    background-color: rgba(72, 72, 74, 0.85);
+    border-color: rgba(72, 72, 74, 0.85);
+  }
 }

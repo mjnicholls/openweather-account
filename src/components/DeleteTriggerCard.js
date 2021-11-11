@@ -20,6 +20,7 @@ const DeleteTriggerCard = () => {
         onCancel={() => hideAlert()}
         showConfirm={false}
         showCloseButton
+        className="text-end"
         style={{fontFamily: "$highlight-font-family"}}
       >
         <DeleteTrigger close={hideAlert} />
@@ -31,8 +32,7 @@ const DeleteTriggerCard = () => {
     <>
       {alert}
               <Button
-                className="btn-fill"
-                color="danger"
+                className="button-neutral"
                 type="button"
                 title="Delete"
                 onClick={(e) => {
