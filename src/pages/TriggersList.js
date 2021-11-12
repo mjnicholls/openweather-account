@@ -12,12 +12,10 @@ import { getTriggers } from '../api/api'
 import '../App.scss'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
-import { faRainbow } from '@fortawesome/free-solid-svg-icons'
 
 const selectUserId = (state) => state.auth.user_id
 
 const TriggerList = () => {
-
   const userId = useSelector(selectUserId)
   const [data, setData] = useState([])
 
@@ -129,7 +127,6 @@ const TriggerList = () => {
     },
   ]
 
-
   {
     /*}
 
@@ -177,46 +174,57 @@ const TriggerList = () => {
                     </tr>
                   </thead>
 
-
                   <tbody>
-                    {data.map((trigger, index) => (trigger.status !== "deleted") && (
-                      <tr>
-                        <td>
-                          {index + 1}
-                        </td>
-                        <td>
-                          <Link
-                            to={{ pathname: '/view-trigger', state: trigger }}
-                          >
-                            {trigger.name}
-                          </Link>
-                        </td>
-                        <td>
-                          {' '}
-                          {humanReadableCondition(trigger.condition).substring(
-                            27,
-                          )}
-                        </td>
-                        <td>{trigger.location.name}</td>
-                        <td>
-                          Up to {trigger.days}{' '}
-                          {trigger.days === 1 ? 'day' : 'days'}
-                        </td>
-                        <td>{trigger.recipients.length}</td>
-                        <td>
-                          <label className="switch">
-                            <input type="checkbox" checked={trigger.status === "on"} />
-                            <span className="slider round"></span>
-                          </label>
-                        </td>
-                        <td>
-                       <EditTriggerCard />
-                        </td>
-                        <td>
-                          <DeleteTriggerCardX user_id={userId} />
-                        </td>
-                      </tr>
-                    ))}
+                    {data.map(
+                      (trigger, index) =>
+                        trigger.status !== 'deleted' && (
+                          <tr>
+                            <td>{index + 1}</td>
+                            <td>
+                              <Link
+                                to={{
+                                  pathname: '/view-trigger',
+                                  state: trigger,
+                                }}
+                              >
+                                {trigger.name}
+                              </Link>
+                            </td>
+                            <td>
+                              {humanReadableCondition(
+                                trigger.condition,
+                              ).substring(28)}
+                            </td>
+                            <td>{trigger.location.name}</td>
+                            <td>
+                              Up to {trigger.days}{' '}
+                              {trigger.days === 1 ? 'day' : 'days'}
+                            </td>
+                            <td>{trigger.recipients.length}</td>
+                            <td>
+                              <label className="switch">
+                                <input
+                                  type="checkbox"
+                                  checked={trigger.status === 'on'}
+                                />
+                                <span className="slider round"></span>
+                              </label>
+                            </td>
+                            <td>
+                              <EditTriggerCard
+                                id={trigger.id}
+                                userId={userId}
+                              />
+                            </td>
+                            <td>
+                              <DeleteTriggerCardX
+                                id={trigger.id}
+                                userId={userId}
+                              />
+                            </td>
+                          </tr>
+                        ),
+                    )}
                   </tbody>
                 </Table>
               </CardBody>

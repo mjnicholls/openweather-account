@@ -25,7 +25,6 @@ const MarkerSingleton = (() => {
   }
 })()
 
-
 const placeMarker = (position, map) => {
   MarkerSingleton.getInstance(position, map)
   map.panTo(position)

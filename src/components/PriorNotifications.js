@@ -25,9 +25,7 @@ const PriorNotifs = () => {
         <Col md="2">
           <FormGroup>
             <Select
-              onChange={
-                (option) => setDays(option.value)
-              }
+              onChange={(option) => setDays(option.value)}
               classNamePrefix="react-select"
               options={priors}
               value={priors.find((el) => el.value === days)}
@@ -36,8 +34,9 @@ const PriorNotifs = () => {
         </Col>
         <Col md="4">
           <p className="centered">
-            day{days === 1 ? "" : "s"}
-            &nbsp;before an event starts</p>
+            day{days === 1 ? '' : 's'}
+            &nbsp;before an event starts
+          </p>
         </Col>
       </Row>
     </>

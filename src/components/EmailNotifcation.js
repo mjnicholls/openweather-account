@@ -66,14 +66,20 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
     return true
   }
 
+  const onKeyDown = (e, index) => {
+    if (e.keyCode === 13) {
+      saveEmail(index)
+    }
+  }
+
   return (
     <>
       <Row className="search-box">
-        <Col md="3">
+        <Col>
           <Label>Email Notification</Label>
         </Col>
 
-        <Col md="6">
+        <Col>
           <FormGroup>
             <Input
               className={error.email ? 'danger-border' : ''}
@@ -91,7 +97,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
             {error.email}
           </div>
         </Col>
-        <Col md="3">
+        <Col>
           <FormGroup>
             <Button className="button-active" onClick={addEmail}>
               Add email
@@ -104,10 +110,12 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
       {recipients.map((email, index) =>
         email === activeEmail ? (
           <>
-            <Row>
-              <Col md="3"></Col>
-
-              <Col md="6" key={email}>
+            <Row className="search-box">
+              <Col>
+                {' '}
+                <Label>Editing Name</Label>
+              </Col>
+              <Col key={email}>
                 <Input
                   type="text"
                   onChange={(e) => {
@@ -115,37 +123,35 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
                   }}
                   className={error.email ? 'danger-border' : ''}
                   value={activeEmailContent}
+                  onKeyDown={onKeyDown}
                 />
               </Col>
-              <Col md="1" className="icons">
+              <Col className="icons" style={{ marginBottom: '30px' }}>
                 <FontAwesomeIcon
                   icon={faThumbsUp}
                   onClick={() => saveEmail(index)}
+                  style={{ marginRight: '20px' }}
                 />
-              </Col>
-              <Col md="1" className="icons" style={{marginBottom:"30px"}}>
-                <Close
-                  onClick={() => deleteEmail(email)}
-                />
+                <Close onClick={() => deleteEmail(email)} />
               </Col>
             </Row>
           </>
         ) : (
           <>
             <Row>
-              <Col md="3"></Col>
-              <Col md="6" key={email}>
+              <Col></Col>
+              <Col key={email}>
                 <p>{email}</p>
               </Col>
-              <Col md="1" className="icons">
-                <Edit 
-                onClick={() => {
+              <Col className="icons" style={{ marginBottom: '30px' }}>
+                <Edit
+                  style={{ marginRight: '20px' }}
+                  onClick={() => {
                     setActiveEmail(email)
                     setActiveEmailContent(email)
-                  }}/>
-              </Col>
-              <Col md="1" className="icons" style={{marginBottom:"30px"}}>
-                <Close name="Delete" onClick={() => deleteEmail(index)}/>
+                  }}
+                />
+                <Close name="Delete" onClick={() => deleteEmail(index)} />
               </Col>
             </Row>
           </>

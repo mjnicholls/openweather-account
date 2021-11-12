@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Button, Col, Row } from 'reactstrap'
+import { Button, Col, Row, Input, Label } from 'reactstrap'
 import { patchTrigger } from '../api/api'
+import '../App.scss'
 
+const EditTrigger = ({ close, userId, id }) => {
+  const [name, setName] = useState()
+  const [status, setStatus] = useState()
 
-const EditTrigger = ({ close }) => {
   const confirmEditTrigger = () => {
     const data = {
-      id: '618ba9ef3355472c2628b52a',
-      name: 'big trigger',
-      user_id: 1,
-      status: 'off',
+      id,
+      user_id: userId,
+      name,
+      status,
     }
 
     patchTrigger(data)
       .then(() => {
-        console.log('data', data)
+        console.log('data')
       })
       // eslint-disable-next-line
       .catch((error) => {
@@ -28,15 +31,28 @@ const EditTrigger = ({ close }) => {
   return (
     <div>
       <hr />
-      <Row>
-        <Col>
-          <br />
-          <p>Update your trigger</p>
+
+      <Row className="search-box">
+        <Col md="8">
+          <Label> Name </Label>
+          <Input
+            name="name"
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
+        </Col>
+        <Col md="4" className="editStatus">
+          <label className="switch">
+            <input type="checkbox" onClick={() => setStatus()} />
+            <span className="slider round"></span>
+          </label>
         </Col>
       </Row>
+
       <br />
       <Col className="text-end">
-      <Button
+        <Button
           className="button-active"
           data-dismiss="modal"
           type="button"

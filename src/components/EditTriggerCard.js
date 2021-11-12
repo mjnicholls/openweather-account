@@ -4,7 +4,7 @@ import ReactBSAlert from 'react-bootstrap-sweetalert'
 import EditTrigger from './EditTrigger'
 import { Edit } from 'react-ikonate'
 
-const EditTriggerCard = () => {
+const EditTriggerCard = ({ id, userId }) => {
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
@@ -21,7 +21,7 @@ const EditTriggerCard = () => {
         showCloseButton
         style={{ fontFamily: '$highlight-font-family' }}
       >
-        <EditTrigger close={hideAlert} />
+        <EditTrigger close={hideAlert} id={id} userId={userId} />
       </ReactBSAlert>,
     )
   }
@@ -30,7 +30,11 @@ const EditTriggerCard = () => {
     <>
       {alert}
       <Button
-       style={{backgroundColor: "transparent", border:"none", marginTop:"2px"}}
+        style={{
+          backgroundColor: 'transparent',
+          border: 'none',
+          marginTop: '2px',
+        }}
         title="Update"
         className="text-end"
         onClick={(e) => {
@@ -38,7 +42,7 @@ const EditTriggerCard = () => {
           e.stopPropagation()
         }}
       >
-           <Edit color="#48484a" />
+        <Edit color="#48484a" />
       </Button>
     </>
   )

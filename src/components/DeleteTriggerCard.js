@@ -1,11 +1,9 @@
 import React from 'react'
-import {
-  Button,
-} from 'reactstrap'
+import { Button } from 'reactstrap'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import DeleteTrigger from './DeleteTrigger'
 
-const DeleteTriggerCard = () => {
+const DeleteTriggerCard = ({ id, userId }) => {
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
@@ -21,9 +19,9 @@ const DeleteTriggerCard = () => {
         showConfirm={false}
         showCloseButton
         className="text-end"
-        style={{fontFamily: "$highlight-font-family"}}
+        style={{ fontFamily: '$highlight-font-family' }}
       >
-        <DeleteTrigger close={hideAlert} />
+        <DeleteTrigger close={hideAlert} id={id} userId={userId} />
       </ReactBSAlert>,
     )
   }
@@ -31,18 +29,17 @@ const DeleteTriggerCard = () => {
   return (
     <>
       {alert}
-              <Button
-                className="button-neutral"
-                type="button"
-                title="Delete"
-                onClick={(e) => {
-                  htmlAlert()
-                  e.stopPropagation()
-                }}
-              >
-                Delete
-              </Button>
-      
+      <Button
+        className="button-neutral"
+        type="button"
+        title="Delete"
+        onClick={(e) => {
+          htmlAlert()
+          e.stopPropagation()
+        }}
+      >
+        Delete
+      </Button>
     </>
   )
 }

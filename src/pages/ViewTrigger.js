@@ -1,22 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react'
-
+import { useSelector } from 'react-redux'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
 import { useLocation, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faArrowDown,
-  faThumbsUp,
-} from '@fortawesome/free-solid-svg-icons'
-import { Edit, Delete } from 'react-ikonate'
+import { faArrowDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { Edit } from 'react-ikonate'
 import humanReadableCondition from '../humanReadableCondition'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import '../App.scss'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
+import { patchTrigger } from '../api/api'
 
 const noBlankErrorMessage = 'Cannot be blank'
 
+const selectUserId = (state) => state.auth.user_id
+
 const ViewTrigger = () => {
   const { state } = useLocation()
+
+  const userId = useSelector(selectUserId)
 
   const { condition, days, id, location, name, recipients, status } = state
 
@@ -81,7 +83,12 @@ const ViewTrigger = () => {
 
   const saveMethod = () => {
     /*eslint-disable-next-line*/
-    const data = {}
+    const data = {
+      id,
+      user_id: userId,
+      name,
+      status,
+    }
 
     if (name !== activeName) {
       data.name = activeName
@@ -95,6 +102,15 @@ const ViewTrigger = () => {
       // call API
     }
     console.log('saving', data)
+
+    patchTrigger(data)
+      .then(() => {
+        console.log('data')
+      })
+      // eslint-disable-next-line
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -105,10 +121,10 @@ const ViewTrigger = () => {
           <Row className="search-box">
             {isEditName ? (
               <>
-                <Col md="4">
+                <Col>
                   <Label>Trigger Name</Label>
                 </Col>
-                <Col md="4" key={name}>
+                <Col key={name}>
                   <Input
                     type="text"
                     onChange={(e) => {
@@ -119,7 +135,7 @@ const ViewTrigger = () => {
                     name="name"
                   />
                 </Col>
-                <Col md="1" className="icons moveCentre">
+                <Col className="icons moveCentre">
                   <FontAwesomeIcon
                     icon={faThumbsUp}
                     onClick={() => saveName()}
@@ -128,13 +144,13 @@ const ViewTrigger = () => {
               </>
             ) : (
               <>
-                <Col md="4">
+                <Col>
                   <Label>Trigger Name</Label>
                 </Col>
-                <Col md="4" key={name} className="moveCentre">
+                <Col key={name} className="moveCentre">
                   <p>{activeName}</p>
                 </Col>
-                <Col md="1" className="icons moveCentre">
+                <Col className="icons moveCentre">
                   <Edit
                     onClick={() => {
                       setIsEditName(true)
@@ -144,45 +160,42 @@ const ViewTrigger = () => {
               </>
             )}
 
-            <Col md="2">
+            <Col>
               <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={() => setTempStatus(tempStatus ? 'false' : 'true')}
-                />
+                <input type="checkbox" onClick={() => setTempStatus()} />
                 <span className="slider round"></span>
               </label>
             </Col>
           </Row>
 
           <Row className="search-box">
-            <Col md="4">
+            <Col>
               <Label>Location</Label>
             </Col>
 
-            <Col md="8">
+            <Col>
               <Label type="text" value={location} className="cardContent">
                 {location.name} ({location.lat}, {location.lon})
               </Label>
             </Col>
           </Row>
           <Row className="search-box">
-            <Col md="4">
+            <Col>
               <Label>Trigger Condition</Label>
             </Col>
 
-            <Col md="8">
+            <Col>
               <Label type="text" value={condition} className="cardContent">
                 {humanReadableCondition(condition).substring(27)}
               </Label>
             </Col>
           </Row>
           <Row className="search-box">
-            <Col md="4">
+            <Col>
               <Label>Prior Notifications</Label>
             </Col>
 
-            <Col md="8">
+            <Col>
               <Label type="text" value={days} className="cardContent">
                 Up to {days} {days === 1 ? 'day' : 'days'} before the event
                 starts
@@ -190,11 +203,11 @@ const ViewTrigger = () => {
             </Col>
           </Row>
           <Row className="search-box">
-            <Col md="4">
+            <Col>
               <Label>Email recipients</Label>
             </Col>
 
-            <Col md="8">
+            <Col>
               <Label type="text" className="cardContent">
                 {Object.keys(recipients).map((recip) => (
                   <>
@@ -227,39 +240,39 @@ const ViewTrigger = () => {
             </Col>
           </Row>
 
-          <Col md="12">
+          <Col>
             <h3>Events List</h3>
           </Col>
           <Row className="search-box">
-            <Col md="4">
+            <Col>
               <Label>Active Events</Label>
             </Col>
 
-            <Col md="8">
+            <Col>
               <Label type="text" className="cardContent">
                 27 October 2021
               </Label>
             </Col>
           </Row>
           <Row className="search-box">
-            <Col md="4">
+            <Col>
               <Label>Archive</Label>
             </Col>
 
-            <Col md="8">
+            <Col>
               <Label type="text" className="cardContent">
                 27 September 2021
               </Label>
             </Col>
           </Row>
           <Row className="search-box">
-            <Col md="9">
+            <Col className="text-left">
               <Link to="/trigger-list">
-                <Button className="button-active">Back</Button>
+                <Button className="button-neutral">Back</Button>
               </Link>
             </Col>
-            <Col md="3">
-              <DeleteTriggerCard />
+            <Col className="text-end">
+              <DeleteTriggerCard id={id} userId={userId} />
               <Button
                 className="button-active"
                 style={{ marginLeft: '5px' }}

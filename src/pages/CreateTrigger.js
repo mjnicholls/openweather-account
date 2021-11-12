@@ -11,7 +11,6 @@ import PriorNotifs from '../components/PriorNotifications'
 import EmailNotifs from '../components/EmailNotifcation'
 import '../App.scss'
 import { patchTrigger, postTrigger } from '../api/api'
-import TriggerList from './TriggersList'
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
@@ -48,8 +47,8 @@ const CreateTrigger = () => {
       days,
       name,
       recipients,
-      status: "on",
-      user_id: "1",
+      status: 'on',
+      user_id: '1',
     }
 
     console.log(data)
@@ -73,20 +72,16 @@ const CreateTrigger = () => {
       return
     }
 
-     // POST logic
+    // POST logic
 
     postTrigger(data)
       .then((res) => {
         console.log('data', res)
       })
-       // eslint-disable-next-line
+      // eslint-disable-next-line
       .catch((error) => {
         console.log(error)
       })
-
-
-
-   
   }
 
   const handleChange = (key, value) => {
@@ -94,8 +89,6 @@ const CreateTrigger = () => {
     newLocation[key] = value
     setLocation(newLocation)
   }
-
-
 
   return (
     <>
@@ -130,7 +123,6 @@ const CreateTrigger = () => {
               setRecipients={setRecipients}
             />
             <Row className="search-box">
-     
               <Col className="text-end">
                 <Button className="button-neutral">Cancel</Button>
 

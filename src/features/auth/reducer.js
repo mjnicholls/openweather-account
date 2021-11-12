@@ -1,7 +1,7 @@
 /* eslint-disable */
 const initialState = {
   user_id: '1',
-  email: "user"
+  email: 'user',
 }
 
 export default function authReducer(state = initialState, action) {
