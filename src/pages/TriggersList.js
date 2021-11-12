@@ -177,11 +177,12 @@ const TriggerList = () => {
                     </tr>
                   </thead>
 
+
                   <tbody>
-                    {data.map((trigger) => (trigger.status !== "deleted") && (
+                    {data.map((trigger, index) => (trigger.status !== "deleted") && (
                       <tr>
                         <td>
-                     #
+                          {index + 1}
                         </td>
                         <td>
                           <Link
@@ -212,7 +213,7 @@ const TriggerList = () => {
                        <EditTriggerCard />
                         </td>
                         <td>
-                          <DeleteTriggerCardX />
+                          <DeleteTriggerCardX user_id={userId} />
                         </td>
                       </tr>
                     ))}
@@ -223,8 +224,7 @@ const TriggerList = () => {
           </Col>
         </Row>
         <Row className="search-box">
-          <Col md="7"></Col>
-          <Col md="5" className="text-end">
+          <Col className="text-end">
             <Link to="/">
               <Button className="button-neutral" style={{ width: '250px' }}>
                 List of Forecasted Events

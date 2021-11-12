@@ -1,26 +1,17 @@
 import React, { useState } from 'react'
-import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+import { Col, Row, FormGroup, Label } from 'reactstrap'
 import Select from 'react-select'
 import '../App.scss'
 
 const PriorNotifs = () => {
   const [days, setDays] = useState(0)
-  const [text, setText] = useState('')
-  
+
   const priors = [
     { value: 0, label: '0' },
     { value: 1, label: '1' },
     { value: 2, label: '2' },
     { value: 3, label: '3' },
   ]
-
-
-  const handleChange = (key, value) => {
-    const newDays = { ...days }
-    newDays[key] = value
-    setDays(newDays)
-  }
-
 
   return (
     <>
@@ -34,7 +25,9 @@ const PriorNotifs = () => {
         <Col md="2">
           <FormGroup>
             <Select
-              onChange={(option) => handleChange('priors', option.value)}
+              onChange={
+                (option) => setDays(option.value)
+              }
               classNamePrefix="react-select"
               options={priors}
               value={priors.find((el) => el.value === days)}
@@ -43,8 +36,8 @@ const PriorNotifs = () => {
         </Col>
         <Col md="4">
           <p className="centered">
-            {text}
-            before an event starts</p>
+            day{days === 1 ? "" : "s"}
+            &nbsp;before an event starts</p>
         </Col>
       </Row>
     </>

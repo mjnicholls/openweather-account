@@ -25,11 +25,11 @@ export const patchTrigger = async (params) => {
 }
 
 
-export const deleteTrigger = async () => {
+export const deleteTrigger = async (userId, id) => {
   /** Delete a trigger  */
-
-  const userId=1;
-  const id ="618bbfd20ae1c044ced3d3e4"
+  console.log(userId, id)
+  // const userId=1;
+  // const id ="618bbfd20ae1c044ced3d3e4"
 
   const url = `${deleteTriggerURL}/${id}`
   return axios.delete(url, {params: {user_id: userId}})
