@@ -4,7 +4,7 @@ import ReactBSAlert from 'react-bootstrap-sweetalert'
 import EditTrigger from './EditTrigger'
 import { Edit } from 'react-ikonate'
 
-const EditTriggerCard = ({ id, userId }) => {
+const EditTriggerCard = ({ id, userId, name, status }) => {
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
@@ -21,7 +21,13 @@ const EditTriggerCard = ({ id, userId }) => {
         showCloseButton
         style={{ fontFamily: '$highlight-font-family' }}
       >
-        <EditTrigger close={hideAlert} id={id} userId={userId} />
+        <EditTrigger
+          close={hideAlert}
+          id={id}
+          userId={userId}
+          name={name}
+          status={status}
+        />
       </ReactBSAlert>,
     )
   }

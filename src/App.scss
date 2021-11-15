@@ -670,3 +670,52 @@ Button.button-neutral {
   margin-top: 20px;
 
 }
+
+
+// classes for forecasted events page
+.forecast {
+
+.card {
+  border-style: none;
+
+  tr {
+    border-style: none;
+  }
+
+  td {
+    border-style: none;
+  }
+
+
+  a {
+    color: black;
+    font-weight: bold;
+  }
+
+  .smaller {
+    font-size: 10pt;
+  }
+}
+
+.title {
+  margin-top: 30px;
+}
+
+
+
+Button.button-turquoise {
+  border: 1px solid rgba(72, 72, 74, 0.4);
+  background-color:  $brand-turquoise;
+  border-radius: 16pt;
+  padding: 6pt 8pt;
+  text-decoration: none;
+  color: #48484a!important;
+  cursor: pointer;
+  white-space: nowrap;
+  &:hover {
+    background-color: #f2f2f2 !important;
+    border-color: #f2f2f2;
+  }
+}
+
+}

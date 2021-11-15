@@ -12,6 +12,7 @@ import Header from './components/Header'
 import CreateTrigger from './pages/CreateTrigger'
 import TriggerList from './pages/TriggersList'
 import ViewTrigger from './pages/ViewTrigger'
+import ForecastedEvents from './pages/ForecastedEvents'
 
 import store from './store'
 
@@ -29,6 +30,9 @@ const App = () => (
           </Route>
           <Route path="/view-trigger" component={ViewTrigger}>
             <ViewTrigger />
+          </Route>
+          <Route path="/forecasted-events">
+            <ForecastedEvents />
           </Route>
           {/*<Redirect from="/" to="/trigger-list" />*/}
         </BrowserRouter>

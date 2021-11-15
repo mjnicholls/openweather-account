@@ -29,6 +29,9 @@ const TriggerList = () => {
       })
   }, [userId])
 
+  {
+    /*}
+
   const pageData = [
     {
       id: 1,
@@ -127,8 +130,7 @@ const TriggerList = () => {
     },
   ]
 
-  {
-    /*}
+ 
 
   const [page, setPage] = useState(0)
   const [pageData, setPageData] = useState([])
@@ -162,7 +164,7 @@ const TriggerList = () => {
                 <Table className="mb-3">
                   <thead>
                     <tr>
-                      <th>#</th>
+                      <th></th>
                       <th>Trigger Name</th>
                       <th>Trigger Condition</th>
                       <th>Location</th>
@@ -214,6 +216,8 @@ const TriggerList = () => {
                               <EditTriggerCard
                                 id={trigger.id}
                                 userId={userId}
+                                name={trigger.name}
+                                status={trigger.status}
                               />
                             </td>
                             <td>

@@ -22,6 +22,7 @@ const ViewTrigger = () => {
 
   const { condition, days, id, location, name, recipients, status } = state
 
+  /*
   const data = {
     id: 1,
     condition: {
@@ -41,6 +42,8 @@ const ViewTrigger = () => {
     },
     user_id: 1,
   }
+
+*/
 
   // const { condition, days, id, location, name, recipients, status } = data
 
@@ -162,7 +165,13 @@ const ViewTrigger = () => {
 
             <Col>
               <label className="switch">
-                <input type="checkbox" onClick={() => setTempStatus()} />
+                <input
+                  type="checkbox"
+                  checked={tempStatus === 'on'}
+                  onChange={() =>
+                    setTempStatus(tempStatus === 'on' ? 'off' : 'on')
+                  }
+                />
                 <span className="slider round"></span>
               </label>
             </Col>

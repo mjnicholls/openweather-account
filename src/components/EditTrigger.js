@@ -1,20 +1,53 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Button, Col, Row, Input, Label } from 'reactstrap'
-import { patchTrigger } from '../api/api'
+import { patchTrigger, getTriggers } from '../api/api'
 import '../App.scss'
+import classnames from 'classnames'
+const noBlankErrorMessage = 'Cannot be blank'
 
-const EditTrigger = ({ close, userId, id }) => {
-  const [name, setName] = useState()
-  const [status, setStatus] = useState()
+const EditTrigger = ({ userId, id, name, status }) => {
+  console.log('status', status)
+  const [error, setError] = useState({})
 
+  const [activeName, setActiveName] = useState(name)
+  const [tempStatus, setTempStatus] = useState(status)
+  /*eslint-disable-next-line*/
   const confirmEditTrigger = () => {
+    setError({})
+
+    const newError = {}
+
+    if (!activeName) {
+      newError.activeName = noBlankErrorMessage
+    }
+
+    if (Object.keys(newError).length) {
+      setError(newError)
+      /* eslint-disable-next-line */
+      return
+    }
+
+    /*eslint-disable-next-line*/
     const data = {
       id,
       user_id: userId,
       name,
       status,
     }
+
+    if (name !== activeName) {
+      data.name = activeName
+    }
+
+    if (status !== tempStatus) {
+      data.status = tempStatus
+    }
+
+    if (Object.keys(data).length) {
+      // call API
+    }
+    console.log('saving', data)
 
     patchTrigger(data)
       .then(() => {
@@ -24,8 +57,6 @@ const EditTrigger = ({ close, userId, id }) => {
       .catch((error) => {
         console.log(error)
       })
-
-    close()
   }
 
   return (
@@ -36,15 +67,31 @@ const EditTrigger = ({ close, userId, id }) => {
         <Col md="8">
           <Label> Name </Label>
           <Input
-            name="name"
             type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            onChange={(e) => {
+              setActiveName(e.target.value)
+            }}
+            className={error.activeName ? 'danger-border' : ''}
+            value={activeName}
+            name="name"
           />
+          <div
+            className={classnames(
+              'invalid-feedback',
+              error.activeName ? 'd-block' : '',
+            )}
+          >
+            {error.activeName}
+          </div>
         </Col>
         <Col md="4" className="editStatus">
           <label className="switch">
-            <input type="checkbox" onClick={() => setStatus()} />
+            {/*eslint-disable-next-line*/}
+            <input
+              type="checkbox"
+              checked={tempStatus === 'on'}
+              onChange={() => setTempStatus(tempStatus === 'on' ? 'off' : 'on')}
+            />
             <span className="slider round"></span>
           </label>
         </Col>
