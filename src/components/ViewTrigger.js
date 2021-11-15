@@ -21,7 +21,6 @@ const ViewTrigger = () => {
   const userId = useSelector(selectUserId)
 
   const { condition, days, id, location, name, recipients, status } = state
-  
 
   const data = {
     id: 1,

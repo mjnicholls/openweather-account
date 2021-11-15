@@ -126,7 +126,49 @@ const ForecastedEvents = () => {
                 />
               </a>
               <p className="collapse" id="collapseExample">
-                <p>test</p>
+                <Table className="mb-3">
+                  <tbody>
+                    {data.map(
+                      (trigger, index) =>
+                        index >= 3 && (
+                          <>
+                            <tr>
+                              <td>{index + 1}</td>
+
+                              <td>
+                                <Link
+                                  to={{
+                                    pathname: '/view-trigger',
+                                    state: trigger,
+                                  }}
+                                >
+                                  {trigger.name}
+                                </Link>
+                              </td>
+                              <td>
+                                {humanReadableCondition(
+                                  trigger.condition,
+                                ).substring(28)}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td className="smaller">
+                                {trigger.location.lat}, {trigger.location.lon}
+                              </td>
+
+                              <td className="smaller">
+                                <i>
+                                  Notification has been sent to{' '}
+                                  {trigger.recipients.length} recipients
+                                </i>
+                              </td>
+                            </tr>
+                          </>
+                        ),
+                    )}
+                  </tbody>
+                </Table>
               </p>
             </Row>
           </Col>
