@@ -3,11 +3,9 @@ import { Col, Row, FormGroup, Label } from 'reactstrap'
 import Select from 'react-select'
 import '../App.scss'
 
-const PriorNotifs = () => {
-  const [days, setDays] = useState(0)
-
+const PriorNotifs = ({ days, setDays }) => {
   const priors = [
-    { value: 0, label: '0' },
+    { value: 'None', label: '0' },
     { value: 1, label: '1' },
     { value: 2, label: '2' },
     { value: 3, label: '3' },

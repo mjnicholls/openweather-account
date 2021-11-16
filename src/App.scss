@@ -673,10 +673,21 @@ Button.button-neutral {
 
 
 // classes for forecasted events page
+
 .forecast {
+
+  .collapse {
+    border-style: none;
+
+    a {
+      border-style: none!important;
+      display: inline-block;
+    }
+  }
 
 .card {
   border-style: none;
+
 
   tr {
     border-style: none;
@@ -691,6 +702,7 @@ Button.button-neutral {
   a {
     color: black;
     font-weight: bold;
+    text-align: center;
   }
 
   .smaller {
@@ -703,7 +715,6 @@ Button.button-neutral {
 }
 
 
-
 Button.button-turquoise {
   border: 1px solid rgba(72, 72, 74, 0.4);
   background-color:  $brand-turquoise;
@@ -714,9 +725,13 @@ Button.button-turquoise {
   cursor: pointer;
   white-space: nowrap;
   &:hover {
-    background-color: #f2f2f2 !important;
-    border-color: #f2f2f2;
+    background-color: $brand-turquoise; 
+    border-color: $brand-turquoise;
   }
 }
 
+}
+
+.table > :not(:first-child) {
+  border-top: none;
 }

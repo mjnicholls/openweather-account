@@ -1,11 +1,10 @@
-import React from 'react'
-
 import axios from 'axios'
 import {
   getIndexURL,
   postTriggerURL,
   patchTriggerURL,
   deleteTriggerURL,
+  getEventsURL,
 } from './index'
 
 axios.defaults.timeout = 15000
@@ -13,6 +12,12 @@ axios.defaults.timeout = 15000
 export const getTriggers = (userId) => {
   /** Get a list of triggers  */
   const url = `${getIndexURL}?user_id=${userId}`
+  return axios.get(url)
+}
+
+export const getEvents = (userId) => {
+  /** Get a list of events  */
+  const url = `${getEventsURL}?user_id=${userId}`
   return axios.get(url)
 }
 

@@ -20,7 +20,7 @@ const App = () => (
       <Header />
       <Container fluid="xl" style={{ marginTop: '60px' }}>
         <BrowserRouter>
-          <Route path="/create" component={CreateTrigger}/>
+          <Route path="/create" component={CreateTrigger} />
           <Route path="/trigger-list" component={TriggerList} />
           <Route path="/view-trigger" component={ViewTrigger} />
           <Route path="/forecasted-events" component={ForecastedEvents} />
