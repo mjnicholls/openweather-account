@@ -31,6 +31,155 @@ const ForecastedEvents = () => {
       })
   }, [userId])
 
+  const events = [
+  {
+    "day": 0,
+    "triggers": [
+      {
+        "id": "1",
+        "name": "string",
+        "user_id": "string",
+        "condition": {
+          "variable": "string",
+          "condition": "string",
+          "units": "string",
+          "value": 0
+        },
+        "days": 0,
+        "recipients": [
+          "string"
+        ],
+        "location": {
+          "lat": 0,
+          "lon": 0,
+          "name": "string"
+        },
+        "status": "string"
+      },
+      {
+        "id": "2",
+        "name": "string",
+        "user_id": "string",
+        "condition": {
+          "variable": "string",
+          "condition": "string",
+          "units": "string",
+          "value": 0
+        },
+        "days": 0,
+        "recipients": [
+          "string"
+        ],
+        "location": {
+          "lat": 0,
+          "lon": 0,
+          "name": "string"
+        },
+        "status": "string"
+      }
+    ]
+  },
+    {
+    "day": 1,
+    "triggers": [
+      {
+        "id": "string",
+        "name": "string",
+        "user_id": "string",
+        "condition": {
+          "variable": "string",
+          "condition": "string",
+          "units": "string",
+          "value": 0
+        },
+        "days": 0,
+        "recipients": [
+          "string"
+        ],
+        "location": {
+          "lat": 0,
+          "lon": 0,
+          "name": "string"
+        },
+        "status": "string"
+      }
+    ]
+  },
+    {
+    "day": 2,
+    "triggers": [
+      {
+        "id": "1",
+        "name": "string",
+        "user_id": "string",
+        "condition": {
+          "variable": "string",
+          "condition": "string",
+          "units": "string",
+          "value": 0
+        },
+        "days": 0,
+        "recipients": [
+          "string"
+        ],
+        "location": {
+          "lat": 0,
+          "lon": 0,
+          "name": "string"
+        },
+        "status": "string"
+      },
+      {
+        "id": "2",
+        "name": "string",
+        "user_id": "string",
+        "condition": {
+          "variable": "string",
+          "condition": "string",
+          "units": "string",
+          "value": 0
+        },
+        "days": 0,
+        "recipients": [
+          "string"
+        ],
+        "location": {
+          "lat": 0,
+          "lon": 0,
+          "name": "string"
+        },
+        "status": "string"
+      }
+    ]
+  },
+    {
+    "day": 3,
+    "triggers": [
+      {
+        "id": "string",
+        "name": "string",
+        "user_id": "string",
+        "condition": {
+          "variable": "string",
+          "condition": "string",
+          "units": "string",
+          "value": 0
+        },
+        "days": 0,
+        "recipients": [
+          "string"
+        ],
+        "location": {
+          "lat": 0,
+          "lon": 0,
+          "name": "string"
+        },
+        "status": "string"
+      }
+    ]
+  }
+]
+
   return (
     <>
       <div className="forecast">
@@ -63,6 +212,18 @@ const ForecastedEvents = () => {
               <Col className="mb-0" md="12" mt="20">
                 <Card>
                   <CardBody>
+                    {events.map(day => {
+                      return <>
+                        <p>Date: {day.day}</p>
+                        <p>{day.triggers.length} events</p>
+                        <div>
+                          {day.triggers.map(trigger => {
+                            return <p>Trigger: {trigger.name}</p>
+                          })}
+                        </div>
+                      </>
+                    })}
+
                     <Table className="mb-3">
                       <tbody>
                         {data.map(

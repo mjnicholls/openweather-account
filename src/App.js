@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react'
 
 import './App.scss'
@@ -22,18 +20,10 @@ const App = () => (
       <Header />
       <Container fluid="xl" style={{ marginTop: '60px' }}>
         <BrowserRouter>
-          <Route path="/create">
-            <CreateTrigger />
-          </Route>
-          <Route path="/trigger-list">
-            <TriggerList />
-          </Route>
-          <Route path="/view-trigger" component={ViewTrigger}>
-            <ViewTrigger />
-          </Route>
-          <Route path="/forecasted-events">
-            <ForecastedEvents />
-          </Route>
+          <Route path="/create" component={CreateTrigger}/>
+          <Route path="/trigger-list" component={TriggerList} />
+          <Route path="/view-trigger" component={ViewTrigger} />
+          <Route path="/forecasted-events" component={ForecastedEvents} />
           {/*<Redirect from="/" to="/trigger-list" />*/}
         </BrowserRouter>
       </Container>
