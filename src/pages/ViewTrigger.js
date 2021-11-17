@@ -9,43 +9,26 @@ import humanReadableCondition from '../humanReadableCondition'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import '../App.scss'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
-import { patchTrigger } from '../api/api'
+import { patchTrigger, getTriggersbyId } from '../api/api'
+import { toDate } from '../utils/dateTime'
 
 const noBlankErrorMessage = 'Cannot be blank'
 
-const selectUserId = (state) => state.auth.user_id
-
+//const selectUserId = (state) => state.auth.user_id
+//const selectTrigger = (state) => state.auth.trigger_id
+ 
+  /*  const ViewTrigger = ({trigger_id}) => {      */
 const ViewTrigger = () => {
   const { state } = useLocation()
 
-  const userId = useSelector(selectUserId)
+  //const userId = useSelector(selectUserId)
+  //const triggerId = useSelector(selectTrigger)
 
+   /*eslint-disable-next-line*/
+  const trigger_id="6192abe07bd13aaf3c5c81d1"
+  const userId = "some_id"
+  
   const { condition, days, id, location, name, recipients, status } = state
-
-  /*
-  const data = {
-    id: 1,
-    condition: {
-      condition: '>',
-      units: 'metric',
-      value: 20,
-      variable: 'temp',
-    },
-    days: 3,
-    name: 'Trigger 1',
-    recipients: ['email1', 'email2', 'email3', 'email4', 'email5', 'email6'],
-    status: false,
-    location: {
-      name: 'Paris',
-      lat: 40.4,
-      lon: 28.8,
-    },
-    user_id: 1,
-  }
-
-*/
-
-  // const { condition, days, id, location, name, recipients, status } = data
 
   const mapRef = useRef(null)
 
@@ -115,6 +98,22 @@ const ViewTrigger = () => {
         console.log(error)
       })
   }
+
+  const [data, setData] = useState([])
+
+
+  useEffect(() => {
+    getTriggersbyId(trigger_id, userId)
+      .then((res) => {
+        setData(res.data)
+        console.log('trigger', res.data)
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+        /*eslint-disable-next-line*/
+  }, [trigger_id, userId])
+
 
   return (
     <>
@@ -259,21 +258,15 @@ const ViewTrigger = () => {
 
             <Col>
               <Label type="text" className="cardContent">
-                27 October 2021
+                  {data.map((triggers) => (
+                    <>
+                    <p>{toDate(triggers.date)}</p>
+                    </>
+                  ))}
               </Label>
             </Col>
           </Row>
-          <Row className="search-box">
-            <Col>
-              <Label>Archive</Label>
-            </Col>
 
-            <Col>
-              <Label type="text" className="cardContent">
-                27 September 2021
-              </Label>
-            </Col>
-          </Row>
           <Row className="search-box">
             <Col className="text-left">
               <Link to="/trigger-list">

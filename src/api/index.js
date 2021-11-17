@@ -4,3 +4,4 @@ export const postTriggerURL = `${baseURL}triggers/v1/trigger`
 export const patchTriggerURL = `${baseURL}triggers/v1/trigger`
 export const deleteTriggerURL = `${baseURL}triggers/v1/trigger`
 export const getEventsURL = `${baseURL}triggers/v1/events/all`
+export const getTriggersId = `${baseURL}triggers/v1/events`

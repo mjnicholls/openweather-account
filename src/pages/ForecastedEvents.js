@@ -1,25 +1,25 @@
 /*eslint-disable*/
-import React, { useEffect, useState, useTable } from 'react'
-
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import '../App.scss'
 import { Link } from 'react-router-dom'
-import { getTriggers, getEvents } from '../api/api'
+import { getEvents } from '../api/api'
 import humanReadableCondition from '../humanReadableCondition'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { toDate } from '../utils/dateTime'
 // import AgroPagination from '../agro-components/AgroPagination'
 
 import '../App.scss'
 
-const selectUserId = (state) => state.auth.user_id
+//const selectUserId = (state) => state.auth.user_id
 
 const ForecastedEvents = () => {
-  const userId = useSelector(selectUserId)
-  const [data, setData] = useState([])
+  const userId = "some_id"
 
   const [isOpen, setIsOpen] = useState({})
+  const [data, setData] = useState([])
+  const [moreData, setMoreData] = useState([])
 
   const handleClick = (day) => {
     const newIsOpen = {...isOpen}
@@ -28,6 +28,7 @@ const ForecastedEvents = () => {
     console.log(newIsOpen)
   }
 
+  /*
   useEffect(() => {
     getTriggers(userId)
       .then((res) => {
@@ -37,30 +38,48 @@ const ForecastedEvents = () => {
         console.log('error', err)
       })
   }, [userId])
+*/
 
-  /*
-  const eventSchema = {
-    day: new Date(),
+/*
+  const events = [
+  {
+    day: toDate(),
     triggers: [
       {
-        name,
+        name: '',
         user_id: userId,
         condition: {
           variable,
           condition,
           units,
-          value,
+          value
         },
         days,
         recipients,
         location,
-        status,
-        id,
+        status: '',
+        id
       },
     ],
   }
-  */
+]
 
+*/
+
+  useEffect(() => {
+    getEvents(userId)
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+  }, [userId])
+
+
+  
+
+/*
   const events = [
     {
       day: 1637064000,
@@ -278,6 +297,7 @@ const ForecastedEvents = () => {
       ],
     },
   ]
+  */
 
   return (
     <>
@@ -298,12 +318,12 @@ const ForecastedEvents = () => {
           </Col>
         </Row>
         <Row className="search-box">
-          {events.map((day) => {
+          {data.slice(0,4).map((day) => {
             return (
                 <Col md="6" key={day.day}>
                   <Row className="search-box">
                     <Col mt="20">
-                      <h4>Date: {day.day}</h4>
+                      <h4>{toDate(day.day)}</h4>
                     </Col>
                     <Col>
                       <Button className="button-turquoise">

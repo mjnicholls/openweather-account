@@ -5,6 +5,8 @@ import {
   patchTriggerURL,
   deleteTriggerURL,
   getEventsURL,
+  getTriggersId
+  
 } from './index'
 
 axios.defaults.timeout = 15000
@@ -12,6 +14,14 @@ axios.defaults.timeout = 15000
 export const getTriggers = (userId) => {
   /** Get a list of triggers  */
   const url = `${getIndexURL}?user_id=${userId}`
+  return axios.get(url)
+}
+
+/*eslint-disable-next-line*/
+export const getTriggersbyId = (trigger_id, userId) => {
+  /** Get a list of triggers  */
+  /*eslint-disable-next-line*/
+  const url = `${getTriggersId}/${trigger_id}?user_id=${userId}`
   return axios.get(url)
 }
 
