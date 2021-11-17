@@ -8,8 +8,10 @@ import { useLocation, Link } from 'react-router-dom'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
 
 import { patchTrigger, getEventsByTriggerId } from '../api/api'
+
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
+
 import humanReadableCondition from '../humanReadableCondition'
 import '../App.scss'
 import { toDate } from '../utils/dateTime'
@@ -25,6 +27,7 @@ const ViewTrigger = () => {
 
   const userId = useSelector(selectUserId)
   // const triggerId = useSelector(selectTrigger)
+
 
   const { condition, days, id, location, name, recipients, status } = state
 

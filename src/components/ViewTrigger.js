@@ -6,7 +6,6 @@ import { Edit } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
-
 import { patchTrigger } from '../api/api'
 import humanReadableCondition from '../humanReadableCondition'
 import '../App.scss'

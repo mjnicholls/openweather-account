@@ -4,6 +4,7 @@ import React from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { deleteTrigger } from '../api/api'
 
+
 //const selectTrigger = (state) => state.trigger.id
 
 const DeleteTrigger = ({ id, userId }) => {
@@ -13,6 +14,7 @@ const DeleteTrigger = ({ id, userId }) => {
     })
 
     close()
+    
   }
 
   return (
@@ -23,6 +25,13 @@ const DeleteTrigger = ({ id, userId }) => {
           <br />
           <p>Are you sure you want to delete your trigger?</p>
         </Col>
+        {triggerId === true ? 
+        <Col>
+        "There are active events for this trigger. Are you sure you want to delete it?"
+        </Col>
+        :
+        <p></p>
+}
       </Row>
       <br />
       <Col className="text-end">
