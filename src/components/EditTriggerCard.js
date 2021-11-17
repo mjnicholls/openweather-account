@@ -19,7 +19,7 @@ const EditTriggerCard = ({ id, userId, name, status }) => {
         onCancel={() => hideAlert()}
         showConfirm={false}
         showCloseButton
-        style={{ fontFamily: '$highlight-font-family' }}
+        style={{ fontFamily: '$highlight-font-family', borderRadius:"12px" }}
       >
         <EditTrigger
           close={hideAlert}
