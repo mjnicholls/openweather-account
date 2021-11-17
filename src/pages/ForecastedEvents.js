@@ -19,7 +19,14 @@ const ForecastedEvents = () => {
   const userId = useSelector(selectUserId)
   const [data, setData] = useState([])
 
-  const [isOpen, setIsOpen] = useState()
+  const [isOpen, setIsOpen] = useState({})
+
+  const handleClick = (day) => {
+    const newIsOpen = {...isOpen}
+    newIsOpen[day] = !newIsOpen[day]
+    setIsOpen(newIsOpen)
+    console.log(newIsOpen)
+  }
 
   useEffect(() => {
     getTriggers(userId)
@@ -293,8 +300,7 @@ const ForecastedEvents = () => {
         <Row className="search-box">
           {events.map((day) => {
             return (
-              <>
-                <Col md="6">
+                <Col md="6" key={day.day}>
                   <Row className="search-box">
                     <Col mt="20">
                       <h4>Date: {day.day}</h4>
@@ -358,28 +364,27 @@ const ForecastedEvents = () => {
                                 ),
                               )}
                             </tbody>
-
-                            {day.triggers.slice(3).map((trigger, index) => (
-                              <>
-                                <a
-                                  data-toggle="collapse"
-                                  href="#collapseExample"
-                                  role="button"
-                                  aria-expanded="false"
-                                  aria-controls="collapseExample"
+                            {day.triggers.length > 3 && <a
+                                data-toggle="collapse"
+                                href="#collapseExample"
+                                role="button"
+                                aria-expanded="false"
+                                aria-controls="collapseExample"
+                                className="text-end"
+                                onClick={() => handleClick(day.day)}
+                              >
+                                <FontAwesomeIcon
+                                  icon={faArrowDown}
                                   className="text-end"
-                                  onClick={() => setIsOpen(!isOpen)}
-                                >
-                                  <FontAwesomeIcon
-                                    icon={faArrowDown}
-                                    className="text-end"
-                                    style={{
-                                      transform: isOpen
-                                        ? 'rotate(180deg)'
-                                        : 'none',
-                                    }}
-                                  />
-                                </a>
+                                  style={{
+                                    transform: isOpen[day.day]
+                                      ? 'rotate(180deg)'
+                                      : 'none',
+                                  }}
+                                />
+                              </a>}
+                            {isOpen[day.day] && day.triggers.slice(3).map((trigger, index) => (
+                              <>
 
                                 <tbody
                                   className="collapse"
@@ -429,7 +434,6 @@ const ForecastedEvents = () => {
                     </Col>
                   </Row>
                 </Col>
-              </>
             )
           })}
         </Row>
