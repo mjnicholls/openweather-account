@@ -1,6 +1,5 @@
-/* eslint-disable */
 const initialState = {
-  user_id: '1',
+  user_id: 'some_id',
   email: 'user',
 }
 
