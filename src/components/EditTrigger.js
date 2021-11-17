@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 import { Button, Col, Row, Input, Label } from 'reactstrap'
+
 import { patchTrigger, getTriggers } from '../api/api'
+
 import '../App.scss'
 import classnames from 'classnames'
 const noBlankErrorMessage = 'Cannot be blank'
@@ -12,7 +14,7 @@ const EditTrigger = ({ userId, id, name, status }) => {
 
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
-  /*eslint-disable-next-line*/
+  /* eslint-disable-next-line */
   const confirmEditTrigger = () => {
     setError({})
 
@@ -28,7 +30,7 @@ const EditTrigger = ({ userId, id, name, status }) => {
       return
     }
 
-    /*eslint-disable-next-line*/
+    /* eslint-disable-next-line */
     const data = {
       id,
       user_id: userId,
@@ -86,7 +88,7 @@ const EditTrigger = ({ userId, id, name, status }) => {
         </Col>
         <Col md="4" className="editStatus">
           <label className="switch">
-            {/*eslint-disable-next-line*/}
+            {/* eslint-disable-next-line */}
             <input
               type="checkbox"
               checked={tempStatus === 'on'}

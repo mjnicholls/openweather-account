@@ -2,15 +2,15 @@ import appStoreBadge from './img/app_store_badge.svg'
 import appGoogleBadge from './img/google_play_badge.png'
 import facebookLogo from './img/icon_facebook.png'
 import githubLogo from './img/icon_github.png'
+import hamburgerIcon from './img/icon_hamburger.svg'
 import instaLogo from './img/icon_instagram.png'
 import linkedInLogo from './img/icon_linkedin.png'
 import mediumLogo from './img/icon_medium.png'
+import searchIcon from './img/icon_search.svg'
 import telegramLogo from './img/icon_telegram.png'
 import twitterLogo from './img/icon_twitter.png'
-import owLogo from './img/logo_white.png'
-import searchIcon from './img/icon_search.svg'
-import hamburgerIcon from './img/icon_hamburger.svg'
 import userIcon from './img/icon_user.png'
+import owLogo from './img/logo_white.png'
 
 export const gallery = {
   badge: {

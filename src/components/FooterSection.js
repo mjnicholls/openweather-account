@@ -1,7 +1,7 @@
+import { useState } from 'react'
+
 import iconDownBlack from '../assets/img/icon_down_black.svg'
 import '../App.scss'
-
-import { useState } from 'react'
 
 const FooterSection = (props) => {
   const [open, setOpen] = useState(false)

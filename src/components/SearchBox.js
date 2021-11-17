@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 
 import { Button, Col, Row } from 'reactstrap'
 
-import CoordinatesSearch from './CoordinatesSearch'
 import AutoCompleteForm from './AutoCompleteForm'
+import CoordinatesSearch from './CoordinatesSearch'
+
 import '../App.scss'
 import classNames from 'classnames/index'
 

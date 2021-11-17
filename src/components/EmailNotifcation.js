@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 import { Button, Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import '../App.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,7 +9,9 @@ import {
   faThumbsUp,
 } from '@fortawesome/free-solid-svg-icons'
 import { Edit, Close } from 'react-ikonate'
+
 import { validateEmail } from '../utils/validation'
+
 import classnames from 'classnames'
 
 const EmailNotifs = ({ recipients, setRecipients }) => {

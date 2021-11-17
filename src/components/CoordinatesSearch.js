@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+
 import '../App.scss'
-import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
-import placeMarker from './placeMarker'
 import classnames from 'classnames'
+import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+
+import placeMarker from './placeMarker'
 
 const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
   const [lat, setLat] = useState(location.lat)

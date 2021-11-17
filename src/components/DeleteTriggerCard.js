@@ -1,6 +1,8 @@
 import React from 'react'
-import { Button } from 'reactstrap'
+
 import ReactBSAlert from 'react-bootstrap-sweetalert'
+import { Button } from 'reactstrap'
+
 import DeleteTrigger from './DeleteTrigger'
 
 const DeleteTriggerCard = ({ id, userId }) => {

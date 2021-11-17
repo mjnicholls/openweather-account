@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Row, Col, Input, Label, Button } from 'reactstrap'
-import { useLocation, Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faArrowDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Edit } from 'react-ikonate'
-import humanReadableCondition from '../humanReadableCondition'
-import ViewOnlyMap from '../components/GoogleMapViewOnly'
-import '../App.scss'
-import DeleteTriggerCard from '../components/DeleteTriggerCard'
+import { useSelector } from 'react-redux'
+import { useLocation, Link } from 'react-router-dom'
+import { Row, Col, Input, Label, Button } from 'reactstrap'
+
 import { patchTrigger } from '../api/api'
+import humanReadableCondition from '../humanReadableCondition'
+import '../App.scss'
+import DeleteTriggerCard from './DeleteTriggerCard'
+import ViewOnlyMap from './GoogleMapViewOnly'
 
 const noBlankErrorMessage = 'Cannot be blank'
 
@@ -82,7 +84,7 @@ const ViewTrigger = () => {
   }, [tempStatus])
 
   const saveMethod = () => {
-    /*eslint-disable-next-line*/
+    /* eslint-disable-next-line */
     const data = {
       id,
       user_id: userId,

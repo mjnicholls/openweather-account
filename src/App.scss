@@ -715,14 +715,13 @@ Button.button-neutral {
 }
 
 
-Button.button-turquoise {
-  border: 1px solid rgba(72, 72, 74, 0.4);
+.button-turquoise {
+  //border: 1px solid rgba(72, 72, 74, 0.4);
   background-color:  $brand-turquoise;
   border-radius: 16pt;
   padding: 6pt 8pt;
   text-decoration: none;
-  color: #48484a!important;
-  cursor: pointer;
+  color: #ffffff;
   white-space: nowrap;
   &:hover {
     background-color: $brand-turquoise; 

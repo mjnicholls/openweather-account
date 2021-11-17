@@ -1,9 +1,11 @@
 import React from 'react'
-import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+
 import Select from 'react-select'
+import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+
 import '../App.scss'
-import humanReadableCondition from '../humanReadableCondition'
 import { variables, units, conditions } from '../config'
+import humanReadableCondition from '../humanReadableCondition'
 
 const Condition = ({ condition, setCondition }) => {
   const handleChange = (key, value) => {

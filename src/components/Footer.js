@@ -1,4 +1,5 @@
 import React from 'react'
+
 import '../App.scss'
 import { gallery } from '../assets/Gallery'
 import FooterSection from './FooterSection'
