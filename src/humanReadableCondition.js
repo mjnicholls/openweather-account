@@ -5,7 +5,7 @@ const getUnits = (variable, units) => {
   if (variable === 'temp') {
     res = units === 'metric' ? '°C' : '°F'
   }
-  if (variable === 'rain') {
+  if (variable === 'prec') {
     res = units === 'mm' ? 'mm' : 'mm'
   }
   if (variable === 'wind') {

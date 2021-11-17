@@ -126,10 +126,10 @@ const ForecastedEvents = () => {
                           {day.triggers.length > 3 && (
                             <a
                               data-toggle="collapse"
-                              href="#collapseExample"
+                              href={`#collapse${day.day}`}
                               role="button"
                               aria-expanded="false"
-                              aria-controls="collapseExample"
+                              aria-controls={`collapse${day.day}`}
                               className="text-end"
                               onClick={() => handleClick(day.day)}
                             >
@@ -149,7 +149,7 @@ const ForecastedEvents = () => {
                               <>
                                 <tbody
                                   className="collapse"
-                                  id="collapseExample"
+                                  id={`#collapse${day.day}`}
                                 >
                                   <tr>
                                     <td>{index + 4}</td>

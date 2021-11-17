@@ -77,7 +77,7 @@ const TriggerList = () => {
         condition: '<',
         units: 'metric',
         value: 5,
-        variable: 'rain',
+        variable: 'prec',
       },
       days: 3,
       name: 'Trigger 1',
