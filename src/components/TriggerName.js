@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+
 import classnames from 'classnames'
+import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import '../App.scss'
 
 const TriggerName = ({ location, name, setName, error }) => {

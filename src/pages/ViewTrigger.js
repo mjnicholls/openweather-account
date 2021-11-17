@@ -1,33 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Row, Col, Input, Label, Button } from 'reactstrap'
-import { useLocation, Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faArrowDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Edit } from 'react-ikonate'
-import humanReadableCondition from '../humanReadableCondition'
-import ViewOnlyMap from '../components/GoogleMapViewOnly'
-import '../App.scss'
+import { useSelector } from 'react-redux'
+import { useLocation, Link } from 'react-router-dom'
+import { Row, Col, Input, Label, Button } from 'reactstrap'
+
+import { patchTrigger, getEventsByTriggerId } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
-import { patchTrigger, getTriggersbyId } from '../api/api'
+import ViewOnlyMap from '../components/GoogleMapViewOnly'
+import humanReadableCondition from '../humanReadableCondition'
+import '../App.scss'
 import { toDate } from '../utils/dateTime'
 
 const noBlankErrorMessage = 'Cannot be blank'
 
-//const selectUserId = (state) => state.auth.user_id
-//const selectTrigger = (state) => state.auth.trigger_id
- 
-  /*  const ViewTrigger = ({trigger_id}) => {      */
+const selectUserId = (state) => state.auth.user_id
+// const selectTrigger = (state) => state.auth.trigger_id
+
+/*  const ViewTrigger = ({trigger_id}) => {      */
 const ViewTrigger = () => {
   const { state } = useLocation()
 
-  //const userId = useSelector(selectUserId)
-  //const triggerId = useSelector(selectTrigger)
+  const userId = useSelector(selectUserId)
+  // const triggerId = useSelector(selectTrigger)
 
-   /*eslint-disable-next-line*/
-  const trigger_id="6192abe07bd13aaf3c5c81d1"
-  const userId = "some_id"
-  
   const { condition, days, id, location, name, recipients, status } = state
 
   const mapRef = useRef(null)
@@ -39,7 +37,6 @@ const ViewTrigger = () => {
   const validationName = () => {
     setError({})
     let newError = {}
-
     if (name === '') {
       newError = {
         name: noBlankErrorMessage,
@@ -63,12 +60,8 @@ const ViewTrigger = () => {
   const [tempStatus, setTempStatus] = useState(status)
   const [isOpen, setIsOpen] = useState()
 
-  useEffect(() => {
-    console.log('tempStatus', tempStatus)
-  }, [tempStatus])
-
   const saveMethod = () => {
-    /*eslint-disable-next-line*/
+    /* eslint-disable-next-line */
     const data = {
       id,
       user_id: userId,
@@ -101,19 +94,15 @@ const ViewTrigger = () => {
 
   const [data, setData] = useState([])
 
-
   useEffect(() => {
-    getTriggersbyId(trigger_id, userId)
+    getEventsByTriggerId(id, userId)
       .then((res) => {
         setData(res.data)
-        console.log('trigger', res.data)
       })
       .catch((err) => {
         console.log('error', err)
       })
-        /*eslint-disable-next-line*/
-  }, [trigger_id, userId])
-
+  }, [id, userId])
 
   return (
     <>
@@ -258,11 +247,11 @@ const ViewTrigger = () => {
 
             <Col>
               <Label type="text" className="cardContent">
-                  {data.map((triggers) => (
-                    <>
+                {data.map((triggers) => (
+                  <>
                     <p>{toDate(triggers.date)}</p>
-                    </>
-                  ))}
+                  </>
+                ))}
               </Label>
             </Col>
           </Row>

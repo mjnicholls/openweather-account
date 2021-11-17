@@ -237,10 +237,8 @@ const TriggerList = () => {
         </Row>
         <Row className="search-box">
           <Col className="text-end">
-            <Link to="/">
-              <Button className="button-neutral" style={{ width: '250px' }}>
-                List of Forecasted Events
-              </Button>
+            <Link to="/forecasted-events">
+              <Button className="button-neutral">To events</Button>
             </Link>
             <Link to="/create">
               <Button className="button-active">Create new trigger</Button>

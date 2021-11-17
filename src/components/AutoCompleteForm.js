@@ -1,9 +1,11 @@
 import React from 'react'
+
 import '../App.scss'
-import { Col, Row, FormGroup, Label } from 'reactstrap'
-import Autocomplete from 'react-google-autocomplete'
-import placeMarker from './placeMarker'
 import classnames from 'classnames/index'
+import Autocomplete from 'react-google-autocomplete'
+import { Col, Row, FormGroup, Label } from 'reactstrap'
+
+import placeMarker from './placeMarker'
 
 const AutoCompleteForm = ({ mapRef, setLocation, error }) => {
   const onPlaceSelected = (place) => {

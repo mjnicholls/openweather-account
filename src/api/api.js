@@ -1,53 +1,40 @@
 import axios from 'axios'
+
 import {
   getIndexURL,
   postTriggerURL,
   patchTriggerURL,
   deleteTriggerURL,
   getEventsURL,
-  getTriggersId
-  
+  getTriggersId,
 } from './index'
 
 axios.defaults.timeout = 15000
 
-export const getTriggers = (userId) => {
+// Trigger methods
+export const getTriggers = (userId) =>
   /** Get a list of triggers  */
-  const url = `${getIndexURL}?user_id=${userId}`
-  return axios.get(url)
-}
+  axios.get(`${getIndexURL}?user_id=${userId}`)
 
-/*eslint-disable-next-line*/
-export const getTriggersbyId = (trigger_id, userId) => {
-  /** Get a list of triggers  */
-  /*eslint-disable-next-line*/
-  const url = `${getTriggersId}/${trigger_id}?user_id=${userId}`
-  return axios.get(url)
-}
-
-export const getEvents = (userId) => {
-  /** Get a list of events  */
-  const url = `${getEventsURL}?user_id=${userId}`
-  return axios.get(url)
-}
-
-export const postTrigger = async (params) => {
+export const postTrigger = (params) =>
   /** Create a new trigger  */
-  const url = `${postTriggerURL}`
-  return axios.post(url, params)
-}
+  axios.post(postTriggerURL, params)
 
-export const patchTrigger = async (params) => {
+export const patchTrigger = (params) =>
   /** Update a trigger  */
+  axios.patch(patchTriggerURL, params)
 
-  const url = `${patchTriggerURL}`
-  return axios.patch(url, params)
-}
-
-export const deleteTrigger = async (id, userId) => {
+export const deleteTrigger = (id, userId) =>
   /** Delete a trigger  */
+  axios.delete(`${deleteTriggerURL}/${id}`, {
+    params: { user_id: userId },
+  })
 
-  const url = `${deleteTriggerURL}/${id}`
+// Event methods
+export const getEventsByTriggerId = (triggerId, userId) =>
+  /** Get a list of events  */
+  axios.get(`${getTriggersId}/${triggerId}?user_id=${userId}`)
 
-  return axios.delete(url, { params: { user_id: userId } })
-}
+export const getEvents = (userId) =>
+  /** Get a list of events  */
+  axios.get(`${getEventsURL}?user_id=${userId}`)

@@ -1,8 +1,10 @@
 import React from 'react'
-import { Button } from 'reactstrap'
+
 import ReactBSAlert from 'react-bootstrap-sweetalert'
-import EditTrigger from './EditTrigger'
 import { Edit } from 'react-ikonate'
+import { Button } from 'reactstrap'
+
+import EditTrigger from './EditTrigger'
 
 const EditTriggerCard = ({ id, userId, name, status }) => {
   const [alert, setAlert] = React.useState(null)

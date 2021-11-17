@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 import GoogleMapReact from 'google-map-react'
-
 import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
-
 import placeMarker from './placeMarker'
 
 const handleApiLoaded = (mapInstance, coords) => {
@@ -18,7 +16,7 @@ const createMapOptions = () => ({
   styles: mapStyles.styles,
   draggable: false,
 })
-/*eslint-disable-next-line */
+/* eslint-disable-next-line */
 const InfoWindow = ({ show, location }) => {
   return show && location.lat && location.lon ? (
     <div

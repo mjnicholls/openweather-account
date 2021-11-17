@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import { Col, Row, FormGroup, Label } from 'reactstrap'
+import React from 'react'
+
 import Select from 'react-select'
+import { Col, Row, FormGroup, Label } from 'reactstrap'
 import '../App.scss'
 
 const PriorNotifs = ({ days, setDays }) => {
