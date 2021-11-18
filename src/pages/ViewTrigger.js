@@ -285,6 +285,7 @@ const ViewTrigger = () => {
                 className="button-active"
                 style={{ marginLeft: '5px' }}
                 onClick={saveMethod}
+                disabled={!saveMethod}
               >
                 Save
               </Button>

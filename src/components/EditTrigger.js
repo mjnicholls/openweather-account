@@ -59,6 +59,7 @@ const EditTrigger = ({ userId, id, name, status }) => {
     patchTrigger(data)
       .then(() => {
         console.log('data')
+        refreshPage()
       })
       // eslint-disable-next-line
       .catch((error) => {
