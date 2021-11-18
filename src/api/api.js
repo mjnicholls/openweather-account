@@ -6,7 +6,7 @@ import {
   patchTriggerURL,
   deleteTriggerURL,
   getEventsURL,
-  getTriggersId,
+  getEventsByTriggerIdURL,
 } from './index'
 
 axios.defaults.timeout = 15000
@@ -33,7 +33,7 @@ export const deleteTrigger = (id, userId) =>
 // Event methods
 export const getEventsByTriggerId = (triggerId, userId) =>
   /** Get a list of events  */
-  axios.get(`${getTriggersId}/${triggerId}?user_id=${userId}`)
+  axios.get(`${getEventsByTriggerIdURL}/${triggerId}?user_id=${userId}`)
 
 export const getEvents = (userId) =>
   /** Get a list of events  */

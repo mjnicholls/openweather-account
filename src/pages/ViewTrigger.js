@@ -23,10 +23,9 @@ const ViewTrigger = () => {
   const { state } = useLocation()
 
   const userId = useSelector(selectUserId)
-  // const triggerId = useSelector(selectTrigger)
-
-
   const { condition, days, id, location, name, recipients, status } = state
+  // const triggerId = useSelector(selectTrigger)
+  // const triggerId = "asdsadsasdads"
 
   const mapRef = useRef(null)
 
@@ -92,12 +91,12 @@ const ViewTrigger = () => {
       })
   }
 
-  const [data, setData] = useState([])
+  const [events, setEvents] = useState([])
 
   useEffect(() => {
     getEventsByTriggerId(id, userId)
       .then((res) => {
-        setData(res.data)
+        setEvents(res.data)
       })
       .catch((err) => {
         console.log('error', err)
@@ -247,7 +246,7 @@ const ViewTrigger = () => {
 
             <Col>
               <Label type="text" className="cardContent">
-                {data.map((triggers) => (
+                {events.map((triggers) => (
                   <>
                     <p>{toDate(triggers.date)}</p>
                   </>
