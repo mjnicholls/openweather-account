@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from 'react'
 
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import '../App.scss'
 import { Link } from 'react-router-dom'
@@ -17,7 +17,6 @@ import '../App.scss'
 const selectUserId = (state) => state.auth.user_id
 
 const ForecastedEvents = () => {
-
   const userId = useSelector(selectUserId)
 
   const [isOpen, setIsOpen] = useState({})

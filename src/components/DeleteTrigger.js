@@ -27,15 +27,6 @@ const DeleteTrigger = ({ close, id, userId }) => {
           <br />
           <p>Are you sure you want to delete your trigger?</p>
         </Col>
-
-        {data.map((day) => {
-        
-
-        {day.day}
-            
-
-})}
-
       </Row>
       <br />
       <Col className="text-end">
