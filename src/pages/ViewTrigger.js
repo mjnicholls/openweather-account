@@ -6,7 +6,8 @@ import { Edit } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
-import { patchTrigger, getEventsByTriggerId } from '../api/api'
+
+import { patchTrigger, getEventsByTriggerId, getTriggers } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import humanReadableCondition from '../humanReadableCondition'
@@ -102,6 +103,23 @@ const ViewTrigger = () => {
         console.log('error', err)
       })
   }, [id, userId])
+
+  useEffect(() => {
+    refreshData()
+  }, [])
+
+  const [data, setData] = useState([])
+
+  const refreshData = () => {
+    getTriggers(data)
+      .then((res) => {
+        setData(res)
+      })
+      .catch((err) => {
+        // eslint-disable-next-line
+        console.log(err)
+      })
+  }
 
   return (
     <>

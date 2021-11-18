@@ -37,7 +37,7 @@ const DeleteTriggerCardX = ({ id, userId }) => {
         style={{
           backgroundColor: 'transparent',
           border: 'none',
-          padding: "0px"
+          padding: '0px',
         }}
         onClick={(e) => {
           htmlAlert()

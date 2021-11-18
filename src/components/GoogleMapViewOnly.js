@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import GoogleMapReact from 'google-map-react'
+
 import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
 import placeMarker from './placeMarker'

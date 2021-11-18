@@ -1,4 +1,5 @@
-export const userID = '1'
+export const userID = 'some_id'
+
 export const variables = [
   { value: 'temp', label: 'Air temperature' },
   { value: 'wind', label: 'Wind speed' },

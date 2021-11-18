@@ -15,7 +15,12 @@ const EditTrigger = ({ userId, id, name, status }) => {
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
   /* eslint-disable-next-line */
+
   const confirmEditTrigger = () => {
+    const refreshPage = () => {
+      window.location.reload(true)
+    }
+
     setError({})
 
     const newError = {}

@@ -204,7 +204,8 @@ const TriggerList = () => {
                             </td>
                             <td>{trigger.recipients.length}</td>
                             <td>
-                             {trigger.status.charAt(0).toUpperCase() + trigger.status.slice(1) }
+                              {trigger.status.charAt(0).toUpperCase() +
+                                trigger.status.slice(1)}
                             </td>
                             <td>
                               <EditTriggerCard
