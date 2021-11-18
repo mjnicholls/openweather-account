@@ -21,7 +21,7 @@ const DeleteTriggerCardX = ({ id, userId }) => {
         showConfirm={false}
         showCloseButton
         className="text-end"
-        style={{ fontFamily: '$highlight-font-family', borderRadius:"12px" }}
+        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <DeleteTrigger close={hideAlert} id={id} userId={userId} />
       </ReactBSAlert>,

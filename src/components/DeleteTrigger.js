@@ -23,7 +23,6 @@ const DeleteTrigger = ({ id, userId }) => {
           <br />
           <p>Are you sure you want to delete your trigger?</p>
         </Col>
-
       </Row>
       <br />
       <Col className="text-end">
