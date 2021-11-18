@@ -27,7 +27,7 @@ const SearchBox = ({ mapRef, location, setLocation, error }) => {
                <Col className="text-end move-up">
                  <Button
                    size="sm"
-                   className={classNames('button-neutral', {
+                   className={classNames('button-active', {
                      active: activeTab === 'location',
                    })}
                    onClick={() => setActiveTab('location')}
@@ -37,7 +37,7 @@ const SearchBox = ({ mapRef, location, setLocation, error }) => {
                  </Button>
                  <Button
                    size="sm"
-                   className={classNames('button-active', {
+                   className={classNames('button-neutral', {
                      active: activeTab === 'coordinates',
                    })}
                    onClick={() => setActiveTab('coordinates')}
@@ -62,7 +62,7 @@ const SearchBox = ({ mapRef, location, setLocation, error }) => {
             <Col className="text-end move-up">
               <Button
                 size="sm"
-                className={classNames('button-active', {
+                className={classNames('button-neutral', {
                   active: activeTab === 'location',
                 })}
                 onClick={() => setActiveTab('location')}
@@ -72,7 +72,7 @@ const SearchBox = ({ mapRef, location, setLocation, error }) => {
               </Button>
               <Button
                 size="sm"
-                className={classNames('button-neutral', {
+                className={classNames('button-active', {
                   active: activeTab === 'coordinates',
                 })}
                 onClick={() => setActiveTab('coordinates')}

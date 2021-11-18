@@ -74,6 +74,7 @@
     border: none;
     &:focus {
       box-shadow: none;
+      outline: none !important;
     }
   }
 
@@ -265,10 +266,13 @@ p {
   font-family: $default-font-family;
 }
 .active {
-  background-color: black !important;
+  background-color: rgba(72, 72, 74, 0.85) !important;
+  border-style: none;
+  border-radius: none;
 
   &:focus {
     background-color: white;
+    outline: none !important;
   }
 }
 
@@ -390,6 +394,7 @@ p {
 
   &:focus {
     background-color: black;
+    outline:none!important;
   }
   &:active {
     background-color: white;
@@ -648,6 +653,9 @@ Button.button-active {
   &:hover {
     background-color: rgba(72, 72, 74, 0.85);
     border-color: rgba(72, 72, 74, 0.85);
+  };
+  &:focus{
+    outline: none !important;
   }
 }
 
@@ -660,9 +668,13 @@ Button.button-neutral {
   color: #48484a!important;
   cursor: pointer;
   white-space: nowrap;
+  margin-left: 4pt;
   &:hover {
     background-color: #f2f2f2 !important;
     border-color: #f2f2f2;
+  }
+  &:focus{
+    outline: none !important;
   }
 }
 

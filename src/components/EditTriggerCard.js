@@ -41,7 +41,7 @@ const EditTriggerCard = ({ id, userId, name, status }) => {
         style={{
           backgroundColor: 'transparent',
           border: 'none',
-          marginTop: '2px',
+          padding: "0px"
         }}
         title="Update"
         className="text-end"

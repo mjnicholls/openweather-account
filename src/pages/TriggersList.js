@@ -4,7 +4,7 @@ import React, { useEffect, useState, useTable } from 'react'
 import { useSelector } from 'react-redux'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import '../App.scss'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import humanReadableCondition from '../humanReadableCondition'
 import { getTriggers } from '../api/api'
 // import AgroPagination from '../agro-components/AgroPagination'
@@ -204,13 +204,7 @@ const TriggerList = () => {
                             </td>
                             <td>{trigger.recipients.length}</td>
                             <td>
-                              <label className="switch">
-                                <input
-                                  type="checkbox"
-                                  checked={trigger.status === 'on'}
-                                />
-                                <span className="slider round"></span>
-                              </label>
+                             {trigger.status.charAt(0).toUpperCase() + trigger.status.slice(1) }
                             </td>
                             <td>
                               <EditTriggerCard

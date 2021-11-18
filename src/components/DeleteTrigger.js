@@ -3,17 +3,21 @@ import React from 'react'
 
 import { Button, Col, Row } from 'reactstrap'
 import { deleteTrigger } from '../api/api'
+import { getEvents } from '../api/api'
 
 //const selectTrigger = (state) => state.trigger.id
 
-const DeleteTrigger = ({ id, userId }) => {
+const DeleteTrigger = ({ close, id, userId }) => {
+  
   const confirmDeleteTrigger = () => {
+
     deleteTrigger(id, userId).then(() => {
       console.log('deleted')
+      
     })
-
     close()
   }
+ 
 
   return (
     <>
@@ -23,6 +27,14 @@ const DeleteTrigger = ({ id, userId }) => {
           <br />
           <p>Are you sure you want to delete your trigger?</p>
         </Col>
+
+        {data.map((day) => {
+        
+
+        {day.day}
+            
+
+})}
 
       </Row>
       <br />
