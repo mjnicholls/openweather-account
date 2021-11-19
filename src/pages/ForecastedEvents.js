@@ -58,7 +58,8 @@ const ForecastedEvents = () => {
             <Row className="search-box">
               <h2>No events for upcoming days.</h2>
             </Row>
-          ) : data.map((day) => (
+          ) : (
+            data.map((day) => (
               <Col md="6" key={day.day}>
                 <Row className="search-box">
                   <Col mt="20">
@@ -74,90 +75,100 @@ const ForecastedEvents = () => {
                       <CardBody>
                         <Table className="mb-3">
                           <tbody>
-                          {day.triggers.length ?
-                            day.triggers.slice(0, openEventsN).map((trigger, index) =>
-                              (<React.Fragment key={trigger.id}>
-                                <tr>
-                                  <td>{index + 1}</td>
-                                  <td>
-                                    {' '}
-                                    <Link
-                                      to={{
-                                        pathname: '/view-trigger',
-                                        state: trigger,
-                                      }}
-                                    >
-                                      {trigger.name}
-                                    </Link>
-                                  </td>
-                                  <td>
-                                    {humanReadableCondition(
-                                      trigger.condition,
-                                    ).substring(28)}
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>&nbsp;</td>
-                                  <td className="smaller">
-                                    {trigger.location.lat},{' '}
-                                    {trigger.location.lon}
-                                  </td>
-                                  <td className="smaller">
-                                    <i>
-                                      Notification has been sent to{' '}
-                                      {trigger.recipients.length} recipients
-                                    </i>
-                                  </td>
-                                </tr>
-                              </React.Fragment>
-                            )) : <tr><td>No events</td></tr>
-                          }
+                            {day.triggers.length ? (
+                              day.triggers
+                                .slice(0, openEventsN)
+                                .map((trigger, index) => (
+                                  <React.Fragment key={trigger.id}>
+                                    <tr>
+                                      <td>{index + 1}</td>
+                                      <td>
+                                        {' '}
+                                        <Link
+                                          to={{
+                                            pathname: '/view-trigger',
+                                            state: trigger,
+                                          }}
+                                        >
+                                          {trigger.name}
+                                        </Link>
+                                      </td>
+                                      <td>
+                                        {humanReadableCondition(
+                                          trigger.condition,
+                                        ).substring(28)}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>&nbsp;</td>
+                                      <td className="smaller">
+                                        {trigger.location.lat},{' '}
+                                        {trigger.location.lon}
+                                      </td>
+                                      <td className="smaller">
+                                        <i>
+                                          Notification has been sent to{' '}
+                                          {trigger.recipients.length} recipients
+                                        </i>
+                                      </td>
+                                    </tr>
+                                  </React.Fragment>
+                                ))
+                            ) : (
+                              <tr>
+                                <td>No events</td>
+                              </tr>
+                            )}
 
-                          {day.triggers.length > openEventsN && (
-                            <>
-                            <tr>
-                              <td className="text-center" colSpan={3}>
-                                <a
-                                    data-toggle="collapse"
-                                    href={`#collapse${day.day}`}
-                                    role="button"
-                                    aria-expanded="false"
-                                    aria-controls={`collapse${day.day}`}
-                                    // onClick={() => handleClick(day.day)}
-                                  >
-                                    <ArrowDown
-                                      style={{
-                                        transform: isOpen[day.day]
-                                          ? 'rotate(180deg)'
-                                          : 'none',
-                                      }}
-                                    />
-                                  </a>
-                              </td>
-                            </tr>
-                            <div
-                              className="collapse"
-                              id={`#collapse${day.day}`}
-                            >
-                            {day.triggers.slice(openEventsN).map((trigger, index) => (
-                              <tbody key={trigger.id}>
+                            {day.triggers.length > openEventsN && (
+                              <>
                                 <tr>
-                                  <td>{index + openEventsN + 1}</td>
-                                  <td>
-                                    {' '}
-                                    <Link
-                                      to={{
-                                        pathname: '/view-trigger',
-                                        state: trigger,
-                                      }}
+                                  <td className="text-center" colSpan={3}>
+                                    <a
+                                      data-toggle="collapse"
+                                      href={`#collapse${day.day}`}
+                                      role="button"
+                                      aria-expanded="false"
+                                      aria-controls={`collapse${day.day}`}
+                                      // onClick={() => handleClick(day.day)}
                                     >
-                                      {trigger.name}
-                                    </Link>
+                                      <ArrowDown
+                                        style={{
+                                          transform: isOpen[day.day]
+                                            ? 'rotate(180deg)'
+                                            : 'none',
+                                        }}
+                                      />
+                                    </a>
                                   </td>
                                 </tr>
-                              </tbody>))}
-                            </div>
-                            </>)}
+                                <div
+                                  className="collapse"
+                                  id={`#collapse${day.day}`}
+                                >
+                                  {day.triggers
+                                    .slice(openEventsN)
+                                    .map((trigger, index) => (
+                                      <tbody key={trigger.id}>
+                                        <tr>
+                                          <td>{index + openEventsN + 1}</td>
+                                          <td>
+                                            {' '}
+                                            <Link
+                                              to={{
+                                                pathname: '/view-trigger',
+                                                state: trigger,
+                                              }}
+                                            >
+                                              {trigger.name}
+                                            </Link>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    ))}
+                                </div>
+                              </>
+                            )}
                           </tbody>
                         </Table>
                       </CardBody>
@@ -166,7 +177,7 @@ const ForecastedEvents = () => {
                 </Row>
               </Col>
             ))
-          }
+          )}
         </Row>
       </div>
     </>

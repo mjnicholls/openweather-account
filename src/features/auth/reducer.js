@@ -1,5 +1,5 @@
 const initialState = {
-  user_id: 'some_id',
+  user_id: 1,
   email: 'user',
 }
 

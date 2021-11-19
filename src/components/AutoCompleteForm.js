@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import '../App.scss'
 import classnames from 'classnames/index'
@@ -7,7 +7,7 @@ import { Col, Row, FormGroup, Label } from 'reactstrap'
 
 import placeMarker from './placeMarker'
 
-const AutoCompleteForm = ({ mapRef, setLocation, error }) => {
+const AutoCompleteForm = ({ mapRef, location, setLocation, error }) => {
   const onPlaceSelected = (place) => {
     if (mapRef && mapRef.current) {
       setLocation({
@@ -42,7 +42,7 @@ const AutoCompleteForm = ({ mapRef, setLocation, error }) => {
               options={{
                 types: ['(regions)'],
               }}
-              defaultValue=""
+              value={location}
             />
           </FormGroup>
           <div

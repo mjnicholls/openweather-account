@@ -1,4 +1,5 @@
 export const userID = 'some_id'
+export const noBlankErrorMessage = 'Cannot be blank'
 
 export const variables = [
   { value: 'temp', label: 'Air temperature' },

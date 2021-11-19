@@ -3,18 +3,14 @@ import React, { useState, useEffect } from 'react'
 
 import { Button, Col, Row } from 'reactstrap'
 import { deleteTrigger } from '../api/api'
-import { getEventsByTriggerId } from '../api/api'
+import { getEventsByTriggerId, getTriggers } from '../api/api'
 
 //const selectTrigger = (state) => state.trigger.id
 
 const DeleteTrigger = ({ close, id, userId }) => {
-  const refreshPage = () => {
-    window.location.reload(true)
-  }
-
   const confirmDeleteTrigger = () => {
     deleteTrigger(id, userId).then(() => {
-      refreshPage()
+      getTriggers(id, userId)
     })
     close()
   }

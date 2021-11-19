@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import '../App.scss'
 import classnames from 'classnames'
 import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
-
+import { noBlankErrorMessage } from '../config'
 import placeMarker from './placeMarker'
 
 const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
   const [lat, setLat] = useState(location.lat)
   const [lng, setLng] = useState(location.lon)
   const [error, setError] = useState({})
-  const noBlankErrorMessage = 'Cannot be blank'
+
   const latRangeError = 'Value cannot be below -90 or above 90'
   const lngRangeError = 'Value cannot be below -180 or above 180'
 

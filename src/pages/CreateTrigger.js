@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 
 import { Button, Col, Row } from 'reactstrap'
 import { useSelector } from 'react-redux'
-
+import { useHistory } from 'react-router-dom'
 import GoogleMapCreate from '../components/GoogleMapCreate'
 import SearchBox from '../components/SearchBox'
 import Condition from '../components/Condition'
@@ -11,6 +11,10 @@ import PriorNotifs from '../components/PriorNotifications'
 import EmailNotifs from '../components/EmailNotifcation'
 import '../App.scss'
 import { postTrigger } from '../api/api'
+import ReactBSAlert from 'react-bootstrap-sweetalert'
+import CreateTriggerCard from '../components/CreateTriggerCard'
+import { noBlankErrorMessage } from '../config'
+
 const selectUserId = (state) => state.auth.user_id
 
 const CreateTrigger = () => {
@@ -37,7 +41,11 @@ const CreateTrigger = () => {
 
   const [error, setError] = useState({})
 
-  const noBlankErrorMessage = 'Cannot be blank'
+  const history = useHistory()
+
+  const goToPreviousPath = () => {
+    history.goBack()
+  }
 
   const createTrigger = () => {
     const data = {
@@ -47,7 +55,7 @@ const CreateTrigger = () => {
       name,
       recipients,
       status: 'on',
-      user_id: userId,
+      user_Id: userId,
     }
 
     setError({})
@@ -67,8 +75,8 @@ const CreateTrigger = () => {
     }
 
     postTrigger(data)
-      .then((res) => {
-        console.log('data', res)
+      .then(() => {
+        htmlAlert()
       })
       .catch((err) => {
         console.log(err)
@@ -81,9 +89,32 @@ const CreateTrigger = () => {
     setLocation(newLocation)
   }
 
+  const [alert, setAlert] = React.useState(null)
+
+  const hideAlert = () => {
+    setAlert(null)
+  }
+
+  const htmlAlert = () => {
+    setAlert(
+      <ReactBSAlert
+        title="Delete Trigger?"
+        onConfirm={() => hideAlert()}
+        onCancel={() => hideAlert()}
+        showConfirm={false}
+        showCloseButton
+        className="text-end"
+        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
+      >
+        <CreateTriggerCard close={hideAlert} />
+      </ReactBSAlert>,
+    )
+  }
+
   return (
     <Row>
       <Col md="7">
+        {alert}
         <h2>Create Trigger</h2>
         <div className="pt-5 pb-5">
           <TriggerName
@@ -91,6 +122,7 @@ const CreateTrigger = () => {
             setName={setName}
             location={location}
             error={error}
+            onChange={(e) => handleChange('name', e.target.value)}
           />
           <SearchBox
             mapRef={mapRef}
@@ -104,7 +136,9 @@ const CreateTrigger = () => {
           <EmailNotifs recipients={recipients} setRecipients={setRecipients} />
           <Row className="search-box">
             <Col className="text-end">
-              <Button className="button-neutral">Cancel</Button>
+              <Button className="button-neutral" onClick={goToPreviousPath}>
+                Cancel
+              </Button>
               <Button className="button-active" onClick={createTrigger}>
                 Create trigger
               </Button>

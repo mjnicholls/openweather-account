@@ -11,8 +11,7 @@ import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import humanReadableCondition from '../humanReadableCondition'
 import '../App.scss'
 import { toDate } from '../utils/dateTime'
-
-const noBlankErrorMessage = 'Cannot be blank'
+import { noBlankErrorMessage } from '../config'
 
 const selectUserId = (state) => state.auth.user_id
 
@@ -95,23 +94,6 @@ const ViewTrigger = () => {
         console.log('error', err)
       })
   }, [id, userId])
-
-  useEffect(() => {
-    refreshData()
-  }, [])
-
-  const [data, setData] = useState([])
-
-  const refreshData = () => {
-    getTriggers(data)
-      .then((res) => {
-        setData(res)
-      })
-      .catch((err) => {
-        // eslint-disable-next-line
-        console.log(err)
-      })
-  }
 
   return (
     <>
@@ -269,7 +251,6 @@ const ViewTrigger = () => {
                 className="button-active"
                 style={{ marginLeft: '5px' }}
                 onClick={saveMethod}
-                disabled={!saveMethod}
               >
                 Save
               </Button>

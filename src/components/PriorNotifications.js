@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Select from 'react-select'
 import { Col, Row, FormGroup, Label } from 'reactstrap'
@@ -27,7 +27,8 @@ const PriorNotifs = ({ days, setDays }) => {
               onChange={(option) => setDays(option.value)}
               classNamePrefix="react-select"
               options={priors}
-              value={priors.find((el) => el.value === days)}
+              value={priors.find((el) => el.value === 'days')}
+              defaultValue={priors[0]}
             />
           </FormGroup>
         </Col>
