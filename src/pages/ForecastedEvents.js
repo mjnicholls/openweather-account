@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 import { ArrowDown } from 'react-ikonate'
 import { useSelector } from 'react-redux'
-import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
+
 import { getEvents } from '../api/api'
 import humanReadableCondition from '../humanReadableCondition'
 import { toDate } from '../utils/dateTime'

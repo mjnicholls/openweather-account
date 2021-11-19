@@ -6,6 +6,7 @@ import { patchTrigger, getTriggers } from '../api/api'
 
 import '../App.scss'
 import classnames from 'classnames'
+
 import { noBlankErrorMessage } from '../config'
 
 const EditTrigger = ({ userId, id, name, status }) => {

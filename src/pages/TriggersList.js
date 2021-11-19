@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
-import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
+
 import humanReadableCondition from '../humanReadableCondition'
 import { getTriggers } from '../api/api'
 

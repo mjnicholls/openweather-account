@@ -1,10 +1,8 @@
 const initialState = {
-  user_id: 1,
+  user_id: 'some_id',
   email: 'user',
-  tariff: 'free'  // free, startup, developer, professional, enterprise
+  tariff: 'free', // free, startup, developer, professional, enterprise
 }
-
-
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {

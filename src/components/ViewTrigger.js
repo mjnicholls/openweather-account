@@ -6,12 +6,12 @@ import { useLocation, Link } from 'react-router-dom'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
 
 import { patchTrigger, getEventsByTriggerId, getTriggers } from '../api/api'
-import DeleteTriggerCard from '../components/DeleteTriggerCard'
-import ViewOnlyMap from '../components/GoogleMapViewOnly'
+import { noBlankErrorMessage } from '../config'
 import humanReadableCondition from '../humanReadableCondition'
 import '../App.scss'
 import { toDate } from '../utils/dateTime'
-import { noBlankErrorMessage } from '../config'
+import DeleteTriggerCard from './DeleteTriggerCard'
+import ViewOnlyMap from './GoogleMapViewOnly'
 
 const selectUserId = (state) => state.auth.user_id
 

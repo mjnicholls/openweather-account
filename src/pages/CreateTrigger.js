@@ -1,18 +1,21 @@
 import React, { useRef, useState } from 'react'
 
-import { Button, Col, Row } from 'reactstrap'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import GoogleMapCreate from '../components/GoogleMapCreate'
-import SearchBox from '../components/SearchBox'
-import Condition from '../components/Condition'
-import TriggerName from '../components/TriggerName'
-import PriorNotifs from '../components/PriorNotifications'
-import EmailNotifs from '../components/EmailNotifcation'
-import '../App.scss'
+import { Button, Col, Row } from 'reactstrap'
+
 import { postTrigger } from '../api/api'
-import ReactBSAlert from 'react-bootstrap-sweetalert'
+import Condition from '../components/Condition'
 import CreateTriggerCard from '../components/CreateTriggerCard'
+import EmailNotifs from '../components/EmailNotifcation'
+import GoogleMapCreate from '../components/GoogleMapCreate'
+import PriorNotifs from '../components/PriorNotifications'
+import SearchBox from '../components/SearchBox'
+import TriggerName from '../components/TriggerName'
+import '../App.scss'
+
+import ReactBSAlert from 'react-bootstrap-sweetalert'
+
 import { noBlankErrorMessage } from '../config'
 
 const selectUserId = (state) => state.auth.user_id
@@ -55,7 +58,7 @@ const CreateTrigger = () => {
       name,
       recipients,
       status: 'on',
-      user_Id: userId,
+      user_id: userId,
     }
 
     setError({})
