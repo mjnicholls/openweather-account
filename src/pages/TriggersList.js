@@ -1,13 +1,10 @@
-/*eslint-disable*/
-import React, { useEffect, useState, useTable } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
-import '../App.scss'
 import { Link } from 'react-router-dom'
 import humanReadableCondition from '../humanReadableCondition'
 import { getTriggers } from '../api/api'
-// import AgroPagination from '../agro-components/AgroPagination'
 
 import '../App.scss'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
@@ -29,126 +26,6 @@ const TriggerList = () => {
       })
   }, [userId])
 
-  {
-    /*}
-
-  const pageData = [
-    {
-      id: 1,
-      condition: {
-        condition: '>',
-        units: 'metric',
-        value: 20,
-        variable: 'temp',
-      },
-      days: 3,
-      name: 'Trigger 1',
-      recipients: ['email1', 'email2', 'email3'],
-      status: false,
-      location: {
-        name: 'Paris',
-        lat: 40.4,
-        lon: 28.8,
-      },
-      user_id: 1,
-    },
-    {
-      id: 2,
-      condition: {
-        condition: '>',
-        units: 'metric',
-        value: 10,
-        variable: 'wind',
-      },
-      days: 3,
-      name: 'Trigger 1',
-      recipients: ['email1', 'email2', 'email3', 'email2', 'email3'],
-      status: false,
-      location: {
-        name: 'Paris',
-        lat: 40.4,
-        lon: 28.8,
-      },
-      user_id: 1,
-    },
-    {
-      id: 3,
-      condition: {
-        condition: '<',
-        units: 'metric',
-        value: 5,
-        variable: 'prec',
-      },
-      days: 3,
-      name: 'Trigger 1',
-      recipients: ['email2', 'email3'],
-      status: false,
-      location: {
-        name: 'Paris',
-        lat: 40.4,
-        lon: 28.8,
-      },
-      user_id: 1,
-    },
-    {
-      id: 4,
-      condition: {
-        condition: '<',
-        units: 'metric',
-        value: 0,
-        variable: 'temp',
-      },
-      days: 1,
-      name: 'Trigger 1',
-      recipients: ['email1', 'email2'],
-      status: false,
-      location: {
-        name: 'Paris',
-        lat: 40.4,
-        lon: 28.8,
-      },
-      user_id: 1,
-    },
-    {
-      id: 5,
-      condition: {
-        condition: '>',
-        units: 'metric',
-        value: 20,
-        variable: 'temp',
-      },
-      days: 2,
-      name: 'Trigger 1',
-      recipients: ['email1', 'email2', 'email3', 'email2', 'email3'],
-      status: true,
-      location: {
-        name: 'Paris',
-        lat: 40.4,
-        lon: 28.8,
-      },
-      user_id: 1,
-    },
-  ]
-
- 
-
-  const [page, setPage] = useState(0)
-  const [pageData, setPageData] = useState([])
-
-  const fetchData = async () => {
-    return axios.get("https://openweathermap.org/api/trigger/all")
-    .then((response) => console.log(response.data));
-}
-  
-  useEffect(() => {
-    setPageData(trigger.slice(page * itemsPerPage, (page + 1) * itemsPerPage))
-  }, [trigger, page])
-
-  const itemsPerPage = 10
-
-*/
-  }
-
   return (
     <>
       <div className="content">
@@ -164,15 +41,15 @@ const TriggerList = () => {
                 <Table className="mb-3">
                   <thead>
                     <tr>
-                      <th></th>
+                      <th>&nbsp;</th>
                       <th>Trigger Name</th>
                       <th>Trigger Condition</th>
                       <th>Location</th>
                       <th>Notify</th>
                       <th>Email Recipients</th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
+                      <th>&nbsp;</th>
+                      <th>&nbsp;</th>
+                      <th>&nbsp;</th>
                     </tr>
                   </thead>
 
@@ -180,7 +57,7 @@ const TriggerList = () => {
                     {data.map(
                       (trigger, index) =>
                         trigger.status !== 'deleted' && (
-                          <tr>
+                          <tr key={trigger.id}>
                             <td>{index + 1}</td>
                             <td>
                               <Link

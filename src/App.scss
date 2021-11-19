@@ -331,7 +331,7 @@ p {
     font-size: 8pt;
   }
 
-  Label {
+  label {
     margin-top: 10px;
     font-family: $default-font-family;
     text-align: center;
@@ -350,7 +350,7 @@ p {
     background-color: #fff;
   }
 
-  Button.button-active {
+  .button-active {
     border-radius: 16pt;
     padding: 6pt 8pt;
     text-decoration: none;
@@ -367,7 +367,7 @@ p {
     }
   }
 
-  Button.button-neutral {
+  .button-neutral {
     border: 1px solid rgba(72, 72, 74, 0.4);
     background-color: transparent !important;
     border-radius: 16pt;
@@ -492,7 +492,7 @@ p {
   div.card {
     border: none;
 
-    Table {
+    table {
       margin-bottom: 15px;
       text-align: center;
       border-bottom-width: 1px !important;
@@ -536,7 +536,7 @@ p {
     }
   }
 
-  Button.bottom {
+  button.bottom {
     margin-top: 30px;
     margin-bottom: 30px;
   }
@@ -659,7 +659,7 @@ Button.button-active {
   }
 }
 
-Button.button-neutral {
+.button-neutral {
   border: 1px solid rgba(72, 72, 74, 0.4);
   background-color: transparent !important;
   border-radius: 16pt;

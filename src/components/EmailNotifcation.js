@@ -2,13 +2,7 @@ import React, { useState } from 'react'
 
 import { Button, Col, Row, FormGroup, Label, Input } from 'reactstrap'
 import '../App.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faTrash,
-  faPenSquare,
-  faThumbsUp,
-} from '@fortawesome/free-solid-svg-icons'
-import { Edit, Close } from 'react-ikonate'
+import { Edit, Close, Ok } from 'react-ikonate'
 
 import { validateEmail } from '../utils/validation'
 
@@ -16,17 +10,17 @@ import classnames from 'classnames'
 
 const EmailNotifs = ({ recipients, setRecipients }) => {
   const [email, setEmail] = useState('')
-
-  const [error, setError] = useState('')
-  const [activeEmail, setActiveEmail] = useState(null) // email in the list
+  const [error, setError] = useState({})
+  const [activeEmail, setActiveEmail] = useState(null)
   const [activeEmailContent, setActiveEmailContent] = useState('')
 
   const noBlankErrorMessage = 'Cannot be blank'
-  const emailErrorMessage = 'Must be a proper email address'
+  const emailErrorMessage = 'Must be a valid email address'
 
   const addEmail = () => {
-    if (validationEmail(email)) {
+    if (isEmailValid(email)) {
       setRecipients([...recipients, email])
+      setEmail('')
     }
   }
 
@@ -34,8 +28,10 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
     const recipientsCopy = [...recipients]
     recipientsCopy[index] = activeEmailContent
     setRecipients(recipientsCopy)
+    setEmail('')
     setActiveEmail(null)
     setActiveEmailContent('')
+    console.log('**', email)
   }
 
   const deleteEmail = (index) => {
@@ -45,11 +41,11 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
     setActiveEmail(null)
   }
 
-  const validationEmail = () => {
+  const isEmailValid = () => {
     setError({})
     let newError = {}
 
-    if (email === '') {
+    if (!email.length) {
       newError = {
         email: noBlankErrorMessage,
       }
@@ -58,6 +54,12 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
     if (!validateEmail(email)) {
       newError = {
         email: emailErrorMessage,
+      }
+    }
+
+    if (recipients.includes(email)) {
+      newError = {
+        email: 'The email is already added',
       }
     }
 
@@ -130,8 +132,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
                 />
               </Col>
               <Col className="icons" style={{ marginBottom: '30px' }}>
-                <FontAwesomeIcon
-                  icon={faThumbsUp}
+                <Ok
                   onClick={() => saveEmail(index)}
                   style={{ marginRight: '20px' }}
                 />

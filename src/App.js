@@ -17,7 +17,7 @@ const App = () => (
   <Provider store={store}>
     <div className="App">
       <Header />
-      <Container fluid="xl" style={{ marginTop: '60px' }}>
+      <Container fluid="xl" style={{ marginTop: '60px' }} className="vh-100">
         <BrowserRouter>
           <Route path="/create" component={CreateTrigger} />
           <Route path="/trigger-list" component={TriggerList} />

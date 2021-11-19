@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { faArrowDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Edit } from 'react-ikonate'
+import { ArrowDown, Edit, Ok } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
@@ -17,22 +15,20 @@ import { toDate } from '../utils/dateTime'
 const noBlankErrorMessage = 'Cannot be blank'
 
 const selectUserId = (state) => state.auth.user_id
-// const selectTrigger = (state) => state.auth.trigger_id
 
-/*  const ViewTrigger = ({trigger_id}) => {      */
 const ViewTrigger = () => {
   const { state } = useLocation()
 
   const userId = useSelector(selectUserId)
   const { condition, days, id, location, name, recipients, status } = state
-  // const triggerId = useSelector(selectTrigger)
-  // const triggerId = "asdsadsasdads"
 
   const mapRef = useRef(null)
 
   const [error, setError] = useState('')
-
   const [isEditName, setIsEditName] = useState(false)
+  const [activeName, setActiveName] = useState(name)
+  const [tempStatus, setTempStatus] = useState(status)
+  const [isOpen, setIsOpen] = useState()
 
   const validationName = () => {
     setError({})
@@ -55,10 +51,6 @@ const ViewTrigger = () => {
     setIsEditName(false)
     validationName(activeName)
   }
-
-  const [activeName, setActiveName] = useState(name)
-  const [tempStatus, setTempStatus] = useState(status)
-  const [isOpen, setIsOpen] = useState()
 
   const saveMethod = () => {
     /* eslint-disable-next-line */
@@ -127,11 +119,11 @@ const ViewTrigger = () => {
         <Col md="7">
           <h2>Trigger Card</h2>
           <Row className="search-box">
+            <Col>
+              <Label>Trigger Name</Label>
+            </Col>
             {isEditName ? (
               <>
-                <Col>
-                  <Label>Trigger Name</Label>
-                </Col>
                 <Col key={name}>
                   <Input
                     type="text"
@@ -144,17 +136,11 @@ const ViewTrigger = () => {
                   />
                 </Col>
                 <Col className="icons moveCentre">
-                  <FontAwesomeIcon
-                    icon={faThumbsUp}
-                    onClick={() => saveName()}
-                  />
+                  <Ok onClick={() => saveName()} />
                 </Col>
               </>
             ) : (
               <>
-                <Col>
-                  <Label>Trigger Name</Label>
-                </Col>
                 <Col key={name} className="moveCentre">
                   <p>{activeName}</p>
                 </Col>
@@ -237,9 +223,7 @@ const ViewTrigger = () => {
                   className="test"
                   onClick={() => setIsOpen(!isOpen)}
                 >
-                  <FontAwesomeIcon
-                    icon={faArrowDown}
-                    className="bottom"
+                  <ArrowDown
                     style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
                   />
                 </a>

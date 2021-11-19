@@ -8,9 +8,9 @@ import CoordinatesSearch from './CoordinatesSearch'
 import '../App.scss'
 import classNames from 'classnames/index'
 
-const SearchBox = ({ mapRef, location, setLocation, error }) => {
+const SearchBox = ({ mapRef, location, setLocation, error, name }) => {
   const [activeTab, setActiveTab] = useState('location')
-  // only logic and html for coordinates search
+
   return (
     <>
       {activeTab === 'location' ? (
