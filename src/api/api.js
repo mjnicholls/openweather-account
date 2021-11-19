@@ -18,11 +18,11 @@ export const getTriggers = (userId) =>
 
 export const postTrigger = (params) =>
   /** Create a new trigger  */
-  axios.post(postTriggerURL, params)
+  axios.post(`${postTriggerURL}?user_id=${params.user_id}`, params)
 
 export const patchTrigger = (params) =>
   /** Update a trigger  */
-  axios.patch(patchTriggerURL, params)
+  axios.patch(`${patchTriggerURL}?user_id=${params.user_id}`, params)
 
 export const deleteTrigger = (id, userId) =>
   /** Delete a trigger  */
