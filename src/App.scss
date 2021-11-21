@@ -756,3 +756,15 @@ Button.button-active {
 .table > :not(:first-child) {
   border-top: none;
 }
+
+.see-more-chevron {
+  transition-duration: 0.5s;
+  transition-property: transform;
+}
+
+.see-more-collapse[aria-expanded="true"] {
+  .see-more-chevron {
+    transform: rotate(180deg);
+  }
+}
+

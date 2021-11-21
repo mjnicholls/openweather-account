@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { ArrowDown, Edit, Ok } from 'react-ikonate'
+import { ChevronDown, Edit } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
 
-import { patchTrigger, getEventsByTriggerId, getTriggers } from '../api/api'
+import { patchTrigger, getEventsByTriggerId } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import { noBlankErrorMessage } from '../config'
@@ -27,7 +27,6 @@ const ViewTrigger = () => {
   const [isEditName, setIsEditName] = useState(false)
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
-  const [isOpen, setIsOpen] = useState()
 
   const validationName = () => {
     setError({})
@@ -46,13 +45,18 @@ const ViewTrigger = () => {
     return true
   }
 
+  const onKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      saveName()
+    }
+  }
+
   const saveName = () => {
     setIsEditName(false)
     validationName(activeName)
   }
 
   const saveMethod = () => {
-    /* eslint-disable-next-line */
     const data = {
       id,
       user_id: userId,
@@ -69,18 +73,16 @@ const ViewTrigger = () => {
     }
 
     if (Object.keys(data).length) {
-      // call API
+       patchTrigger(data)
+      .then(() => {
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
     console.log('saving', data)
 
-    patchTrigger(data)
-      .then(() => {
-        console.log('data')
-      })
-      // eslint-disable-next-line
-      .catch((error) => {
-        console.log(error)
-      })
+
   }
 
   const [events, setEvents] = useState([])
@@ -100,43 +102,35 @@ const ViewTrigger = () => {
       <Row className="trigger-card">
         <Col md="7">
           <h2>Trigger Card</h2>
-          <Row className="search-box">
-            <Col>
-              <Label>Trigger Name</Label>
-            </Col>
-            {isEditName ? (
-              <>
-                <Col key={name}>
+          <Row>
+            <Col className="mb-3">
+              <h6>Trigger Name</h6>
+              {isEditName ? (
+                <div className="d-flex align-items-center">
                   <Input
                     type="text"
                     onChange={(e) => {
                       setActiveName(e.target.value)
                     }}
+                    onKeyDown={onKeyDown}
                     className={error.name ? 'danger-border' : ''}
                     value={activeName}
-                    name="name"
+                    style={{width: "250px"}}
                   />
-                </Col>
-                <Col className="icons moveCentre">
-                  <Ok onClick={() => saveName()} />
-                </Col>
-              </>
-            ) : (
-              <>
-                <Col key={name} className="moveCentre">
-                  <p>{activeName}</p>
-                </Col>
-                <Col className="icons moveCentre">
+                </div>
+              ) : (
+                <div className="d-flex align-items-center">
+                  <span >{activeName}</span>
                   <Edit
+                    className="ms-3"
                     onClick={() => {
                       setIsEditName(true)
                     }}
                   />
-                </Col>
-              </>
-            )}
-
-            <Col>
+                </div>
+              )}
+            </Col>
+            <Col className="text-end mb-3">
               <label className="switch">
                 <input
                   type="checkbox"
@@ -150,18 +144,21 @@ const ViewTrigger = () => {
             </Col>
           </Row>
 
-          <Row className="search-box">
-            <Col>
-              <Label>Location</Label>
-            </Col>
-
-            <Col>
-              <Label type="text" value={location} className="cardContent">
-                {location.name} ({location.lat}, {location.lon})
-              </Label>
+          <Row>
+            <Col className="mb-3">
+              <h6>Location</h6>
+              <p>{location.name} ({location.lat}, {location.lon})</p>
             </Col>
           </Row>
-          <Row className="search-box">
+
+          <Row>
+            <Col className="mb-3">
+              <h6>Trigger Condition</h6>
+              <p>{humanReadableCondition(condition).substring(27)}</p>
+            </Col>
+          </Row>
+
+          <Row className="mb-3">
             <Col>
               <Label>Trigger Condition</Label>
             </Col>
@@ -198,18 +195,17 @@ const ViewTrigger = () => {
                 ))}
                 <a
                   data-toggle="collapse"
-                  href="#collapseExample"
+                  href="#collapseEmails"
                   role="button"
                   aria-expanded="false"
-                  aria-controls="collapseExample"
-                  className="test"
-                  onClick={() => setIsOpen(!isOpen)}
+                  aria-controls="collapseEmails"
+                  className="button-neutral see-more-collapse "
                 >
-                  <ArrowDown
-                    style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
+                  <ChevronDown
+                    className="see-more-chevron"
                   />
                 </a>
-                <p className="collapse" id="collapseExample">
+                <p className="collapse mt-3" id="collapseEmails">
                   {Object.keys(recipients).map((recip) => (
                     <>
                       <p key={recip}>{recipients.slice(3)[recip]}</p>
@@ -241,7 +237,7 @@ const ViewTrigger = () => {
 
           <Row className="search-box">
             <Col className="text-left">
-              <Link to="/trigger-list">
+              <Link to="/triggers">
                 <Button className="button-neutral">Back</Button>
               </Link>
             </Col>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { ArrowDown } from 'react-ikonate'
+import { ChevronDown } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
@@ -13,20 +13,12 @@ import '../App.scss'
 
 const selectUserId = (state) => state.auth.user_id
 
-const ForecastedEvents = () => {
+const Events = () => {
   const userId = useSelector(selectUserId)
 
-  const [isOpen, setIsOpen] = useState({})
   const [data, setData] = useState([])
 
   const openEventsN = 3
-
-  const handleClick = (day) => {
-    const newIsOpen = { ...isOpen }
-    newIsOpen[day] = !newIsOpen[day]
-    setIsOpen(newIsOpen)
-    console.log(newIsOpen)
-  }
 
   useEffect(() => {
     getEvents(userId)
@@ -43,10 +35,10 @@ const ForecastedEvents = () => {
       <div className="forecast">
         <Row className="search-box">
           <Col>
-            <h2>Forecasted Events</h2>
+            <h2>Events</h2>
           </Col>
           <Col className="text-end title">
-            <Link to="/trigger-list">
+            <Link to="/triggers">
               <Button className="button-neutral">To triggers</Button>
             </Link>
             <Link to="/create">
@@ -87,7 +79,7 @@ const ForecastedEvents = () => {
                                         {' '}
                                         <Link
                                           to={{
-                                            pathname: '/view-trigger',
+                                            pathname: '/trigger',
                                             state: trigger,
                                           }}
                                         >
@@ -120,57 +112,65 @@ const ForecastedEvents = () => {
                                 <td>No events</td>
                               </tr>
                             )}
-
+                          </tbody>
                             {day.triggers.length > openEventsN && (
                               <>
-                                <tr>
-                                  <td className="text-center" colSpan={3}>
-                                    <a
-                                      data-toggle="collapse"
-                                      href={`#collapse${day.day}`}
-                                      role="button"
-                                      aria-expanded="false"
-                                      aria-controls={`collapse${day.day}`}
-                                      // onClick={() => handleClick(day.day)}
-                                    >
-                                      <ArrowDown
-                                        style={{
-                                          transform: isOpen[day.day]
-                                            ? 'rotate(180deg)'
-                                            : 'none',
-                                        }}
-                                      />
-                                    </a>
-                                  </td>
-                                </tr>
-                                <div
+                                <a
+                                  className="button-neutral see-more-collapse"
+                                  data-toggle="collapse"
+                                  href={`#collapse_${day.day}`}
+                                  role="button"
+                                  aria-expanded="false"
+                                  aria-controls={`collapse_${day.day}`}>
+                                  <ChevronDown
+                                    className="see-more-chevron"
+                                  />
+                                </a>
+                                <tbody
                                   className="collapse"
-                                  id={`#collapse${day.day}`}
+                                  id={`collapse_${day.day}`}
                                 >
                                   {day.triggers
                                     .slice(openEventsN)
                                     .map((trigger, index) => (
-                                      <tbody key={trigger.id}>
+                                      <React.Fragment key={trigger.id}>
                                         <tr>
                                           <td>{index + openEventsN + 1}</td>
                                           <td>
                                             {' '}
                                             <Link
                                               to={{
-                                                pathname: '/view-trigger',
+                                                pathname: '/trigger',
                                                 state: trigger,
                                               }}
                                             >
                                               {trigger.name}
                                             </Link>
                                           </td>
+                                          <td>
+                                            {humanReadableCondition(
+                                              trigger.condition,
+                                            ).substring(28)}
+                                          </td>
                                         </tr>
-                                      </tbody>
+                                        <tr>
+                                          <td>&nbsp;</td>
+                                          <td className="smaller">
+                                            {trigger.location.lat},{' '}
+                                            {trigger.location.lon}
+                                          </td>
+                                          <td className="smaller">
+                                            <i>
+                                              Notification has been sent to{' '}
+                                              {trigger.recipients.length} recipients
+                                            </i>
+                                          </td>
+                                        </tr>
+                                      </React.Fragment>
                                     ))}
-                                </div>
+                                  </tbody>
                               </>
                             )}
-                          </tbody>
                         </Table>
                       </CardBody>
                     </Card>
@@ -185,4 +185,4 @@ const ForecastedEvents = () => {
   )
 }
 
-export default ForecastedEvents
+export default Events

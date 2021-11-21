@@ -13,7 +13,7 @@ import EditTriggerCard from '../components/EditTriggerCard'
 
 const selectUserId = (state) => state.auth.user_id
 
-const TriggerList = () => {
+const Triggers = () => {
   const userId = useSelector(selectUserId)
   const [data, setData] = useState([])
 
@@ -63,7 +63,7 @@ const TriggerList = () => {
                             <td>
                               <Link
                                 to={{
-                                  pathname: '/view-trigger',
+                                  pathname: '/trigger',
                                   state: trigger,
                                 }}
                               >
@@ -110,7 +110,7 @@ const TriggerList = () => {
         </Row>
         <Row className="search-box">
           <Col className="text-end">
-            <Link to="/forecasted-events">
+            <Link to="/events">
               <Button className="button-neutral">To events</Button>
             </Link>
             <Link to="/create">
@@ -123,4 +123,4 @@ const TriggerList = () => {
   )
 }
 
-export default TriggerList
+export default Triggers

@@ -241,7 +241,7 @@ const ViewTrigger = () => {
 
           <Row className="search-box">
             <Col className="text-left">
-              <Link to="/trigger-list">
+              <Link to="/triggers">
                 <Button className="button-neutral">Back</Button>
               </Link>
             </Col>

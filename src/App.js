@@ -8,8 +8,8 @@ import { Container } from 'reactstrap'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import CreateTrigger from './pages/CreateTrigger'
-import ForecastedEvents from './pages/ForecastedEvents'
-import TriggerList from './pages/TriggersList'
+import ForecastedEvents from './pages/Events'
+import TriggerList from './pages/Triggers'
 import ViewTrigger from './pages/ViewTrigger'
 import store from './store'
 
@@ -20,10 +20,10 @@ const App = () => (
       <Container fluid="xl" style={{ marginTop: '60px' }}>
         <BrowserRouter>
           <Route path="/create" component={CreateTrigger} />
-          <Route path="/trigger-list" component={TriggerList} />
-          <Route path="/view-trigger" component={ViewTrigger} />
-          <Route path="/forecasted-events" component={ForecastedEvents} />
-          <Redirect from="/" to="/forecasted-events" />
+          <Route path="/triggers" component={TriggerList} />
+          <Route path="/trigger" component={ViewTrigger} />
+          <Route path="/events" component={ForecastedEvents} />
+          {/*<Redirect from="/" to="/events" />*/}
         </BrowserRouter>
       </Container>
       <Footer />
