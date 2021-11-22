@@ -1,11 +1,9 @@
-/* eslint-disable */
 import React from 'react'
-import { Button } from 'reactstrap'
-import ReactBSAlert from 'react-bootstrap-sweetalert'
-import DeleteTrigger from './DeleteTrigger'
-import { Close } from 'react-ikonate'
 
-const DeleteTriggerCardX = ({ id, userId }) => {
+import ReactBSAlert from 'react-bootstrap-sweetalert'
+import { Button } from 'reactstrap'
+
+const ErrorCard = () => {
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
@@ -15,14 +13,16 @@ const DeleteTriggerCardX = ({ id, userId }) => {
   const htmlAlert = () => {
     setAlert(
       <ReactBSAlert
-        title="Delete Trigger?"
+        title="Whoops!"
         onConfirm={() => hideAlert()}
         onCancel={() => hideAlert()}
         showConfirm={false}
         showCloseButton
         className="text-end"
         style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
-      ></ReactBSAlert>,
+      >
+        <p>Are you sure you want to delete your trigger?</p>
+      </ReactBSAlert>,
     )
   }
 
@@ -30,22 +30,18 @@ const DeleteTriggerCardX = ({ id, userId }) => {
     <>
       {alert}
       <Button
-        size="sm"
+        className="button-neutral"
+        type="button"
         title="Delete"
-        style={{
-          backgroundColor: 'transparent',
-          border: 'none',
-          padding: '0px',
-        }}
         onClick={(e) => {
           htmlAlert()
           e.stopPropagation()
         }}
       >
-        <Close color="#48484a" />
+        Delete
       </Button>
     </>
   )
 }
 
-export default DeleteTriggerCardX
+export default ErrorCard

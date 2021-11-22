@@ -1,37 +1,98 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { Button, Col } from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { getTriggers } from '../api/api'
+import humanReadableCondition from '../humanReadableCondition'
 
-import { Button, Col, Row } from 'reactstrap'
-import { deleteTrigger } from '../api/api'
-import { getEventsByTriggerId, getTriggers } from '../api/api'
+const selectUserId = (state) => state.auth.user_id
 
-//const selectTrigger = (state) => state.trigger.id
+const CreateTriggerCard = () => {
+  const userId = useSelector(selectUserId)
 
-const CreateTriggerCard = ({ close, id, userId }) => {
+  const refreshPage = () => {
+    window.location.reload(true)
+  }
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getTriggers(userId)
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+  }, [userId])
+
   return (
     <>
       <hr />
 
       <br />
+      <div className="popup-create">
+        <p>Your trigger:</p>
 
-      <Col className="text-end">
-        <Button
-          className="button-active"
-          data-dismiss="modal"
-          type="button"
-          onClick={close}
-        >
-          To All Triggers
-        </Button>
-        <Button
-          className="button-active"
-          data-dismiss="modal"
-          type="button"
-          onClick={close}
-        >
-          Create New Trigger
-        </Button>
-      </Col>
+        {data
+          .map((trigger) => (
+            <tbody>
+              <tr key={trigger.id}>
+                <td>Name: </td>
+                <td>{trigger.name}</td>
+              </tr>
+
+              <tr>
+                <td>Condition: </td>
+                <td>
+                  {humanReadableCondition(trigger.condition).substring(28)}
+                </td>
+              </tr>
+              <tr>
+                <td>Location: </td>
+                <td>{trigger.location.name}</td>
+              </tr>
+              <tr>
+                <td>Notification: </td>
+                <td>
+                  Up to {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
+                </td>
+              </tr>
+              <tr>
+                <td>No. of Email Recipients: </td>
+                <td>{trigger.recipients.length}</td>
+              </tr>
+            </tbody>
+          ))
+          .at(-1)}
+        <br />
+        <p>Note: Events for your trigger will be shown based on UTC time.</p>
+
+        <br />
+
+        <Col className="text-end">
+          <Link to="/triggers">
+            <Button
+              className="button-active"
+              data-dismiss="modal"
+              type="button"
+            >
+              To All Triggers
+            </Button>
+          </Link>
+          <Link to="/create">
+            <Button
+              className="button-active"
+              data-dismiss="modal"
+              type="button"
+              onClick={refreshPage}
+            >
+              Create New Trigger
+            </Button>
+          </Link>
+        </Col>
+      </div>
     </>
   )
 }

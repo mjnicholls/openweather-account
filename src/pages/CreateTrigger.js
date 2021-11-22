@@ -83,13 +83,8 @@ const CreateTrigger = () => {
       })
       .catch((err) => {
         console.log(err)
+        htmlError()
       })
-  }
-
-  const handleChange = (key, value) => {
-    const newLocation = { ...location }
-    newLocation[key] = value
-    setLocation(newLocation)
   }
 
   const [alert, setAlert] = React.useState(null)
@@ -101,7 +96,7 @@ const CreateTrigger = () => {
   const htmlAlert = () => {
     setAlert(
       <ReactBSAlert
-        title="Delete Trigger?"
+        title="Trigger Created!"
         onConfirm={() => hideAlert()}
         onCancel={() => hideAlert()}
         showConfirm={false}
@@ -112,6 +107,33 @@ const CreateTrigger = () => {
         <CreateTriggerCard close={hideAlert} />
       </ReactBSAlert>,
     )
+  }
+
+  const htmlError = () => {
+    setAlert(
+      <ReactBSAlert
+        title="Whoops!"
+        onConfirm={() => hideAlert()}
+        onCancel={() => hideAlert()}
+        showConfirm={false}
+        showCloseButton
+        className="text-end"
+        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
+      >
+        <br />
+        <p>Something went wrong. Please contact us for help:</p>
+        <br />
+        <Col className="text-end">
+          <Button className="button-active">Contact</Button>
+        </Col>
+      </ReactBSAlert>,
+    )
+  }
+
+  const handleChange = (key, value) => {
+    const newLocation = { ...location }
+    newLocation[key] = value
+    setLocation(newLocation)
   }
 
   return (

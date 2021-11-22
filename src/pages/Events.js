@@ -113,64 +113,64 @@ const Events = () => {
                               </tr>
                             )}
                           </tbody>
-                            {day.triggers.length > openEventsN && (
-                              <>
-                                <a
-                                  className="button-neutral see-more-collapse"
-                                  data-toggle="collapse"
-                                  href={`#collapse_${day.day}`}
-                                  role="button"
-                                  aria-expanded="false"
-                                  aria-controls={`collapse_${day.day}`}>
-                                  <ChevronDown
-                                    className="see-more-chevron"
-                                  />
-                                </a>
-                                <tbody
-                                  className="collapse"
-                                  id={`collapse_${day.day}`}
-                                >
-                                  {day.triggers
-                                    .slice(openEventsN)
-                                    .map((trigger, index) => (
-                                      <React.Fragment key={trigger.id}>
-                                        <tr>
-                                          <td>{index + openEventsN + 1}</td>
-                                          <td>
-                                            {' '}
-                                            <Link
-                                              to={{
-                                                pathname: '/trigger',
-                                                state: trigger,
-                                              }}
-                                            >
-                                              {trigger.name}
-                                            </Link>
-                                          </td>
-                                          <td>
-                                            {humanReadableCondition(
-                                              trigger.condition,
-                                            ).substring(28)}
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <td>&nbsp;</td>
-                                          <td className="smaller">
-                                            {trigger.location.lat},{' '}
-                                            {trigger.location.lon}
-                                          </td>
-                                          <td className="smaller">
-                                            <i>
-                                              Notification has been sent to{' '}
-                                              {trigger.recipients.length} recipients
-                                            </i>
-                                          </td>
-                                        </tr>
-                                      </React.Fragment>
-                                    ))}
-                                  </tbody>
-                              </>
-                            )}
+                          {day.triggers.length > openEventsN && (
+                            <>
+                              <a
+                                className="button-neutral see-more-collapse"
+                                data-toggle="collapse"
+                                href={`#collapse_${day.day}`}
+                                role="button"
+                                aria-expanded="false"
+                                aria-controls={`collapse_${day.day}`}
+                              >
+                                <ChevronDown className="see-more-chevron" />
+                              </a>
+                              <tbody
+                                className="collapse"
+                                id={`collapse_${day.day}`}
+                              >
+                                {day.triggers
+                                  .slice(openEventsN)
+                                  .map((trigger, index) => (
+                                    <React.Fragment key={trigger.id}>
+                                      <tr>
+                                        <td>{index + openEventsN + 1}</td>
+                                        <td>
+                                          {' '}
+                                          <Link
+                                            to={{
+                                              pathname: '/trigger',
+                                              state: trigger,
+                                            }}
+                                          >
+                                            {trigger.name}
+                                          </Link>
+                                        </td>
+                                        <td>
+                                          {humanReadableCondition(
+                                            trigger.condition,
+                                          ).substring(28)}
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>&nbsp;</td>
+                                        <td className="smaller">
+                                          {trigger.location.lat},{' '}
+                                          {trigger.location.lon}
+                                        </td>
+                                        <td className="smaller">
+                                          <i>
+                                            Notification has been sent to{' '}
+                                            {trigger.recipients.length}{' '}
+                                            recipients
+                                          </i>
+                                        </td>
+                                      </tr>
+                                    </React.Fragment>
+                                  ))}
+                              </tbody>
+                            </>
+                          )}
                         </Table>
                       </CardBody>
                     </Card>

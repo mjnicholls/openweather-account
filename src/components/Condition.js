@@ -45,7 +45,9 @@ const Condition = ({ condition, setCondition }) => {
           <FormGroup>
             <Input
               type="number"
-              onChange={(e) => handleChange('value', e.target.value)}
+              onChange={(e) =>
+                handleChange('value', parseFloat(e.target.value))
+              }
               value={condition.value}
             />
           </FormGroup>

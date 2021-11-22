@@ -73,16 +73,13 @@ const ViewTrigger = () => {
     }
 
     if (Object.keys(data).length) {
-       patchTrigger(data)
-      .then(() => {
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      patchTrigger(data)
+        .then(() => {})
+        .catch((err) => {
+          console.log(err)
+        })
     }
     console.log('saving', data)
-
-
   }
 
   const [events, setEvents] = useState([])
@@ -115,12 +112,12 @@ const ViewTrigger = () => {
                     onKeyDown={onKeyDown}
                     className={error.name ? 'danger-border' : ''}
                     value={activeName}
-                    style={{width: "250px"}}
+                    style={{ width: '250px' }}
                   />
                 </div>
               ) : (
                 <div className="d-flex align-items-center">
-                  <span >{activeName}</span>
+                  <span>{activeName}</span>
                   <Edit
                     className="ms-3"
                     onClick={() => {
@@ -147,7 +144,9 @@ const ViewTrigger = () => {
           <Row>
             <Col className="mb-3">
               <h6>Location</h6>
-              <p>{location.name} ({location.lat}, {location.lon})</p>
+              <p>
+                {location.name} ({location.lat}, {location.lon})
+              </p>
             </Col>
           </Row>
 
@@ -201,9 +200,7 @@ const ViewTrigger = () => {
                   aria-controls="collapseEmails"
                   className="button-neutral see-more-collapse "
                 >
-                  <ChevronDown
-                    className="see-more-chevron"
-                  />
+                  <ChevronDown className="see-more-chevron" />
                 </a>
                 <p className="collapse mt-3" id="collapseEmails">
                   {Object.keys(recipients).map((recip) => (

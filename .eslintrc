@@ -1,5 +1,6 @@
 {
   "extends": ["@imaginary-cloud/react"],
+
   "rules": {
     "no-unused-vars": "warn",
     "import/no-named-as-default": 0,

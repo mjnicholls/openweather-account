@@ -429,8 +429,16 @@ p {
 
 // Trigger page
 
+
+a {
+  color:black;
+  text-decoration: none;
+}
+
 .content {
   font-family: $default-font-family;
+
+
 
   // slider css
 
@@ -765,6 +773,14 @@ Button.button-active {
 .see-more-collapse[aria-expanded="true"] {
   .see-more-chevron {
     transform: rotate(180deg);
+  }
+}
+
+// popup-create 
+.popup-create {
+
+  td {
+    font-family: $default-font-family;
   }
 }
 

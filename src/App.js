@@ -23,7 +23,7 @@ const App = () => (
           <Route path="/triggers" component={TriggerList} />
           <Route path="/trigger" component={ViewTrigger} />
           <Route path="/events" component={ForecastedEvents} />
-          {/*<Redirect from="/" to="/events" />*/}
+          {/* <Redirect from="/" to="/events" /> */}
         </BrowserRouter>
       </Container>
       <Footer />

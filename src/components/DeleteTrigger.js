@@ -4,18 +4,28 @@ import React, { useState, useEffect } from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { deleteTrigger } from '../api/api'
 import { getEventsByTriggerId, getTriggers } from '../api/api'
+import htmlError from '../pages/CreateTrigger'
 
 //const selectTrigger = (state) => state.trigger.id
 
-const DeleteTrigger = ({ close, id, userId }) => {
-  const confirmDeleteTrigger = () => {
-    deleteTrigger(id, userId).then(() => {
-      getTriggers(id, userId)
-    })
-    close()
+const DeleteTrigger = ({ key, close, id, userId }) => {
+  const [events, setEvents] = useState([])
+
+  const refreshPage = () => {
+    window.location.reload(true)
   }
 
-  const [events, setEvents] = useState([])
+  const confirmDeleteTrigger = () => {
+    deleteTrigger(id, userId, key)
+      .then(() => {
+        refreshPage()
+      })
+      // eslint-disable-next-line
+      .catch((error) => {
+        console.log(error)
+        htmlError()
+      })
+  }
 
   useEffect(() => {
     getEventsByTriggerId(id, userId)

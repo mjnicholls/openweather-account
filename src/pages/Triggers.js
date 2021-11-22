@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from 'react'
 
+import ReactBSAlert from 'react-bootstrap-sweetalert'
+import { Close, Edit } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 
-import humanReadableCondition from '../humanReadableCondition'
 import { getTriggers } from '../api/api'
 
 import '../App.scss'
-import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
-import EditTriggerCard from '../components/EditTriggerCard'
+import DeleteTrigger from '../components/DeleteTrigger'
+import EditTrigger from '../components/EditTrigger'
+import humanReadableCondition from '../humanReadableCondition'
 
 const selectUserId = (state) => state.auth.user_id
 
 const Triggers = () => {
   const userId = useSelector(selectUserId)
+
   const [data, setData] = useState([])
+
+  const [alert, setAlert] = React.useState(null)
 
   useEffect(() => {
     getTriggers(userId)
@@ -27,9 +32,46 @@ const Triggers = () => {
       })
   }, [userId])
 
+  const hideAlert = () => {
+    setAlert(null)
+  }
+
+  const htmlAlert = (isEdit, key, id) => {
+    setAlert(
+      <ReactBSAlert
+        title={isEdit ? 'Edit Trigger' : 'Delete Trigger'}
+        onConfirm={hideAlert}
+        onCancel={hideAlert}
+        showConfirm={false}
+        showCloseButton
+        className="text-end"
+        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
+      >
+        {isEdit ? (
+          <EditTrigger
+            userId={userId}
+            id={id}
+            key={key}
+            close={hideAlert}
+            // refreshData={refreshData}
+          />
+        ) : (
+          <DeleteTrigger
+            close={hideAlert}
+            userId={userId}
+            key={key}
+            id={id}
+            // refreshData={refreshData}
+          />
+        )}
+      </ReactBSAlert>,
+    )
+  }
+
   return (
     <>
       <div className="content">
+        {alert}
         <Row>
           <Col>
             <h2>Trigger List</h2>
@@ -81,23 +123,51 @@ const Triggers = () => {
                               {trigger.days === 1 ? 'day' : 'days'}
                             </td>
                             <td>{trigger.recipients.length}</td>
+                            {trigger.status === 'on' ? (
+                              <td style={{ color: 'green' }}>
+                                {trigger.status.charAt(0).toUpperCase() +
+                                  trigger.status.slice(1)}
+                              </td>
+                            ) : (
+                              <td style={{ color: 'red' }}>
+                                {trigger.status.charAt(0).toUpperCase() +
+                                  trigger.status.slice(1)}
+                              </td>
+                            )}
                             <td>
-                              {trigger.status.charAt(0).toUpperCase() +
-                                trigger.status.slice(1)}
+                              <Button
+                                style={{
+                                  backgroundColor: 'transparent',
+                                  border: 'none',
+                                  padding: '0px',
+                                }}
+                                title="Update"
+                                className="text-end"
+                                onClick={(e) => {
+                                  htmlAlert(trigger, true)
+                                  e.stopPropagation()
+                                }}
+                              >
+                                <Edit color="#48484a" />
+                              </Button>
                             </td>
                             <td>
-                              <EditTriggerCard
-                                id={trigger.id}
-                                userId={userId}
-                                name={trigger.name}
-                                status={trigger.status}
-                              />
-                            </td>
-                            <td>
-                              <DeleteTriggerCardX
-                                id={trigger.id}
-                                userId={userId}
-                              />
+                              <Button
+                                size="sm"
+                                title="Delete"
+                                style={{
+                                  backgroundColor: 'transparent',
+                                  border: 'none',
+                                  padding: '0px',
+                                }}
+                                disabled={data.length === 1}
+                                onClick={(e) => {
+                                  htmlAlert(trigger, false)
+                                  e.stopPropagation()
+                                }}
+                              >
+                                <Close color="#48484a" />
+                              </Button>
                             </td>
                           </tr>
                         ),
