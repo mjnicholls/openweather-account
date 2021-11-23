@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-import ReactBSAlert from 'react-bootstrap-sweetalert'
-import { Close, Edit } from 'react-ikonate'
+// import ReactBSAlert from 'react-bootstrap-sweetalert'
+// import { Close, Edit } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
@@ -9,8 +9,8 @@ import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 import { getTriggers } from '../api/api'
 
 import '../App.scss'
-import DeleteTrigger from '../components/DeleteTrigger'
-import EditTrigger from '../components/EditTrigger'
+import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
+import EditTriggerCard from '../components/EditTriggerCard'
 import humanReadableCondition from '../humanReadableCondition'
 
 const selectUserId = (state) => state.auth.user_id
@@ -19,8 +19,6 @@ const Triggers = () => {
   const userId = useSelector(selectUserId)
 
   const [data, setData] = useState([])
-
-  const [alert, setAlert] = React.useState(null)
 
   useEffect(() => {
     getTriggers(userId)
@@ -32,11 +30,15 @@ const Triggers = () => {
       })
   }, [userId])
 
+  /* TODO: CONDITIONAL FOR DELETE/EDIT
+
+    const [alert, setAlert] = React.useState(null)
+
   const hideAlert = () => {
     setAlert(null)
   }
 
-  const htmlAlert = (isEdit, key, id) => {
+  const htmlAlert = (isEdit, key, id, name, status) => {
     setAlert(
       <ReactBSAlert
         title={isEdit ? 'Edit Trigger' : 'Delete Trigger'}
@@ -52,6 +54,8 @@ const Triggers = () => {
             userId={userId}
             id={id}
             key={key}
+            name={name}
+            status={status}
             close={hideAlert}
             // refreshData={refreshData}
           />
@@ -68,10 +72,12 @@ const Triggers = () => {
     )
   }
 
+  */
+
   return (
     <>
       <div className="content">
-        {alert}
+        {/* alert */}
         <Row>
           <Col>
             <h2>Trigger List</h2>
@@ -135,6 +141,13 @@ const Triggers = () => {
                               </td>
                             )}
                             <td>
+                              <EditTriggerCard
+                                id={trigger.id}
+                                userId={userId}
+                                name={trigger.name}
+                                status={trigger.status}
+                              />
+                              {/*
                               <Button
                                 style={{
                                   backgroundColor: 'transparent',
@@ -150,8 +163,15 @@ const Triggers = () => {
                               >
                                 <Edit color="#48484a" />
                               </Button>
+                              */}
                             </td>
                             <td>
+                              <DeleteTriggerCardX
+                                id={trigger.id}
+                                userId={userId}
+                              />
+
+                              {/*
                               <Button
                                 size="sm"
                                 title="Delete"
@@ -168,6 +188,7 @@ const Triggers = () => {
                               >
                                 <Close color="#48484a" />
                               </Button>
+                                */}
                             </td>
                           </tr>
                         ),

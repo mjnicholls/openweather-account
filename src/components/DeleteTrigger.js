@@ -8,7 +8,7 @@ import htmlError from '../pages/CreateTrigger'
 
 //const selectTrigger = (state) => state.trigger.id
 
-const DeleteTrigger = ({ key, close, id, userId }) => {
+const DeleteTrigger = ({ close, id, userId }) => {
   const [events, setEvents] = useState([])
 
   const refreshPage = () => {
@@ -16,7 +16,7 @@ const DeleteTrigger = ({ key, close, id, userId }) => {
   }
 
   const confirmDeleteTrigger = () => {
-    deleteTrigger(id, userId, key)
+    deleteTrigger(id, userId)
       .then(() => {
         refreshPage()
       })
@@ -25,6 +25,7 @@ const DeleteTrigger = ({ key, close, id, userId }) => {
         console.log(error)
         htmlError()
       })
+    close()
   }
 
   useEffect(() => {
@@ -36,6 +37,18 @@ const DeleteTrigger = ({ key, close, id, userId }) => {
         console.log('error', err)
       })
   }, [id, userId])
+
+  const [data, setData] = useState([])
+
+  const refreshData = () => {
+    getTriggers(userId)
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+  }
 
   return (
     <>
