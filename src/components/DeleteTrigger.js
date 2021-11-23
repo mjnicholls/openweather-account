@@ -3,29 +3,28 @@ import React, { useState, useEffect } from 'react'
 
 import { Button, Col, Row } from 'reactstrap'
 import { deleteTrigger } from '../api/api'
+import { Link } from 'react-router-dom'
 import { getEventsByTriggerId, getTriggers } from '../api/api'
 import htmlError from '../pages/CreateTrigger'
 
-//const selectTrigger = (state) => state.trigger.id
+import ReactBSAlert from 'react-bootstrap-sweetalert'
 
-const DeleteTrigger = ({ close, id, userId }) => {
+const DeleteTrigger = ({ id, userId, setData }) => {
   const [events, setEvents] = useState([])
-
-  const refreshPage = () => {
-    window.location.reload(true)
-  }
+  const [alert, setAlert] = React.useState(null)
 
   const confirmDeleteTrigger = () => {
     deleteTrigger(id, userId)
       .then(() => {
-        refreshPage()
+        console.log('id')
+        refreshData()
+        deleteAlert()
       })
       // eslint-disable-next-line
       .catch((error) => {
         console.log(error)
         htmlError()
       })
-    close()
   }
 
   useEffect(() => {
@@ -38,8 +37,6 @@ const DeleteTrigger = ({ close, id, userId }) => {
       })
   }, [id, userId])
 
-  const [data, setData] = useState([])
-
   const refreshData = () => {
     getTriggers(userId)
       .then((res) => {
@@ -50,9 +47,38 @@ const DeleteTrigger = ({ close, id, userId }) => {
       })
   }
 
+  const hideAlert = () => {
+    setAlert(null)
+  }
+
+  const deleteAlert = () => {
+    setAlert(
+      <ReactBSAlert
+        title="Trigger Deleted!"
+        onConfirm={() => hideAlert()}
+        onCancel={() => hideAlert()}
+        showConfirm={false}
+        showCloseButton
+        className="text-end"
+        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
+      >
+        <br />
+        <p>Your trigger has been deleted.</p>
+        <Row className="search-box">
+          <Col className="text-end">
+            <Link to="/triggers">
+              <Button className="button-active">To all triggers</Button>
+            </Link>
+          </Col>
+        </Row>
+      </ReactBSAlert>,
+    )
+  }
+
   return (
     <>
       <hr />
+      {alert}
       <Row>
         {events.length === 0 ? (
           <Col>

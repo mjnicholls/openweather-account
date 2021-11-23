@@ -6,7 +6,7 @@ import { Button } from 'reactstrap'
 
 import EditTrigger from './EditTrigger'
 
-const EditTriggerCard = ({ id, userId, name, status }) => {
+const EditTriggerCard = ({ id, userId, name, status, setData }) => {
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
@@ -29,6 +29,7 @@ const EditTriggerCard = ({ id, userId, name, status }) => {
           userId={userId}
           name={name}
           status={status}
+          setData={setData}
         />
       </ReactBSAlert>,
     )

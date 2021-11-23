@@ -144,6 +144,8 @@ const Triggers = () => {
                               <EditTriggerCard
                                 id={trigger.id}
                                 userId={userId}
+                                data={data}
+                                setData={setData}
                                 name={trigger.name}
                                 status={trigger.status}
                               />
@@ -169,6 +171,8 @@ const Triggers = () => {
                               <DeleteTriggerCardX
                                 id={trigger.id}
                                 userId={userId}
+                                data={data}
+                                setData={setData}
                               />
 
                               {/*

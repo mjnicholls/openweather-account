@@ -11,20 +11,18 @@ import { noBlankErrorMessage } from '../config'
 
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 
-const EditTrigger = ({ userId, id, name, status }) => {
-  console.log('status', status)
+import htmlError from '../pages/CreateTrigger'
 
+const EditTrigger = ({ userId, id, name, status, setData, close }) => {
   const [error, setError] = useState({})
 
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
+
+  const [alert, setAlert] = React.useState(null)
   /* eslint-disable-next-line */
 
   const confirmEditTrigger = () => {
-    const refreshPage = () => {
-      window.location.reload(true)
-    }
-
     setError({})
 
     const newError = {}
@@ -63,25 +61,21 @@ const EditTrigger = ({ userId, id, name, status }) => {
     patchTrigger(data)
       .then(() => {
         console.log('data')
+        refreshData()
         updateAlert()
       })
       // eslint-disable-next-line
       .catch((error) => {
         console.log(error)
+        htmlError()
       })
   }
-
-  const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
     setAlert(null)
   }
 
   const updateAlert = () => {
-    const refreshPage = () => {
-      window.location.reload(true)
-    }
-
     setAlert(
       <ReactBSAlert
         title="Trigger Updated!"
@@ -96,13 +90,23 @@ const EditTrigger = ({ userId, id, name, status }) => {
         <p>Your trigger has been updated.</p>
         <Row className="search-box">
           <Col className="text-end">
-            <Button className="button-neutral" onClick={refreshPage}>
+            <Button className="button-neutral" onClick={close}>
               Back to all triggers
             </Button>
           </Col>
         </Row>
       </ReactBSAlert>,
     )
+  }
+
+  const refreshData = () => {
+    getTriggers(userId)
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
   }
 
   return (

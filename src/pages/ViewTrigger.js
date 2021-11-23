@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { ChevronDown, Edit } from 'react-ikonate'
 import { useSelector } from 'react-redux'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, Link, useHistory } from 'react-router-dom'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
 
 import { patchTrigger, getEventsByTriggerId } from '../api/api'

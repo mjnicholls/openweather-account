@@ -5,7 +5,7 @@ import ReactBSAlert from 'react-bootstrap-sweetalert'
 import DeleteTrigger from './DeleteTrigger'
 import { Close } from 'react-ikonate'
 
-const DeleteTriggerCardX = ({ id, userId }) => {
+const DeleteTriggerCardX = ({ id, userId, data, setData }) => {
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
@@ -23,7 +23,13 @@ const DeleteTriggerCardX = ({ id, userId }) => {
         className="text-end"
         style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
-        <DeleteTrigger close={hideAlert} id={id} userId={userId} />
+        <DeleteTrigger
+          close={hideAlert}
+          id={id}
+          userId={userId}
+          data={data}
+          setData={setData}
+        />
       </ReactBSAlert>,
     )
   }
