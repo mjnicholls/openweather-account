@@ -7,16 +7,28 @@ import { Link } from 'react-router-dom'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 
 import { getTriggers } from '../api/api'
-
+import { tariff } from '../config'
 import '../App.scss'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
 import humanReadableCondition from '../humanReadableCondition'
 
+import ReactBSAlert from 'react-bootstrap-sweetalert'
+
 const selectUserId = (state) => state.auth.user_id
+
+// for future tariff use
+// const userSubscriptionSelector = (state) => state.auth.user_id.tariff
 
 const Triggers = () => {
   const userId = useSelector(selectUserId)
+
+  // for future tariff use
+  // const subscription = useSelector(userSubscriptionSelector)
+
+  const myTariff = tariff.free
+
+  console.log('tariff', myTariff)
 
   const [data, setData] = useState([])
 
@@ -24,13 +36,44 @@ const Triggers = () => {
     getTriggers(userId)
       .then((res) => {
         setData(res.data)
+        console.log('data')
       })
       .catch((err) => {
         console.log('error', err)
       })
   }, [userId])
 
-  /* TODO: CONDITIONAL FOR DELETE/EDIT
+  const [alert, setAlert] = React.useState(null)
+
+  const hideAlert = () => {
+    setAlert(null)
+  }
+
+  const tariffError = () => {
+    setAlert(
+      <ReactBSAlert
+        title="Sorry!"
+        onConfirm={() => hideAlert()}
+        onCancel={() => hideAlert()}
+        showConfirm={false}
+        showCloseButton
+        className="text-end"
+        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
+      >
+        <br />
+        <p>
+          You have reached the maximum number of triggers available with your
+          subscription plan.
+        </p>
+        <br />
+        <Col className="text-end">
+          <Button className="button-active">To Subscription Plans</Button>
+        </Col>
+      </ReactBSAlert>,
+    )
+  }
+
+  /* TODO: CONDITIONAL FOR DELETE/EDIT ?
 
     const [alert, setAlert] = React.useState(null)
 
@@ -77,7 +120,7 @@ const Triggers = () => {
   return (
     <>
       <div className="content">
-        {/* alert */}
+        {alert}
         <Row>
           <Col>
             <h2>Trigger List</h2>
@@ -95,7 +138,11 @@ const Triggers = () => {
                       <th>Trigger Condition</th>
                       <th>Location</th>
                       <th>Notify</th>
-                      <th>Email Recipients</th>
+                      {myTariff === 'free' ? (
+                        <th>&nbsp;</th>
+                      ) : (
+                        <th>Email Recipients</th>
+                      )}
                       <th>&nbsp;</th>
                       <th>&nbsp;</th>
                       <th>&nbsp;</th>
@@ -128,7 +175,11 @@ const Triggers = () => {
                               Up to {trigger.days}{' '}
                               {trigger.days === 1 ? 'day' : 'days'}
                             </td>
-                            <td>{trigger.recipients.length}</td>
+                            {myTariff === 'free' ? (
+                              <td>&nbsp;</td>
+                            ) : (
+                              <td>{trigger.recipients.length}</td>
+                            )}
                             {trigger.status === 'on' ? (
                               <td style={{ color: 'green' }}>
                                 {trigger.status.charAt(0).toUpperCase() +
@@ -208,9 +259,79 @@ const Triggers = () => {
             <Link to="/events">
               <Button className="button-neutral">To events</Button>
             </Link>
-            <Link to="/create">
-              <Button className="button-active">Create new trigger</Button>
-            </Link>
+
+            {(() => {
+              switch (myTariff) {
+                case 'free':
+                  return data.length >= 3 ? (
+                    <Button className="button-active" onClick={tariffError}>
+                      Create new trigger
+                    </Button>
+                  ) : (
+                    <Link to="/create">
+                      <Button className="button-active">
+                        Create new trigger
+                      </Button>
+                    </Link>
+                  )
+                case 'startup':
+                  return data.length >= 5 ? (
+                    <Button className="button-active" onClick={tariffError}>
+                      Create new trigger
+                    </Button>
+                  ) : (
+                    <Link to="/create">
+                      <Button className="button-active">
+                        Create new trigger
+                      </Button>
+                    </Link>
+                  )
+                case 'developer':
+                  return data.length >= 7 ? (
+                    <Button className="button-active" onClick={tariffError}>
+                      Create new trigger
+                    </Button>
+                  ) : (
+                    <Link to="/create">
+                      <Button className="button-active">
+                        Create new trigger
+                      </Button>
+                    </Link>
+                  )
+                case 'professional':
+                  return data.length >= 9 ? (
+                    <Button className="button-active" onClick={tariffError}>
+                      Create new trigger
+                    </Button>
+                  ) : (
+                    <Link to="/create">
+                      <Button className="button-active">
+                        Create new trigger
+                      </Button>
+                    </Link>
+                  )
+                case 'enterprise':
+                  return data.length >= 15 ? (
+                    <Button className="button-active" onClick={tariffError}>
+                      Create new trigger
+                    </Button>
+                  ) : (
+                    <Link to="/create">
+                      <Button className="button-active">
+                        Create new trigger
+                      </Button>
+                    </Link>
+                  )
+                default:
+                  return (
+                    <Link to="/create">
+                      <Button className="button-active">
+                        Create new trigger
+                      </Button>
+                    </Link>
+                  )
+              }
+            })()}
           </Col>
         </Row>
       </div>

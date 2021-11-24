@@ -17,3 +17,11 @@ export const conditions = [
   { value: '<', label: '<' },
   { value: '>', label: '>' },
 ]
+
+export const tariff = {
+  free: 'free',
+  startup: 'startup',
+  developer: 'developer',
+  professional: 'professional',
+  enterprise: 'enterprise',
+}

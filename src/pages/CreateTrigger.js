@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Button, Col, Row } from 'reactstrap'
 
-import { postTrigger } from '../api/api'
+import { postTrigger, getTriggers } from '../api/api'
 import Condition from '../components/Condition'
 import CreateTriggerCard from '../components/CreateTriggerCard'
 import EmailNotifs from '../components/EmailNotifcation'
@@ -16,13 +16,15 @@ import '../App.scss'
 
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 
-import { noBlankErrorMessage } from '../config'
+import { noBlankErrorMessage, tariff } from '../config'
 
 const selectUserId = (state) => state.auth.user_id
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
   const userId = useSelector(selectUserId)
+
+  const myTariff = tariff.free
 
   const [location, setLocation] = useState({
     name: '',
@@ -130,6 +132,43 @@ const CreateTrigger = () => {
     )
   }
 
+  const tariffError = () => {
+    setAlert(
+      <ReactBSAlert
+        title="Sorry!"
+        onConfirm={() => hideAlert()}
+        onCancel={() => hideAlert()}
+        showConfirm={false}
+        showCloseButton
+        className="text-end"
+        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
+      >
+        <br />
+        <p>
+          You have reached the maximum number of triggers available with your
+          subscription plan.
+        </p>
+        <br />
+        <Col className="text-end">
+          <Button className="button-active">To Subscription Plans</Button>
+        </Col>
+      </ReactBSAlert>,
+    )
+  }
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getTriggers(userId)
+      .then((res) => {
+        setData(res.data)
+        console.log('data')
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+  }, [userId])
+
   const handleChange = (key, value) => {
     const newLocation = { ...location }
     newLocation[key] = value
@@ -158,15 +197,80 @@ const CreateTrigger = () => {
           />
           <Condition condition={condition} setCondition={setCondition} />
           <PriorNotifs days={days} setDays={setDays} />
-          <EmailNotifs recipients={recipients} setRecipients={setRecipients} />
+          {myTariff === 'free' ? (
+            <Row></Row>
+          ) : (
+            <EmailNotifs
+              recipients={recipients}
+              setRecipients={setRecipients}
+            />
+          )}
           <Row className="search-box">
             <Col className="text-end">
               <Button className="button-neutral" onClick={goToPreviousPath}>
                 Cancel
               </Button>
-              <Button className="button-active" onClick={createTrigger}>
-                Create trigger
-              </Button>
+              {(() => {
+                switch (myTariff) {
+                  case 'free':
+                    return data.length >= 3 ? (
+                      <Button className="button-active" onClick={tariffError}>
+                        Create new trigger
+                      </Button>
+                    ) : (
+                      <Button className="button-active">
+                        {' '}
+                        onClick={createTrigger}Create trigger
+                      </Button>
+                    )
+                  case 'startup':
+                    return data.length >= 5 ? (
+                      <Button className="button-active" onClick={tariffError}>
+                        Create new trigger
+                      </Button>
+                    ) : (
+                      <Button className="button-active" onClick={createTrigger}>
+                        Create trigger
+                      </Button>
+                    )
+                  case 'developer':
+                    return data.length >= 7 ? (
+                      <Button className="button-active" onClick={tariffError}>
+                        Create new trigger
+                      </Button>
+                    ) : (
+                      <Button className="button-active" onClick={createTrigger}>
+                        Create trigger
+                      </Button>
+                    )
+                  case 'professional':
+                    return data.length >= 9 ? (
+                      <Button className="button-active" onClick={tariffError}>
+                        Create new trigger
+                      </Button>
+                    ) : (
+                      <Button className="button-active" onClick={createTrigger}>
+                        Create trigger
+                      </Button>
+                    )
+                  case 'enterprise':
+                    return data.length >= 15 ? (
+                      <Button className="button-active" onClick={tariffError}>
+                        Create new trigger
+                      </Button>
+                    ) : (
+                      <Button className="button-active" onClick={createTrigger}>
+                        Create trigger
+                      </Button>
+                    )
+                  default:
+                    return (
+                      <Button className="button-active" onClick={createTrigger}>
+                        Create trigger
+                      </Button>
+                    )
+                }
+              })()}
             </Col>
           </Row>
         </div>

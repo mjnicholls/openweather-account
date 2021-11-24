@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 
 import { getEvents } from '../api/api'
+import { tariff } from '../config'
 import humanReadableCondition from '../humanReadableCondition'
 import { toDate } from '../utils/dateTime'
-
 import '../App.scss'
 
 const selectUserId = (state) => state.auth.user_id
@@ -17,6 +17,8 @@ const Events = () => {
   const userId = useSelector(selectUserId)
 
   const [data, setData] = useState([])
+
+  const myTariff = tariff.free
 
   const openEventsN = 3
 
@@ -98,12 +100,17 @@ const Events = () => {
                                         {trigger.location.lat},{' '}
                                         {trigger.location.lon}
                                       </td>
-                                      <td className="smaller">
-                                        <i>
-                                          Notification has been sent to{' '}
-                                          {trigger.recipients.length} recipients
-                                        </i>
-                                      </td>
+                                      {myTariff === 'free' ? (
+                                        <td>&nbsp;</td>
+                                      ) : (
+                                        <td className="smaller">
+                                          <i>
+                                            Notification has been sent to{' '}
+                                            {trigger.recipients.length}{' '}
+                                            recipients
+                                          </i>
+                                        </td>
+                                      )}
                                     </tr>
                                   </React.Fragment>
                                 ))

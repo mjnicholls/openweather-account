@@ -8,10 +8,12 @@ import { Row, Col, Input, Label, Button } from 'reactstrap'
 import { patchTrigger, getEventsByTriggerId } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
-import { noBlankErrorMessage } from '../config'
+import { noBlankErrorMessage, tariff } from '../config'
 import humanReadableCondition from '../humanReadableCondition'
 import '../App.scss'
 import { toDate } from '../utils/dateTime'
+
+import ReactBSAlert from 'react-bootstrap-sweetalert'
 
 const selectUserId = (state) => state.auth.user_id
 
@@ -21,6 +23,7 @@ const ViewTrigger = () => {
   const userId = useSelector(selectUserId)
   const { condition, days, id, location, name, recipients, status } = state
 
+  const myTariff = tariff.free
   const mapRef = useRef(null)
 
   const [error, setError] = useState('')
@@ -74,7 +77,9 @@ const ViewTrigger = () => {
 
     if (Object.keys(data).length) {
       patchTrigger(data)
-        .then(() => {})
+        .then(() => {
+          updateAlert()
+        })
         .catch((err) => {
           console.log(err)
         })
@@ -94,8 +99,39 @@ const ViewTrigger = () => {
       })
   }, [id, userId])
 
+  const [alert, setAlert] = React.useState(null)
+
+  const hideAlert = () => {
+    setAlert(null)
+  }
+
+  const updateAlert = () => {
+    setAlert(
+      <ReactBSAlert
+        title="Trigger Updated!"
+        onConfirm={() => hideAlert()}
+        onCancel={() => hideAlert()}
+        showConfirm={false}
+        showCloseButton
+        className="text-end"
+        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
+      >
+        <br />
+        <p>Your trigger has been updated.</p>
+        <Row className="search-box">
+          <Col className="text-end">
+            <Link to="/triggers">
+              <Button className="button-active">Back to all triggers</Button>
+            </Link>
+          </Col>
+        </Row>
+      </ReactBSAlert>,
+    )
+  }
+
   return (
     <>
+      {alert}
       <Row className="trigger-card">
         <Col md="7">
           <h2>Trigger Card</h2>
@@ -180,39 +216,42 @@ const ViewTrigger = () => {
               </Label>
             </Col>
           </Row>
-          <Row className="search-box">
-            <Col>
-              <Label>Email recipients</Label>
-            </Col>
+          {myTariff === 'free' ? (
+            <Row>&nbsp;</Row>
+          ) : (
+            <Row className="search-box">
+              <Col>
+                <Label>Email recipients</Label>
+              </Col>
 
-            <Col>
-              <Label type="text" className="cardContent">
-                {Object.keys(recipients).map((recip) => (
-                  <>
-                    <p key={recip}>{recipients.slice(0, 3)[recip]}</p>
-                  </>
-                ))}
-                <a
-                  data-toggle="collapse"
-                  href="#collapseEmails"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="collapseEmails"
-                  className="button-neutral see-more-collapse "
-                >
-                  <ChevronDown className="see-more-chevron" />
-                </a>
-                <p className="collapse mt-3" id="collapseEmails">
+              <Col>
+                <Label type="text" className="cardContent">
                   {Object.keys(recipients).map((recip) => (
                     <>
-                      <p key={recip}>{recipients.slice(3)[recip]}</p>
+                      <p key={recip}>{recipients.slice(0, 3)[recip]}</p>
                     </>
                   ))}
-                </p>
-              </Label>
-            </Col>
-          </Row>
-
+                  <a
+                    data-toggle="collapse"
+                    href="#collapseEmails"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseEmails"
+                    className="button-neutral see-more-collapse "
+                  >
+                    <ChevronDown className="see-more-chevron" />
+                  </a>
+                  <p className="collapse mt-3" id="collapseEmails">
+                    {Object.keys(recipients).map((recip) => (
+                      <>
+                        <p key={recip}>{recipients.slice(3)[recip]}</p>
+                      </>
+                    ))}
+                  </p>
+                </Label>
+              </Col>
+            </Row>
+          )}
           <Col>
             <h3>Events List</h3>
           </Col>
