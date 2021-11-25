@@ -1,24 +1,25 @@
-/* eslint-disable */
 import React, { useState, useEffect } from 'react'
 
+import { useHistory } from 'react-router-dom'
 import { Button, Col, Row } from 'reactstrap'
-import { deleteTrigger } from '../api/api'
-import { Link } from 'react-router-dom'
-import { getEventsByTriggerId, getTriggers } from '../api/api'
+
+import { deleteTrigger, getEventsByTriggerId, getTriggers } from '../api/api'
 import htmlError from '../pages/CreateTrigger'
 
-import ReactBSAlert from 'react-bootstrap-sweetalert'
+// import ReactBSAlert from 'react-bootstrap-sweetalert'
 
 const DeleteTrigger = ({ id, userId, setData }) => {
   const [events, setEvents] = useState([])
-  const [alert, setAlert] = React.useState(null)
+  // const [alert, setAlert] = React.useState(null)
+
+  const history = useHistory()
 
   const confirmDeleteTrigger = () => {
     deleteTrigger(id, userId)
       .then(() => {
         console.log('id')
         refreshData()
-        deleteAlert()
+        history.push('/triggers')
       })
       // eslint-disable-next-line
       .catch((error) => {
@@ -47,6 +48,7 @@ const DeleteTrigger = ({ id, userId, setData }) => {
       })
   }
 
+  /*
   const hideAlert = () => {
     setAlert(null)
   }
@@ -74,11 +76,12 @@ const DeleteTrigger = ({ id, userId, setData }) => {
       </ReactBSAlert>,
     )
   }
+*/
 
   return (
     <>
       <hr />
-      {alert}
+      {/* alert */}
       <Row>
         {events.length === 0 ? (
           <Col>

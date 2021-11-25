@@ -26,7 +26,7 @@ const Triggers = () => {
   // for future tariff use
   // const subscription = useSelector(userSubscriptionSelector)
 
-  const myTariff = tariff.free
+  const myTariff = tariff.enterprise
 
   console.log('tariff', myTariff)
 

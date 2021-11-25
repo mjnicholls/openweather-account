@@ -94,14 +94,16 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
   }
 
   return (
-    <Row>
-      <Col md="3">
-        <Label>Trigger coordinates</Label>
-      </Col>
+    <>
+      <Row className="mt-3">
+        <Col className="mb-3">
+          <h6>Trigger coordinates</h6>
+        </Col>
+      </Row>
 
-      <Col md="1">Lat</Col>
-      <Col md="3">
-        <FormGroup>
+      <Row className="search-fox">
+        <Col md="1">Lat</Col>
+        <Col md="5">
           <Input
             type="number"
             className={error.lat ? 'danger-border' : ''}
@@ -111,41 +113,41 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
             }}
             onKeyDown={onKeyDownLat}
           />
-        </FormGroup>
 
-        <div
-          className={classnames(
-            'invalid-feedback ',
-            error.lat ? 'd-block' : '',
-          )}
-        >
-          {error.lat}
-        </div>
-      </Col>
-      <Col md="1">Lng</Col>
-      <Col md="3">
-        <FormGroup>
-          <Input
-            type="number"
-            className={error.lng ? 'danger-border' : ''}
-            value={lng}
-            onChange={(e) => {
-              setLng(e.target.value)
-            }}
-            onKeyDown={onKeyDownLon}
-          />
-        </FormGroup>
+          <div
+            className={classnames(
+              'invalid-feedback ',
+              error.lat ? 'd-block' : '',
+            )}
+          >
+            {error.lat}
+          </div>
+        </Col>
+        <Col md="1">Lng</Col>
+        <Col md="5">
+          <FormGroup>
+            <Input
+              type="number"
+              className={error.lng ? 'danger-border' : ''}
+              value={lng}
+              onChange={(e) => {
+                setLng(e.target.value)
+              }}
+              onKeyDown={onKeyDownLon}
+            />
+          </FormGroup>
 
-        <div
-          className={classnames(
-            'invalid-feedback ',
-            error.lng ? 'd-block' : '',
-          )}
-        >
-          {error.lng}
-        </div>
-      </Col>
-    </Row>
+          <div
+            className={classnames(
+              'invalid-feedback ',
+              error.lng ? 'd-block' : '',
+            )}
+          >
+            {error.lng}
+          </div>
+        </Col>
+      </Row>
+    </>
   )
 }
 

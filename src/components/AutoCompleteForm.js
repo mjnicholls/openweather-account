@@ -26,11 +26,9 @@ const AutoCompleteForm = ({ mapRef, location, setLocation, error }) => {
 
   return (
     <div>
-      <Row>
-        <Col md="3">
-          <Label>Trigger location</Label>
-        </Col>
-        <Col md="9">
+      <Row className="mt-3">
+        <Col className="mb-3">
+          <h6>Trigger location</h6>
           <FormGroup>
             <Autocomplete
               apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"

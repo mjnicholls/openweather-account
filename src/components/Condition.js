@@ -16,11 +16,14 @@ const Condition = ({ condition, setCondition }) => {
 
   return (
     <>
-      <Row className="search-box">
-        <Col md="3">
-          <Label>Trigger condition</Label>
+      <Row>
+        <Col className="mb-3">
+          <h6>Trigger condition</h6>
         </Col>
-        <Col md="5">
+      </Row>
+
+      <Row className="search-box">
+        <Col md="6">
           <Label className="conditions">Weather parameter</Label>
           <FormGroup>
             <Select
@@ -40,7 +43,7 @@ const Condition = ({ condition, setCondition }) => {
             />
           </FormGroup>
         </Col>
-        <Col md="4">
+        <Col md="6">
           <Label className="conditions">Level</Label>
           <FormGroup>
             <Input

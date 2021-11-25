@@ -22,12 +22,9 @@ const TriggerName = ({ location, name, setName, error }) => {
   }, [location, isNameEdited])
 
   return (
-    <Row className="search-box">
-      <Col md="3">
-        <Label>Trigger name</Label>
-      </Col>
-
-      <Col md="9">
+    <Row className="search-fox">
+      <Col className="mb-3">
+        <h6>Trigger name</h6>
         <FormGroup>
           <Input
             type="text"
@@ -35,15 +32,16 @@ const TriggerName = ({ location, name, setName, error }) => {
             onChange={onNameChange}
             className={error.name ? 'danger-border' : ''}
           />
+
+          <div
+            className={classnames(
+              'invalid-feedback ',
+              error.name ? 'd-block' : '',
+            )}
+          >
+            {error.name}
+          </div>
         </FormGroup>
-        <div
-          className={classnames(
-            'invalid-feedback ',
-            error.name ? 'd-block' : '',
-          )}
-        >
-          {error.name}
-        </div>
       </Col>
     </Row>
   )

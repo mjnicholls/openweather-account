@@ -7,6 +7,7 @@ import { Container } from 'reactstrap'
 
 import Footer from './components/Footer'
 import Header from './components/Header'
+import HeaderTrigger from './components/HeaderTrigger'
 import CreateTrigger from './pages/CreateTrigger'
 import ForecastedEvents from './pages/Events'
 import TriggerList from './pages/Triggers'
@@ -16,7 +17,7 @@ import store from './store'
 const App = () => (
   <Provider store={store}>
     <div className="App">
-      <Header />
+      <HeaderTrigger />
       <Container fluid="xl" style={{ marginTop: '60px' }}>
         <BrowserRouter>
           <Route path="/create" component={CreateTrigger} />

@@ -14,7 +14,7 @@ const SearchBox = ({ mapRef, location, setLocation, error, name }) => {
   return (
     <>
       {activeTab === 'location' ? (
-        <Row className="search-box">
+        <Row className="search-fox">
           <Col>
             <AutoCompleteForm
               mapRef={mapRef}
@@ -22,8 +22,8 @@ const SearchBox = ({ mapRef, location, setLocation, error, name }) => {
               error={error}
             />
           </Col>
-          <Row className="mt-3 text-end">
-            <Col className="text-end move-up">
+          <Row className="mt-1 text-end">
+            <Col className="text-end">
               <Button
                 size="sm"
                 className={classNames('button-neutral', {
@@ -48,7 +48,7 @@ const SearchBox = ({ mapRef, location, setLocation, error, name }) => {
           </Row>
         </Row>
       ) : (
-        <Row className="search-box">
+        <Row className="search-fox">
           <Col>
             <CoordinatesSearch
               mapRef={mapRef}
@@ -57,7 +57,7 @@ const SearchBox = ({ mapRef, location, setLocation, error, name }) => {
             />
           </Col>
           <Row className="mt-3 text-end">
-            <Col className="text-end move-up">
+            <Col className="text-end">
               <Button
                 size="sm"
                 className={classNames('button-neutral', {

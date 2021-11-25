@@ -24,7 +24,7 @@ const CreateTrigger = () => {
   const mapRef = useRef(null)
   const userId = useSelector(selectUserId)
 
-  const myTariff = tariff.free
+  const myTariff = tariff.enterprise
 
   const [location, setLocation] = useState({
     name: '',
@@ -205,7 +205,7 @@ const CreateTrigger = () => {
               setRecipients={setRecipients}
             />
           )}
-          <Row className="search-box">
+          <Row className="mt-4">
             <Col className="text-end">
               <Button className="button-neutral" onClick={goToPreviousPath}>
                 Cancel
@@ -218,10 +218,7 @@ const CreateTrigger = () => {
                         Create new trigger
                       </Button>
                     ) : (
-                      <Button className="button-active">
-                        {' '}
-                        onClick={createTrigger}Create trigger
-                      </Button>
+                      <Button className="button-active"> Create trigger</Button>
                     )
                   case 'startup':
                     return data.length >= 5 ? (

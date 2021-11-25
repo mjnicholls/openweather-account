@@ -58,7 +58,7 @@ const ViewOnlyMap = ({ mapRef, location }) => {
   }
 
   return (
-    <div id="map" style={{ height: '100vh', width: '100%' }}>
+    <div id="map" style={{ height: '126vh', width: '100%' }}>
       <GoogleMapReact
         ref={mapRef}
         bootstrapURLKeys={{ key: 'AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY' }}

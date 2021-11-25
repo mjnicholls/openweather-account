@@ -18,7 +18,7 @@ const Events = () => {
 
   const [data, setData] = useState([])
 
-  const myTariff = tariff.free
+  const myTariff = tariff.enterprise
 
   const openEventsN = 3
 

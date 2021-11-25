@@ -284,8 +284,8 @@ p {
 .move-up {
   margin-bottom: 40px;
 }
-.search-box {
-  margin-bottom: 40px;
+
+.search-fox {
 
   .form-group {
     margin-bottom: 0px;
@@ -338,7 +338,116 @@ p {
     font-family: $default-font-family;
     text-align: center;
     margin-left: 0px;
-    font-size: 8pt;
+    font-size: 12pt;
+  }
+
+  label {
+    margin-top: 10px;
+    font-family: $default-font-family;
+    text-align: center;
+    margin-left: 0px;
+    font-weight: bold;
+    font-size: 10pt;
+  }
+
+  .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1.3rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #fff;
+  }
+
+  .button-active {
+    border-radius: 16pt;
+    padding: 6pt 8pt;
+    text-decoration: none;
+    background-color: #48484a;
+    border-color: #48484a;
+    color: #f2f2f2;
+    cursor: pointer;
+    border-style: none;
+    white-space: nowrap;
+    margin-left: 4pt;
+    &:hover {
+      background-color: rgba(72, 72, 74, 0.85);
+      border-color: rgba(72, 72, 74, 0.85);
+    }
+  }
+
+  .button-neutral {
+    border: 1px solid rgba(72, 72, 74, 0.4);
+    background-color: transparent !important;
+    border-radius: 16pt;
+    padding: 6pt 8pt;
+    text-decoration: none;
+    color: #48484a;
+    cursor: pointer;
+    white-space: nowrap;
+    &:hover {
+      background-color: #f2f2f2 !important;
+      border-color: #f2f2f2;
+    }
+  }
+
+}
+.search-box {
+  margin-bottom: 40px;
+
+  .form-group {
+    margin-bottom: 0px;
+
+    .pac-target-input {
+      width: 100%;
+      padding: 0.6rem 1.3rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      background-color: #fff;
+      border: 0.5px solid #ced4da !important;
+    }
+
+    .danger-border {
+        width: 100%;
+        padding: 0.6rem 1.3rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        background-color: #fff;
+        border-radius: 0.25rem;
+        border: 0.5px solid red !important;
+    }
+
+    .react-select__control.css-1s2u09g-control {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+  }
+
+  .danger-border {
+    outline: none;
+    overflow: visible;
+    border-color: red;
+  }
+
+  .human-readable {
+    font-style: italic;
+    font-size: 11pt;
+    font-family: $default-font-family;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .centered {
+    margin-top: 10px;
+    font-size: 10pt;
+  }
+
+  .conditions {
+    font-family: $default-font-family;
+    text-align: center;
+    margin-left: 0px;
+    font-size: 10pt;
   }
 
   label {

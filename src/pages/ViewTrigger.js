@@ -23,7 +23,7 @@ const ViewTrigger = () => {
   const userId = useSelector(selectUserId)
   const { condition, days, id, location, name, recipients, status } = state
 
-  const myTariff = tariff.free
+  const myTariff = tariff.enterprise
   const mapRef = useRef(null)
 
   const [error, setError] = useState('')
@@ -193,81 +193,60 @@ const ViewTrigger = () => {
             </Col>
           </Row>
 
-          <Row className="mb-3">
-            <Col>
-              <Label>Trigger Condition</Label>
-            </Col>
-
-            <Col>
-              <Label type="text" value={condition} className="cardContent">
-                {humanReadableCondition(condition).substring(27)}
-              </Label>
-            </Col>
-          </Row>
-          <Row className="search-box">
-            <Col>
-              <Label>Prior Notifications</Label>
-            </Col>
-
-            <Col>
-              <Label type="text" value={days} className="cardContent">
+          <Row>
+            <Col className="mb-3">
+              <h6>Prior Notifications</h6>
+              <p>
                 Up to {days} {days === 1 ? 'day' : 'days'} before the event
                 starts
-              </Label>
+              </p>
             </Col>
           </Row>
+
           {myTariff === 'free' ? (
             <Row>&nbsp;</Row>
           ) : (
-            <Row className="search-box">
-              <Col>
-                <Label>Email recipients</Label>
-              </Col>
-
-              <Col>
-                <Label type="text" className="cardContent">
+            <Row>
+              <Col className="mb-3">
+                <h6>Email recipients</h6>
+                {Object.keys(recipients).map((recip) => (
+                  <>
+                    <p key={recip}>{recipients.slice(0, 3)[recip]}</p>
+                  </>
+                ))}
+                <a
+                  data-toggle="collapse"
+                  href="#collapseEmails"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="collapseEmails"
+                  className="button-neutral see-more-collapse "
+                >
+                  <ChevronDown className="see-more-chevron" />
+                </a>
+                <p className="collapse mt-3" id="collapseEmails">
                   {Object.keys(recipients).map((recip) => (
                     <>
-                      <p key={recip}>{recipients.slice(0, 3)[recip]}</p>
+                      <p key={recip}>{recipients.slice(3)[recip]}</p>
                     </>
                   ))}
-                  <a
-                    data-toggle="collapse"
-                    href="#collapseEmails"
-                    role="button"
-                    aria-expanded="false"
-                    aria-controls="collapseEmails"
-                    className="button-neutral see-more-collapse "
-                  >
-                    <ChevronDown className="see-more-chevron" />
-                  </a>
-                  <p className="collapse mt-3" id="collapseEmails">
-                    {Object.keys(recipients).map((recip) => (
-                      <>
-                        <p key={recip}>{recipients.slice(3)[recip]}</p>
-                      </>
-                    ))}
-                  </p>
-                </Label>
+                </p>
               </Col>
             </Row>
           )}
+          <br />
           <Col>
             <h3>Events List</h3>
           </Col>
-          <Row className="search-box">
-            <Col>
-              <Label>Active Events</Label>
-            </Col>
 
-            <Col>
-              <Label type="text" className="cardContent">
-                {events.map((triggers) => (
-                  <>
-                    <p>{toDate(triggers.date)}</p>
-                  </>
-                ))}
-              </Label>
+          <Row>
+            <Col className="mb-3">
+              <h6 className="mb-2">Active Events</h6>
+              {events.map((triggers) => (
+                <>
+                  <p className="mt-1">{toDate(triggers.date)}</p>
+                </>
+              ))}
             </Col>
           </Row>
 

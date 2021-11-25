@@ -79,11 +79,13 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
 
   return (
     <>
-      <Row className="search-box">
-        <Col>
-          <Label>Email Notification</Label>
+      <Row className="mt-4">
+        <Col className="mb-3">
+          <h6>Email Notification</h6>
         </Col>
+      </Row>
 
+      <Row className="search-fox">
         <Col>
           <FormGroup>
             <Input
@@ -115,11 +117,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
       {recipients.map((email, index) =>
         email === activeEmail ? (
           <>
-            <Row className="search-box">
-              <Col>
-                {' '}
-                <Label>Editing Name</Label>
-              </Col>
+            <Row className="mt-4">
               <Col key={email}>
                 <Input
                   type="text"
@@ -142,8 +140,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
           </>
         ) : (
           <>
-            <Row>
-              <Col></Col>
+            <Row className="mt-4">
               <Col key={email}>
                 <p>{email}</p>
               </Col>
