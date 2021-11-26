@@ -836,8 +836,6 @@ Button.button-active {
     border-style: none;
   }
   
-
-
   a {
     color: black;
     font-weight: bold;
@@ -853,9 +851,7 @@ Button.button-active {
   margin-top: 30px;
 }
 
-
 .button-turquoise {
-  //border: 1px solid rgba(72, 72, 74, 0.4);
   background-color:  $brand-turquoise;
   border-radius: 16pt;
   padding: 6pt 8pt;

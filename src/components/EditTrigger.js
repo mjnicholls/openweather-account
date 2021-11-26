@@ -12,6 +12,7 @@ import { noBlankErrorMessage } from '../config'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 
 import htmlError from '../pages/CreateTrigger'
+import StatusToggle from './StatusToggle'
 
 const EditTrigger = ({ userId, id, name, status, setData, close }) => {
   const [error, setError] = useState({})
@@ -135,15 +136,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
           </div>
         </Col>
         <Col md="4" className="editStatus">
-          <label className="switch">
-            {/* eslint-disable-next-line */}
-            <input
-              type="checkbox"
-              checked={tempStatus === 'on'}
-              onChange={() => setTempStatus(tempStatus === 'on' ? 'off' : 'on')}
-            />
-            <span className="slider round"></span>
-          </label>
+          <StatusToggle tempStatus={tempStatus} setTempStatus={setTempStatus} />
         </Col>
       </Row>
 

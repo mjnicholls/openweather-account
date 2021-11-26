@@ -8,6 +8,7 @@ import { Row, Col, Input, Label, Button } from 'reactstrap'
 import { patchTrigger, getEventsByTriggerId } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
+import StatusToggle from '../components/StatusToggle'
 import { noBlankErrorMessage, tariff } from '../config'
 import humanReadableCondition from '../humanReadableCondition'
 import '../App.scss'
@@ -164,16 +165,10 @@ const ViewTrigger = () => {
               )}
             </Col>
             <Col className="text-end mb-3">
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={tempStatus === 'on'}
-                  onChange={() =>
-                    setTempStatus(tempStatus === 'on' ? 'off' : 'on')
-                  }
-                />
-                <span className="slider round"></span>
-              </label>
+              <StatusToggle
+                tempStatus={tempStatus}
+                setTempStatus={setTempStatus}
+              />
             </Col>
           </Row>
 

@@ -51,7 +51,7 @@ const Events = () => {
         <Row className="search-box">
           {data < 1 ? (
             <Row className="search-box">
-              <h2>No events for upcoming days.</h2>
+              <h3>No events for upcoming days.</h3>
             </Row>
           ) : (
             data.map((day) => (
@@ -66,18 +66,82 @@ const Events = () => {
                     </span>
                   </Col>
                   <Col className="mb-0" md="12" mt="20">
-                    <Card>
+                    <Card className="mb-4">
                       <CardBody>
-                        <Table className="mb-3">
-                          <tbody>
-                            {day.triggers.length ? (
-                              day.triggers
-                                .slice(0, openEventsN)
+                        {day.triggers.length ? (
+                          day.triggers
+                            .slice(0, openEventsN)
+                            .map((trigger, index) => (
+                              <React.Fragment key={trigger.id}>
+                                <div className="d-flex mb-4 mt-4 justify-content-between">
+                                  <div>{index + 1}</div>
+                                  <div>
+                                    {' '}
+                                    <Link
+                                      to={{
+                                        pathname: '/trigger',
+                                        state: trigger,
+                                      }}
+                                    >
+                                      {trigger.name}
+                                    </Link>
+                                  </div>
+                                  <div>
+                                    {humanReadableCondition(
+                                      trigger.condition,
+                                    ).substring(28)}
+                                  </div>
+                                </div>
+                                <div className="d-flex flex-row justify-content-between">
+                                  <div>&nbsp;</div>
+                                  <div>
+                                    {trigger.location.lat},{' '}
+                                    {trigger.location.lon}
+                                  </div>
+                                  {myTariff === 'free' ? (
+                                    <div>&nbsp;</div>
+                                  ) : (
+                                    <div>
+                                      <i>
+                                        Notification has been sent to{' '}
+                                        {trigger.recipients.length} recipients
+                                      </i>
+                                    </div>
+                                  )}
+                                </div>
+                              </React.Fragment>
+                            ))
+                        ) : (
+                          <div className="d-flex flex-row">
+                            <div className="p-4">
+                              <i>No events.</i>
+                            </div>
+                          </div>
+                        )}
+
+                        {day.triggers.length > openEventsN && (
+                          <>
+                            <a
+                              className="button-neutral see-more-collapse"
+                              data-toggle="collapse"
+                              href={`#collapse_${day.day}`}
+                              role="button"
+                              aria-expanded="false"
+                              aria-controls={`collapse_${day.day}`}
+                            >
+                              <ChevronDown className="see-more-chevron" />
+                            </a>
+                            <div
+                              className="collapse"
+                              id={`collapse_${day.day}`}
+                            >
+                              {day.triggers
+                                .slice(openEventsN)
                                 .map((trigger, index) => (
                                   <React.Fragment key={trigger.id}>
-                                    <tr>
-                                      <td>{index + 1}</td>
-                                      <td>
+                                    <div className="d-flex flex-row justify-content-between">
+                                      <div>{index + openEventsN + 1}</div>
+                                      <div>
                                         {' '}
                                         <Link
                                           to={{
@@ -87,98 +151,31 @@ const Events = () => {
                                         >
                                           {trigger.name}
                                         </Link>
-                                      </td>
-                                      <td>
+                                      </div>
+                                      <div>
                                         {humanReadableCondition(
                                           trigger.condition,
                                         ).substring(28)}
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td>&nbsp;</td>
-                                      <td className="smaller">
+                                      </div>
+                                    </div>
+                                    <div className="d-flex flex-row justify-content-between">
+                                      <div>&nbsp;</div>
+                                      <div>
                                         {trigger.location.lat},{' '}
                                         {trigger.location.lon}
-                                      </td>
-                                      {myTariff === 'free' ? (
-                                        <td>&nbsp;</td>
-                                      ) : (
-                                        <td className="smaller">
-                                          <i>
-                                            Notification has been sent to{' '}
-                                            {trigger.recipients.length}{' '}
-                                            recipients
-                                          </i>
-                                        </td>
-                                      )}
-                                    </tr>
+                                      </div>
+                                      <div>
+                                        <i>
+                                          Notification has been sent to{' '}
+                                          {trigger.recipients.length} recipients
+                                        </i>
+                                      </div>
+                                    </div>
                                   </React.Fragment>
-                                ))
-                            ) : (
-                              <tr>
-                                <td>No events</td>
-                              </tr>
-                            )}
-                          </tbody>
-                          {day.triggers.length > openEventsN && (
-                            <>
-                              <a
-                                className="button-neutral see-more-collapse"
-                                data-toggle="collapse"
-                                href={`#collapse_${day.day}`}
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls={`collapse_${day.day}`}
-                              >
-                                <ChevronDown className="see-more-chevron" />
-                              </a>
-                              <tbody
-                                className="collapse"
-                                id={`collapse_${day.day}`}
-                              >
-                                {day.triggers
-                                  .slice(openEventsN)
-                                  .map((trigger, index) => (
-                                    <React.Fragment key={trigger.id}>
-                                      <tr>
-                                        <td>{index + openEventsN + 1}</td>
-                                        <td>
-                                          {' '}
-                                          <Link
-                                            to={{
-                                              pathname: '/trigger',
-                                              state: trigger,
-                                            }}
-                                          >
-                                            {trigger.name}
-                                          </Link>
-                                        </td>
-                                        <td>
-                                          {humanReadableCondition(
-                                            trigger.condition,
-                                          ).substring(28)}
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td>&nbsp;</td>
-                                        <td className="smaller">
-                                          {trigger.location.lat},{' '}
-                                          {trigger.location.lon}
-                                        </td>
-                                        <td className="smaller">
-                                          <i>
-                                            Notification has been sent to{' '}
-                                            {trigger.recipients.length}{' '}
-                                            recipients
-                                          </i>
-                                        </td>
-                                      </tr>
-                                    </React.Fragment>
-                                  ))}
-                              </tbody>
-                            </>
-                          )}
-                        </Table>
+                                ))}
+                            </div>
+                          </>
+                        )}
                       </CardBody>
                     </Card>
                   </Col>
