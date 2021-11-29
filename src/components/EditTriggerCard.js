@@ -1,5 +1,6 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { Edit } from 'react-ikonate'
 import { Button } from 'reactstrap'
@@ -55,6 +56,14 @@ const EditTriggerCard = ({ id, userId, name, status, setData }) => {
       </Button>
     </>
   )
+}
+
+EditTriggerCard.propTypes = {
+  id: PropTypes.number,
+  status: PropTypes.bool,
+  userId: PropTypes.string,
+  setData: PropTypes.func,
+  name: PropTypes.string,
 }
 
 export default EditTriggerCard

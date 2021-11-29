@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Select from 'react-select'
-import { Col, Row, FormGroup, Label } from 'reactstrap'
+import { Col, Row } from 'reactstrap'
 import '../App.scss'
+import PropTypes from 'prop-types'
 
 const PriorNotifs = ({ days, setDays }) => {
   const priors = [
@@ -41,6 +42,11 @@ const PriorNotifs = ({ days, setDays }) => {
       </Row>
     </>
   )
+}
+
+PriorNotifs.propTypes = {
+  days: PropTypes.number,
+  setDays: PropTypes.func,
 }
 
 export default PriorNotifs

@@ -6,6 +6,8 @@ import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
 import placeMarker from './placeMarker'
 
+import PropTypes from 'prop-types'
+
 const handleApiLoaded = (mapInstance, coords) => {
   /* eslint-disable-next-line */
   const position = new google.maps.LatLng(coords.lat, coords.lng)
@@ -17,9 +19,9 @@ const createMapOptions = () => ({
   styles: mapStyles.styles,
   draggable: false,
 })
-/* eslint-disable-next-line */
-const InfoWindow = ({ show, location }) => {
-  return show && location.lat && location.lon ? (
+
+const InfoWindow = ({ show, location }) =>
+  show && location.lat && location.lon ? (
     <div
       className="mapPop"
       style={{
@@ -43,7 +45,6 @@ const InfoWindow = ({ show, location }) => {
       </div>
     </div>
   ) : null
-}
 
 const ViewOnlyMap = ({ mapRef, location }) => {
   const [tempLocation, setTempLocation] = useState(location)
@@ -79,6 +80,11 @@ const ViewOnlyMap = ({ mapRef, location }) => {
       </GoogleMapReact>
     </div>
   )
+}
+
+InfoWindow.propTypes = {
+  location: PropTypes.string,
+  show: PropTypes.bool,
 }
 
 export default ViewOnlyMap

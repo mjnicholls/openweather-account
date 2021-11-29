@@ -7,6 +7,8 @@ import '../App.scss'
 
 import placeMarker from './placeMarker'
 
+import PropTypes from 'prop-types'
+
 const handleApiLoaded = (mapInstance) => {
   mapInstance.addListener('click', (e) => {
     placeMarker(e.latLng, mapInstance, null)
@@ -64,17 +66,7 @@ const SimpleMap = ({ mapRef, location, setLocation }) => {
 
   useEffect(() => {
     setTempLocation(location)
-    // if (location.lat) {
-    //   setIsInfoWindow(true)
-    // }
   }, [location])
-
-  // useEffect(() => {
-  //   setTempLocation(location)
-  //   if (tempLocation.lat) {
-  //     setIsInfoWindow(true)
-  //   }
-  // }, [tempLocation])
 
   const defaultProps = {
     center: {
@@ -114,6 +106,13 @@ const SimpleMap = ({ mapRef, location, setLocation }) => {
       </GoogleMapReact>
     </div>
   )
+}
+
+InfoWindow.propTypes = {
+  location: PropTypes.string,
+  setLocation: PropTypes.func,
+  showButton: PropTypes.func,
+  show: PropTypes.bool,
 }
 
 export default SimpleMap

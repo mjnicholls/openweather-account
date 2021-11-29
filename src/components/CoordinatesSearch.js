@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import '../App.scss'
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 
 import { noBlankErrorMessage } from '../config'
@@ -25,20 +26,6 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
         lng: noBlankErrorMessage,
       }
     }
-
-    // if (lat && typeof lat !== "number") {
-    //   newError = {
-    //     lat: notANumberError,
-    //     ...newError,
-    //
-    //   }
-    // }
-    // if (lng && typeof lng !== "number") {
-    //   newError = {
-    //     lng: notANumberError,
-    //     ...newError,
-    //   }
-    // }
 
     if (lat && (lat < -90 || lat > 90)) {
       newError = {
@@ -149,6 +136,12 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
       </Row>
     </>
   )
+}
+
+CoordinatesSearch.propTypes = {
+  location: PropTypes.string,
+  setLocation: PropTypes.func,
+  mapRef: PropTypes.func,
 }
 
 export default CoordinatesSearch

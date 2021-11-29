@@ -7,8 +7,9 @@ import CoordinatesSearch from './CoordinatesSearch'
 
 import '../App.scss'
 import classNames from 'classnames/index'
+import PropTypes from 'prop-types'
 
-const SearchBox = ({ mapRef, location, setLocation, error, name }) => {
+const SearchBox = ({ mapRef, location, setLocation, error }) => {
   const [activeTab, setActiveTab] = useState('location')
 
   return (
@@ -84,6 +85,13 @@ const SearchBox = ({ mapRef, location, setLocation, error, name }) => {
       )}
     </>
   )
+}
+
+SearchBox.propTypes = {
+  location: PropTypes.string,
+  setLocation: PropTypes.func,
+  mapRef: PropTypes.string,
+  error: PropTypes.func,
 }
 
 export default SearchBox

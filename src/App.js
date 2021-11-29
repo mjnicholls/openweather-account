@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import { Container } from 'reactstrap'
 
 import Footer from './components/Footer'
-import Header from './components/Header'
+// import Header from './components/Header'
 import HeaderTrigger from './components/HeaderTrigger'
 import CreateTrigger from './pages/CreateTrigger'
 import ForecastedEvents from './pages/Events'

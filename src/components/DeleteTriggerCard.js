@@ -1,5 +1,6 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { Button } from 'reactstrap'
 
@@ -50,6 +51,13 @@ const DeleteTriggerCard = ({ id, userId, data, setData }) => {
       </Button>
     </>
   )
+}
+
+DeleteTriggerCard.propTypes = {
+  id: PropTypes.number,
+  userId: PropTypes.string,
+  data: PropTypes.object,
+  setData: PropTypes.func,
 }
 
 export default DeleteTriggerCard

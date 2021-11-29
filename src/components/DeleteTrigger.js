@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 import { Button, Col, Row } from 'reactstrap'
 
@@ -48,40 +49,9 @@ const DeleteTrigger = ({ id, userId, setData }) => {
       })
   }
 
-  /*
-  const hideAlert = () => {
-    setAlert(null)
-  }
-
-  const deleteAlert = () => {
-    setAlert(
-      <ReactBSAlert
-        title="Trigger Deleted!"
-        onConfirm={() => hideAlert()}
-        onCancel={() => hideAlert()}
-        showConfirm={false}
-        showCloseButton
-        className="text-end"
-        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
-      >
-        <br />
-        <p>Your trigger has been deleted.</p>
-        <Row className="search-box">
-          <Col className="text-end">
-            <Link to="/triggers">
-              <Button className="button-active">To all triggers</Button>
-            </Link>
-          </Col>
-        </Row>
-      </ReactBSAlert>,
-    )
-  }
-*/
-
   return (
     <>
       <hr />
-      {/* alert */}
       <Row>
         {events.length === 0 ? (
           <Col>
@@ -112,6 +82,12 @@ const DeleteTrigger = ({ id, userId, setData }) => {
       </Col>
     </>
   )
+}
+
+DeleteTrigger.propTypes = {
+  id: PropTypes.number,
+  userId: PropTypes.string,
+  setData: PropTypes.func,
 }
 
 export default DeleteTrigger

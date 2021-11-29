@@ -815,6 +815,10 @@ Button.button-active {
 
 .forecast {
 
+.small {
+  font-size: 10pt;
+}
+
   .collapse {
     border-style: none;
 
@@ -888,4 +892,6 @@ Button.button-active {
     font-family: $default-font-family;
   }
 }
+
+
 

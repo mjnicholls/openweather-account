@@ -7,6 +7,8 @@ import '../App.scss'
 import { variables, units, conditions } from '../config'
 import humanReadableCondition from '../humanReadableCondition'
 
+import PropTypes from 'prop-types'
+
 const Condition = ({ condition, setCondition }) => {
   const handleChange = (key, value) => {
     const newCondition = { ...condition }
@@ -48,9 +50,7 @@ const Condition = ({ condition, setCondition }) => {
           <FormGroup>
             <Input
               type="number"
-              onChange={(e) =>
-                handleChange('value', parseFloat(e.target.value))
-              }
+              onChange={(e) => handleChange('value', e.target.value)}
               value={condition.value}
             />
           </FormGroup>
@@ -70,6 +70,11 @@ const Condition = ({ condition, setCondition }) => {
       </Row>
     </>
   )
+}
+
+Condition.propTypes = {
+  condition: PropTypes.string,
+  setCondition: PropTypes.func,
 }
 
 export default Condition

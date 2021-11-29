@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import { Button, Col, Row, Input, Label } from 'reactstrap'
 
@@ -14,14 +14,16 @@ import ReactBSAlert from 'react-bootstrap-sweetalert'
 import htmlError from '../pages/CreateTrigger'
 import StatusToggle from './StatusToggle'
 
+import PropTypes from 'prop-types'
+
 const EditTrigger = ({ userId, id, name, status, setData, close }) => {
   const [error, setError] = useState({})
 
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
+  const [isEdited, setIsEdited] = useState(true)
 
   const [alert, setAlert] = React.useState(null)
-  /* eslint-disable-next-line */
 
   const confirmEditTrigger = () => {
     setError({})
@@ -38,7 +40,6 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
       return
     }
 
-    /* eslint-disable-next-line */
     const data = {
       id,
       user_id: userId,
@@ -57,6 +58,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
     if (Object.keys(data).length) {
       // call API
     }
+
     console.log('saving', data)
 
     patchTrigger(data)
@@ -120,6 +122,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
           <Input
             type="text"
             onChange={(e) => {
+              setIsEdited(false)
               setActiveName(e.target.value)
             }}
             className={error.activeName ? 'danger-border' : ''}
@@ -136,7 +139,11 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
           </div>
         </Col>
         <Col md="4" className="editStatus">
-          <StatusToggle tempStatus={tempStatus} setTempStatus={setTempStatus} />
+          <StatusToggle
+            tempStatus={tempStatus}
+            setTempStatus={setTempStatus}
+            setIsEdited={setIsEdited}
+          />
         </Col>
       </Row>
 
@@ -147,12 +154,22 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
           data-dismiss="modal"
           type="button"
           onClick={confirmEditTrigger}
+          disabled={isEdited}
         >
           Update
         </Button>
       </Col>
     </div>
   )
+}
+
+EditTrigger.propTypes = {
+  id: PropTypes.number,
+  status: PropTypes.bool,
+  userId: PropTypes.string,
+  setData: PropTypes.func,
+  close: PropTypes.func,
+  name: PropTypes.string,
 }
 
 export default EditTrigger

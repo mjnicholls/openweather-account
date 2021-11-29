@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 import classnames from 'classnames'
-import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+import { Col, Row, FormGroup, Input } from 'reactstrap'
 import '../App.scss'
+
+import PropTypes from 'prop-types'
 
 const TriggerName = ({ location, name, setName, error }) => {
   const [isNameEdited, setIsNameEdited] = useState(false)
@@ -45,6 +47,13 @@ const TriggerName = ({ location, name, setName, error }) => {
       </Col>
     </Row>
   )
+}
+
+TriggerName.propTypes = {
+  name: PropTypes.string,
+  setName: PropTypes.func,
+  location: PropTypes.string,
+  error: PropTypes.func,
 }
 
 export default TriggerName

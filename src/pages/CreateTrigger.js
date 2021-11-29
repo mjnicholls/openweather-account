@@ -84,8 +84,10 @@ const CreateTrigger = () => {
         htmlAlert()
       })
       .catch((err) => {
-        console.log(err)
-        htmlError()
+        if (err.response) {
+          console.log(err.response.data)
+          htmlError()
+        }
       })
   }
 
@@ -111,7 +113,7 @@ const CreateTrigger = () => {
     )
   }
 
-  const htmlError = () => {
+  const htmlError = ({ err }) => {
     setAlert(
       <ReactBSAlert
         title="Whoops!"
@@ -124,6 +126,7 @@ const CreateTrigger = () => {
       >
         <br />
         <p>Something went wrong. Please contact us for help:</p>
+        <p>{err}</p>
         <br />
         <Col className="text-end">
           <Button className="button-active">Contact</Button>

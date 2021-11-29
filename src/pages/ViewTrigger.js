@@ -31,6 +31,7 @@ const ViewTrigger = () => {
   const [isEditName, setIsEditName] = useState(false)
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
+  const [isEdited, setIsEdited] = useState(true)
 
   const validationName = () => {
     setError({})
@@ -145,6 +146,7 @@ const ViewTrigger = () => {
                     type="text"
                     onChange={(e) => {
                       setActiveName(e.target.value)
+                      setIsEdited(false)
                     }}
                     onKeyDown={onKeyDown}
                     className={error.name ? 'danger-border' : ''}
@@ -168,6 +170,7 @@ const ViewTrigger = () => {
               <StatusToggle
                 tempStatus={tempStatus}
                 setTempStatus={setTempStatus}
+                setIsEdited={setIsEdited}
               />
             </Col>
           </Row>
@@ -257,6 +260,7 @@ const ViewTrigger = () => {
                 className="button-active"
                 style={{ marginLeft: '5px' }}
                 onClick={saveMethod}
+                disabled={isEdited}
               >
                 Save
               </Button>

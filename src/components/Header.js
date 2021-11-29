@@ -2,10 +2,6 @@ import React from 'react'
 
 import { gallery } from '../assets/Gallery'
 import '../App.scss'
-// import userEvent from '@testing-library/user-event';
-// import { useSelector } from 'react-redux'
-// const isAuthenticatedSelector = (state) => state.auth.isAuthenticated
-// const userFace = (state) => state.auth.user.username
 
 const Navbar = () => {
   const isAuthenticated = true

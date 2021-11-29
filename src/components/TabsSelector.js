@@ -2,6 +2,7 @@ import React from 'react'
 
 import '../App.scss'
 import classNames from 'classnames'
+import PropTypes from 'prop-types'
 import { Button, ButtonGroup } from 'reactstrap'
 
 const TabsSelector = ({ activeTab, setActiveTab, options }) => {
@@ -41,6 +42,12 @@ const TabsSelector = ({ activeTab, setActiveTab, options }) => {
       </ButtonGroup>
     </>
   )
+}
+
+TabsSelector.propTypes = {
+  activeTab: PropTypes.bool,
+  setActiveTab: PropTypes.func,
+  options: PropTypes.object,
 }
 
 export default TabsSelector

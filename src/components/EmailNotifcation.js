@@ -7,6 +7,7 @@ import { Edit, Close, Ok } from 'react-ikonate'
 import { validateEmail } from '../utils/validation'
 
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 
 const EmailNotifs = ({ recipients, setRecipients }) => {
   const [email, setEmail] = useState('')
@@ -160,6 +161,11 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
       )}
     </>
   )
+}
+
+EmailNotifs.propTypes = {
+  recipients: PropTypes.string,
+  setRecipients: PropTypes.func,
 }
 
 export default EmailNotifs

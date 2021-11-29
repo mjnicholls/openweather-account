@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import '../App.scss'
 import classnames from 'classnames/index'
+import PropTypes from 'prop-types'
 import Autocomplete from 'react-google-autocomplete'
-import { Col, Row, FormGroup, Label } from 'reactstrap'
+import { Col, Row, FormGroup } from 'reactstrap'
 
 import placeMarker from './placeMarker'
 
@@ -32,7 +33,7 @@ const AutoCompleteForm = ({ mapRef, location, setLocation, error }) => {
           <FormGroup>
             <Autocomplete
               apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
-              className={error.name ? 'danger-border' : ''}
+              className={error.location ? 'danger-border' : ''}
               style={{ width: '100%' }}
               onPlaceSelected={(place) => {
                 onPlaceSelected(place)
@@ -55,6 +56,13 @@ const AutoCompleteForm = ({ mapRef, location, setLocation, error }) => {
       </Row>
     </div>
   )
+}
+
+AutoCompleteForm.propTypes = {
+  location: PropTypes.string,
+  setLocation: PropTypes.func,
+  error: PropTypes.func,
+  mapRef: PropTypes.string,
 }
 
 export default AutoCompleteForm

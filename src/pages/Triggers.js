@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-// import ReactBSAlert from 'react-bootstrap-sweetalert'
-// import { Close, Edit } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'

@@ -65,17 +65,19 @@ const Events = () => {
                       {day.triggers.length} events
                     </span>
                   </Col>
-                  <Col className="mb-0" md="12" mt="20">
-                    <Card className="mb-4">
+                  <Col className="mb-0" md="12" mt="10">
+                    <Card>
                       <CardBody>
                         {day.triggers.length ? (
                           day.triggers
                             .slice(0, openEventsN)
                             .map((trigger, index) => (
                               <React.Fragment key={trigger.id}>
-                                <div className="d-flex mb-4 mt-4 justify-content-between">
-                                  <div>{index + 1}</div>
-                                  <div>
+                                <div className="row">
+                                  <div className="col-md-1 mb-4">
+                                    {index + 1}
+                                  </div>
+                                  <div className="col-md-4 mb-4">
                                     {' '}
                                     <Link
                                       to={{
@@ -86,22 +88,22 @@ const Events = () => {
                                       {trigger.name}
                                     </Link>
                                   </div>
-                                  <div>
+                                  <div className="col-md-6 mb-4">
                                     {humanReadableCondition(
                                       trigger.condition,
                                     ).substring(28)}
                                   </div>
                                 </div>
-                                <div className="d-flex flex-row justify-content-between">
-                                  <div>&nbsp;</div>
-                                  <div>
+                                <div className="row mb-4">
+                                  <div className="col-md-1 mb-2">&nbsp;</div>
+                                  <div className="col-md-4 mb-2">
                                     {trigger.location.lat},{' '}
                                     {trigger.location.lon}
                                   </div>
                                   {myTariff === 'free' ? (
-                                    <div>&nbsp;</div>
+                                    <div className="col-md-4">&nbsp;</div>
                                   ) : (
-                                    <div>
+                                    <div className="col-md-6 small">
                                       <i>
                                         Notification has been sent to{' '}
                                         {trigger.recipients.length} recipients
@@ -112,8 +114,8 @@ const Events = () => {
                               </React.Fragment>
                             ))
                         ) : (
-                          <div className="d-flex flex-row">
-                            <div className="p-4">
+                          <div className="row">
+                            <div className="col">
                               <i>No events.</i>
                             </div>
                           </div>
@@ -139,7 +141,7 @@ const Events = () => {
                                 .slice(openEventsN)
                                 .map((trigger, index) => (
                                   <React.Fragment key={trigger.id}>
-                                    <div className="d-flex flex-row justify-content-between">
+                                    <div className="row">
                                       <div>{index + openEventsN + 1}</div>
                                       <div>
                                         {' '}
@@ -158,7 +160,7 @@ const Events = () => {
                                         ).substring(28)}
                                       </div>
                                     </div>
-                                    <div className="d-flex flex-row justify-content-between">
+                                    <div className="sort">
                                       <div>&nbsp;</div>
                                       <div>
                                         {trigger.location.lat},{' '}

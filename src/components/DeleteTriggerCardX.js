@@ -1,9 +1,11 @@
-/* eslint-disable */
 import React from 'react'
-import { Button } from 'reactstrap'
+
+import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
-import DeleteTrigger from './DeleteTrigger'
 import { Close } from 'react-ikonate'
+import { Button } from 'reactstrap'
+
+import DeleteTrigger from './DeleteTrigger'
 
 const DeleteTriggerCardX = ({ id, userId, data, setData }) => {
   const [alert, setAlert] = React.useState(null)
@@ -54,6 +56,13 @@ const DeleteTriggerCardX = ({ id, userId, data, setData }) => {
       </Button>
     </>
   )
+}
+
+DeleteTriggerCardX.propTypes = {
+  id: PropTypes.number,
+  userId: PropTypes.string,
+  data: PropTypes.object,
+  setData: PropTypes.func,
 }
 
 export default DeleteTriggerCardX
