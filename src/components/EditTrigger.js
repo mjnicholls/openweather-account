@@ -139,6 +139,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
           </div>
         </Col>
         <Col md="4" className="editStatus">
+          <Label> Trigger On/Off </Label>
           <StatusToggle
             tempStatus={tempStatus}
             setTempStatus={setTempStatus}

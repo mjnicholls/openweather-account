@@ -253,36 +253,13 @@ h2 {
   padding-top: 30px;
 }
 
-.search-header {
-  margin: 20px 0px 20px 40px;
-
-  h1,
-  h2 {
-    font-family: $highlight-font-family;
-  }
-}
-
 p {
   font-family: $default-font-family;
-}
-.active {
-  background-color: rgba(72, 72, 74, 0.85) !important;
-  border-style: none;
-  border-radius: none;
-
-  &:focus {
-    background-color: white;
-    outline: none !important;
-  }
 }
 
 .icons {
   align-items: center;
   margin-left: 10px;
-}
-
-.move-up {
-  margin-bottom: 40px;
 }
 
 .search-fox {
@@ -309,10 +286,7 @@ p {
         border: 0.5px solid red !important;
     }
 
-    .react-select__control.css-1s2u09g-control {
-      padding-top: 4px;
-      padding-bottom: 4px;
-    }
+
   }
 
   .danger-border {
@@ -393,6 +367,7 @@ p {
   }
 
 }
+
 .search-box {
   margin-bottom: 40px;
 
@@ -546,8 +521,6 @@ a {
 
 .content {
   font-family: $default-font-family;
-
-
 
   // slider css
 
@@ -803,11 +776,6 @@ Button.button-active {
   &:focus{
     outline: none !important;
   }
-}
-
-.editStatus {
-  margin-top: 20px;
-
 }
 
 
