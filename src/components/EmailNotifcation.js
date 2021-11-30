@@ -86,7 +86,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
         </Col>
       </Row>
 
-      <Row className="search-fox">
+      <Row className="search-fox mb-4">
         <Col>
           <FormGroup>
             <Input
@@ -107,7 +107,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
         </Col>
         <Col>
           <FormGroup>
-            <Button className="button-active" onClick={addEmail}>
+            <Button className="button-active shadow-none" onClick={addEmail}>
               Add email
             </Button>
           </FormGroup>
@@ -118,7 +118,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
       {recipients.map((email, index) =>
         email === activeEmail ? (
           <>
-            <Row className="mt-4">
+            <Row>
               <Col key={email}>
                 <Input
                   type="text"
@@ -130,7 +130,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
                   onKeyDown={onKeyDown}
                 />
               </Col>
-              <Col className="icons" style={{ marginBottom: '30px' }}>
+              <Col className="icons" style={{ marginBottom: '10px' }}>
                 <Ok
                   onClick={() => saveEmail(index)}
                   style={{ marginRight: '20px' }}
@@ -141,11 +141,11 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
           </>
         ) : (
           <>
-            <Row className="mt-4">
+            <Row>
               <Col key={email}>
                 <p>{email}</p>
               </Col>
-              <Col className="icons" style={{ marginBottom: '30px' }}>
+              <Col className="icons" style={{ marginBottom: '10px' }}>
                 <Edit
                   style={{ marginRight: '20px' }}
                   onClick={() => {

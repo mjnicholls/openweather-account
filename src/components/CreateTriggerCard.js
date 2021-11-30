@@ -75,7 +75,7 @@ const CreateTriggerCard = () => {
         <Col className="text-end">
           <Link to="/triggers">
             <Button
-              className="button-active"
+              className="button-active shadow-none"
               data-dismiss="modal"
               type="button"
             >
@@ -84,7 +84,7 @@ const CreateTriggerCard = () => {
           </Link>
           <Link to="/create">
             <Button
-              className="button-active"
+              className="button-active shadow-none"
               data-dismiss="modal"
               type="button"
               onClick={refreshPage}

@@ -72,7 +72,7 @@ const DeleteTrigger = ({ id, userId, setData }) => {
 
       <Col className="text-end">
         <Button
-          className="button-active"
+          className="button-active shadow-none"
           data-dismiss="modal"
           type="button"
           onClick={confirmDeleteTrigger}

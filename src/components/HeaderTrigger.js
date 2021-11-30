@@ -79,17 +79,15 @@ const HeaderTrigger = () => {
               </div>
             </li>
             <li>
-              <a className="text-nowrap" href="/events" target="_blank">
+              <a className="text-nowrap" href="/events">
                 Events
               </a>
             </li>
             <li>
-              <a href="/triggers" target="_blank">
-                Triggers
-              </a>
+              <a href="/triggers">Triggers</a>
             </li>
             <li>
-              <a href="/create" target="_blank" className="text-nowrap">
+              <a href="/create" className="text-nowrap">
                 New Trigger
               </a>
             </li>

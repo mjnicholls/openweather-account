@@ -123,7 +123,9 @@ const ViewTrigger = () => {
         <Row className="search-box">
           <Col className="text-end">
             <Link to="/triggers">
-              <Button className="button-active">Back to all triggers</Button>
+              <Button className="button-active shadow-none">
+                Back to all triggers
+              </Button>
             </Link>
           </Col>
         </Row>
@@ -218,7 +220,7 @@ const ViewTrigger = () => {
                   role="button"
                   aria-expanded="false"
                   aria-controls="collapseEmails"
-                  className="button-neutral see-more-collapse "
+                  className="button-neutral shadow-none see-more-collapse "
                 >
                   <ChevronDown className="see-more-chevron" />
                 </a>
@@ -251,13 +253,13 @@ const ViewTrigger = () => {
           <Row className="search-box">
             <Col className="text-left">
               <Link to="/triggers">
-                <Button className="button-neutral">Back</Button>
+                <Button className="button-neutral shadow-none">Back</Button>
               </Link>
             </Col>
             <Col className="text-end">
               <DeleteTriggerCard id={id} userId={userId} />
               <Button
-                className="button-active"
+                className="button-active shadow-none"
                 style={{ marginLeft: '5px' }}
                 onClick={saveMethod}
                 disabled={isEdited}

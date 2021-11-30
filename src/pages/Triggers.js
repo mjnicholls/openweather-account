@@ -65,7 +65,9 @@ const Triggers = () => {
         </p>
         <br />
         <Col className="text-end">
-          <Button className="button-active">To Subscription Plans</Button>
+          <Button className="button-active shadow-none">
+            To Subscription Plans
+          </Button>
         </Col>
       </ReactBSAlert>,
     )
@@ -255,67 +257,82 @@ const Triggers = () => {
         <Row className="search-box">
           <Col className="text-end">
             <Link to="/events">
-              <Button className="button-neutral">To events</Button>
+              <Button className="button-neutral shadow-none">To events</Button>
             </Link>
 
             {(() => {
               switch (myTariff) {
                 case 'free':
                   return data.length >= 3 ? (
-                    <Button className="button-active" onClick={tariffError}>
+                    <Button
+                      className="button-active shadow-none"
+                      onClick={tariffError}
+                    >
                       Create new trigger
                     </Button>
                   ) : (
                     <Link to="/create">
-                      <Button className="button-active">
+                      <Button className="button-active shadow-none">
                         Create new trigger
                       </Button>
                     </Link>
                   )
                 case 'startup':
                   return data.length >= 5 ? (
-                    <Button className="button-active" onClick={tariffError}>
+                    <Button
+                      className="button-active shadow-none"
+                      onClick={tariffError}
+                    >
                       Create new trigger
                     </Button>
                   ) : (
                     <Link to="/create">
-                      <Button className="button-active">
+                      <Button className="button-active shadow-none">
                         Create new trigger
                       </Button>
                     </Link>
                   )
                 case 'developer':
                   return data.length >= 7 ? (
-                    <Button className="button-active" onClick={tariffError}>
+                    <Button
+                      className="button-active shadow-none"
+                      onClick={tariffError}
+                    >
                       Create new trigger
                     </Button>
                   ) : (
                     <Link to="/create">
-                      <Button className="button-active">
+                      <Button className="button-active shadow-none">
                         Create new trigger
                       </Button>
                     </Link>
                   )
                 case 'professional':
                   return data.length >= 9 ? (
-                    <Button className="button-active" onClick={tariffError}>
+                    <Button
+                      className="button-active shadow-none"
+                      onClick={tariffError}
+                    >
                       Create new trigger
                     </Button>
                   ) : (
                     <Link to="/create">
-                      <Button className="button-active">
+                      <Button className="button-active shadow-none">
                         Create new trigger
                       </Button>
                     </Link>
                   )
                 case 'enterprise':
                   return data.length >= 15 ? (
-                    <Button className="button-active" onClick={tariffError}>
+                    <Button
+                      className="button-active shadow-none"
+                      onClick={tariffError}
+                    >
                       Create new trigger
                     </Button>
                   ) : (
                     <Link to="/create">
-                      <Button className="button-active">
+                      <Button className="button-active shadow-none">
                         Create new trigger
                       </Button>
                     </Link>
@@ -323,7 +340,7 @@ const Triggers = () => {
                 default:
                   return (
                     <Link to="/create">
-                      <Button className="button-active">
+                      <Button className="button-active shadow-none">
                         Create new trigger
                       </Button>
                     </Link>

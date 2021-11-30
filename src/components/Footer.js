@@ -178,7 +178,7 @@ const Footer = () => (
             <img
               src={gallery.appbadge.src}
               alt="googleplay_badge"
-              width="135"
+              width="150"
               height="60"
             />
           </a>

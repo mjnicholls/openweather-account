@@ -93,7 +93,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
         <p>Your trigger has been updated.</p>
         <Row className="search-box">
           <Col className="text-end">
-            <Button className="button-neutral" onClick={close}>
+            <Button className="button-neutral shadow-none" onClick={close}>
               Back to all triggers
             </Button>
           </Col>
@@ -150,7 +150,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
       <br />
       <Col className="text-end">
         <Button
-          className="button-active"
+          className="button-active shadow-none"
           data-dismiss="modal"
           type="button"
           onClick={confirmEditTrigger}

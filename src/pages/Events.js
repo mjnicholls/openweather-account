@@ -41,10 +41,14 @@ const Events = () => {
           </Col>
           <Col className="text-end title">
             <Link to="/triggers">
-              <Button className="button-neutral">To triggers</Button>
+              <Button className="button-neutral shadow-none">
+                To triggers
+              </Button>
             </Link>
             <Link to="/create">
-              <Button className="button-active">Create new trigger</Button>
+              <Button className="button-active shadow-none">
+                Create new trigger
+              </Button>
             </Link>
           </Col>
         </Row>

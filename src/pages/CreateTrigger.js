@@ -113,7 +113,7 @@ const CreateTrigger = () => {
     )
   }
 
-  const htmlError = ({ err }) => {
+  const htmlError = () => {
     setAlert(
       <ReactBSAlert
         title="Whoops!"
@@ -126,10 +126,9 @@ const CreateTrigger = () => {
       >
         <br />
         <p>Something went wrong. Please contact us for help:</p>
-        <p>{err}</p>
         <br />
         <Col className="text-end">
-          <Button className="button-active">Contact</Button>
+          <Button className="button-active shadow-none">Contact</Button>
         </Col>
       </ReactBSAlert>,
     )
@@ -153,7 +152,9 @@ const CreateTrigger = () => {
         </p>
         <br />
         <Col className="text-end">
-          <Button className="button-active">To Subscription Plans</Button>
+          <Button className="button-active shadow-none">
+            To Subscription Plans
+          </Button>
         </Col>
       </ReactBSAlert>,
     )
@@ -210,62 +211,98 @@ const CreateTrigger = () => {
           )}
           <Row className="mt-4">
             <Col className="text-end">
-              <Button className="button-neutral" onClick={goToPreviousPath}>
+              <Button
+                className="button-neutral shadow-none"
+                onClick={goToPreviousPath}
+              >
                 Cancel
               </Button>
               {(() => {
                 switch (myTariff) {
                   case 'free':
                     return data.length >= 3 ? (
-                      <Button className="button-active" onClick={tariffError}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
                     ) : (
-                      <Button className="button-active"> Create trigger</Button>
+                      <Button className="button-active shadow-none">
+                        {' '}
+                        Create trigger
+                      </Button>
                     )
                   case 'startup':
                     return data.length >= 5 ? (
-                      <Button className="button-active" onClick={tariffError}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
                     ) : (
-                      <Button className="button-active" onClick={createTrigger}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={createTrigger}
+                      >
                         Create trigger
                       </Button>
                     )
                   case 'developer':
                     return data.length >= 7 ? (
-                      <Button className="button-active" onClick={tariffError}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
                     ) : (
-                      <Button className="button-active" onClick={createTrigger}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={createTrigger}
+                      >
                         Create trigger
                       </Button>
                     )
                   case 'professional':
                     return data.length >= 9 ? (
-                      <Button className="button-active" onClick={tariffError}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
                     ) : (
-                      <Button className="button-active" onClick={createTrigger}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={createTrigger}
+                      >
                         Create trigger
                       </Button>
                     )
                   case 'enterprise':
                     return data.length >= 15 ? (
-                      <Button className="button-active" onClick={tariffError}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
                     ) : (
-                      <Button className="button-active" onClick={createTrigger}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={createTrigger}
+                      >
                         Create trigger
                       </Button>
                     )
                   default:
                     return (
-                      <Button className="button-active" onClick={createTrigger}>
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={createTrigger}
+                      >
                         Create trigger
                       </Button>
                     )

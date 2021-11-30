@@ -46,7 +46,7 @@ const EditTriggerCard = ({ id, userId, name, status, setData }) => {
           padding: '0px',
         }}
         title="Update"
-        className="text-end"
+        className="text-end shadow-none"
         onClick={(e) => {
           htmlAlert()
           e.stopPropagation()
