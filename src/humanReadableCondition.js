@@ -20,7 +20,7 @@ const humanReadable = (condition) => {
     variables.find((el) => el.value === condition.variable).label
   } ${condition.condition === '>' ? 'exceeds' : 'falls below'} ${
     condition.value
-  }  ${getUnits(condition.variable, condition.units)}`
+  }${getUnits(condition.variable, condition.units)}`
   return res
 }
 

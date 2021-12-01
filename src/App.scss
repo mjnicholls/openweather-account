@@ -622,6 +622,8 @@ a {
           background-color: #f2f2f2;
         }
 
+
+
         td {
           font-weight: 300;
           border-top: 1px solid #f2f2f2;
@@ -826,10 +828,11 @@ Button.button-active {
 .button-turquoise {
   background-color:  $brand-turquoise;
   border-radius: 16pt;
-  padding: 6pt 8pt;
+  padding: 4pt 6pt;
   text-decoration: none;
   color: #ffffff;
   white-space: nowrap;
+  font-size: 10pt;
   &:hover {
     background-color: $brand-turquoise; 
     border-color: $brand-turquoise;
@@ -856,7 +859,9 @@ Button.button-active {
 // popup-create 
 .popup-create {
 
+
   td {
+    
     font-family: $default-font-family;
   }
 }

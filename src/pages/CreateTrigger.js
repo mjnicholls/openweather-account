@@ -46,6 +46,8 @@ const CreateTrigger = () => {
 
   const [error, setError] = useState({})
 
+  const [isName, setIsName] = useState(location.name)
+
   const history = useHistory()
 
   const goToPreviousPath = () => {
@@ -198,6 +200,9 @@ const CreateTrigger = () => {
             setLocation={setLocation}
             onChange={(e) => handleChange('location', e.target.value)}
             error={error}
+            name={name}
+            setIsName={setIsName}
+            isName={isName}
           />
           <Condition condition={condition} setCondition={setCondition} />
           <PriorNotifs days={days} setDays={setDays} />

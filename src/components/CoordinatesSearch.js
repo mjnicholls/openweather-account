@@ -83,7 +83,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
   return (
     <>
       <Row className="mt-3">
-        <Col className="mb-3">
+        <Col>
           <h6>Trigger coordinates</h6>
         </Col>
       </Row>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Button, Col, Row } from 'reactstrap'
+import { Button, Col, Row, Input } from 'reactstrap'
 
 import AutoCompleteForm from './AutoCompleteForm'
 import CoordinatesSearch from './CoordinatesSearch'
@@ -9,7 +9,15 @@ import '../App.scss'
 import classNames from 'classnames/index'
 import PropTypes from 'prop-types'
 
-const SearchBox = ({ mapRef, location, setLocation, error }) => {
+const SearchBox = ({
+  mapRef,
+  location,
+  setLocation,
+  error,
+  name,
+  isName,
+  setIsName,
+}) => {
   const [activeTab, setActiveTab] = useState('location')
 
   return (
@@ -21,6 +29,10 @@ const SearchBox = ({ mapRef, location, setLocation, error }) => {
               mapRef={mapRef}
               setLocation={setLocation}
               error={error}
+              location={location}
+              setIsName={setIsName}
+              isName={isName}
+              name={name}
             />
           </Col>
           <Row className="mt-1 text-end">

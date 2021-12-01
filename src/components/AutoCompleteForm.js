@@ -8,7 +8,9 @@ import { Col, Row, FormGroup } from 'reactstrap'
 
 import placeMarker from './placeMarker'
 
-const AutoCompleteForm = ({ mapRef, setLocation, error }) => {
+const AutoCompleteForm = ({ mapRef, location, setLocation, error, name }) => {
+  const [isName, setIsName] = useState(location.name)
+
   const onPlaceSelected = (place) => {
     if (mapRef && mapRef.current) {
       setLocation({
@@ -37,10 +39,16 @@ const AutoCompleteForm = ({ mapRef, setLocation, error }) => {
               style={{ width: '100%' }}
               onPlaceSelected={(place) => {
                 onPlaceSelected(place)
+                setIsName(place.formatted_address)
               }}
               options={{
                 types: ['(regions)'],
               }}
+              onChange={() => {
+                setIsName()
+              }}
+              name={name.slice(0, -14)}
+              value={isName}
             />
           </FormGroup>
           <div

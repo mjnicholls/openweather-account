@@ -135,13 +135,13 @@ const Triggers = () => {
                     <tr>
                       <th>&nbsp;</th>
                       <th>Trigger Name</th>
-                      <th>Trigger Condition</th>
+                      <th className="trig">Trigger Condition</th>
                       <th>Location</th>
                       <th>Notify</th>
                       {myTariff === 'free' ? (
                         <th>&nbsp;</th>
                       ) : (
-                        <th>Email Recipients</th>
+                        <th className="email">Email Recipients</th>
                       )}
                       <th>&nbsp;</th>
                       <th>&nbsp;</th>
@@ -172,7 +172,7 @@ const Triggers = () => {
                             </td>
                             <td>{trigger.location.name}</td>
                             <td>
-                              Up to {trigger.days}{' '}
+                              {trigger.days}{' '}
                               {trigger.days === 1 ? 'day' : 'days'}
                             </td>
                             {myTariff === 'free' ? (
