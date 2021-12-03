@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { ChevronDown } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
+import { Card, CardBody, Row, Col, Button } from 'reactstrap'
 
 import { getEvents } from '../api/api'
 import { tariff } from '../config'
@@ -57,13 +57,17 @@ const Events = () => {
             <Col md="6" key={day.day}>
               <Row className="search-box">
                 <Col mt="20">
-                  <h4>{toDate(day.day)}</h4>
+                  <h4>
+                    {toDate(day.day)}
+                    <span
+                      style={{ marginLeft: '20px' }}
+                      className="button-turquoise"
+                    >
+                      {day.triggers.length} events
+                    </span>
+                  </h4>
                 </Col>
-                <Col className="text-center">
-                  <span className="button-turquoise">
-                    {day.triggers.length} events
-                  </span>
-                </Col>
+
                 <Col></Col>
                 <Col className="mb-0" md="12" mt="10">
                   <Card>
@@ -74,8 +78,8 @@ const Events = () => {
                           .map((trigger, index) => (
                             <React.Fragment key={trigger.id}>
                               <div className="row">
-                                <div className="col-md-1 mb-4">{index + 1}</div>
-                                <div className="col-md-4 mb-4">
+                                <div className="col-md-1 mb-2">{index + 1}</div>
+                                <div className="col-md-4 mb-2">
                                   {' '}
                                   <Link
                                     to={{
@@ -86,7 +90,7 @@ const Events = () => {
                                     {trigger.name}
                                   </Link>
                                 </div>
-                                <div className="col-md-6 mb-4">
+                                <div className="col-md-6 mb-2">
                                   {humanReadableCondition(
                                     trigger.condition,
                                   ).substring(28)}
@@ -136,8 +140,10 @@ const Events = () => {
                               .map((trigger, index) => (
                                 <React.Fragment key={trigger.id}>
                                   <div className="row">
-                                    <div>{index + openEventsN + 1}</div>
-                                    <div>
+                                    <div className="col-md-1 mb-2">
+                                      {index + openEventsN + 1}
+                                    </div>
+                                    <div className="col-md-4 mb-2 text-align-left">
                                       {' '}
                                       <Link
                                         to={{
@@ -148,19 +154,18 @@ const Events = () => {
                                         {trigger.name}
                                       </Link>
                                     </div>
-                                    <div>
+                                    <div className="col-md-6 mb-2">
                                       {humanReadableCondition(
                                         trigger.condition,
                                       ).substring(28)}
                                     </div>
                                   </div>
-                                  <div className="sort">
-                                    <div>&nbsp;</div>
-                                    <div>
-                                      {trigger.location.lat},{' '}
-                                      {trigger.location.lon}
+                                  <div className="row">
+                                    <div className="col-md-1 mb-2">&nbsp;</div>
+                                    <div className="col-md-4 mb-2">
+                                      {trigger.location.name}
                                     </div>
-                                    <div>
+                                    <div className="col-md-6 mb-2 small">
                                       <i>
                                         Notification has been sent to{' '}
                                         {trigger.recipients.length} recipients

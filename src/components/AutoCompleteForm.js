@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import '../App.scss'
 import classnames from 'classnames/index'
@@ -44,11 +44,12 @@ const AutoCompleteForm = ({ mapRef, location, setLocation, error, name }) => {
               options={{
                 types: ['(regions)'],
               }}
-              onChange={() => {
-                setIsName()
+              onChange={(e) => {
+                setIsName(e.target.value)
               }}
               name={name.slice(0, -14)}
-              value={isName}
+              /*eslint-disable*/
+              value={isName ? isName : name.slice(0, -14)}
             />
           </FormGroup>
           <div

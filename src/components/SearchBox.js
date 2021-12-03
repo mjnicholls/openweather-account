@@ -15,8 +15,11 @@ const SearchBox = ({
   setLocation,
   error,
   name,
+  setName,
   isName,
   setIsName,
+  isLat,
+  setIsLat,
 }) => {
   const [activeTab, setActiveTab] = useState('location')
 
@@ -33,6 +36,7 @@ const SearchBox = ({
               setIsName={setIsName}
               isName={isName}
               name={name}
+              setName={setName}
             />
           </Col>
           <Row className="mt-1 text-end">
@@ -67,6 +71,10 @@ const SearchBox = ({
               mapRef={mapRef}
               setLocation={setLocation}
               location={location}
+              name={name}
+              setName={setName}
+              isLat={isLat}
+              setIsLat={setIsLat}
             />
           </Col>
           <Row className="mt-3 text-end">

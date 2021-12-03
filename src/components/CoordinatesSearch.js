@@ -11,6 +11,7 @@ import placeMarker from './placeMarker'
 const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
   const [lat, setLat] = useState(location.lat)
   const [lng, setLng] = useState(location.lon)
+
   const [error, setError] = useState({})
 
   const latRangeError = 'Value cannot be below -90 or above 90'
@@ -64,6 +65,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
     }
   }
 
+  /*
   const onKeyDownLon = (e) => {
     if (e.keyCode === 13) {
       submit()
@@ -80,6 +82,8 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
     }
   }
 
+*/
+
   return (
     <>
       <Row className="mt-3">
@@ -94,11 +98,12 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
           <Input
             type="number"
             className={error.lat ? 'danger-border' : ''}
-            value={lat}
+            /*eslint-disable*/
+            value={location.lat}
             onChange={(e) => {
-              setLat(e.target.value)
+              setLocation(e.target.value)
             }}
-            onKeyDown={onKeyDownLat}
+            // onKeyDown={onKeyDownLat}
           />
 
           <div
@@ -116,11 +121,11 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
             <Input
               type="number"
               className={error.lng ? 'danger-border' : ''}
-              value={lng}
+              value={location.lon}
               onChange={(e) => {
-                setLng(e.target.value)
+                setLocation(e.target.value)
               }}
-              onKeyDown={onKeyDownLon}
+              //onKeyDown={onKeyDownLon}
             />
           </FormGroup>
 

@@ -48,6 +48,10 @@ const CreateTrigger = () => {
 
   const [isName, setIsName] = useState(location.name)
 
+  const [isLat, setIsLat] = useState(location.lat)
+
+  const [whoops, setWhoops] = useState('')
+
   const history = useHistory()
 
   const goToPreviousPath = () => {
@@ -87,7 +91,8 @@ const CreateTrigger = () => {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data)
+          console.log(err.response.data.message)
+          setWhoops(err.response.data.message)
           htmlError()
         }
       })
@@ -127,7 +132,11 @@ const CreateTrigger = () => {
         style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <br />
-        <p>Something went wrong. Please contact us for help:</p>
+        <p>
+          Something went wrong on our end. Please make note of the error message
+          below and contact us:
+        </p>
+        <p style={{ color: 'red' }}>{JSON.stringify(whoops).slice(1, -1)}</p>
         <br />
         <Col className="text-end">
           <Button className="button-active shadow-none">Contact</Button>
@@ -203,6 +212,8 @@ const CreateTrigger = () => {
             name={name}
             setIsName={setIsName}
             isName={isName}
+            isLat={isLat}
+            setIsLat={setIsLat}
           />
           <Condition condition={condition} setCondition={setCondition} />
           <PriorNotifs days={days} setDays={setDays} />

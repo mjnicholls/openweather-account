@@ -165,13 +165,13 @@ const Triggers = () => {
                                 {trigger.name}
                               </Link>
                             </td>
-                            <td>
+                            <td className="text-nowrap">
                               {humanReadableCondition(
                                 trigger.condition,
                               ).substring(28)}
                             </td>
                             <td>{trigger.location.name}</td>
-                            <td>
+                            <td className="text-nowrap">
                               {trigger.days}{' '}
                               {trigger.days === 1 ? 'day' : 'days'}
                             </td>

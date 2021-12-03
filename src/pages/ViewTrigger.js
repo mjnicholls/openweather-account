@@ -32,6 +32,7 @@ const ViewTrigger = () => {
   const [activeName, setActiveName] = useState(name)
   const [tempStatus, setTempStatus] = useState(status)
   const [isEdited, setIsEdited] = useState(true)
+  const [whoops, setWhoops] = useState('')
 
   const validationName = () => {
     setError({})
@@ -83,7 +84,11 @@ const ViewTrigger = () => {
           updateAlert()
         })
         .catch((err) => {
-          console.log(err)
+          if (err.response) {
+            console.log(err.response.data.message)
+            setWhoops(err.response.data.message)
+            htmlError()
+          }
         })
     }
     console.log('saving', data)
@@ -129,6 +134,31 @@ const ViewTrigger = () => {
             </Link>
           </Col>
         </Row>
+      </ReactBSAlert>,
+    )
+  }
+
+  const htmlError = () => {
+    setAlert(
+      <ReactBSAlert
+        title="Whoops!"
+        onConfirm={() => hideAlert()}
+        onCancel={() => hideAlert()}
+        showConfirm={false}
+        showCloseButton
+        className="text-end"
+        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
+      >
+        <br />
+        <p>
+          Something went wrong on our end. Please make note of the error message
+          below and contact us:
+        </p>
+        <p style={{ color: 'red' }}>{JSON.stringify(whoops).slice(1, -1)}</p>
+        <br />
+        <Col className="text-end">
+          <Button className="button-active shadow-none">Contact</Button>
+        </Col>
       </ReactBSAlert>,
     )
   }
