@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { ChevronDown, Edit } from 'react-ikonate'
 import { useSelector } from 'react-redux'
-import { useLocation, Link, useHistory } from 'react-router-dom'
-import { Row, Col, Input, Label, Button } from 'reactstrap'
+import { useLocation, Link } from 'react-router-dom'
+import { Row, Col, Input, Button } from 'reactstrap'
 
 import { patchTrigger, getEventsByTriggerId } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import StatusToggle from '../components/StatusToggle'
-import { noBlankErrorMessage, tariff } from '../config'
+import { noBlankErrorMessage } from '../config'
 import humanReadableCondition from '../humanReadableCondition'
 import '../App.scss'
 import { toDate } from '../utils/dateTime'
@@ -18,13 +18,16 @@ import ReactBSAlert from 'react-bootstrap-sweetalert'
 
 const selectUserId = (state) => state.auth.user_id
 
+const selectTariff = (state) => state.auth.tariff
+
 const ViewTrigger = () => {
   const { state } = useLocation()
 
   const userId = useSelector(selectUserId)
+  const myTariff = useSelector(selectTariff)
+
   const { condition, days, id, location, name, recipients, status } = state
 
-  const myTariff = tariff.enterprise
   const mapRef = useRef(null)
 
   const [error, setError] = useState('')

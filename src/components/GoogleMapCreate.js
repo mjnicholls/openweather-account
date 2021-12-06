@@ -23,6 +23,7 @@ const createMapOptions = () => ({
 const InfoWindow = ({ show, location, setLocation, showButton }) => {
   const onSetLocationClick = (e) => {
     setLocation(location)
+
     e.stopPropagation()
     // setIsInfoWindow(false)
   }

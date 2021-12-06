@@ -6,19 +6,19 @@ import { Link } from 'react-router-dom'
 import { Card, CardBody, Row, Col, Button } from 'reactstrap'
 
 import { getEvents } from '../api/api'
-import { tariff } from '../config'
 import humanReadableCondition from '../humanReadableCondition'
 import { toDate } from '../utils/dateTime'
 import '../App.scss'
 
 const selectUserId = (state) => state.auth.user_id
 
+const selectTariff = (state) => state.auth.tariff
+
 const Events = () => {
   const userId = useSelector(selectUserId)
+  const myTariff = useSelector(selectTariff)
 
   const [data, setData] = useState([])
-
-  const myTariff = tariff.enterprise
 
   const openEventsN = 3
 

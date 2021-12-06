@@ -3,13 +3,14 @@ import React, { useState } from 'react'
 import '../App.scss'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
-import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+import { Col, Row, FormGroup, Button, Input } from 'reactstrap'
 
 import { noBlankErrorMessage } from '../config'
 import placeMarker from './placeMarker'
 
 const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
   const [lat, setLat] = useState(location.lat)
+
   const [lng, setLng] = useState(location.lon)
 
   const [error, setError] = useState({})
@@ -49,7 +50,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
     return true
   }
 
-  const submit = () => {
+  const onSetLocationClick = () => {
     if (validate()) {
       /* eslint-disable-next-line */
       const pos = new google.maps.LatLng(lat, lng)
@@ -57,32 +58,15 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
         /* eslint-disable-next-line */
         placeMarker(pos, mapRef.current.map_)
         setLocation({
-          name: 'Custom Location',
-          lat: parseFloat(lat),
-          lon: parseFloat(lng),
+          lat: location.lat,
+          lon: location.lon,
+          name: 'Custom location',
         })
+
+        console.log(location)
       }
     }
   }
-
-  /*
-  const onKeyDownLon = (e) => {
-    if (e.keyCode === 13) {
-      submit()
-    } else {
-      setLng(e.target.value)
-    }
-  }
-
-  const onKeyDownLat = (e) => {
-    if (e.keyCode === 13) {
-      if (lng) {
-        submit()
-      }
-    }
-  }
-
-*/
 
   return (
     <>
@@ -94,16 +78,14 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
 
       <Row className="search-fox">
         <Col md="1">Lat</Col>
-        <Col md="5">
+        <Col md="4">
           <Input
             type="number"
             className={error.lat ? 'danger-border' : ''}
-            /*eslint-disable*/
             value={location.lat}
             onChange={(e) => {
-              setLocation(e.target.value)
+              setLocation({ ...location, lat: parseFloat(e.target.value) })
             }}
-            // onKeyDown={onKeyDownLat}
           />
 
           <div
@@ -116,16 +98,15 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
           </div>
         </Col>
         <Col md="1">Lng</Col>
-        <Col md="5">
+        <Col md="4">
           <FormGroup>
             <Input
               type="number"
               className={error.lng ? 'danger-border' : ''}
               value={location.lon}
               onChange={(e) => {
-                setLocation(e.target.value)
+                setLocation({ ...location, lon: parseFloat(e.target.value) })
               }}
-              //onKeyDown={onKeyDownLon}
             />
           </FormGroup>
 
@@ -137,6 +118,14 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
           >
             {error.lng}
           </div>
+        </Col>
+        <Col md="1">
+          <Button
+            className="button-active shadow-none"
+            onClick={onSetLocationClick}
+          >
+            Set
+          </Button>
         </Col>
       </Row>
     </>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
@@ -9,6 +9,8 @@ import EditTrigger from './EditTrigger'
 
 const EditTriggerCard = ({ id, userId, name, status, setData }) => {
   const [alert, setAlert] = React.useState(null)
+
+  const [isUpdated, setIsUpdated] = useState()
 
   const hideAlert = () => {
     setAlert(null)

@@ -20,10 +20,14 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
   const [error, setError] = useState({})
 
   const [activeName, setActiveName] = useState(name)
+
   const [tempStatus, setTempStatus] = useState(status)
+
   const [isEdited, setIsEdited] = useState(true)
 
   const [alert, setAlert] = React.useState(null)
+
+  const [is, setIs] = useState()
 
   const confirmEditTrigger = () => {
     setError({})
@@ -65,7 +69,6 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
       .then(() => {
         console.log('data')
         refreshData()
-        updateAlert()
       })
       // eslint-disable-next-line
       .catch((error) => {
@@ -106,6 +109,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
     getTriggers(userId)
       .then((res) => {
         setData(res.data)
+        updateAlert()
       })
       .catch((err) => {
         console.log('error', err)

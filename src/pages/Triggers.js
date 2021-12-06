@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 
 import { getTriggers } from '../api/api'
-import { tariff } from '../config'
 import '../App.scss'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
@@ -15,18 +14,12 @@ import ReactBSAlert from 'react-bootstrap-sweetalert'
 
 const selectUserId = (state) => state.auth.user_id
 
-// for future tariff use
-// const userSubscriptionSelector = (state) => state.auth.user_id.tariff
+const selectTariff = (state) => state.auth.tariff
 
 const Triggers = () => {
   const userId = useSelector(selectUserId)
 
-  // for future tariff use
-  // const subscription = useSelector(userSubscriptionSelector)
-
-  const myTariff = tariff.enterprise
-
-  console.log('tariff', myTariff)
+  const myTariff = useSelector(selectTariff)
 
   const [data, setData] = useState([])
 

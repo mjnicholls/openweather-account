@@ -18,8 +18,6 @@ const SearchBox = ({
   setName,
   isName,
   setIsName,
-  isLat,
-  setIsLat,
 }) => {
   const [activeTab, setActiveTab] = useState('location')
 
@@ -43,7 +41,7 @@ const SearchBox = ({
             <Col className="text-end">
               <Button
                 size="sm"
-                className={classNames('button-neutral shadow-none', {
+                className={classNames('button-active shadow-none', {
                   active: activeTab === 'location',
                 })}
                 onClick={() => setActiveTab('location')}
@@ -53,7 +51,7 @@ const SearchBox = ({
               </Button>
               <Button
                 size="sm"
-                className={classNames('button-active shadow-none', {
+                className={classNames('button-neutral shadow-none', {
                   active: activeTab === 'coordinates',
                 })}
                 onClick={() => setActiveTab('coordinates')}
@@ -73,8 +71,6 @@ const SearchBox = ({
               location={location}
               name={name}
               setName={setName}
-              isLat={isLat}
-              setIsLat={setIsLat}
             />
           </Col>
           <Row className="mt-3 text-end">

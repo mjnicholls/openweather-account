@@ -16,15 +16,17 @@ import '../App.scss'
 
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 
-import { noBlankErrorMessage, tariff } from '../config'
+import { noBlankErrorMessage } from '../config'
 
 const selectUserId = (state) => state.auth.user_id
+
+const selectTariff = (state) => state.auth.tariff
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
   const userId = useSelector(selectUserId)
 
-  const myTariff = tariff.enterprise
+  const myTariff = useSelector(selectTariff)
 
   const [location, setLocation] = useState({
     name: '',
@@ -46,9 +48,7 @@ const CreateTrigger = () => {
 
   const [error, setError] = useState({})
 
-  const [isName, setIsName] = useState(location.name)
-
-  const [isLat, setIsLat] = useState(location.lat)
+  // const [isName, setIsName] = useState(location.name)
 
   const [whoops, setWhoops] = useState('')
 
@@ -210,10 +210,6 @@ const CreateTrigger = () => {
             onChange={(e) => handleChange('location', e.target.value)}
             error={error}
             name={name}
-            setIsName={setIsName}
-            isName={isName}
-            isLat={isLat}
-            setIsLat={setIsLat}
           />
           <Condition condition={condition} setCondition={setCondition} />
           <PriorNotifs days={days} setDays={setDays} />
