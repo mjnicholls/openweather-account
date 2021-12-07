@@ -5,8 +5,9 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import { Container } from 'reactstrap'
 
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 // import Header from './components/Header'
+import FooterTrigger from './components/FooterTrigger'
 import HeaderTrigger from './components/HeaderTrigger'
 import CreateTrigger from './pages/CreateTrigger'
 import ForecastedEvents from './pages/Events'
@@ -27,7 +28,7 @@ const App = () => (
           {/* <Redirect from="/" to="/events" /> */}
         </BrowserRouter>
       </Container>
-      <Footer />
+      <FooterTrigger />
     </div>
   </Provider>
 )

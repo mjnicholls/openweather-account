@@ -10,7 +10,7 @@ const HeaderTrigger = () => {
   return (
     <nav className="navbar navbar-expand-xl page-header fixed-top">
       <div className="container-xl">
-        <a className="" href="/">
+        <a className="" href="https://openweathermap.org/">
           <img
             src={gallery.logo_white.src}
             alt="Open Weather Logo"
@@ -84,11 +84,13 @@ const HeaderTrigger = () => {
               </a>
             </li>
             <li>
-              <a href="/triggers">Triggers</a>
+              <a href="/triggers" className="text-nowrap">
+                Triggers List
+              </a>
             </li>
             <li>
               <a href="/create" className="text-nowrap">
-                New Trigger
+                User Documentation
               </a>
             </li>
             <li className="d-xl-none">
@@ -100,13 +102,20 @@ const HeaderTrigger = () => {
               </a>
             </li>
 
-            <li>
+            {/* <li>
               <a
                 className="marketplace"
                 href="https://home.openweathermap.org/marketplace"
                 target="_blank"
               >
                 Marketplace
+              </a>
+            </li>
+           */}
+
+            <li>
+              <a className="marketplace text-nowrap" a href="/create">
+                New Trigger
               </a>
             </li>
             {isAuthenticated === false ? (
@@ -120,26 +129,13 @@ const HeaderTrigger = () => {
                     Sign In
                   </a>
                 </li>
-                <li className="nav-item dropdown d-none d-xl-block">
+                <li>
                   <a
-                    href="/"
-                    className="dropdown-toggle"
-                    data-toggle="dropdown"
+                    href="https://home.openweathermap.org/questions"
+                    className="text-nowrap"
                   >
                     Support
                   </a>
-                  <div className="dropdown-menu">
-                    <a href="https://openweathermap.org/faq">FAQ</a>
-                    <a href="https://openweathermap.org/appid" target="_blank">
-                      How to Start
-                    </a>
-                    <a
-                      href="https://home.openweathermap.org/questions"
-                      target="_blank"
-                    >
-                      Ask a Question
-                    </a>
-                  </div>
                 </li>
               </>
             ) : (
@@ -188,28 +184,13 @@ const HeaderTrigger = () => {
                   </a>
                 </li>
 
-                <li className="nav-item dropdown d-none d-xl-block">
+                <li>
                   <a
-                    href="/"
-                    className="dropdown-toggle header-link"
-                    data-toggle="dropdown"
+                    href="https://home.openweathermap.org/questions"
+                    className="text-nowrap"
                   >
                     Support
                   </a>
-                  <div className="dropdown-menu">
-                    <a href="https://openweathermap.org/faq" target="_blank">
-                      FAQ
-                    </a>
-                    <a href="https://openweathermap.org/appid" target="_blank">
-                      How to Start
-                    </a>
-                    <a
-                      href="https://home.openweathermap.org/questions"
-                      target="_blank"
-                    >
-                      Ask a Question
-                    </a>
-                  </div>
                 </li>
 
                 <li className="nav-item d-lg-none text-nowrap">

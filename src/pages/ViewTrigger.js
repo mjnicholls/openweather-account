@@ -228,6 +228,7 @@ const ViewTrigger = () => {
 
           <Row>
             <Col className="mb-3">
+              {days}
               <h6>Prior Notifications</h6>
               <p>
                 Up to {days} {days === 1 ? 'day' : 'days'} before the event

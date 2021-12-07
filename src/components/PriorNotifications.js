@@ -40,6 +40,18 @@ const PriorNotifs = ({ days, setDays }) => {
           </p>
         </Col>
       </Row>
+      <Row className="human-readable">
+        {days === 0 ? (
+          <p className="human-readable">
+            You will be notified only if the event occurs today
+          </p>
+        ) : (
+          <p className="human-readable">
+            You will be notified if the event occurs {days} day
+            {days === 1 ? '' : 's'} from now
+          </p>
+        )}
+      </Row>
     </>
   )
 }

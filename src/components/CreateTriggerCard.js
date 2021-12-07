@@ -41,28 +41,30 @@ const CreateTriggerCard = () => {
             <tbody>
               <tr key={trigger.id}>
                 <td>Name: </td>
-                <td>{trigger.name}</td>
+                <td style={{ paddingLeft: '20px' }}>{trigger.name}</td>
               </tr>
 
               <tr>
                 <td>Condition: </td>
-                <td>
+                <td style={{ paddingLeft: '20px' }}>
                   {humanReadableCondition(trigger.condition).substring(28)}
                 </td>
               </tr>
               <tr>
                 <td>Location: </td>
-                <td>{trigger.location.name}</td>
+                <td style={{ paddingLeft: '20px' }}>{trigger.location.name}</td>
               </tr>
               <tr>
                 <td>Notification: </td>
-                <td>
+                <td style={{ paddingLeft: '20px' }}>
                   Up to {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
                 </td>
               </tr>
               <tr>
                 <td>No. of Email Recipients: </td>
-                <td>{trigger.recipients.length}</td>
+                <td style={{ paddingLeft: '20px' }}>
+                  {trigger.recipients.length}
+                </td>
               </tr>
             </tbody>
           ))

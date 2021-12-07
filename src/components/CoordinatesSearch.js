@@ -8,7 +8,7 @@ import { Col, Row, FormGroup, Button, Input } from 'reactstrap'
 import { noBlankErrorMessage } from '../config'
 import placeMarker from './placeMarker'
 
-const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
+const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
   const [lat, setLat] = useState(location.lat)
 
   const [lng, setLng] = useState(location.lon)
@@ -22,21 +22,21 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
     setError({})
     let newError = {}
 
-    if (!lng && !lat) {
+    if (!location.lon && !location.lat) {
       newError = {
         lat: noBlankErrorMessage,
         lng: noBlankErrorMessage,
       }
     }
 
-    if (lat && (lat < -90 || lat > 90)) {
+    if (location.lat && (location.lat < -90 || location.lat > 90)) {
       newError = {
         ...newError,
         lat: latRangeError,
       }
     }
 
-    if (lng && (lng < -180 || lng > 180)) {
+    if (location.lon && (location.lon < -180 || location.lon > 180)) {
       newError = {
         ...newError,
         lng: lngRangeError,
@@ -53,17 +53,17 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
   const onSetLocationClick = () => {
     if (validate()) {
       /* eslint-disable-next-line */
-      const pos = new google.maps.LatLng(lat, lng)
+      const pos = new google.maps.LatLng(location.lat, location.lon)
       if (mapRef && mapRef.current) {
         /* eslint-disable-next-line */
         placeMarker(pos, mapRef.current.map_)
+
         setLocation({
           lat: location.lat,
           lon: location.lon,
           name: 'Custom location',
         })
-
-        console.log(location)
+        setIsSet(true)
       }
     }
   }
@@ -71,8 +71,8 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
   return (
     <>
       <Row className="mt-3">
-        <Col>
-          <h6>Trigger coordinates</h6>
+        <Col className="mb-2">
+          <h6>Search location by coordinates</h6>
         </Col>
       </Row>
 
@@ -133,7 +133,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation }) => {
 }
 
 CoordinatesSearch.propTypes = {
-  location: PropTypes.string,
+  location: PropTypes.object,
   setLocation: PropTypes.func,
   mapRef: PropTypes.func,
 }

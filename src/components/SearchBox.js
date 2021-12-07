@@ -18,6 +18,8 @@ const SearchBox = ({
   setName,
   isName,
   setIsName,
+  isSet,
+  setIsSet,
 }) => {
   const [activeTab, setActiveTab] = useState('location')
 
@@ -35,6 +37,8 @@ const SearchBox = ({
               isName={isName}
               name={name}
               setName={setName}
+              isSet={isSet}
+              setIsSet={setIsSet}
             />
           </Col>
           <Row className="mt-1 text-end">
@@ -71,6 +75,8 @@ const SearchBox = ({
               location={location}
               name={name}
               setName={setName}
+              isSet={isSet}
+              setIsSet={setIsSet}
             />
           </Col>
           <Row className="mt-3 text-end">

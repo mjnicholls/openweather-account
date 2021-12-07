@@ -97,7 +97,7 @@ const ViewTrigger = () => {
 
   return (
     <>
-      <Row className="trigger-card">
+      <Row className="trigger-card mb-3">
         <Col md="7">
           <h2>Trigger Card</h2>
           <Row className="search-box">

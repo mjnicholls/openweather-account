@@ -160,7 +160,7 @@ const Events = () => {
                                       ).substring(28)}
                                     </div>
                                   </div>
-                                  <div className="row">
+                                  <div className="row mb-4">
                                     <div className="col-md-1 mb-2">&nbsp;</div>
                                     <div className="col-md-4 mb-2">
                                       {trigger.location.name}

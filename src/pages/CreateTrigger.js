@@ -48,6 +48,8 @@ const CreateTrigger = () => {
 
   const [error, setError] = useState({})
 
+  const [isSet, setIsSet] = useState(false)
+
   // const [isName, setIsName] = useState(location.name)
 
   const [whoops, setWhoops] = useState('')
@@ -196,13 +198,6 @@ const CreateTrigger = () => {
         {alert}
         <h2>Create Trigger</h2>
         <div className="pt-5 pb-5">
-          <TriggerName
-            name={name}
-            setName={setName}
-            location={location}
-            error={error}
-            onChange={(e) => handleChange('name', e.target.value)}
-          />
           <SearchBox
             mapRef={mapRef}
             location={location}
@@ -210,7 +205,20 @@ const CreateTrigger = () => {
             onChange={(e) => handleChange('location', e.target.value)}
             error={error}
             name={name}
+            isSet={isSet}
+            setIsSet={setIsSet}
           />
+          {isSet ? (
+            <TriggerName
+              name={name}
+              setName={setName}
+              location={location}
+              error={error}
+              isSet={isSet}
+              setIsSet={setIsSet}
+              onChange={(e) => handleChange('name', e.target.value)}
+            />
+          ) : null}
           <Condition condition={condition} setCondition={setCondition} />
           <PriorNotifs days={days} setDays={setDays} />
           {myTariff === 'free' ? (
@@ -329,6 +337,7 @@ const CreateTrigger = () => {
           mapRef={mapRef}
           location={location}
           setLocation={setLocation}
+          setIsSet={setIsSet}
         />
       </Col>
     </Row>

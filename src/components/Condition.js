@@ -19,7 +19,7 @@ const Condition = ({ condition, setCondition }) => {
   return (
     <>
       <Row>
-        <Col className="mb-3">
+        <Col className="mb-1">
           <h6>Trigger condition</h6>
         </Col>
       </Row>

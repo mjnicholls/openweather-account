@@ -20,12 +20,13 @@ const createMapOptions = () => ({
   styles: mapStyles.styles,
 })
 
-const InfoWindow = ({ show, location, setLocation, showButton }) => {
+const InfoWindow = ({ show, location, setLocation, showButton, setIsSet }) => {
   const onSetLocationClick = (e) => {
     setLocation(location)
-
+    console.log('infowindow', location)
     e.stopPropagation()
     // setIsInfoWindow(false)
+    setIsSet(true)
   }
 
   return show && location.lat && location.lon ? (
@@ -51,7 +52,11 @@ const InfoWindow = ({ show, location, setLocation, showButton }) => {
         </div>
         <div className="body">
           {showButton && (
-            <button type="button" onClick={onSetLocationClick}>
+            <button
+              type="button"
+              className="button-active"
+              onClick={onSetLocationClick}
+            >
               Set location
             </button>
           )}
@@ -61,7 +66,7 @@ const InfoWindow = ({ show, location, setLocation, showButton }) => {
   ) : null
 }
 
-const SimpleMap = ({ mapRef, location, setLocation }) => {
+const SimpleMap = ({ mapRef, location, setLocation, setIsSet }) => {
   const [tempLocation, setTempLocation] = useState(location)
   const [isInfoWindow, setIsInfoWindow] = useState(true)
 
@@ -96,12 +101,14 @@ const SimpleMap = ({ mapRef, location, setLocation }) => {
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
         options={createMapOptions}
         onClick={onClickMap}
+        setIsSet={setIsSet}
       >
         <InfoWindow
           show={isInfoWindow}
           setIsInfoWindow={setIsInfoWindow}
           location={tempLocation}
           setLocation={setLocation}
+          setIsSet={setIsSet}
           showButton
         />
       </GoogleMapReact>
