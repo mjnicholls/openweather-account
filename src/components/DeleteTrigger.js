@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from 'react'
 
 import PropTypes from 'prop-types'
-import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button, Col, Row } from 'reactstrap'
 
 import { deleteTrigger, getEventsByTriggerId, getTriggers } from '../api/api'
 import htmlError from '../pages/CreateTrigger'
 
-// import ReactBSAlert from 'react-bootstrap-sweetalert'
-
 const DeleteTrigger = ({ id, userId, setData }) => {
   const [events, setEvents] = useState([])
-  // const [alert, setAlert] = React.useState(null)
 
-  const history = useHistory()
+  const [isUpdated, setIsUpdated] = useState(false)
 
   const confirmDeleteTrigger = () => {
     deleteTrigger(id, userId)
       .then(() => {
-        console.log('id')
-        refreshData()
-        history.push('/triggers')
+        setIsUpdated(true)
+        // refreshData()
       })
       // eslint-disable-next-line
       .catch((error) => {
@@ -50,37 +46,63 @@ const DeleteTrigger = ({ id, userId, setData }) => {
   }
 
   return (
-    <>
+    <div>
       <hr />
-      <Row>
-        {events.length === 0 ? (
-          <Col>
-            <br />
-            <p>Are you sure you want to delete your trigger?</p>
-          </Col>
-        ) : (
-          <Col>
-            <br />
-            <p>
-              There are {events.length} active events for this trigger. Are you
-              sure you want to delete it?
-            </p>
-          </Col>
-        )}
-      </Row>
-      <br />
+      {isUpdated ? (
+        <>
+          <Row>
+            <h4 style={{ marginTop: '15px', marginBottom: '15px' }}>
+              Trigger deleted!
+            </h4>
+          </Row>
+          <Row>
+            <Col className="text-end">
+              <Link to="/triggers">
+                <Button
+                  className="button-active shadow-none"
+                  data-dismiss="modal"
+                  type="button"
+                  onClick={refreshData}
+                >
+                  Back to Triggers
+                </Button>
+              </Link>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <>
+          <Row>
+            {events.length === 0 ? (
+              <Col>
+                <br />
+                <p>Are you sure you want to delete your trigger?</p>
+              </Col>
+            ) : (
+              <Col>
+                <br />
+                <p>
+                  There are {events.length} active events for this trigger. Are
+                  you sure you want to delete it?
+                </p>
+              </Col>
+            )}
+          </Row>
+          <br />
 
-      <Col className="text-end">
-        <Button
-          className="button-active shadow-none"
-          data-dismiss="modal"
-          type="button"
-          onClick={confirmDeleteTrigger}
-        >
-          Delete
-        </Button>
-      </Col>
-    </>
+          <Col className="text-end">
+            <Button
+              className="button-active shadow-none"
+              data-dismiss="modal"
+              type="button"
+              onClick={confirmDeleteTrigger}
+            >
+              Delete
+            </Button>
+          </Col>
+        </>
+      )}
+    </div>
   )
 }
 

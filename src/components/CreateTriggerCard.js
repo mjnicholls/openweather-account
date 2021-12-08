@@ -32,37 +32,46 @@ const CreateTriggerCard = () => {
     <>
       <hr />
 
-      <br />
       <div className="popup-create">
-        <p>Your trigger:</p>
+        <h4>Your trigger:</h4>
 
         {data
           .map((trigger) => (
             <tbody>
               <tr key={trigger.id}>
-                <td>Name: </td>
-                <td style={{ paddingLeft: '20px' }}>{trigger.name}</td>
+                <td style={{ fontWeight: 'bold' }}>Name: </td>
+                <td style={{ paddingLeft: '30px', whiteSpace: 'nowrap' }}>
+                  {trigger.name}
+                </td>
               </tr>
 
               <tr>
-                <td>Condition: </td>
-                <td style={{ paddingLeft: '20px' }}>
+                <td style={{ fontWeight: 'bold' }}>Condition: </td>
+                <td style={{ paddingLeft: '30px' }}>
                   {humanReadableCondition(trigger.condition).substring(28)}
                 </td>
               </tr>
               <tr>
-                <td>Location: </td>
-                <td style={{ paddingLeft: '20px' }}>{trigger.location.name}</td>
+                <td style={{ fontWeight: 'bold' }}>Location: </td>
+                <td style={{ paddingLeft: '30px' }}>{trigger.location.name}</td>
               </tr>
               <tr>
-                <td>Notification: </td>
-                <td style={{ paddingLeft: '20px' }}>
+                <td style={{ fontWeight: 'bold' }}>Coordinates: </td>
+                <td style={{ paddingLeft: '30px' }}>
+                  {trigger.location.lat}, {trigger.location.lon}
+                </td>
+              </tr>
+              <tr>
+                <td style={{ fontWeight: 'bold' }}>Notification: </td>
+                <td style={{ paddingLeft: '30px' }}>
                   Up to {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
                 </td>
               </tr>
               <tr>
-                <td>No. of Email Recipients: </td>
-                <td style={{ paddingLeft: '20px' }}>
+                <td style={{ fontWeight: 'bold' }}>
+                  No. of Email Recipients:{' '}
+                </td>
+                <td style={{ paddingLeft: '30px' }}>
                   {trigger.recipients.length}
                 </td>
               </tr>
@@ -70,14 +79,14 @@ const CreateTriggerCard = () => {
           ))
           .at(-1)}
         <br />
-        <p>Note: Events for your trigger will be shown based on UTC time.</p>
-
+        <p>Events for your trigger will be shown based on UTC time.</p>
+        <p>If there are any events, you will be able to see them shortly.</p>
         <br />
 
         <Col className="text-end">
           <Link to="/triggers">
             <Button
-              className="button-active shadow-none"
+              className="button-neutral shadow-none"
               data-dismiss="modal"
               type="button"
             >

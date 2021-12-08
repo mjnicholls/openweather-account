@@ -854,6 +854,21 @@ Button.button-active {
   }
 }
 
+.button-orange {
+  background-color: $brand-orange;
+  border-radius: 16pt;
+  padding: 4pt 6pt;
+  text-decoration: none;
+  color: #ffffff;
+  white-space: nowrap;
+  font-size: 10pt;
+  &:hover {
+    background-color: $brand-orange;
+    border-color: $brand-orange;
+  }
+}
+
+
 }
 
 .table > :not(:first-child) {
@@ -871,15 +886,35 @@ Button.button-active {
   }
 }
 
-// popup-create 
-.popup-create {
 
+
+.bs-alerts {
+  box-shadow: none!important;
+
+  h2 {
+    text-align: left!important;
+  }
+
+  h4 {
+    font-family: $highlight-font-family!important;
+    margin-bottom: 30px!important;
+  }
+  Label {
+    text-align: left!important;
+  }
+  p {
+    text-align: left!important;
+  }
+
+  tr {
+    line-height: 25px!important;
+  }
 
   td {
-    
     font-family: $default-font-family;
   }
 }
+
 
 
 

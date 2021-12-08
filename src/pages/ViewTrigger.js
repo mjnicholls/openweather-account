@@ -30,6 +30,8 @@ const ViewTrigger = () => {
 
   const mapRef = useRef(null)
 
+  const openEventsN = 3
+
   const [error, setError] = useState('')
   const [isEditName, setIsEditName] = useState(false)
   const [activeName, setActiveName] = useState(name)
@@ -123,7 +125,7 @@ const ViewTrigger = () => {
         onCancel={() => hideAlert()}
         showConfirm={false}
         showCloseButton
-        className="text-end"
+        customClass="bs-alerts"
         style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <br />
@@ -149,7 +151,7 @@ const ViewTrigger = () => {
         onCancel={() => hideAlert()}
         showConfirm={false}
         showCloseButton
-        className="text-end"
+        customClass="bs-alerts"
         style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <br />
@@ -202,6 +204,7 @@ const ViewTrigger = () => {
               )}
             </Col>
             <Col className="text-end mb-3">
+              {tempStatus === 'on' ? <h6>Trigger On</h6> : <h6>Trigger Off</h6>}
               <StatusToggle
                 tempStatus={tempStatus}
                 setTempStatus={setTempStatus}
@@ -228,7 +231,6 @@ const ViewTrigger = () => {
 
           <Row>
             <Col className="mb-3">
-              {days}
               <h6>Prior Notifications</h6>
               <p>
                 Up to {days} {days === 1 ? 'day' : 'days'} before the event
@@ -243,28 +245,38 @@ const ViewTrigger = () => {
             <Row>
               <Col className="mb-3">
                 <h6>Email recipients</h6>
-                {Object.keys(recipients).map((recip) => (
+                {recipients.length === 0 ? (
+                  <p>None.</p>
+                ) : (
                   <>
-                    <p key={recip}>{recipients.slice(0, 3)[recip]}</p>
+                    {Object.keys(recipients).map((recip) => (
+                      <>
+                        <p key={recip}>{recipients.slice(0, 3)[recip]}</p>
+                      </>
+                    ))}
                   </>
-                ))}
-                <a
-                  data-toggle="collapse"
-                  href="#collapseEmails"
-                  role="button"
-                  aria-expanded="false"
-                  aria-controls="collapseEmails"
-                  className="button-neutral shadow-none see-more-collapse "
-                >
-                  <ChevronDown className="see-more-chevron" />
-                </a>
-                <p className="collapse mt-3" id="collapseEmails">
-                  {Object.keys(recipients).map((recip) => (
-                    <>
-                      <p key={recip}>{recipients.slice(3)[recip]}</p>
-                    </>
-                  ))}
-                </p>
+                )}
+                {recipients.length > openEventsN && (
+                  <>
+                    <a
+                      data-toggle="collapse"
+                      href="#collapseEmails"
+                      role="button"
+                      aria-expanded="false"
+                      aria-controls="collapseEmails"
+                      className="button-neutral shadow-none see-more-collapse "
+                    >
+                      <ChevronDown className="see-more-chevron" />
+                    </a>
+                    <p className="collapse mt-3" id="collapseEmails">
+                      {Object.keys(recipients).map((recip) => (
+                        <>
+                          <p key={recip}>{recipients.slice(3)[recip]}</p>
+                        </>
+                      ))}
+                    </p>
+                  </>
+                )}
               </Col>
             </Row>
           )}
@@ -275,7 +287,11 @@ const ViewTrigger = () => {
 
           <Row>
             <Col className="mb-3">
-              <h6 className="mb-2">Active Events</h6>
+              {events.length === 0 ? (
+                <h6 className="mb-2">No Active Events</h6>
+              ) : (
+                <h6 className="mb-2">Active Events</h6>
+              )}
               {events.map((triggers) => (
                 <>
                   <p className="mt-1">{toDate(triggers.date)}</p>

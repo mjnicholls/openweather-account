@@ -8,9 +8,6 @@ import '../App.scss'
 import classnames from 'classnames'
 
 import { noBlankErrorMessage } from '../config'
-
-import ReactBSAlert from 'react-bootstrap-sweetalert'
-
 import htmlError from '../pages/CreateTrigger'
 import StatusToggle from './StatusToggle'
 
@@ -25,9 +22,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
 
   const [isEdited, setIsEdited] = useState(true)
 
-  const [alert, setAlert] = React.useState(null)
-
-  const [is, setIs] = useState()
+  const [isUpdated, setIsUpdated] = useState(false)
 
   const confirmEditTrigger = () => {
     setError({})
@@ -69,6 +64,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
       .then(() => {
         console.log('data')
         refreshData()
+        setIsUpdated(true)
       })
       // eslint-disable-next-line
       .catch((error) => {
@@ -77,39 +73,10 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
       })
   }
 
-  const hideAlert = () => {
-    setAlert(null)
-  }
-
-  const updateAlert = () => {
-    setAlert(
-      <ReactBSAlert
-        title="Trigger Updated!"
-        onConfirm={() => hideAlert()}
-        onCancel={() => hideAlert()}
-        showConfirm={false}
-        showCloseButton
-        className="text-end"
-        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
-      >
-        <br />
-        <p>Your trigger has been updated.</p>
-        <Row className="search-box">
-          <Col className="text-end">
-            <Button className="button-neutral shadow-none" onClick={close}>
-              Back to all triggers
-            </Button>
-          </Col>
-        </Row>
-      </ReactBSAlert>,
-    )
-  }
-
   const refreshData = () => {
     getTriggers(userId)
       .then((res) => {
         setData(res.data)
-        updateAlert()
       })
       .catch((err) => {
         console.log('error', err)
@@ -119,51 +86,74 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
   return (
     <div>
       <hr />
-      {alert}
-      <Row className="search-box">
-        <Col md="8">
-          <Label> Name </Label>
-          <Input
-            type="text"
-            onChange={(e) => {
-              setIsEdited(false)
-              setActiveName(e.target.value)
-            }}
-            className={error.activeName ? 'danger-border' : ''}
-            value={activeName}
-            name="name"
-          />
-          <div
-            className={classnames(
-              'invalid-feedback',
-              error.activeName ? 'd-block' : '',
-            )}
-          >
-            {error.activeName}
-          </div>
-        </Col>
-        <Col md="4" className="editStatus">
-          <Label> Trigger On/Off </Label>
-          <StatusToggle
-            tempStatus={tempStatus}
-            setTempStatus={setTempStatus}
-            setIsEdited={setIsEdited}
-          />
-        </Col>
-      </Row>
+      {isUpdated ? (
+        <>
+          <Row>
+            <h4 style={{ marginTop: '15px', marginBottom: '15px' }}>
+              Trigger updated!
+            </h4>
+          </Row>
+          <Row>
+            <Col className="text-end">
+              <Button
+                className="button-active shadow-none"
+                data-dismiss="modal"
+                type="button"
+                onClick={close}
+              >
+                Back to Triggers
+              </Button>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <>
+          <Row className="search-box">
+            <Col md="8">
+              <Label> Name </Label>
+              <Input
+                type="text"
+                onChange={(e) => {
+                  setIsEdited(false)
+                  setActiveName(e.target.value)
+                }}
+                className={error.activeName ? 'danger-border' : ''}
+                value={activeName}
+                name="name"
+              />
+              <div
+                className={classnames(
+                  'invalid-feedback',
+                  error.activeName ? 'd-block' : '',
+                )}
+              >
+                {error.activeName}
+              </div>
+            </Col>
+            <Col md="4" className="editStatus">
+              <Label> Trigger On/Off </Label>
+              <StatusToggle
+                tempStatus={tempStatus}
+                setTempStatus={setTempStatus}
+                setIsEdited={setIsEdited}
+              />
+            </Col>
+          </Row>
 
-      <br />
-      <Col className="text-end">
-        <Button
-          className="button-active shadow-none"
-          data-dismiss="modal"
-          type="button"
-          onClick={confirmEditTrigger}
-          disabled={isEdited}
-        >
-          Update
-        </Button>
-      </Col>
+          <br />
+          <Col className="text-end">
+            <Button
+              className="button-active shadow-none"
+              data-dismiss="modal"
+              type="button"
+              onClick={confirmEditTrigger}
+              disabled={isEdited}
+            >
+              Update
+            </Button>
+          </Col>
+        </>
+      )}
     </div>
   )
 }

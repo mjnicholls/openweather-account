@@ -48,7 +48,7 @@ const Triggers = () => {
         onCancel={() => hideAlert()}
         showConfirm={false}
         showCloseButton
-        className="text-end"
+        customClass="bs-alerts"
         style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <br />

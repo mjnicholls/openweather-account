@@ -21,7 +21,7 @@ const DeleteTriggerCard = ({ id, userId, data, setData }) => {
         onCancel={() => hideAlert()}
         showConfirm={false}
         showCloseButton
-        className="text-end shadow-none"
+        customClass="bs-alerts"
         style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <DeleteTrigger

@@ -10,8 +10,6 @@ import EditTrigger from './EditTrigger'
 const EditTriggerCard = ({ id, userId, name, status, setData }) => {
   const [alert, setAlert] = React.useState(null)
 
-  const [isUpdated, setIsUpdated] = useState()
-
   const hideAlert = () => {
     setAlert(null)
   }
@@ -25,6 +23,7 @@ const EditTriggerCard = ({ id, userId, name, status, setData }) => {
         showConfirm={false}
         showCloseButton
         style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
+        customClass="bs-alerts"
       >
         <EditTrigger
           close={hideAlert}

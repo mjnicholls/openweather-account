@@ -59,12 +59,21 @@ const Events = () => {
                 <Col mt="20">
                   <h4>
                     {toDate(day.day)}
-                    <span
-                      style={{ marginLeft: '20px' }}
-                      className="button-turquoise"
-                    >
-                      {day.triggers.length} events
-                    </span>
+                    {day.triggers.length >= 1 ? (
+                      <span
+                        style={{ marginLeft: '20px' }}
+                        className="button-orange"
+                      >
+                        {day.triggers.length} events
+                      </span>
+                    ) : (
+                      <span
+                        style={{ marginLeft: '20px' }}
+                        className="button-turquoise"
+                      >
+                        {day.triggers.length} events
+                      </span>
+                    )}
                   </h4>
                 </Col>
 
@@ -105,10 +114,14 @@ const Events = () => {
                                   <div className="col-md-4">&nbsp;</div>
                                 ) : (
                                   <div className="col-md-6 small">
-                                    <i>
-                                      Notification has been sent to{' '}
-                                      {trigger.recipients.length} recipients
-                                    </i>
+                                    {trigger.recipients.length === 0 ? (
+                                      ''
+                                    ) : (
+                                      <i>
+                                        Notification has been sent to{' '}
+                                        {trigger.recipients.length} recipients
+                                      </i>
+                                    )}
                                   </div>
                                 )}
                               </div>

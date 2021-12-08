@@ -47,7 +47,7 @@ const PriorNotifs = ({ days, setDays }) => {
           </p>
         ) : (
           <p className="human-readable">
-            You will be notified if the event occurs {days} day
+            You will be notified if the event occurs within {days} day
             {days === 1 ? '' : 's'} from now
           </p>
         )}

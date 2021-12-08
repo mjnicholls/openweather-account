@@ -16,11 +16,11 @@ const getUnits = (variable, units) => {
 }
 
 const humanReadable = (condition) => {
-  const res = `You will be notified if the ${variables
-    .find((el) => el.value === condition.variable)
-    .label.toLowerCase()} ${
-    condition.condition === '>' ? 'exceeds' : 'falls below'
-  } ${condition.value}${getUnits(condition.variable, condition.units)}`
+  const res = `You will be notified if the ${
+    variables.find((el) => el.value === condition.variable).label
+  } ${condition.condition === '>' ? 'exceeds' : 'falls below'} ${
+    condition.value
+  }${getUnits(condition.variable, condition.units)}`
   return res
 }
 
