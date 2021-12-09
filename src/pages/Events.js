@@ -119,7 +119,10 @@ const Events = () => {
                                     ) : (
                                       <i>
                                         Notification has been sent to{' '}
-                                        {trigger.recipients.length} recipients
+                                        {trigger.recipients.length} recipient
+                                        {trigger.recipients.length === 1
+                                          ? ''
+                                          : 's'}
                                       </i>
                                     )}
                                   </div>
@@ -181,7 +184,10 @@ const Events = () => {
                                     <div className="col-md-6 mb-2 small">
                                       <i>
                                         Notification has been sent to{' '}
-                                        {trigger.recipients.length} recipients
+                                        {trigger.recipients.length} recipient
+                                        {trigger.recipients.length === 1
+                                          ? ''
+                                          : 's'}
                                       </i>
                                     </div>
                                   </div>

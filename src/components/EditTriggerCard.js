@@ -60,8 +60,8 @@ const EditTriggerCard = ({ id, userId, name, status, setData }) => {
 }
 
 EditTriggerCard.propTypes = {
-  id: PropTypes.number,
-  status: PropTypes.bool,
+  id: PropTypes.string,
+  status: PropTypes.string,
   userId: PropTypes.string,
   setData: PropTypes.func,
   name: PropTypes.string,

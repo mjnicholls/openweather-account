@@ -89,9 +89,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
       {isUpdated ? (
         <>
           <Row>
-            <h4 style={{ marginTop: '15px', marginBottom: '15px' }}>
-              Trigger updated!
-            </h4>
+            <p>Your trigger has been updated.</p>
           </Row>
           <Row>
             <Col className="text-end">
@@ -142,15 +140,26 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
 
           <br />
           <Col className="text-end">
-            <Button
-              className="button-active shadow-none"
-              data-dismiss="modal"
-              type="button"
-              onClick={confirmEditTrigger}
-              disabled={isEdited}
-            >
-              Update
-            </Button>
+            {tempStatus === status ? (
+              <Button
+                className="button-active shadow-none"
+                data-dismiss="modal"
+                type="button"
+                onClick={confirmEditTrigger}
+                disabled={isEdited}
+              >
+                Update
+              </Button>
+            ) : (
+              <Button
+                className="button-active shadow-none"
+                data-dismiss="modal"
+                type="button"
+                onClick={confirmEditTrigger}
+              >
+                Update
+              </Button>
+            )}
           </Col>
         </>
       )}

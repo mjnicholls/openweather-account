@@ -9,7 +9,7 @@ const StatusToggle = ({ tempStatus, setTempStatus, setIsEdited }) => (
       checked={tempStatus === 'on'}
       onChange={() => {
         setTempStatus(tempStatus === 'on' ? 'off' : 'on')
-        setIsEdited(false)
+        // setIsEdited(false)
       }}
     />
     <span className="slider round"></span>
@@ -19,7 +19,7 @@ const StatusToggle = ({ tempStatus, setTempStatus, setIsEdited }) => (
 StatusToggle.propTypes = {
   tempStatus: PropTypes.bool,
   setTempStatus: PropTypes.func,
-  setIsEdited: PropTypes.bool,
+  // setIsEdited: PropTypes.bool,
 }
 
 export default StatusToggle

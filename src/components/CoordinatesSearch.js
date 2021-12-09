@@ -84,7 +84,8 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
             className={error.lat ? 'danger-border' : ''}
             value={location.lat}
             onChange={(e) => {
-              setLocation({ ...location, lat: parseFloat(e.target.value) })
+              // setLocation({ ...location, lat: parseFloat(e.target.value) })
+              setLocation({ lat: parseFloat(e.target.value) })
             }}
           />
 
@@ -105,7 +106,8 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
               className={error.lng ? 'danger-border' : ''}
               value={location.lon}
               onChange={(e) => {
-                setLocation({ ...location, lon: parseFloat(e.target.value) })
+                // setLocation({ ...location, lon: parseFloat(e.target.value) })
+                setLocation({ lon: parseFloat(e.target.value) })
               }}
             />
           </FormGroup>

@@ -120,7 +120,7 @@ const ViewTrigger = () => {
   const updateAlert = () => {
     setAlert(
       <ReactBSAlert
-        title="Trigger Updated!"
+        title="Trigger Updated"
         onConfirm={() => hideAlert()}
         onCancel={() => hideAlert()}
         showConfirm={false}
@@ -130,15 +130,14 @@ const ViewTrigger = () => {
       >
         <br />
         <p>Your trigger has been updated.</p>
-        <Row className="search-box">
-          <Col className="text-end">
-            <Link to="/triggers">
-              <Button className="button-active shadow-none">
-                Back to all triggers
-              </Button>
-            </Link>
-          </Col>
-        </Row>
+
+        <Col className="text-end">
+          <Link to="/triggers" a="true">
+            <Button className="button-active shadow-none">
+              Back to all triggers
+            </Button>
+          </Link>
+        </Col>
       </ReactBSAlert>,
     )
   }
@@ -205,10 +204,10 @@ const ViewTrigger = () => {
             </Col>
             <Col className="text-end mb-3">
               {tempStatus === 'on' ? <h6>Trigger On</h6> : <h6>Trigger Off</h6>}
+
               <StatusToggle
                 tempStatus={tempStatus}
                 setTempStatus={setTempStatus}
-                setIsEdited={setIsEdited}
               />
             </Col>
           </Row>
@@ -246,7 +245,7 @@ const ViewTrigger = () => {
               <Col className="mb-3">
                 <h6>Email recipients</h6>
                 {recipients.length === 0 ? (
-                  <p>None.</p>
+                  <p>None</p>
                 ) : (
                   <>
                     {Object.keys(recipients).map((recip) => (
@@ -302,20 +301,30 @@ const ViewTrigger = () => {
 
           <Row className="search-box">
             <Col className="text-left">
-              <Link to="/triggers">
+              <Link to="/triggers" block>
                 <Button className="button-neutral shadow-none">Back</Button>
               </Link>
             </Col>
             <Col className="text-end">
               <DeleteTriggerCard id={id} userId={userId} />
-              <Button
-                className="button-active shadow-none"
-                style={{ marginLeft: '5px' }}
-                onClick={saveMethod}
-                disabled={isEdited}
-              >
-                Save
-              </Button>
+              {tempStatus === status ? (
+                <Button
+                  className="button-active shadow-none"
+                  style={{ marginLeft: '5px' }}
+                  onClick={saveMethod}
+                  disabled={isEdited}
+                >
+                  Save
+                </Button>
+              ) : (
+                <Button
+                  className="button-active shadow-none"
+                  style={{ marginLeft: '5px' }}
+                  onClick={saveMethod}
+                >
+                  Save
+                </Button>
+              )}
             </Col>
           </Row>
         </Col>

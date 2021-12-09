@@ -2,7 +2,7 @@ import React from 'react'
 
 import './App.scss'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import { Container } from 'reactstrap'
 
 // import Footer from './components/Footer'

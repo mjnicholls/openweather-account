@@ -20,12 +20,19 @@ const createMapOptions = () => ({
   styles: mapStyles.styles,
 })
 
-const InfoWindow = ({ show, location, setLocation, showButton, setIsSet }) => {
+const InfoWindow = ({
+  show,
+  location,
+  setLocation,
+  showButton,
+  setIsSet,
+  setIsClicked,
+  isClicked,
+}) => {
   const onSetLocationClick = (e) => {
     setLocation(location)
-    console.log('infowindow', location)
     e.stopPropagation()
-    // setIsInfoWindow(false)
+    setIsClicked(true)
     setIsSet(true)
   }
 
@@ -34,7 +41,7 @@ const InfoWindow = ({ show, location, setLocation, showButton, setIsSet }) => {
       className="mapPop"
       style={{
         marginLeft: '-150px',
-        marginTop: '-180px',
+        marginTop: '-160px',
       }}
     >
       <h5>{location.name}</h5>
@@ -51,14 +58,18 @@ const InfoWindow = ({ show, location, setLocation, showButton, setIsSet }) => {
           </p>
         </div>
         <div className="body">
-          {showButton && (
-            <button
-              type="button"
-              className="button-active"
-              onClick={onSetLocationClick}
-            >
-              Set location
-            </button>
+          {isClicked ? null : (
+            <>
+              {showButton && (
+                <button
+                  type="button"
+                  className="button-active"
+                  onClick={onSetLocationClick}
+                >
+                  Set location
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -66,7 +77,14 @@ const InfoWindow = ({ show, location, setLocation, showButton, setIsSet }) => {
   ) : null
 }
 
-const SimpleMap = ({ mapRef, location, setLocation, setIsSet }) => {
+const SimpleMap = ({
+  mapRef,
+  location,
+  setLocation,
+  setIsSet,
+  setIsClicked,
+  isClicked,
+}) => {
   const [tempLocation, setTempLocation] = useState(location)
   const [isInfoWindow, setIsInfoWindow] = useState(true)
 
@@ -83,6 +101,7 @@ const SimpleMap = ({ mapRef, location, setLocation, setIsSet }) => {
   }
 
   const onClickMap = ({ lat, lng }) => {
+    setIsClicked(false)
     setTempLocation({
       lat,
       lon: lng,
@@ -102,6 +121,7 @@ const SimpleMap = ({ mapRef, location, setLocation, setIsSet }) => {
         options={createMapOptions}
         onClick={onClickMap}
         setIsSet={setIsSet}
+        setIsClicked={setIsClicked}
       >
         <InfoWindow
           show={isInfoWindow}
@@ -109,6 +129,8 @@ const SimpleMap = ({ mapRef, location, setLocation, setIsSet }) => {
           location={tempLocation}
           setLocation={setLocation}
           setIsSet={setIsSet}
+          setIsClicked={setIsClicked}
+          isClicked={isClicked}
           showButton
         />
       </GoogleMapReact>
@@ -117,7 +139,7 @@ const SimpleMap = ({ mapRef, location, setLocation, setIsSet }) => {
 }
 
 InfoWindow.propTypes = {
-  location: PropTypes.string,
+  location: PropTypes.object,
   setLocation: PropTypes.func,
   showButton: PropTypes.func,
   show: PropTypes.bool,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import '../App.scss'
 import classnames from 'classnames/index'
@@ -32,6 +32,16 @@ const AutoCompleteForm = ({
     }
   }
 
+  /*
+  const onKeyDown = (e) => {
+    if (e.key === 13) { //13 is the key code for Enter
+      e.key.preventDefault()
+      //Here you can even write the logic to select the value from the drop down or something.
+    }
+  }
+
+  */
+
   return (
     <div>
       <Row className="mt-3">
@@ -50,11 +60,12 @@ const AutoCompleteForm = ({
                 types: ['(regions)'],
               }}
               onChange={(e) => {
-                setLocation({ ...location, name: e.target.value })
+                //    setLocation({ ...location, name: e.target.value })
+                setLocation({ name: e.target.value })
               }}
               name={name.slice(0, -14)}
-              /*eslint-disable*/
               value={location.name}
+              /* eslint-disable-next-line */
             />
           </FormGroup>
           <div
@@ -73,7 +84,7 @@ const AutoCompleteForm = ({
 
 AutoCompleteForm.propTypes = {
   setLocation: PropTypes.func,
-  error: PropTypes.func,
+  error: PropTypes.object,
   mapRef: PropTypes.string,
 }
 

@@ -54,6 +54,8 @@ const CreateTrigger = () => {
 
   const [whoops, setWhoops] = useState('')
 
+  const [isClicked, setIsClicked] = useState(false)
+
   const history = useHistory()
 
   const goToPreviousPath = () => {
@@ -109,7 +111,7 @@ const CreateTrigger = () => {
   const htmlAlert = () => {
     setAlert(
       <ReactBSAlert
-        title="Trigger Created!"
+        title="Trigger Created"
         onConfirm={() => hideAlert()}
         onCancel={() => hideAlert()}
         showConfirm={false}
@@ -338,6 +340,8 @@ const CreateTrigger = () => {
           location={location}
           setLocation={setLocation}
           setIsSet={setIsSet}
+          setIsClicked={setIsClicked}
+          isClicked={isClicked}
         />
       </Col>
     </Row>

@@ -51,9 +51,7 @@ const DeleteTrigger = ({ id, userId, setData }) => {
       {isUpdated ? (
         <>
           <Row>
-            <h4 style={{ marginTop: '15px', marginBottom: '15px' }}>
-              Trigger deleted!
-            </h4>
+            <p>Your trigger has been deleted.</p>
           </Row>
           <Row>
             <Col className="text-end">

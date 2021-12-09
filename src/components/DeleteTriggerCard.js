@@ -2,12 +2,19 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
+import { useHistory } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
 import DeleteTrigger from './DeleteTrigger'
 
 const DeleteTriggerCard = ({ id, userId, data, setData }) => {
   const [alert, setAlert] = React.useState(null)
+
+  const history = useHistory()
+
+  const handleClick = () => {
+    history.push('/triggers')
+  }
 
   const hideAlert = () => {
     setAlert(null)
@@ -17,8 +24,8 @@ const DeleteTriggerCard = ({ id, userId, data, setData }) => {
     setAlert(
       <ReactBSAlert
         title="Delete Trigger?"
-        onConfirm={() => hideAlert()}
-        onCancel={() => hideAlert()}
+        onConfirm={() => handleClick()}
+        onCancel={() => handleClick()}
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"
@@ -54,7 +61,7 @@ const DeleteTriggerCard = ({ id, userId, data, setData }) => {
 }
 
 DeleteTriggerCard.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   userId: PropTypes.string,
   data: PropTypes.object,
   setData: PropTypes.func,
