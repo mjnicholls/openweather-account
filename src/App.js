@@ -1,8 +1,10 @@
 import React from 'react'
 
 import './App.scss'
+import { css } from '@emotion/react'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route } from 'react-router-dom'
+import ClipLoader from 'react-spinners/ClipLoader'
 import { Container } from 'reactstrap'
 
 // import Footer from './components/Footer'
