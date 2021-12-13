@@ -41,29 +41,29 @@ const Events = () => {
 
   return (
     <>
-      <div className="forecast">
-        <Row className="search-box">
-          <Col>
-            <h2>Events</h2>
-          </Col>
-          <Col className="text-end title">
-            <Link to="/triggers">
-              <Button className="button-neutral shadow-none">
-                To triggers
-              </Button>
-            </Link>
-            <Link to="/create">
-              <Button className="button-active shadow-none">
-                Create new trigger
-              </Button>
-            </Link>
-          </Col>
-        </Row>
-        <Row className="search-box">
-          {data.map((day) => (
-            <React.Fragment key={day.day}>
-              {isLoading ? (
-                <Col md="6">
+      {isLoading ? (
+        <div className="forecast">
+          <Row className="search-box">
+            <Col>
+              <h2>Events</h2>
+            </Col>
+            <Col className="text-end title">
+              <Link to="/triggers">
+                <Button className="button-neutral shadow-none">
+                  To triggers
+                </Button>
+              </Link>
+              <Link to="/create">
+                <Button className="button-active shadow-none">
+                  Create new trigger
+                </Button>
+              </Link>
+            </Col>
+          </Row>
+          <Row className="search-box">
+            <Col className="mb-0" md="6" mt="10">
+              <Card>
+                <CardBody>
                   <ContentLoader
                     speed={2}
                     width={400}
@@ -80,8 +80,101 @@ const Events = () => {
                     <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
                     <circle cx="20" cy="20" r="20" />
                   </ContentLoader>
-                </Col>
-              ) : (
+                </CardBody>
+              </Card>
+            </Col>
+            <Col className="mb-0" md="6" mt="10">
+              <Card>
+                <CardBody>
+                  <ContentLoader
+                    speed={2}
+                    width={400}
+                    height={160}
+                    viewBox="0 0 400 160"
+                    backgroundColor="#f3f3f3"
+                    foregroundColor="#ecebeb"
+                    {...isLoading}
+                  >
+                    <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
+                    <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
+                    <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
+                    <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
+                    <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
+                    <circle cx="20" cy="20" r="20" />
+                  </ContentLoader>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+          <Row className="search-box">
+            <Col className="mb-0" md="6" mt="10">
+              <Card>
+                <CardBody>
+                  <ContentLoader
+                    speed={2}
+                    width={400}
+                    height={160}
+                    viewBox="0 0 400 160"
+                    backgroundColor="#f3f3f3"
+                    foregroundColor="#ecebeb"
+                    {...isLoading}
+                  >
+                    <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
+                    <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
+                    <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
+                    <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
+                    <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
+                    <circle cx="20" cy="20" r="20" />
+                  </ContentLoader>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col className="mb-0" md="6" mt="10">
+              <Card>
+                <CardBody>
+                  <ContentLoader
+                    speed={2}
+                    width={400}
+                    height={160}
+                    viewBox="0 0 400 160"
+                    backgroundColor="#f3f3f3"
+                    foregroundColor="#ecebeb"
+                    {...isLoading}
+                  >
+                    <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
+                    <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
+                    <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
+                    <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
+                    <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
+                    <circle cx="20" cy="20" r="20" />
+                  </ContentLoader>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+      ) : (
+        <div className="forecast">
+          <Row className="search-box">
+            <Col>
+              <h2>Events</h2>
+            </Col>
+            <Col className="text-end title">
+              <Link to="/triggers">
+                <Button className="button-neutral shadow-none">
+                  To triggers
+                </Button>
+              </Link>
+              <Link to="/create">
+                <Button className="button-active shadow-none">
+                  Create new trigger
+                </Button>
+              </Link>
+            </Col>
+          </Row>
+          <Row className="search-box">
+            {data.map((day) => (
+              <React.Fragment key={day.day}>
                 <Col md="6">
                   <Row className="search-box">
                     <Col mt="20">
@@ -237,11 +330,11 @@ const Events = () => {
                     </Col>
                   </Row>
                 </Col>
-              )}
-            </React.Fragment>
-          ))}
-        </Row>
-      </div>
+              </React.Fragment>
+            ))}
+          </Row>
+        </div>
+      )}
     </>
   )
 }
