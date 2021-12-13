@@ -2,14 +2,13 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-const StatusToggle = ({ tempStatus, setTempStatus, setIsEdited }) => (
+const StatusToggle = ({ tempStatus, setTempStatus }) => (
   <label className="switch">
     <input
       type="checkbox"
       checked={tempStatus === 'on'}
       onChange={() => {
         setTempStatus(tempStatus === 'on' ? 'off' : 'on')
-        // setIsEdited(false)
       }}
     />
     <span className="slider round"></span>
@@ -17,9 +16,8 @@ const StatusToggle = ({ tempStatus, setTempStatus, setIsEdited }) => (
 )
 
 StatusToggle.propTypes = {
-  tempStatus: PropTypes.bool,
+  tempStatus: PropTypes.string,
   setTempStatus: PropTypes.func,
-  // setIsEdited: PropTypes.bool,
 }
 
 export default StatusToggle

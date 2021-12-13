@@ -9,8 +9,11 @@ const HeaderTrigger = () => {
 
   return (
     <nav className="navbar navbar-expand-xl page-header fixed-top">
-      <div className="container-xl">
-        <a className="" href="https://openweathermap.org/">
+      <div
+        className="container-xl"
+        style={{ marginTop: '5px', marginBottom: '5px' }}
+      >
+        <a href="https://openweathermap.org/">
           <img
             src={gallery.logo_white.src}
             alt="Open Weather Logo"
@@ -102,19 +105,8 @@ const HeaderTrigger = () => {
               </a>
             </li>
 
-            {/* <li>
-              <a
-                className="marketplace"
-                href="https://home.openweathermap.org/marketplace"
-                target="_blank"
-              >
-                Marketplace
-              </a>
-            </li>
-           */}
-
             <li>
-              <a className="marketplace text-nowrap" a href="/create">
+              <a className="marketplace text-nowrap" href="/create">
                 New Trigger
               </a>
             </li>
@@ -141,47 +133,45 @@ const HeaderTrigger = () => {
             ) : (
               <>
                 <li className="nav-item dropdown text-nowrap d-none d-lg-block">
-                  <a className="text-nowrap" href="\">
-                    <a
-                      href="/"
-                      className="dropdown-toggle header-link text-nowrap username"
-                      data-toggle="dropdown"
-                    >
-                      {userName}
-                    </a>
-                    <div className="dropdown-menu text-nowrap">
-                      <a
-                        href="https://home.openweathermap.org/myservices"
-                        target="_blank"
-                      >
-                        My Services
-                      </a>
-                      <a
-                        href="https://home.openweathermap.org/api_keys"
-                        target="_blank"
-                      >
-                        My API Keys
-                      </a>
-                      <a
-                        href="https://home.openweathermap.org/payments"
-                        target="_blank"
-                      >
-                        My Payments
-                      </a>
-                      <a
-                        href="https://home.openweathermap.org/home"
-                        target="_blank"
-                      >
-                        My Profile
-                      </a>
-                      <a
-                        href="https://home.openweathermap.org/users/sign_out"
-                        target="_blank"
-                      >
-                        Logout
-                      </a>
-                    </div>
+                  <a
+                    href="/"
+                    className="dropdown-toggle header-link text-nowrap username"
+                    data-toggle="dropdown"
+                  >
+                    {userName}
                   </a>
+                  <div className="dropdown-menu text-nowrap">
+                    <a
+                      href="https://home.openweathermap.org/myservices"
+                      target="_blank"
+                    >
+                      My Services
+                    </a>
+                    <a
+                      href="https://home.openweathermap.org/api_keys"
+                      target="_blank"
+                    >
+                      My API Keys
+                    </a>
+                    <a
+                      href="https://home.openweathermap.org/payments"
+                      target="_blank"
+                    >
+                      My Payments
+                    </a>
+                    <a
+                      href="https://home.openweathermap.org/home"
+                      target="_blank"
+                    >
+                      My Profile
+                    </a>
+                    <a
+                      href="https://home.openweathermap.org/users/sign_out"
+                      target="_blank"
+                    >
+                      Logout
+                    </a>
+                  </div>
                 </li>
 
                 <li>
@@ -194,7 +184,7 @@ const HeaderTrigger = () => {
                 </li>
 
                 <li className="nav-item d-lg-none text-nowrap">
-                  <a className href="https://home.openweathermap.org/">
+                  <a href="https://home.openweathermap.org/">
                     <img src={gallery.user_icon.src} alt="user icon" />
                     {userName}
                   </a>

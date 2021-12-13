@@ -9,10 +9,6 @@ import { noBlankErrorMessage } from '../config'
 import placeMarker from './placeMarker'
 
 const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
-  const [lat, setLat] = useState(location.lat)
-
-  const [lng, setLng] = useState(location.lon)
-
   const [error, setError] = useState({})
 
   const latRangeError = 'Value cannot be below -90 or above 90'
@@ -84,8 +80,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
             className={error.lat ? 'danger-border' : ''}
             value={location.lat}
             onChange={(e) => {
-              // setLocation({ ...location, lat: parseFloat(e.target.value) })
-              setLocation({ lat: parseFloat(e.target.value) })
+              setLocation({ ...location, lat: parseFloat(e.target.value) })
             }}
           />
 
@@ -106,8 +101,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
               className={error.lng ? 'danger-border' : ''}
               value={location.lon}
               onChange={(e) => {
-                // setLocation({ ...location, lon: parseFloat(e.target.value) })
-                setLocation({ lon: parseFloat(e.target.value) })
+                setLocation({ ...location, lon: parseFloat(e.target.value) })
               }}
             />
           </FormGroup>
@@ -138,6 +132,7 @@ CoordinatesSearch.propTypes = {
   location: PropTypes.object,
   setLocation: PropTypes.func,
   mapRef: PropTypes.func,
+  setIsSet: PropTypes.bool,
 }
 
 export default CoordinatesSearch

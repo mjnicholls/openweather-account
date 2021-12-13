@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
 
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import { Button, Col, Row, Input, Label } from 'reactstrap'
 
 import { patchTrigger, getTriggers } from '../api/api'
-
 import '../App.scss'
-import classnames from 'classnames'
-
 import { noBlankErrorMessage } from '../config'
 import htmlError from '../pages/CreateTrigger'
 import StatusToggle from './StatusToggle'
-
-import PropTypes from 'prop-types'
 
 const EditTrigger = ({ userId, id, name, status, setData, close }) => {
   const [error, setError] = useState({})
@@ -58,8 +55,6 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
       // call API
     }
 
-    console.log('saving', data)
-
     patchTrigger(data)
       .then(() => {
         console.log('data')
@@ -68,7 +63,6 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
       })
       // eslint-disable-next-line
       .catch((error) => {
-        console.log(error)
         htmlError()
       })
   }

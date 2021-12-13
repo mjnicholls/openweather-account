@@ -1,13 +1,12 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
 import Select from 'react-select'
 import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 
 import '../App.scss'
 import { variables, units, conditions } from '../config'
 import humanReadableCondition from '../humanReadableCondition'
-
-import PropTypes from 'prop-types'
 
 const Condition = ({ condition, setCondition }) => {
   const handleChange = (key, value) => {
@@ -75,7 +74,7 @@ const Condition = ({ condition, setCondition }) => {
 }
 
 Condition.propTypes = {
-  condition: PropTypes.string,
+  condition: PropTypes.object,
   setCondition: PropTypes.func,
 }
 

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
 import GoogleMapReact from 'google-map-react'
+import PropTypes from 'prop-types'
 
 import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
-
 import placeMarker from './placeMarker'
-
-import PropTypes from 'prop-types'
 
 const handleApiLoaded = (mapInstance) => {
   mapInstance.addListener('click', (e) => {
@@ -141,8 +139,20 @@ const SimpleMap = ({
 InfoWindow.propTypes = {
   location: PropTypes.object,
   setLocation: PropTypes.func,
-  showButton: PropTypes.func,
+  showButton: PropTypes.bool,
   show: PropTypes.bool,
+  setIsSet: PropTypes.bool,
+  setIsClicked: PropTypes.bool,
+  isClicked: PropTypes.object,
+}
+
+SimpleMap.propTypes = {
+  setIsSet: PropTypes.bool,
+  setIsClicked: PropTypes.bool,
+  isClicked: PropTypes.object,
+  mapRef: PropTypes.object,
+  location: PropTypes.object,
+  setLocation: PropTypes.func,
 }
 
 export default SimpleMap

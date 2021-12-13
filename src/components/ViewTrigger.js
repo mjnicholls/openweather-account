@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
 import { Row, Col, Input, Label, Button } from 'reactstrap'
 
-import { patchTrigger, getEventsByTriggerId, getTriggers } from '../api/api'
+import { patchTrigger, getEventsByTriggerId } from '../api/api'
 import { noBlankErrorMessage } from '../config'
 import humanReadableCondition from '../humanReadableCondition'
 import '../App.scss'

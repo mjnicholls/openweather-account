@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
 import GoogleMapReact from 'google-map-react'
+import PropTypes from 'prop-types'
 
 import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
 import placeMarker from './placeMarker'
-
-import PropTypes from 'prop-types'
 
 const handleApiLoaded = (mapInstance, coords) => {
   /* eslint-disable-next-line */
@@ -83,8 +82,13 @@ const ViewOnlyMap = ({ mapRef, location }) => {
 }
 
 InfoWindow.propTypes = {
-  location: PropTypes.string,
+  location: PropTypes.object,
   show: PropTypes.bool,
+}
+
+ViewOnlyMap.propTypes = {
+  mapRef: PropTypes.object,
+  location: PropTypes.object,
 }
 
 export default ViewOnlyMap

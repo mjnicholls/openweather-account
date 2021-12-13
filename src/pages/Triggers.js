@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
+import { css } from '@emotion/react'
+import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import BeatLoader from 'react-spinners/ClipLoader'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 
 import { getTriggers } from '../api/api'
@@ -9,8 +12,6 @@ import '../App.scss'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
 import humanReadableCondition from '../humanReadableCondition'
-
-import ReactBSAlert from 'react-bootstrap-sweetalert'
 
 const selectUserId = (state) => state.auth.user_id
 
@@ -21,9 +22,22 @@ const Triggers = () => {
 
   const myTariff = useSelector(selectTariff)
 
+  const [isLoading, setIsLoading] = useState(true)
+  const color = '#EB6E4B'
+
+  const override = css`
+    display: inline-block;
+    margin: 0 auto;
+    border-color: #eb6e4b;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    margin-right: 15px;
+  `
+
   const [data, setData] = useState([])
 
   useEffect(() => {
+    setIsLoading(true)
     getTriggers(userId)
       .then((res) => {
         setData(res.data)
@@ -31,6 +45,9 @@ const Triggers = () => {
       })
       .catch((err) => {
         console.log('error', err)
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }, [userId])
 
@@ -112,88 +129,110 @@ const Triggers = () => {
 
   return (
     <>
-      <div className="content">
-        {alert}
-        <Row>
-          <Col>
-            <h2>Trigger List</h2>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="mb-0" md="12" mt="20">
-            <Card>
-              <CardBody>
-                <Table className="mb-3">
-                  <thead>
-                    <tr>
-                      <th>&nbsp;</th>
-                      <th>Trigger Name</th>
-                      <th className="trig">Trigger Condition</th>
-                      <th>Location</th>
-                      <th>Notify</th>
-                      {myTariff === 'free' ? (
+      {isLoading ? (
+        <div className="loader text-center">
+          <BeatLoader
+            color={color}
+            loading={isLoading}
+            css={override}
+            size={15}
+          />
+          <BeatLoader
+            color={color}
+            loading={isLoading}
+            css={override}
+            size={15}
+          />
+          <BeatLoader
+            color={color}
+            loading={isLoading}
+            css={override}
+            size={15}
+          />
+        </div>
+      ) : (
+        <div className="content">
+          {alert}
+          <Row>
+            <Col>
+              <h2>Trigger List</h2>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="mb-0" md="12" mt="20">
+              <Card>
+                <CardBody>
+                  <Table className="mb-3">
+                    <thead>
+                      <tr>
                         <th>&nbsp;</th>
-                      ) : (
-                        <th className="email">Email Recipients</th>
-                      )}
-                      <th>&nbsp;</th>
-                      <th>&nbsp;</th>
-                      <th>&nbsp;</th>
-                    </tr>
-                  </thead>
+                        <th>Trigger Name</th>
+                        <th className="trig">Trigger Condition</th>
+                        <th>Location</th>
+                        <th>Notify</th>
+                        {myTariff === 'free' ? (
+                          <th>&nbsp;</th>
+                        ) : (
+                          <th className="email">Email Recipients</th>
+                        )}
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                      </tr>
+                    </thead>
 
-                  <tbody>
-                    {data.map(
-                      (trigger, index) =>
-                        trigger.status !== 'deleted' && (
-                          <tr key={trigger.id}>
-                            <td>{index + 1}</td>
-                            <td>
-                              <Link
-                                to={{
-                                  pathname: '/trigger',
-                                  state: trigger,
-                                }}
-                              >
-                                {trigger.name}
-                              </Link>
-                            </td>
-                            <td className="text-nowrap">
-                              {humanReadableCondition(
-                                trigger.condition,
-                              ).substring(28)}
-                            </td>
-                            <td>{trigger.location.name}</td>
-                            <td className="text-nowrap">
-                              {trigger.days}{' '}
-                              {trigger.days === 1 ? 'day' : 'days'}
-                            </td>
-                            {myTariff === 'free' ? (
-                              <td>&nbsp;</td>
-                            ) : (
-                              <td>{trigger.recipients.length}</td>
-                            )}
-                            {trigger.status === 'on' ? (
-                              <td style={{ color: 'green' }}>
-                                {trigger.status.charAt(0).toUpperCase() +
-                                  trigger.status.slice(1)}
+                    <tbody>
+                      {data.map(
+                        (trigger, index) =>
+                          trigger.status !== 'deleted' && (
+                            <tr key={trigger.id}>
+                              <td>{index + 1}</td>
+                              <td>
+                                <Link
+                                  to={{
+                                    pathname: '/trigger',
+                                    state: trigger,
+                                  }}
+                                >
+                                  {trigger.name}
+                                </Link>
                               </td>
-                            ) : (
-                              <td style={{ color: 'red' }}>
-                                {trigger.status.charAt(0).toUpperCase() +
-                                  trigger.status.slice(1)}
+                              <td className="text-nowrap">
+                                {humanReadableCondition(
+                                  trigger.condition,
+                                ).substring(28)}
                               </td>
-                            )}
-                            <td>
-                              <EditTriggerCard
-                                id={trigger.id}
-                                userId={userId}
-                                data={data}
-                                setData={setData}
-                                name={trigger.name}
-                                status={trigger.status}
-                              />
-                              {/*
+                              <td>{trigger.location.name}</td>
+                              <td className="text-nowrap">
+                                {trigger.days}{' '}
+                                {trigger.days === 1 ? 'day' : 'days'}
+                              </td>
+                              {myTariff === 'free' ? (
+                                <td>&nbsp;</td>
+                              ) : (
+                                <td>{trigger.recipients.length}</td>
+                              )}
+                              {trigger.status === 'on' ? (
+                                <td style={{ color: 'green' }}>
+                                  {trigger.status.charAt(0).toUpperCase() +
+                                    trigger.status.slice(1)}
+                                </td>
+                              ) : (
+                                <td style={{ color: 'red' }}>
+                                  {trigger.status.charAt(0).toUpperCase() +
+                                    trigger.status.slice(1)}
+                                </td>
+                              )}
+                              <td>
+                                <EditTriggerCard
+                                  id={trigger.id}
+                                  userId={userId}
+                                  data={data}
+                                  setData={setData}
+                                  name={trigger.name}
+                                  status={trigger.status}
+                                />
+                                {/*
                               <Button
                                 style={{
                                   backgroundColor: 'transparent',
@@ -210,16 +249,16 @@ const Triggers = () => {
                                 <Edit color="#48484a" />
                               </Button>
                               */}
-                            </td>
-                            <td>
-                              <DeleteTriggerCardX
-                                id={trigger.id}
-                                userId={userId}
-                                data={data}
-                                setData={setData}
-                              />
+                              </td>
+                              <td>
+                                <DeleteTriggerCardX
+                                  id={trigger.id}
+                                  userId={userId}
+                                  data={data}
+                                  setData={setData}
+                                />
 
-                              {/*
+                                {/*
                               <Button
                                 size="sm"
                                 title="Delete"
@@ -237,112 +276,115 @@ const Triggers = () => {
                                 <Close color="#48484a" />
                               </Button>
                                 */}
-                            </td>
-                          </tr>
-                        ),
-                    )}
-                  </tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-        <Row className="search-box">
-          <Col className="text-end">
-            <Link to="/events">
-              <Button className="button-neutral shadow-none">To events</Button>
-            </Link>
+                              </td>
+                            </tr>
+                          ),
+                      )}
+                    </tbody>
+                  </Table>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+          <Row className="search-box">
+            <Col className="text-end">
+              <Link to="/events">
+                <Button className="button-neutral shadow-none">
+                  To events
+                </Button>
+              </Link>
 
-            {(() => {
-              switch (myTariff) {
-                case 'free':
-                  return data.length >= 3 ? (
-                    <Button
-                      className="button-active shadow-none"
-                      onClick={tariffError}
-                    >
-                      Create new trigger
-                    </Button>
-                  ) : (
-                    <Link to="/create">
-                      <Button className="button-active shadow-none">
+              {(() => {
+                switch (myTariff) {
+                  case 'free':
+                    return data.length >= 3 ? (
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
-                    </Link>
-                  )
-                case 'startup':
-                  return data.length >= 5 ? (
-                    <Button
-                      className="button-active shadow-none"
-                      onClick={tariffError}
-                    >
-                      Create new trigger
-                    </Button>
-                  ) : (
-                    <Link to="/create">
-                      <Button className="button-active shadow-none">
+                    ) : (
+                      <Link to="/create">
+                        <Button className="button-active shadow-none">
+                          Create new trigger
+                        </Button>
+                      </Link>
+                    )
+                  case 'startup':
+                    return data.length >= 5 ? (
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
-                    </Link>
-                  )
-                case 'developer':
-                  return data.length >= 7 ? (
-                    <Button
-                      className="button-active shadow-none"
-                      onClick={tariffError}
-                    >
-                      Create new trigger
-                    </Button>
-                  ) : (
-                    <Link to="/create">
-                      <Button className="button-active shadow-none">
+                    ) : (
+                      <Link to="/create">
+                        <Button className="button-active shadow-none">
+                          Create new trigger
+                        </Button>
+                      </Link>
+                    )
+                  case 'developer':
+                    return data.length >= 7 ? (
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
-                    </Link>
-                  )
-                case 'professional':
-                  return data.length >= 9 ? (
-                    <Button
-                      className="button-active shadow-none"
-                      onClick={tariffError}
-                    >
-                      Create new trigger
-                    </Button>
-                  ) : (
-                    <Link to="/create">
-                      <Button className="button-active shadow-none">
+                    ) : (
+                      <Link to="/create">
+                        <Button className="button-active shadow-none">
+                          Create new trigger
+                        </Button>
+                      </Link>
+                    )
+                  case 'professional':
+                    return data.length >= 9 ? (
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
-                    </Link>
-                  )
-                case 'enterprise':
-                  return data.length >= 15 ? (
-                    <Button
-                      className="button-active shadow-none"
-                      onClick={tariffError}
-                    >
-                      Create new trigger
-                    </Button>
-                  ) : (
-                    <Link to="/create">
-                      <Button className="button-active shadow-none">
+                    ) : (
+                      <Link to="/create">
+                        <Button className="button-active shadow-none">
+                          Create new trigger
+                        </Button>
+                      </Link>
+                    )
+                  case 'enterprise':
+                    return data.length >= 15 ? (
+                      <Button
+                        className="button-active shadow-none"
+                        onClick={tariffError}
+                      >
                         Create new trigger
                       </Button>
-                    </Link>
-                  )
-                default:
-                  return (
-                    <Link to="/create">
-                      <Button className="button-active shadow-none">
-                        Create new trigger
-                      </Button>
-                    </Link>
-                  )
-              }
-            })()}
-          </Col>
-        </Row>
-      </div>
+                    ) : (
+                      <Link to="/create">
+                        <Button className="button-active shadow-none">
+                          Create new trigger
+                        </Button>
+                      </Link>
+                    )
+                  default:
+                    return (
+                      <Link to="/create">
+                        <Button className="button-active shadow-none">
+                          Create new trigger
+                        </Button>
+                      </Link>
+                    )
+                }
+              })()}
+            </Col>
+          </Row>
+        </div>
+      )}
     </>
   )
 }

@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
-import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import { Edit } from 'react-ikonate'
-import { Col, Row, FormGroup, Input } from 'reactstrap'
+import { Col, Row, Input } from 'reactstrap'
 
 import { noBlankErrorMessage } from '../config'
 import '../App.scss'
-
-import PropTypes from 'prop-types'
 
 const TriggerName = ({ location, name, setName }) => {
   const [isEditName, setIsEditName] = useState(false)
 
   const [error, setError] = useState('')
-
-  const [activeName, setActiveName] = useState(name)
 
   const [isNameEdited, setIsNameEdited] = useState(false)
 

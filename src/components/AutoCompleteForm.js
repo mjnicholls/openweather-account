@@ -61,41 +61,24 @@ const AutoCompleteForm = ({
         <Col className="mb-2">
           <h6>Search location by name</h6>
           <FormGroup>
-            {!hmm ? (
-              <Autocomplete
-                apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
-                className={error.location ? 'danger-border' : ''}
-                style={{ width: '100%', marginTop: '7px' }}
-                onPlaceSelected={(place) => {
-                  onPlaceSelected(place)
-                  setIsSet(true)
-                }}
-                options={{
-                  types: ['(regions)'],
-                }}
-                onChange={(e) => {
-                  //    setLocation({ ...location, name: e.target.value })
-                  setLocation({ name: e.target.value })
-                }}
-                value={location.name}
-                /* eslint-disable-next-line */
-              />
-            ) : (
-              <Autocomplete
-                apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
-                className={error.location ? 'danger-border' : ''}
-                style={{ width: '100%', marginTop: '7px' }}
-                options={{
-                  types: ['(regions)'],
-                }}
-                onChange={(e) => {
-                  //    setLocation({ ...location, name: e.target.value })
-                  setLocation({ name: e.target.value })
-                }}
-                value={location.name}
-                /* eslint-disable-next-line */
-              />
-            )}
+            <Autocomplete
+              apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
+              className={error.location ? 'danger-border' : ''}
+              style={{ width: '100%', marginTop: '7px' }}
+              onPlaceSelected={(place) => {
+                onPlaceSelected(place)
+                setIsSet(true)
+              }}
+              options={{
+                types: ['(regions)'],
+              }}
+              onChange={(e) => {
+                setLocation({ ...location, name: e.target.value })
+                // setLocation({ name: e.target.value })
+              }}
+              value={location.name}
+              /* eslint-disable-next-line */
+            />
           </FormGroup>
           <div
             className={classnames(
@@ -114,7 +97,7 @@ const AutoCompleteForm = ({
 AutoCompleteForm.propTypes = {
   setLocation: PropTypes.func,
   error: PropTypes.object,
-  mapRef: PropTypes.string,
+  mapRef: PropTypes.object,
 }
 
 export default AutoCompleteForm

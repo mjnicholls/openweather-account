@@ -19,8 +19,7 @@ const DeleteTrigger = ({ id, userId, setData }) => {
         // refreshData()
       })
       // eslint-disable-next-line
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
         htmlError()
       })
   }

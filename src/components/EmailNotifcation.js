@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 
-import { Button, Col, Row, FormGroup, Label, Input } from 'reactstrap'
-import '../App.scss'
-import { Edit, Close, Ok } from 'react-ikonate'
-
-import { validateEmail } from '../utils/validation'
-
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+import { Edit, Close, Ok } from 'react-ikonate'
+import { Button, Col, Row, FormGroup, Input } from 'reactstrap'
+
+import '../App.scss'
+import { validateEmail } from '../utils/validation'
 
 const EmailNotifs = ({ recipients, setRecipients }) => {
   const [email, setEmail] = useState('')
@@ -164,7 +163,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
 }
 
 EmailNotifs.propTypes = {
-  recipients: PropTypes.string,
+  recipients: PropTypes.array,
   setRecipients: PropTypes.func,
 }
 

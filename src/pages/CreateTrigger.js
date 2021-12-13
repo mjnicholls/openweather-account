@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react'
 
+import { css } from '@emotion/react'
+import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import BeatLoader from 'react-spinners/ClipLoader'
 import { Button, Col, Row } from 'reactstrap'
 
 import { postTrigger, getTriggers } from '../api/api'
@@ -13,9 +16,6 @@ import PriorNotifs from '../components/PriorNotifications'
 import SearchBox from '../components/SearchBox'
 import TriggerName from '../components/TriggerName'
 import '../App.scss'
-
-import ReactBSAlert from 'react-bootstrap-sweetalert'
-
 import { noBlankErrorMessage } from '../config'
 
 const selectUserId = (state) => state.auth.user_id
@@ -25,6 +25,18 @@ const selectTariff = (state) => state.auth.tariff
 const CreateTrigger = () => {
   const mapRef = useRef(null)
   const userId = useSelector(selectUserId)
+
+  const [isLoading, setIsLoading] = useState(true)
+  const color = '#EB6E4B'
+
+  const override = css`
+    display: inline-block;
+    margin: 0 auto;
+    border-color: #eb6e4b;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    margin-right: 15px;
+  `
 
   const myTariff = useSelector(selectTariff)
 
@@ -178,6 +190,7 @@ const CreateTrigger = () => {
   const [data, setData] = useState([])
 
   useEffect(() => {
+    setIsLoading(true)
     getTriggers(userId)
       .then((res) => {
         setData(res.data)
@@ -185,6 +198,9 @@ const CreateTrigger = () => {
       })
       .catch((err) => {
         console.log('error', err)
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }, [userId])
 
@@ -195,156 +211,181 @@ const CreateTrigger = () => {
   }
 
   return (
-    <Row>
-      <Col md="7">
-        {alert}
-        <h2>Create Trigger</h2>
-        <div className="pt-5 pb-5">
-          <SearchBox
-            mapRef={mapRef}
-            location={location}
-            setLocation={setLocation}
-            onChange={(e) => handleChange('location', e.target.value)}
-            error={error}
-            name={name}
-            isSet={isSet}
-            setIsSet={setIsSet}
+    <>
+      {isLoading ? (
+        <div className="loader text-center">
+          <BeatLoader
+            color={color}
+            loading={isLoading}
+            css={override}
+            size={15}
           />
-          {isSet ? (
-            <TriggerName
-              name={name}
-              setName={setName}
-              location={location}
-              error={error}
-              isSet={isSet}
-              setIsSet={setIsSet}
-              onChange={(e) => handleChange('name', e.target.value)}
-            />
-          ) : null}
-          <Condition condition={condition} setCondition={setCondition} />
-          <PriorNotifs days={days} setDays={setDays} />
-          {myTariff === 'free' ? (
-            <Row></Row>
-          ) : (
-            <EmailNotifs
-              recipients={recipients}
-              setRecipients={setRecipients}
-            />
-          )}
-          <Row className="mt-4">
-            <Col className="text-end">
-              <Button
-                className="button-neutral shadow-none"
-                onClick={goToPreviousPath}
-              >
-                Cancel
-              </Button>
-              {(() => {
-                switch (myTariff) {
-                  case 'free':
-                    return data.length >= 3 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Button className="button-active shadow-none">
-                        {' '}
-                        Create trigger
-                      </Button>
-                    )
-                  case 'startup':
-                    return data.length >= 5 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={createTrigger}
-                      >
-                        Create trigger
-                      </Button>
-                    )
-                  case 'developer':
-                    return data.length >= 7 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={createTrigger}
-                      >
-                        Create trigger
-                      </Button>
-                    )
-                  case 'professional':
-                    return data.length >= 9 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={createTrigger}
-                      >
-                        Create trigger
-                      </Button>
-                    )
-                  case 'enterprise':
-                    return data.length >= 15 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={createTrigger}
-                      >
-                        Create trigger
-                      </Button>
-                    )
-                  default:
-                    return (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={createTrigger}
-                      >
-                        Create trigger
-                      </Button>
-                    )
-                }
-              })()}
-            </Col>
-          </Row>
+          <BeatLoader
+            color={color}
+            loading={isLoading}
+            css={override}
+            size={15}
+          />
+          <BeatLoader
+            color={color}
+            loading={isLoading}
+            css={override}
+            size={15}
+          />
         </div>
-      </Col>
-      <Col md="5">
-        <GoogleMapCreate
-          mapRef={mapRef}
-          location={location}
-          setLocation={setLocation}
-          setIsSet={setIsSet}
-          setIsClicked={setIsClicked}
-          isClicked={isClicked}
-        />
-      </Col>
-    </Row>
+      ) : (
+        <Row>
+          <Col md="7">
+            {alert}
+            <h2>Create Trigger</h2>
+            <div className="pt-5 pb-5">
+              <SearchBox
+                mapRef={mapRef}
+                location={location}
+                setLocation={setLocation}
+                onChange={(e) => handleChange('location', e.target.value)}
+                error={error}
+                name={name}
+                isSet={isSet}
+                setIsSet={setIsSet}
+              />
+              {isSet ? (
+                <TriggerName
+                  name={name}
+                  setName={setName}
+                  location={location}
+                  error={error}
+                  isSet={isSet}
+                  setIsSet={setIsSet}
+                  onChange={(e) => handleChange('name', e.target.value)}
+                />
+              ) : null}
+              <Condition condition={condition} setCondition={setCondition} />
+              <PriorNotifs days={days} setDays={setDays} />
+              {myTariff === 'free' ? (
+                <Row></Row>
+              ) : (
+                <EmailNotifs
+                  recipients={recipients}
+                  setRecipients={setRecipients}
+                />
+              )}
+              <Row className="mt-4">
+                <Col className="text-end">
+                  <Button
+                    className="button-neutral shadow-none"
+                    onClick={goToPreviousPath}
+                  >
+                    Cancel
+                  </Button>
+                  {(() => {
+                    switch (myTariff) {
+                      case 'free':
+                        return data.length >= 3 ? (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={tariffError}
+                          >
+                            Create new trigger
+                          </Button>
+                        ) : (
+                          <Button className="button-active shadow-none">
+                            {' '}
+                            Create trigger
+                          </Button>
+                        )
+                      case 'startup':
+                        return data.length >= 5 ? (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={tariffError}
+                          >
+                            Create new trigger
+                          </Button>
+                        ) : (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={createTrigger}
+                          >
+                            Create trigger
+                          </Button>
+                        )
+                      case 'developer':
+                        return data.length >= 7 ? (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={tariffError}
+                          >
+                            Create new trigger
+                          </Button>
+                        ) : (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={createTrigger}
+                          >
+                            Create trigger
+                          </Button>
+                        )
+                      case 'professional':
+                        return data.length >= 9 ? (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={tariffError}
+                          >
+                            Create new trigger
+                          </Button>
+                        ) : (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={createTrigger}
+                          >
+                            Create trigger
+                          </Button>
+                        )
+                      case 'enterprise':
+                        return data.length >= 15 ? (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={tariffError}
+                          >
+                            Create new trigger
+                          </Button>
+                        ) : (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={createTrigger}
+                          >
+                            Create trigger
+                          </Button>
+                        )
+                      default:
+                        return (
+                          <Button
+                            className="button-active shadow-none"
+                            onClick={createTrigger}
+                          >
+                            Create trigger
+                          </Button>
+                        )
+                    }
+                  })()}
+                </Col>
+              </Row>
+            </div>
+          </Col>
+          <Col md="5">
+            <GoogleMapCreate
+              mapRef={mapRef}
+              location={location}
+              setLocation={setLocation}
+              setIsSet={setIsSet}
+              setIsClicked={setIsClicked}
+              isClicked={isClicked}
+            />
+          </Col>
+        </Row>
+      )}
+    </>
   )
 }
 

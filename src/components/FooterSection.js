@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import PropTypes from 'prop-types'
+
 import iconDownBlack from '../assets/img/icon_down_black.svg'
 import '../App.scss'
 
@@ -37,6 +39,11 @@ const FooterSection = (props) => {
       <div className="d-none d-xl-block">{props.children}</div>
     </div>
   )
+}
+
+FooterSection.propTypes = {
+  header: PropTypes.string,
+  children: PropTypes.object,
 }
 
 export default FooterSection

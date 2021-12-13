@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-import { Button, Col, Row, Input } from 'reactstrap'
+import classNames from 'classnames/index'
+import PropTypes from 'prop-types'
+import { Button, Col, Row } from 'reactstrap'
 
 import AutoCompleteForm from './AutoCompleteForm'
 import CoordinatesSearch from './CoordinatesSearch'
 
 import '../App.scss'
-import classNames from 'classnames/index'
-import PropTypes from 'prop-types'
 
 const SearchBox = ({
   mapRef,
@@ -110,10 +110,16 @@ const SearchBox = ({
 }
 
 SearchBox.propTypes = {
-  location: PropTypes.string,
+  location: PropTypes.object,
   setLocation: PropTypes.func,
-  mapRef: PropTypes.string,
-  error: PropTypes.func,
+  mapRef: PropTypes.object,
+  error: PropTypes.object,
+  name: PropTypes.object,
+  setName: PropTypes.bool,
+  isName: PropTypes.object,
+  setIsName: PropTypes.bool,
+  isSet: PropTypes.object,
+  setIsSet: PropTypes.bool,
 }
 
 export default SearchBox

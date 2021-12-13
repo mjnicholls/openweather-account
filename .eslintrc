@@ -3,6 +3,7 @@
 
   "rules": {
     "no-unused-vars": "warn",
+    "no-console": "off",
     "import/no-named-as-default": 0,
     "prettier/prettier": "warn",
     "spaced-comment": "warn",

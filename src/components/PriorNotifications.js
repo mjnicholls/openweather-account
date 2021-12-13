@@ -1,9 +1,9 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
 import Select from 'react-select'
 import { Col, Row } from 'reactstrap'
 import '../App.scss'
-import PropTypes from 'prop-types'
 
 const PriorNotifs = ({ days, setDays }) => {
   const priors = [
