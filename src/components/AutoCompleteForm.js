@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useState } from 'react'
+import React from 'react'
 import '../App.scss'
 import classnames from 'classnames/index'
 import PropTypes from 'prop-types'
@@ -12,7 +12,6 @@ const AutoCompleteForm = ({
   location,
   setLocation,
   error,
-  name,
   setIsSet,
 }) => {
   const onPlaceSelected = (place) => {
@@ -22,6 +21,7 @@ const AutoCompleteForm = ({
         lat: place.geometry.location.lat(),
         lon: place.geometry.location.lng(),
       })
+
       placeMarker(
         place.geometry.location,
         // eslint-disable-next-line
@@ -29,31 +29,6 @@ const AutoCompleteForm = ({
       )
     }
   }
-
-  const [hmm, setHmm] = useState(false)
-
-  /*
-   
-   const handleKeyDown = (e) => {
-      if (e.key === 'Enter') {
-        console.log('do validate');
-        setHmm({
-          name: 'London',
-        })
-      }
-    }
-
-    */
-
-  /*
-  const onKeyDown = (e) => {
-    if (e.key === 13) { 
-           setLocation({
-        name: 'London'
-      })
-    }
-  }
-  */
 
   return (
     <div>
@@ -74,10 +49,8 @@ const AutoCompleteForm = ({
               }}
               onChange={(e) => {
                 setLocation({ ...location, name: e.target.value })
-                // setLocation({ name: e.target.value })
               }}
               value={location.name}
-              /* eslint-disable-next-line */
             />
           </FormGroup>
           <div
