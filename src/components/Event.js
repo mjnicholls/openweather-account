@@ -2,6 +2,7 @@ import React from 'react'
 
 import { EnvelopeAlt, Location } from 'react-ikonate'
 import { Link } from 'react-router-dom'
+
 import { conditionToText } from '../utils/conditionText'
 
 const Event = ({ trigger, index }) => {

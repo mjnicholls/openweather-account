@@ -8,19 +8,18 @@ import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 
 import { getTriggers } from '../api/api'
 import '../App.scss'
+import CreateNewTriggerButton from '../components/CreateNewTriggerButton'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
 import { conditionToText } from '../utils/conditionText'
-import CreateNewTriggerButton from '../components/CreateNewTriggerButton'
 
-const selectUserId = (state) => state.auth.user_id
-
-const selectTariff = (state) => state.auth.tariff
+const selectUserId = (state) => state.auth.user.id
+const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 
 const Triggers = () => {
   const userId = useSelector(selectUserId)
 
-  const myTariff = useSelector(selectTariff)
+  const emailsAllowed = useSelector(selectEmailsAllowed)
 
   const [isLoading, setIsLoading] = useState(true)
   const color = '#EB6E4B'
@@ -41,7 +40,6 @@ const Triggers = () => {
     getTriggers(userId)
       .then((res) => {
         setData(res.data)
-        console.log('data')
       })
       .catch((err) => {
         console.log('error', err)
@@ -65,15 +63,17 @@ const Triggers = () => {
         </div>
       ) : (
         <div>
-           <Row className="py-5">
+          <Row className="py-5">
             <Col>
               <h2 className="m-0 p-0">Triggers</h2>
             </Col>
             <Col className="text-end title">
               <Link to="/events">
-                <Button className="button-neutral shadow-none">To events</Button>
+                <Button className="button-neutral shadow-none">
+                  To events
+                </Button>
               </Link>
-              <CreateNewTriggerButton triggerNumber={data.length}/>
+              <CreateNewTriggerButton triggerNumber={data.length} />
             </Col>
           </Row>
 
@@ -89,11 +89,10 @@ const Triggers = () => {
                         <th>Trigger Condition</th>
                         <th>Location</th>
                         <th>Notify</th>
-                        {myTariff !== 'free' &&
+                        {emailsAllowed !== 'free' && (
                           <th className="email">Emails</th>
-                        }
+                        )}
                         <th colSpan={3}>&nbsp;</th>
-
                       </tr>
                     </thead>
 
@@ -121,8 +120,15 @@ const Triggers = () => {
                                 {trigger.days}{' '}
                                 {trigger.days === 1 ? 'day' : 'days'}
                               </td>
-                              {myTariff !== 'free' &&  <td>{trigger.recipients.length}</td>}
-                              <td style={{ color: trigger.status === 'on'  ? 'green' : 'red' }}>
+                              {emailsAllowed !== 'free' && (
+                                <td>{trigger.recipients.length}</td>
+                              )}
+                              <td
+                                style={{
+                                  color:
+                                    trigger.status === 'on' ? 'green' : 'red',
+                                }}
+                              >
                                 {trigger.status.charAt(0).toUpperCase() +
                                   trigger.status.slice(1)}
                               </td>
@@ -144,7 +150,6 @@ const Triggers = () => {
                                   data={data}
                                   setData={setData}
                                 />
-
                               </td>
                             </tr>
                           ),

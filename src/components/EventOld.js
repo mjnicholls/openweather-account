@@ -31,7 +31,10 @@ const EventOld = ({ trigger, index }) => {
       </div>
       <div className="row mb-4">
         <div className="col-md-1 mb-2">&nbsp;</div>
-        <div className="col-md-4 mb-2"></div>
+        <div className="col mb-2">
+          {trigger.location.name}, ({trigger.location.lat.toFixed(2)},{' '}
+          {trigger.location.lon.toFixed(2)})
+        </div>
         {myTariff === 'free' ? (
           <div className="col-md-4">&nbsp;</div>
         ) : (

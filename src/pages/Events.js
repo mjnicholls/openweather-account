@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom'
 import { Card, CardBody, CardHeader, Row, Col, Button } from 'reactstrap'
 
 import { getEvents } from '../api/api'
-import { toDate } from '../utils/dateTime'
-import '../App.scss'
+import CreateNewTriggerButton from '../components/CreateNewTriggerButton'
 import Event from '../components/Event'
 import EventOld from '../components/EventOld'
 import EventPlaceholder from '../components/EventPlaceholder'
+import { toDate } from '../utils/dateTime'
+import '../App.scss'
 import NumberEventsBadge from '../components/NumberEventsBadge'
 
 const selectUserId = (state) => state.auth.user.id
@@ -51,31 +52,18 @@ const Events = () => {
           <Link to="/triggers">
             <Button className="button-neutral shadow-none">To triggers</Button>
           </Link>
-          <Link to="/create">
-            <Button className="button-active shadow-none">
-              Create new trigger
-            </Button>
-          </Link>
+          <CreateNewTriggerButton />
         </Col>
       </Row>
 
       {isLoading ? (
         <>
-          <Row className="search-box">
-            <Col className="mb-0" md="6" mt="10">
-              <EventPlaceholder />
-            </Col>
-            <Col className="mb-0" md="6" mt="10">
-              <EventPlaceholder />
-            </Col>
-          </Row>
-          <Row className="search-box">
-            <Col className="mb-0" md="6" mt="10">
-              <EventPlaceholder />
-            </Col>
-            <Col className="mb-0" md="6" mt="10">
-              <EventPlaceholder />
-            </Col>
+          <Row>
+            {[...Array(contentLoader)].map(() => (
+              <Col className="my-3" md="6" mt="10">
+                <EventPlaceholder />
+              </Col>
+            ))}
           </Row>
         </>
       ) : (
@@ -119,8 +107,8 @@ const Events = () => {
                               aria-expanded="false"
                               aria-controls={`collapse_${day.day}`}
                             >
-                                <span>See more&nbsp;</span>
-                                <Ellypsis />
+                              <span>See more&nbsp;</span>
+                              <Ellypsis />
                             </a>
                             <div
                               className="collapse"

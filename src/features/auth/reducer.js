@@ -21,7 +21,7 @@ const initialState = {
 const initialState = {
   user: {
     email: 'dev@openweathermap.org',
-    id: '5eda321ad',
+    id: 'some_id',
     tariff: 'dev',
     tariff_full: 'Developer',
     username: 'dev@openweathermap.org',
