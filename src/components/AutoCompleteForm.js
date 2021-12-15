@@ -15,7 +15,7 @@ const AutoCompleteForm = ({
   setIsSet,
 }) => {
   const onPlaceSelected = (place) => {
-    if (mapRef && mapRef.current) {
+    if (mapRef && mapRef.current && place && place.geometry && place.geometry.location) {
       setLocation({
         name: place.formatted_address,
         lat: place.geometry.location.lat(),

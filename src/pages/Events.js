@@ -11,14 +11,13 @@ import humanReadableCondition from '../humanReadableCondition'
 import { toDate } from '../utils/dateTime'
 import '../App.scss'
 
-const selectUserId = (state) => state.auth.user_id
+const selectUserId = (state) => state.auth.user.id
 
 const selectTariff = (state) => state.auth.tariff
 
 const Events = () => {
   const userId = useSelector(selectUserId)
   const myTariff = useSelector(selectTariff)
-
   const [isLoading, setIsLoading] = useState(true)
 
   const [data, setData] = useState([])
