@@ -13,7 +13,7 @@ import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import StatusToggle from '../components/StatusToggle'
 import { noBlankErrorMessage } from '../config'
-import humanReadableCondition from '../humanReadableCondition'
+import { conditionToText } from '../utils/conditionText'
 import '../App.scss'
 import { toDate } from '../utils/dateTime'
 
@@ -53,6 +53,8 @@ const ViewTrigger = () => {
   const [isEdited, setIsEdited] = useState(true)
   const [whoops, setWhoops] = useState('')
 
+  console.log('isEdited', isEdited)
+
   const validationName = () => {
     setError({})
     let newError = {}
@@ -61,7 +63,6 @@ const ViewTrigger = () => {
         name: noBlankErrorMessage,
       }
     }
-
     if (Object.keys(newError).length) {
       setError(newError)
       return false
@@ -257,7 +258,7 @@ const ViewTrigger = () => {
               <Row>
                 <Col className="mb-3">
                   <h6>Trigger Condition</h6>
-                  <p>{humanReadableCondition(condition).substring(27)}</p>
+                  <p>{conditionToText(condition)}</p>
                 </Col>
               </Row>
 

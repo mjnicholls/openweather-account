@@ -7,7 +7,7 @@ import { Row, Col, Input, Label, Button } from 'reactstrap'
 
 import { patchTrigger, getEventsByTriggerId } from '../api/api'
 import { noBlankErrorMessage } from '../config'
-import humanReadableCondition from '../humanReadableCondition'
+import { conditionToText } from '../utils/conditionText'
 import '../App.scss'
 import { toDate } from '../utils/dateTime'
 import DeleteTriggerCard from './DeleteTriggerCard'
@@ -168,7 +168,7 @@ const ViewTrigger = () => {
 
             <Col>
               <Label type="text" value={condition} className="cardContent">
-                {humanReadableCondition(condition).substring(27)}
+                {conditionToText(condition)}
               </Label>
             </Col>
           </Row>

@@ -4,7 +4,7 @@ import { gallery } from '../assets/Gallery'
 import '../App.scss'
 
 const HeaderTrigger = () => {
-  const isAuthenticated = true
+  const isAuthenticated = false
   const userName = 'avolvik'
 
   return (
@@ -19,7 +19,7 @@ const HeaderTrigger = () => {
             alt="Open Weather Logo"
             height="40px"
             width="93.33px"
-          ></img>
+          />
         </a>
 
         <button
@@ -88,12 +88,12 @@ const HeaderTrigger = () => {
             </li>
             <li>
               <a href="/triggers" className="text-nowrap">
-                Triggers List
+                Triggers
               </a>
             </li>
             <li>
               <a href="/create" className="text-nowrap">
-                User Documentation
+                Documentation
               </a>
             </li>
             <li className="d-xl-none">

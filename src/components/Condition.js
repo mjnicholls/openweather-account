@@ -6,7 +6,7 @@ import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 
 import '../App.scss'
 import { variables, units, conditions } from '../config'
-import humanReadableCondition from '../humanReadableCondition'
+import { conditionToTextLong } from '../utils/conditionText'
 
 const Condition = ({ condition, setCondition }) => {
   const handleChange = (key, value) => {
@@ -65,9 +65,7 @@ const Condition = ({ condition, setCondition }) => {
             />
           </FormGroup>
         </Col>
-        <div className="human-readable">
-          {humanReadableCondition(condition)}
-        </div>
+        <div className="human-readable">{conditionToTextLong(condition)}</div>
       </Row>
     </>
   )
