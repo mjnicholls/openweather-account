@@ -88,7 +88,7 @@ const HeaderTrigger = () => {
             </li>
             <li>
               <a href="/triggers" className="text-nowrap">
-                Triggers List
+                Triggers
               </a>
             </li>
             <li>

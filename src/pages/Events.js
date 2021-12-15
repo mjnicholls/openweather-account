@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { ChevronDown } from 'react-ikonate'
+import { ChevronDown, Ellypsis } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, CardBody, CardHeader, Row, Col, Button } from 'reactstrap'
@@ -13,6 +13,7 @@ import '../App.scss'
 import Event from '../components/Event'
 import EventOld from '../components/EventOld'
 import EventPlaceholder from '../components/EventPlaceholder'
+import NumberEventsBadge from '../components/NumberEventsBadge'
 
 const selectUserId = (state) => state.auth.user_id
 
@@ -41,9 +42,9 @@ const Events = () => {
 
   return (
     <div>
-      <Row className="search-box">
+      <Row className="py-5">
         <Col>
-          <h2>Events</h2>
+          <h2 className="m-0 p-0">Events</h2>
         </Col>
         <Col className="text-end title">
           <Link to="/triggers">
@@ -56,6 +57,7 @@ const Events = () => {
           </Link>
         </Col>
       </Row>
+
       {isLoading ? (
         <>
           <Row className="search-box">
@@ -85,15 +87,7 @@ const Events = () => {
                     <Card className="mb-5 event-card">
                       <CardHeader>
                         <h3 className="mb-0">{toDate(day.day)}</h3>
-                        <span
-                          className={`ms-3 ${
-                            day.triggers.length
-                              ? 'button-orange'
-                              : 'button-turquoise'
-                          }`}
-                        >
-                          {day.triggers.length} events
-                        </span>
+                        <NumberEventsBadge number={day.triggers.length} />
                       </CardHeader>
                       <CardBody>
                         {day.triggers.length ? (
@@ -117,14 +111,15 @@ const Events = () => {
                         {day.triggers.length > openEventsN && (
                           <React.Fragment key={day.triggers.recipients}>
                             <a
-                              className="button-neutral see-more-collapse"
+                              className="link-flat see-more-collapse d-inline-flex align-items-end flex-grow-0 ms-0"
                               data-toggle="collapse"
                               href={`#collapse_${day.day}`}
                               role="button"
                               aria-expanded="false"
                               aria-controls={`collapse_${day.day}`}
                             >
-                              <ChevronDown className="see-more-chevron" />
+                                <span>See more&nbsp;</span>
+                                <Ellypsis />
                             </a>
                             <div
                               className="collapse"
