@@ -11,7 +11,7 @@ import { getTriggers } from '../api/api'
 import '../App.scss'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
-import humanReadableCondition from '../humanReadableCondition'
+import { conditionToText } from '../utils/conditionText'
 
 const selectUserId = (state) => state.auth.user_id
 
@@ -198,9 +198,7 @@ const Triggers = () => {
                                 </Link>
                               </td>
                               <td className="text-nowrap">
-                                {humanReadableCondition(
-                                  trigger.condition,
-                                ).substring(28)}
+                                {conditionToText(trigger.condition)}
                               </td>
                               <td>{trigger.location.name}</td>
                               <td className="text-nowrap">

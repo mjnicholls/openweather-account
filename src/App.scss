@@ -62,7 +62,7 @@
 
 .page-header {
   background-color: $brand-black;
-  font-family: $highlight-font-family;
+  font-family: $default-font-family;
   font-size: $font-size-sm;
 
   .navbar-collapse.show {
@@ -118,9 +118,7 @@
         color: white;
         text-decoration: none;
         display: block;
-        padding: 0.5rem 1rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        padding: 0.5rem;
         text-decoration: none;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
           border-color 0.15s ease-in-out;
@@ -151,7 +149,9 @@
 
       .marketplace {
         border-radius: 16pt;
-        padding: 5pt 7pt;
+        padding: 5pt 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
         background-color: rgba(242, 242, 242, 0.4);
       }
 
@@ -798,11 +798,33 @@ Button.button-active {
 
 // classes for forecasted events page
 
+
+.event-card {
+  border-style: none;
+  border-radius: 0;
+  padding: 1rem;
+  background-color: $brand-grey;
+
+  .card-header {
+    background-color: transparent;
+    padding-bottom: 1rem;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      color: $brand-orange;
+    }
+  }
+}
+
+
 .forecast {
 
-.small {
-  font-size: 10pt;
-}
+  .small {
+    font-size: 10pt;
+  }
 
   .collapse {
     border-style: none;
@@ -813,31 +835,39 @@ Button.button-active {
     }
   }
 
-.card {
-  border-style: none;
+  .card {
+    //border-style: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.28) 0px 8px 28px;
 
+    .card-header {
+      background-color: transparent;
+      padding-bottom: 1rem;
+    }
 
-  tr {
-    border-style: none;
-  }
+    tr {
+      border-style: none;
+    }
 
-  td {
-    border-style: none;
-  }
-  
-  a {
-    color: black;
-    font-weight: bold;
- 
-  }
+    td {
+      border-style: none;
+    }
 
-  .smaller {
-    font-size: 10pt;
+    a {
+      color: black;
+      font-weight: bold;
+
+    }
+
+    .smaller {
+      font-size: 10pt;
+    }
   }
-}
 
 .title {
   margin-top: 30px;
+}
 }
 
 .button-turquoise {
@@ -849,7 +879,7 @@ Button.button-active {
   white-space: nowrap;
   font-size: 10pt;
   &:hover {
-    background-color: $brand-turquoise; 
+    background-color: $brand-turquoise;
     border-color: $brand-turquoise;
   }
 }
@@ -866,9 +896,6 @@ Button.button-active {
     background-color: $brand-orange;
     border-color: $brand-orange;
   }
-}
-
-
 }
 
 .table > :not(:first-child) {

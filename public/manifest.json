@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Weather Dashboard",
+  "name": "A lightweight and flexible visual tool for clients who want to track weather events to make decisions in advance and plan actions based on the data",
   "icons": [
     {
       "src": "favicon.ico",

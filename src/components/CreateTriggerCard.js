@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Button, Col } from 'reactstrap'
 
 import { getTriggers } from '../api/api'
-import humanReadableCondition from '../humanReadableCondition'
+import { conditionToText } from '../utils/conditionText'
 
 const selectUserId = (state) => state.auth.user_id
 
@@ -48,7 +48,7 @@ const CreateTriggerCard = () => {
               <tr>
                 <td style={{ fontWeight: 'bold' }}>Condition: </td>
                 <td style={{ paddingLeft: '30px' }}>
-                  {humanReadableCondition(trigger.condition).substring(28)}
+                  {conditionToText(trigger.condition)}
                 </td>
               </tr>
               <tr>
