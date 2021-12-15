@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { conditionToText } from '../utils/conditionText'
 
 const Event = ({ trigger, index }) => {
-  const styles = {}
 
   const emailsSent = trigger.recipients.length
 

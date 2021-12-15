@@ -16,11 +16,8 @@ import NumberEventsBadge from '../components/NumberEventsBadge'
 
 const selectUserId = (state) => state.auth.user.id
 
-const selectLimits = (state) => state.auth.limits
-
 const Events = () => {
   const userId = useSelector(selectUserId)
-  const myLimits = useSelector(selectLimits)
   const [isLoading, setIsLoading] = useState(true)
 
   const [data, setData] = useState([])

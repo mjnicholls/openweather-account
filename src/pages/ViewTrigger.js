@@ -145,7 +145,6 @@ const ViewTrigger = () => {
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"
-        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <br />
         <p>Your trigger has been updated.</p>
