@@ -1,9 +1,10 @@
-// const initialState = {
-//   user_id: 'some_id',
-//   email: 'user',
-//   tariff: 'enterprise', // free, startup, developer, professional, enterprise
-// }
+const initialState = {
+  user_id: 'some_id',
+  email: 'user',
+  tariff: 'enterprise', // free, startup, developer, professional, enterprise
+}
 
+/*
 const initialState = {
   user: {
     email: "dev@openweathermap.org",
@@ -18,6 +19,7 @@ const initialState = {
     max_triggers: 3
   }
 }
+*/
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {

@@ -11,7 +11,7 @@ import humanReadableCondition from '../humanReadableCondition'
 import { toDate } from '../utils/dateTime'
 import '../App.scss'
 
-const selectUserId = (state) => state.auth.user.id
+const selectUserId = (state) => state.auth.user_id
 
 const selectTariff = (state) => state.auth.tariff
 
