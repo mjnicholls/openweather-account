@@ -62,7 +62,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
         setIsUpdated(true)
       })
       // eslint-disable-next-line
-      .catch((error) => {
+      .catch(() => {
         htmlError()
       })
   }

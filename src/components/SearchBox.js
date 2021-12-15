@@ -114,12 +114,12 @@ SearchBox.propTypes = {
   setLocation: PropTypes.func,
   mapRef: PropTypes.object,
   error: PropTypes.object,
-  name: PropTypes.object,
+  name: PropTypes.string,
   setName: PropTypes.bool,
   isName: PropTypes.object,
   setIsName: PropTypes.bool,
-  isSet: PropTypes.object,
-  setIsSet: PropTypes.bool,
+  isSet: PropTypes.bool,
+  setIsSet: PropTypes.func,
 }
 
 export default SearchBox

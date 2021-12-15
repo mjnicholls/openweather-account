@@ -5,7 +5,7 @@ import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { ChevronDown, Edit } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
-import BeatLoader from 'react-spinners/ClipLoader'
+import BeatLoader from 'react-spinners/BeatLoader'
 import { Row, Col, Input, Button } from 'reactstrap'
 
 import { patchTrigger, getEventsByTriggerId } from '../api/api'
@@ -17,15 +17,16 @@ import humanReadableCondition from '../humanReadableCondition'
 import '../App.scss'
 import { toDate } from '../utils/dateTime'
 
-const selectUserId = (state) => state.auth.user_id
+const selectUserId = (state) => state.auth.user.id
 
-const selectTariff = (state) => state.auth.tariff
+const selectLimits = (state) => state.auth.limits
 
 const ViewTrigger = () => {
   const { state } = useLocation()
 
   const userId = useSelector(selectUserId)
-  const myTariff = useSelector(selectTariff)
+
+  const myLimits = useSelector(selectLimits)
 
   const { condition, days, id, location, name, recipients, status } = state
 
@@ -194,18 +195,6 @@ const ViewTrigger = () => {
             css={override}
             size={15}
           />
-          <BeatLoader
-            color={color}
-            loading={isLoading}
-            css={override}
-            size={15}
-          />
-          <BeatLoader
-            color={color}
-            loading={isLoading}
-            css={override}
-            size={15}
-          />
         </div>
       ) : (
         <>
@@ -282,9 +271,7 @@ const ViewTrigger = () => {
                 </Col>
               </Row>
 
-              {myTariff === 'free' ? (
-                <Row>&nbsp;</Row>
-              ) : (
+              {myLimits.email_recipients === false ? null : (
                 <Row>
                   <Col className="mb-3">
                     <h6>Email recipients</h6>

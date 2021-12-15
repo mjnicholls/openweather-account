@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import BeatLoader from 'react-spinners/ClipLoader'
+import BeatLoader from 'react-spinners/BeatLoader'
 import { Button, Col, Row } from 'reactstrap'
 
 import { postTrigger, getTriggers } from '../api/api'
@@ -18,15 +18,23 @@ import TriggerName from '../components/TriggerName'
 import '../App.scss'
 import { noBlankErrorMessage } from '../config'
 
-const selectUserId = (state) => state.auth.user_id
+const selectUserId = (state) => state.auth.user.id
 
-const selectTariff = (state) => state.auth.tariff
+const selectLimits = (state) => state.auth.limits
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
+
+  const refreshPage = () => {
+    window.location.reload(true)
+  }
+
   const userId = useSelector(selectUserId)
 
+  const myLimits = useSelector(selectLimits)
+
   const [isLoading, setIsLoading] = useState(true)
+
   const color = '#EB6E4B'
 
   const override = css`
@@ -37,8 +45,6 @@ const CreateTrigger = () => {
     margin-bottom: 100px;
     margin-right: 15px;
   `
-
-  const myTariff = useSelector(selectTariff)
 
   const [location, setLocation] = useState({
     name: '',
@@ -124,8 +130,8 @@ const CreateTrigger = () => {
     setAlert(
       <ReactBSAlert
         title="Trigger Created"
-        onConfirm={() => hideAlert()}
-        onCancel={() => hideAlert()}
+        onConfirm={() => refreshPage()}
+        onCancel={() => refreshPage()}
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"
@@ -220,18 +226,6 @@ const CreateTrigger = () => {
             css={override}
             size={15}
           />
-          <BeatLoader
-            color={color}
-            loading={isLoading}
-            css={override}
-            size={15}
-          />
-          <BeatLoader
-            color={color}
-            loading={isLoading}
-            css={override}
-            size={15}
-          />
         </div>
       ) : (
         <Row>
@@ -262,9 +256,7 @@ const CreateTrigger = () => {
               ) : null}
               <Condition condition={condition} setCondition={setCondition} />
               <PriorNotifs days={days} setDays={setDays} />
-              {myTariff === 'free' ? (
-                <Row></Row>
-              ) : (
+              {myLimits.email_recipients === false ? null : (
                 <EmailNotifs
                   recipients={recipients}
                   setRecipients={setRecipients}
@@ -278,6 +270,23 @@ const CreateTrigger = () => {
                   >
                     Cancel
                   </Button>
+
+                  {data.length >= myLimits.max_triggers ? (
+                    <Button
+                      className="button-active shadow-none"
+                      onClick={tariffError}
+                    >
+                      Create trigger
+                    </Button>
+                  ) : (
+                    <Button
+                      className="button-active shadow-none"
+                      onClick={createTrigger}
+                    >
+                      Create trigger
+                    </Button>
+                  )}
+                  {/*
                   {(() => {
                     switch (myTariff) {
                       case 'free':
@@ -369,6 +378,7 @@ const CreateTrigger = () => {
                         )
                     }
                   })()}
+                */}
                 </Col>
               </Row>
             </div>

@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import BeatLoader from 'react-spinners/ClipLoader'
+import BeatLoader from 'react-spinners/BeatLoader'
 import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
 
 import { getTriggers } from '../api/api'
@@ -13,14 +13,14 @@ import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
 import humanReadableCondition from '../humanReadableCondition'
 
-const selectUserId = (state) => state.auth.user_id
+const selectUserId = (state) => state.auth.user.id
 
-const selectTariff = (state) => state.auth.tariff
+const selectLimits = (state) => state.auth.limits
 
 const Triggers = () => {
   const userId = useSelector(selectUserId)
 
-  const myTariff = useSelector(selectTariff)
+  const myLimits = useSelector(selectLimits)
 
   const [isLoading, setIsLoading] = useState(true)
   const color = '#EB6E4B'
@@ -137,18 +137,6 @@ const Triggers = () => {
             css={override}
             size={15}
           />
-          <BeatLoader
-            color={color}
-            loading={isLoading}
-            css={override}
-            size={15}
-          />
-          <BeatLoader
-            color={color}
-            loading={isLoading}
-            css={override}
-            size={15}
-          />
         </div>
       ) : (
         <div className="content">
@@ -170,7 +158,7 @@ const Triggers = () => {
                         <th className="trig">Trigger Condition</th>
                         <th>Location</th>
                         <th>Notify</th>
-                        {myTariff === 'free' ? (
+                        {myLimits.email_recipients === false ? (
                           <th>&nbsp;</th>
                         ) : (
                           <th className="email">Email Recipients</th>
@@ -207,7 +195,7 @@ const Triggers = () => {
                                 {trigger.days}{' '}
                                 {trigger.days === 1 ? 'day' : 'days'}
                               </td>
-                              {myTariff === 'free' ? (
+                              {myLimits.email_recipients === false ? (
                                 <td>&nbsp;</td>
                               ) : (
                                 <td>{trigger.recipients.length}</td>
@@ -293,94 +281,20 @@ const Triggers = () => {
                   To events
                 </Button>
               </Link>
-
-              {(() => {
-                switch (myTariff) {
-                  case 'free':
-                    return data.length >= 3 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Link to="/create">
-                        <Button className="button-active shadow-none">
-                          Create new trigger
-                        </Button>
-                      </Link>
-                    )
-                  case 'startup':
-                    return data.length >= 5 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Link to="/create">
-                        <Button className="button-active shadow-none">
-                          Create new trigger
-                        </Button>
-                      </Link>
-                    )
-                  case 'developer':
-                    return data.length >= 7 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Link to="/create">
-                        <Button className="button-active shadow-none">
-                          Create new trigger
-                        </Button>
-                      </Link>
-                    )
-                  case 'professional':
-                    return data.length >= 9 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Link to="/create">
-                        <Button className="button-active shadow-none">
-                          Create new trigger
-                        </Button>
-                      </Link>
-                    )
-                  case 'enterprise':
-                    return data.length >= 15 ? (
-                      <Button
-                        className="button-active shadow-none"
-                        onClick={tariffError}
-                      >
-                        Create new trigger
-                      </Button>
-                    ) : (
-                      <Link to="/create">
-                        <Button className="button-active shadow-none">
-                          Create new trigger
-                        </Button>
-                      </Link>
-                    )
-                  default:
-                    return (
-                      <Link to="/create">
-                        <Button className="button-active shadow-none">
-                          Create new trigger
-                        </Button>
-                      </Link>
-                    )
-                }
-              })()}
+              {data.length >= myLimits.max_triggers ? (
+                <Button
+                  className="button-active shadow-none"
+                  onClick={tariffError}
+                >
+                  Create trigger
+                </Button>
+              ) : (
+                <Link to="/create">
+                  <Button className="button-active shadow-none">
+                    Create trigger
+                  </Button>
+                </Link>
+              )}
             </Col>
           </Row>
         </div>

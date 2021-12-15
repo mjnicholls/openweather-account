@@ -141,15 +141,15 @@ InfoWindow.propTypes = {
   setLocation: PropTypes.func,
   showButton: PropTypes.bool,
   show: PropTypes.bool,
-  setIsSet: PropTypes.bool,
-  setIsClicked: PropTypes.bool,
-  isClicked: PropTypes.object,
+  setIsSet: PropTypes.func,
+  setIsClicked: PropTypes.func,
+  isClicked: PropTypes.bool,
 }
 
 SimpleMap.propTypes = {
-  setIsSet: PropTypes.bool,
-  setIsClicked: PropTypes.bool,
-  isClicked: PropTypes.object,
+  setIsSet: PropTypes.func,
+  setIsClicked: PropTypes.func,
+  isClicked: PropTypes.bool,
   mapRef: PropTypes.object,
   location: PropTypes.object,
   setLocation: PropTypes.func,

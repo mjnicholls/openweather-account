@@ -7,7 +7,7 @@ import { Button, Col } from 'reactstrap'
 import { getTriggers } from '../api/api'
 import humanReadableCondition from '../humanReadableCondition'
 
-const selectUserId = (state) => state.auth.user_id
+const selectUserId = (state) => state.auth.user.id
 
 const CreateTriggerCard = () => {
   const userId = useSelector(selectUserId)
