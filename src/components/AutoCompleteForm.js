@@ -43,7 +43,7 @@ const AutoCompleteForm = ({
           <h6>Search location by name</h6>
           <FormGroup>
             <Autocomplete
-              apiKey="AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY"
+              apiKey={process.env.REACT_APP_GOOGLE_MAP_KEY}
               className={error.location ? 'danger-border' : ''}
               style={{ width: '100%', marginTop: '7px' }}
               onPlaceSelected={(place) => {

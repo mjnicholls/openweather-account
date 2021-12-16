@@ -6,7 +6,7 @@ import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
 
 import '../App.scss'
 import { variables, units, conditions } from '../config'
-import { conditionToTextLong } from '../utils/conditionText'
+import { conditionToTextLong } from '../utils/utils'
 
 const Condition = ({ condition, setCondition }) => {
   const handleChange = (key, value) => {

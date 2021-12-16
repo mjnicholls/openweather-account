@@ -1,5 +1,11 @@
 import { variables } from '../config'
 
+export const conditionToTextLong = (condition) => {
+  const text = conditionToText(condition)
+  const textLowerCase = text.charAt(0).toLowerCase() + text.slice(1)
+  return `You will be notified if the ${textLowerCase}`
+}
+
 export const conditionToText = (condition) => {
   const { label } = variables.find((el) => el.value === condition.variable)
   const verb = condition.condition === '>' ? 'exceeds' : 'falls below'
@@ -21,8 +27,7 @@ const getUnits = (variable, units) => {
   return res
 }
 
-export const conditionToTextLong = (condition) => {
-  const text = conditionToText(condition)
-  const textLowerCase = text.charAt(0).toLowerCase() + text.slice(1)
-  return `You will be notified if the ${textLowerCase}`
-}
+export const notificationText = (days) =>
+  days
+    ? `Up to ${days} day${days > 1 ? 's' : ''} before the event starts`
+    : 'On the day of the event'

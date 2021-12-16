@@ -111,7 +111,7 @@ const SimpleMap = ({
     <div id="map" style={{ height: '100%', width: '100%' }}>
       <GoogleMapReact
         ref={mapRef}
-        bootstrapURLKeys={{ key: 'AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY' }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals

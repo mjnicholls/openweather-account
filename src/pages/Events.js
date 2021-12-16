@@ -12,7 +12,7 @@ import EventOld from '../components/EventOld'
 import EventPlaceholder from '../components/EventPlaceholder'
 import { toDate } from '../utils/dateTime'
 import '../App.scss'
-import NumberEventsBadge from '../components/NumberEventsBadge'
+import NumberEventsBadge from '../components/EventsPerDayCount'
 
 const selectUserId = (state) => state.auth.user.id
 
@@ -56,8 +56,9 @@ const Events = () => {
       {isLoading ? (
         <>
           <Row>
-            {[...Array(contentLoader)].map(() => (
-              <Col className="my-3" md="6" mt="10">
+            {[...Array(contentLoader)].map((_, index) => (
+              // eslint-disable-next-line
+              <Col key={index} className="my-3" md="6" mt="10">
                 <EventPlaceholder />
               </Col>
             ))}
@@ -70,10 +71,12 @@ const Events = () => {
               <Col md="6">
                 <Row>
                   <Col className="mb-0" md="12" mt="10">
-                    <Card className="mb-5 event-card">
+                    <Card className="mb-5">
                       <CardHeader>
+                        <div className="d-flex align-items-center justify-content-between" style={{paddingTop: "8pt", paddingBottom: "8pt"}}>
                         <h3 className="mb-0">{toDate(day.day)}</h3>
                         <NumberEventsBadge number={day.triggers.length} />
+                        </div>
                       </CardHeader>
                       <CardBody>
                         {day.triggers.length ? (
@@ -131,14 +134,13 @@ const Events = () => {
             </React.Fragment>
           ))}
         </Row>
-      ) :
-      <Row>
-        <Col>
-          <h4>No events</h4>
-        </Col>
-      </Row>
-
-      }
+      ) : (
+        <Row>
+          <Col>
+            <h4>No events</h4>
+          </Col>
+        </Row>
+      )}
     </div>
   )
 }

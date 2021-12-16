@@ -12,12 +12,10 @@ import { patchTrigger, getEventsByTriggerId } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import StatusToggle from '../components/StatusToggle'
-import TriggerLocation from '../components/TriggerLocation'
 import { noBlankErrorMessage } from '../config'
-import { conditionToText } from '../utils/conditionText'
+import { conditionToText } from '../utils/utils'
 import '../App.scss'
 import { toDate } from '../utils/dateTime'
-
 
 const selectUserId = (state) => state.auth.user.id
 
@@ -129,8 +127,6 @@ const ViewTrigger = () => {
         setIsLoading(false)
       })
   }, [id, userId])
-
-
 
   const hideAlert = () => {
     setAlert(null)
@@ -248,7 +244,7 @@ const ViewTrigger = () => {
               <Row>
                 <Col className="mb-3">
                   <h6>Location</h6>
-                  <TriggerLocation location={location} />
+                  <ThumbnailLocation location={location} />
                 </Col>
               </Row>
 

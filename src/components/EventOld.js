@@ -3,7 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { conditionToText } from '../utils/conditionText'
+import { conditionToText } from '../utils/utils'
 
 const selectTariff = (state) => state.auth.tariff
 

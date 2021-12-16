@@ -1,7 +1,7 @@
 const initialState = {
   user: {
     email: 'dev@openweathermap.org',
-    id: 'some_id',
+    id: 'anna',
     tariff: 'dev',
     tariff_full: 'Developer',
     username: 'dev@openweathermap.org',
@@ -9,7 +9,7 @@ const initialState = {
   limits: {
     email_recipients: true,
     // max_email_recipients: 10,
-    max_triggers: 10,
+    max_triggers: 20,
   },
 }
 
@@ -19,4 +19,3 @@ export default function authReducer(state = initialState, action) {
       return state
   }
 }
-

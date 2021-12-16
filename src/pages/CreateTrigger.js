@@ -68,8 +68,6 @@ const CreateTrigger = () => {
 
   const [isSet, setIsSet] = useState(false)
 
-  // const [isName, setIsName] = useState(location.name)
-
   const [whoops, setWhoops] = useState('')
 
   const [isClicked, setIsClicked] = useState(false)
@@ -81,6 +79,8 @@ const CreateTrigger = () => {
   }
 
   const createTrigger = () => {
+    htmlAlert()
+
     const data = {
       location,
       condition,
@@ -113,7 +113,6 @@ const CreateTrigger = () => {
       })
       .catch((err) => {
         if (err.response) {
-          console.log(err.response.data.message)
           setWhoops(err.response.data.message)
           htmlError()
         }
@@ -127,19 +126,7 @@ const CreateTrigger = () => {
   }
 
   const htmlAlert = () => {
-    setAlert(
-      <ReactBSAlert
-        title="Trigger Created"
-        onConfirm={() => refreshPage()}
-        onCancel={() => refreshPage()}
-        showConfirm={false}
-        showCloseButton
-        customClass="bs-alerts"
-        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
-      >
-        <CreateTriggerCard close={hideAlert} />
-      </ReactBSAlert>,
-    )
+    setAlert(<CreateTriggerCard close={hideAlert} />)
   }
 
   const htmlError = () => {
@@ -151,7 +138,6 @@ const CreateTrigger = () => {
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"
-        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <br />
         <p>
@@ -200,7 +186,6 @@ const CreateTrigger = () => {
     getTriggers(userId)
       .then((res) => {
         setData(res.data)
-        console.log('data')
       })
       .catch((err) => {
         console.log('error', err)
@@ -217,7 +202,7 @@ const CreateTrigger = () => {
   }
 
   return (
-    <>
+    <div>
       {isLoading ? (
         <div className="loader text-center">
           <BeatLoader
@@ -283,102 +268,9 @@ const CreateTrigger = () => {
                       className="button-active shadow-none"
                       onClick={createTrigger}
                     >
-                      Create trigger
+                      Create
                     </Button>
                   )}
-                  {/*
-                  {(() => {
-                    switch (myTariff) {
-                      case 'free':
-                        return data.length >= 3 ? (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={tariffError}
-                          >
-                            Create new trigger
-                          </Button>
-                        ) : (
-                          <Button className="button-active shadow-none">
-                            {' '}
-                            Create trigger
-                          </Button>
-                        )
-                      case 'startup':
-                        return data.length >= 5 ? (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={tariffError}
-                          >
-                            Create new trigger
-                          </Button>
-                        ) : (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={createTrigger}
-                          >
-                            Create trigger
-                          </Button>
-                        )
-                      case 'developer':
-                        return data.length >= 7 ? (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={tariffError}
-                          >
-                            Create new trigger
-                          </Button>
-                        ) : (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={createTrigger}
-                          >
-                            Create trigger
-                          </Button>
-                        )
-                      case 'professional':
-                        return data.length >= 9 ? (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={tariffError}
-                          >
-                            Create new trigger
-                          </Button>
-                        ) : (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={createTrigger}
-                          >
-                            Create trigger
-                          </Button>
-                        )
-                      case 'enterprise':
-                        return data.length >= 15 ? (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={tariffError}
-                          >
-                            Create new trigger
-                          </Button>
-                        ) : (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={createTrigger}
-                          >
-                            Create trigger
-                          </Button>
-                        )
-                      default:
-                        return (
-                          <Button
-                            className="button-active shadow-none"
-                            onClick={createTrigger}
-                          >
-                            Create trigger
-                          </Button>
-                        )
-                    }
-                  })()}
-                */}
                 </Col>
               </Row>
             </div>
@@ -395,7 +287,7 @@ const CreateTrigger = () => {
           </Col>
         </Row>
       )}
-    </>
+    </div>
   )
 }
 

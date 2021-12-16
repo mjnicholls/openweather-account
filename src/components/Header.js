@@ -1,22 +1,28 @@
 import React from 'react'
 
-import { gallery } from '../assets/Gallery'
-import '../App.scss'
+import { useSelector } from 'react-redux'
 
-const Navbar = () => {
-  const isAuthenticated = true
-  const userName = 'avolvik'
+import '../App.scss'
+import { gallery } from '../assets/Gallery'
+
+const selectUserName = (state) => state.auth.user.username
+
+const HeaderTrigger = () => {
+  const userName = useSelector(selectUserName)
 
   return (
-    <nav className="navbar navbar-expand-xl page-header fixed-top">
-      <div className="container-xl">
-        <a className="" href="/">
+    <nav className="navbar navbar-expand-xxl page-header">
+      <div
+        className="container-xxl"
+        style={{ marginTop: '5px', marginBottom: '5px' }}
+      >
+        <a href="https://openweathermap.org/">
           <img
             src={gallery.logo_white.src}
             alt="Open Weather Logo"
             height="40px"
             width="93.33px"
-          ></img>
+          />
         </a>
 
         <button
@@ -25,9 +31,9 @@ const Navbar = () => {
           data-target="#navbarNav"
           type="button"
         >
-          <img src={gallery.hamburger.src} alt="Icon hamburger" />
+          <img src={gallery.hamburger.src} alt="Open menu" />
         </button>
-        <div className="input-group search d-none d-xl-flex">
+        <div className="input-group search d-none d-xxl-flex">
           <div className="input-group-append">
             <button className="btn btn-secondary" type="button">
               <img src={gallery.search_bar_logo.src} alt="search bar logo" />
@@ -51,7 +57,7 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="d-xl-none">
+            <li className="d-xxl-none">
               <div className="input-group search ms-auto">
                 <div className="input-group-append">
                   <button className="btn btn-secondary" type="button">
@@ -79,189 +85,87 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <a href="https://openweathermap.org/guide" target="_blank">
-                Guide
+              <a className="text-nowrap" href="/events">
+                Events
               </a>
             </li>
             <li>
-              <a
-                className
-                href="https://openweathermap.org/api"
-                target="_blank"
-              >
-                API
+              <a href="/triggers" className="text-nowrap">
+                Triggers
               </a>
             </li>
             <li>
-              <a
-                className=" header-link"
-                href="https://openweathermap.org/price"
-                target="_blank"
-              >
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a href="https://openweathermap.org/weathermap" target="_blank">
-                Maps
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-nowrap"
-                href="https://openweathermap.org/our-initiatives"
-                target="_blank"
-              >
-                Our Initiatives
-              </a>
-            </li>
-            <li>
-              <a href="https://openweathermap.org/examples" target="_blank">
-                Partners
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://openweather.co.uk/blog/category/weather"
-                target="_blank"
-              >
-                Blog
-              </a>
-            </li>
-            <li className="d-xl-none">
-              <a
-                href="https://openweather.co.uk/blog/category/weather"
-                target="_blank"
-              >
-                Ask a Question
+              <a href="/create" className="text-nowrap">
+                Documentation
               </a>
             </li>
 
             <li>
-              <a
-                className="marketplace"
-                href="https://home.openweathermap.org/marketplace"
-                target="_blank"
-              >
-                Marketplace
+              <a className="marketplace text-nowrap" href="/create">
+                New Trigger
               </a>
             </li>
-            {isAuthenticated === false ? (
-              <>
-                <li>
+            {userName ? (
+              <li className="nav-item dropdown text-nowrap d-none d-lg-block">
+                <a
+                  href="/"
+                  className="dropdown-toggle header-link text-nowrap username"
+                  data-toggle="dropdown"
+                >
+                  {userName}
+                </a>
+                <div className="dropdown-menu text-nowrap">
                   <a
-                    className="text-nowrap"
-                    href="https://home.openweathermap.org/users/sign_in"
+                    href="https://home.openweathermap.org/myservices"
                     target="_blank"
                   >
-                    Sign In
+                    My Services
                   </a>
-                </li>
-                <li className="nav-item dropdown d-none d-xl-block">
                   <a
-                    href="/"
-                    className="dropdown-toggle"
-                    data-toggle="dropdown"
+                    href="https://home.openweathermap.org/api_keys"
+                    target="_blank"
                   >
-                    Support
+                    My API Keys
                   </a>
-                  <div className="dropdown-menu">
-                    <a href="https://openweathermap.org/faq">FAQ</a>
-                    <a href="https://openweathermap.org/appid" target="_blank">
-                      How to Start
-                    </a>
-                    <a
-                      href="https://home.openweathermap.org/questions"
-                      target="_blank"
-                    >
-                      Ask a Question
-                    </a>
-                  </div>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="nav-item dropdown text-nowrap d-none d-lg-block">
-                  <a className="text-nowrap" href="\">
-                    <a
-                      href="/"
-                      className="dropdown-toggle header-link text-nowrap username"
-                      data-toggle="dropdown"
-                    >
-                      {userName}
-                    </a>
-                    <div className="dropdown-menu text-nowrap">
-                      <a
-                        href="https://home.openweathermap.org/myservices"
-                        target="_blank"
-                      >
-                        My Services
-                      </a>
-                      <a
-                        href="https://home.openweathermap.org/api_keys"
-                        target="_blank"
-                      >
-                        My API Keys
-                      </a>
-                      <a
-                        href="https://home.openweathermap.org/payments"
-                        target="_blank"
-                      >
-                        My Payments
-                      </a>
-                      <a
-                        href="https://home.openweathermap.org/home"
-                        target="_blank"
-                      >
-                        My Profile
-                      </a>
-                      <a
-                        href="https://home.openweathermap.org/users/sign_out"
-                        target="_blank"
-                      >
-                        Logout
-                      </a>
-                    </div>
-                  </a>
-                </li>
-
-                <li className="nav-item dropdown d-none d-xl-block">
                   <a
-                    href="/"
-                    className="dropdown-toggle header-link"
-                    data-toggle="dropdown"
+                    href="https://home.openweathermap.org/payments"
+                    target="_blank"
                   >
-                    Support
+                    My Payments
                   </a>
-                  <div className="dropdown-menu">
-                    <a href="https://openweathermap.org/faq" target="_blank">
-                      FAQ
-                    </a>
-                    <a href="https://openweathermap.org/appid" target="_blank">
-                      How to Start
-                    </a>
-                    <a
-                      href="https://home.openweathermap.org/questions"
-                      target="_blank"
-                    >
-                      Ask a Question
-                    </a>
-                  </div>
-                </li>
-
-                <li className="nav-item d-lg-none text-nowrap">
-                  <a className href="https://home.openweathermap.org/">
-                    <img src={gallery.user_icon.src} alt="user icon" />
-                    {userName}
+                  <a
+                    href="https://home.openweathermap.org/home"
+                    target="_blank"
+                  >
+                    My Profile
                   </a>
-                </li>
-                <li className="d-lg-none">
-                  <a href="https://home.openweathermap.org/users/sign_out">
+                  <a
+                    href="https://home.openweathermap.org/users/sign_out"
+                    target="_blank"
+                  >
                     Logout
                   </a>
-                </li>
-              </>
+                </div>
+              </li>
+            ) : (
+              <li>
+                <a
+                  className="text-nowrap"
+                  href="https://home.openweathermap.org/users/sign_in"
+                  target="_blank"
+                >
+                  Sign In
+                </a>
+              </li>
             )}
+            <li>
+              <a
+                href="https://home.openweathermap.org/questions"
+                className="text-nowrap"
+              >
+                Support
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -269,4 +173,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default HeaderTrigger

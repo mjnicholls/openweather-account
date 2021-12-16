@@ -61,15 +61,24 @@
 // Header classes (to be removed / nested)
 
 .page-header {
+
   background-color: $brand-black;
-  font-family: $default-font-family;
   font-size: $font-size-sm;
+  z-index: 1;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
 
   .navbar-collapse.show {
     .navbar-nav {
       height: calc(100vh - 50px);
       overflow: scroll;
+      padding-bottom: 50px;
     }
+  }
+
+  .collapsing {
+    transition: none !important;
   }
 
   button {
@@ -119,7 +128,6 @@
         text-decoration: none;
         display: block;
         padding: 0.5rem;
-        text-decoration: none;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
           border-color 0.15s ease-in-out;
 
@@ -827,6 +835,7 @@ a {
 }
 }
 
+// buttons
 @mixin button-round {
   padding: 6pt 8pt;
   border-radius: 16pt;
@@ -845,8 +854,6 @@ a {
   background-color: $brand-black;
   border-color: $brand-black;
   color: $brand-grey;
-  margin-left: 4pt;
-  box-shadow: none;
   &:hover {
     background-color: rgba(72, 72, 74, 0.85);
     border-color: rgba(72, 72, 74, 0.85);
@@ -889,6 +896,8 @@ a {
   }
 }
 
+
+
 .link-flat {
   color: $sub-color;
   background: transparent;
@@ -922,15 +931,22 @@ a {
 .bs-alerts {
   box-shadow: none!important;
   border-radius: 12px!important;
-
+  text-align: left;
+  span.btn {
+    font-weight: 200 !important;
+  }
   h2 {
     text-align: left!important;
+    font-family: $default-font-family;
+    border-bottom: 1px solid $brand-grey;
+    padding-bottom: 8pt !important;
   }
 
   h4 {
     font-family: $highlight-font-family!important;
     margin-bottom: 30px!important;
     text-align: left!important;
+
   }
   Label {
     text-align: left!important;
@@ -971,5 +987,83 @@ a {
 
 }
 
+.padded-block {
+  padding: 8pt;
+  display: flex;
+  flex-direction: column;
+}
 
+.thumbnail {
+  padding: 8pt;
+  display: flex;
+  align-items: center;
+  margin-right: 8pt;
 
+  svg {
+    margin-right: 4pt;
+  }
+}
+
+.bordered {
+  //border-bottom: 1px solid #f2f2f2;
+  border: 1px solid $brand-grey;
+  border-radius: 4pt;
+}
+
+.card {
+  border: 1px solid $brand-grey;
+  border-radius: 4pt;
+  //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+
+  .card-header {
+    border-bottom: 1px solid $brand-grey;
+  }
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1 0 auto;
+}
+
+.loader-container {
+  color: $brand-orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding-top: 100px;
+}
+
+.small-text {
+  font-size: $small-font-size;
+}
+
+.pop-up-footer {
+  text-align: right;
+  margin-top: 16pt;
+}
+
+.single-event {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+
+  &:hover {
+    background-color: $secondary-light-grey;
+  }
+  div {
+    &:first-child {
+      min-width: 28pt;
+    }
+    &:nth-child(2) {
+      flex-grow: 1;
+      padding-bottom: 8pt;
+    }
+  }
+}

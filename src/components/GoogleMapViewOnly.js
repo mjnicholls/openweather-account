@@ -58,10 +58,10 @@ const ViewOnlyMap = ({ mapRef, location }) => {
   }
 
   return (
-    <div id="map" style={{ height: '100%', width: '100%' }}>
+    <div id="map" style={{ height: '100%', width: '100%', minHeight: '350px' }}>
       <GoogleMapReact
         ref={mapRef}
-        bootstrapURLKeys={{ key: 'AIzaSyDZ-G11woEVuWi_wkX6j77pP2tqPe_5lVY' }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_KEY }}
         defaultCenter={{ lat: location.lat, lng: location.lon }}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals

@@ -30,7 +30,7 @@ const DeleteTriggerCardX = ({ id, userId, data, setData }) => {
       <ReactBSAlert
         title="Delete Trigger?"
         onConfirm={() => refreshData()}
-        onCancel={() => refreshData()}
+        onCancel={hideAlert}
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"

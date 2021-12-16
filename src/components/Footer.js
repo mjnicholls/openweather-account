@@ -4,111 +4,26 @@ import '../App.scss'
 import { gallery } from '../assets/Gallery'
 import FooterSection from './FooterSection'
 
-const Footer = () => (
+const FooterTrigger = () => (
   <footer className="page-footer p-4">
     <div className="container-xl">
       <div className="row">
         <div className="col-xl-4 mt-4">
-          <FooterSection header="Product Collections">
+          <FooterSection header="Weather Dashboard">
             <ul>
               <li>
-                <a
-                  href="https://openweathermap.org/api#current"
-                  target="_blank"
-                >
-                  Current and Forecast APIs
+                <a href="/" target="_blank">
+                  About
                 </a>
               </li>
               <li>
-                <a
-                  href="https://openweathermap.org/api#history"
-                  target="_blank"
-                >
-                  Historical Weather Data
+                <a href="/" target="_blank">
+                  User Documentation
                 </a>
               </li>
               <li>
-                <a href="https://openweathermap.org/api#maps" target="_blank">
-                  Weather Maps
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://openweathermap.org/widgets-constructor"
-                  target="_blank"
-                >
-                  Widgets
-                </a>
-              </li>
-            </ul>
-          </FooterSection>
-        </div>
-
-        <div className="col-xl-4 mt-4">
-          <FooterSection header="Subscriptions">
-            <ul>
-              <li>
-                <a href="https://openweathermap.org/appid" target="_blank">
-                  How to start
-                </a>
-              </li>
-              <li>
-                <a href="https://openweathermap.org/price" target="_blank">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://home.openweathermap.org/users/sign_up"
-                  target="_blank"
-                >
-                  Subscribe for free
-                </a>
-              </li>
-              <li>
-                <a href="https://openweathermap.org/faq" target="_blank">
-                  FAQ
-                </a>
-              </li>
-            </ul>
-          </FooterSection>
-        </div>
-
-        <div className="col-xl-4 mt-4">
-          <FooterSection header="About Us">
-            <ul>
-              <li>
-                OpenWeather is a team of IT experts and data scientists that has
-                been practising deep weather data science since 2014. For each
-                point on the globe, OpenWeather provides historical, current and
-                forecasted weather data via light-speed APIs. Headquarters in
-                London, UK.
-              </li>
-            </ul>
-          </FooterSection>
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col-xl-4 mt-4">
-          <FooterSection header="Technologies">
-            <ul>
-              <li>
-                <a href="https://openweathermap.org/technology" target="_blank">
-                  Our technology
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://openweathermap.org/accuracy-and-quality"
-                  target="_blank"
-                >
-                  Accuracy and quality of weather data
-                </a>
-              </li>
-              <li>
-                <a href="https://openweathermap.org/stations" target="_blank">
-                  Connect your weather station
+                <a href="/" target="_blank">
+                  Support Center
                 </a>
               </li>
             </ul>
@@ -144,27 +59,17 @@ const Footer = () => (
         </div>
 
         <div className="col-xl-4 mt-4">
-          <h5>&nbsp;</h5>
-          <ul>
-            <li>
-              <a href="https://openweather.co.uk/storage/app/media/Terms/Openweather_terms_and_conditions_of_sale.pdf">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://home.openweathermap.org/questions"
-                target="_blank"
-              >
-                Ask a Question
-              </a>
-            </li>
-            <li>
-              <a href="mailto:info@openweathermap.org" target="_blank">
-                info@openweathermap.org
-              </a>
-            </li>
-          </ul>
+          <FooterSection header="About Us">
+            <ul>
+              <li>
+                OpenWeather is a team of IT experts and data scientists that has
+                been practising deep weather data science since 2014. For each
+                point on the globe, OpenWeather provides historical, current and
+                forecasted weather data via light-speed APIs. Headquarters in
+                London, UK.
+              </li>
+            </ul>
+          </FooterSection>
         </div>
       </div>
 
@@ -263,4 +168,4 @@ const Footer = () => (
   </footer>
 )
 
-export default Footer
+export default FooterTrigger

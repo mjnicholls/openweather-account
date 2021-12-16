@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 
+import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button, Col } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 const selectTriggersLimit = (state) => state.auth.limits.max_triggers
 const selectSubscriptionPlan = (state) => state.auth.user.tariff_full
 
-const CreateNewTriggerButton = ({ triggerNumber }) => {
+const CreateTriggerButton = ({ triggerNumber }) => {
   const maxTriggers = useSelector(selectTriggersLimit)
   const tariffName = useSelector(selectSubscriptionPlan)
 
@@ -50,7 +51,7 @@ const CreateNewTriggerButton = ({ triggerNumber }) => {
         </button>
       ) : (
         <Link role="button" to="/create" className="button-active shadow-none">
-          Create new trigger
+          New trigger
         </Link>
       )}
       {alert}
@@ -58,4 +59,8 @@ const CreateNewTriggerButton = ({ triggerNumber }) => {
   )
 }
 
-export default CreateNewTriggerButton
+CreateTriggerButton.propTypes = {
+  triggerNumber: PropTypes.number,
+}
+
+export default CreateTriggerButton

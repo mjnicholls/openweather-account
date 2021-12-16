@@ -1,12 +1,14 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
 import { Error } from 'react-ikonate'
 
-const NumberEventsBadge = ({ number }) => (
+const EventsPerDayCount = ({ number }) => (
   <div
-    className={`ms-3 d-flex align-items-center ${
+    className={`ms-3 d-flex-inline align-items-center ${
       number ? 'button-orange' : 'button-turquoise'
     }`}
+    style={{ cursor: 'auto' }}
   >
     {number > 0 && <Error color="#ffffff" style={{ marginRight: '4pt' }} />}
     <span>
@@ -15,4 +17,8 @@ const NumberEventsBadge = ({ number }) => (
   </div>
 )
 
-export default NumberEventsBadge
+EventsPerDayCount.propTypes = {
+  number: PropTypes.number,
+}
+
+export default EventsPerDayCount
