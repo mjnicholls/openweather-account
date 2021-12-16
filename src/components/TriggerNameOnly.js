@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import PropTypes from 'prop-types'
-import { Edit } from 'react-ikonate'
 import { Col, Row, Input } from 'reactstrap'
 
 import { noBlankErrorMessage } from '../config'
 import '../App.scss'
 
-const TriggerName = ({ location, name, setName }) => {
-  const [isEditName, setIsEditName] = useState(false)
+const TriggerNameOnly = ({ name, setName }) => {
+
 
   const [error, setError] = useState('')
 
-  const [isNameEdited, setIsNameEdited] = useState(false)
 
   const validationName = () => {
     setError({})
@@ -32,56 +30,24 @@ const TriggerName = ({ location, name, setName }) => {
   }
 
   const onNameChange = (e) => {
-    setIsNameEdited(true)
     validationName(name)
     setName(e.target.value)
   }
 
-  const onKeyDown = (e) => {
-    if (e.keyCode === 13) {
-      saveName()
-    }
-  }
 
-  const saveName = () => {
-    setIsEditName(false)
-  }
-
-  useEffect(() => {
-    if (!isNameEdited && location.lat && location.lon) {
-      const newName = `${location.name} (${location.lat.toFixed(
-        2,
-      )}, ${location.lon.toFixed(2)})`
-      setName(newName)
-    }
-  }, [location, isNameEdited])
 
   return (
     <Row className="mb-4 mt-3">
       <Col className="mb-3">
-        <h6>Location Name</h6>
-        {isEditName ? (
+        <h6>Trigger Name</h6>
           <div className="d-flex align-items-center">
             <Input
               type="text"
               onChange={onNameChange}
-              onKeyDown={onKeyDown}
               className={error.name ? 'danger-border' : ''}
-              value={name}
               style={{ width: '250px' }}
             />
           </div>
-        ) : (
-          <div className="d-flex align-items-center">
-            <span>{name}</span>
-            <Edit
-              className="ms-3"
-              onClick={() => {
-                setIsEditName(true)
-              }}
-            />
-          </div>
-        )}
       </Col>
     </Row>
 
@@ -114,10 +80,9 @@ const TriggerName = ({ location, name, setName }) => {
   )
 }
 
-TriggerName.propTypes = {
+TriggerNameOnly.propTypes = {
   name: PropTypes.string,
   setName: PropTypes.func,
-  location: PropTypes.string,
 }
 
-export default TriggerName
+export default TriggerNameOnly

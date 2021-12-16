@@ -15,6 +15,7 @@ import GoogleMapCreate from '../components/GoogleMapCreate'
 import PriorNotifs from '../components/PriorNotifications'
 import SearchBox from '../components/SearchBox'
 import TriggerName from '../components/TriggerName'
+import TriggerNameOnly from '../components/TriggerNameOnly'
 import '../App.scss'
 import { noBlankErrorMessage } from '../config'
 
@@ -161,7 +162,7 @@ const CreateTrigger = () => {
         <p style={{ color: 'red' }}>{JSON.stringify(whoops).slice(1, -1)}</p>
         <br />
         <Col className="text-end">
-          <Button className="button-active shadow-none">Contact</Button>
+          <Button className="button-active shadow-none" href="mailto:info@openweathermap.org">Contact</Button>
         </Col>
       </ReactBSAlert>,
     )
@@ -233,6 +234,15 @@ const CreateTrigger = () => {
             {alert}
             <h2>Create Trigger</h2>
             <div className="pt-5 pb-5">
+            <TriggerNameOnly
+                  name={name}
+                  setName={setName}
+                  location={location}
+                  error={error}
+                  isSet={isSet}
+                  setIsSet={setIsSet}
+                  onChange={(e) => handleChange('name', e.target.value)}
+                />
               <SearchBox
                 mapRef={mapRef}
                 location={location}

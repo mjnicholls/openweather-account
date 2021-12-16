@@ -179,7 +179,7 @@ const ViewTrigger = () => {
         <p style={{ color: 'red' }}>{JSON.stringify(whoops).slice(1, -1)}</p>
         <br />
         <Col className="text-end">
-          <Button className="button-active shadow-none">Contact</Button>
+          <Button className="button-active shadow-none" href="mailto:info@openweathermap.org">Contact</Button>
         </Col>
       </ReactBSAlert>,
     )

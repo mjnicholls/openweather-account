@@ -16,7 +16,7 @@ const DeleteTrigger = ({ id, userId, setData }) => {
     deleteTrigger(id, userId)
       .then(() => {
         setIsUpdated(true)
-        // refreshData()
+        refreshData()
       })
       // eslint-disable-next-line
       .catch(() => {
