@@ -179,7 +179,7 @@ const ViewTrigger = () => {
         <p style={{ color: 'red' }}>{JSON.stringify(whoops).slice(1, -1)}</p>
         <br />
         <Col className="text-end">
-          <Button className="button-active shadow-none" href="mailto:info@openweathermap.org">Contact</Button>
+          <Button className="button-active shadow-none">Contact</Button>
         </Col>
       </ReactBSAlert>,
     )
@@ -199,55 +199,49 @@ const ViewTrigger = () => {
       ) : (
         <>
           {alert}
-          <Row className="trigger-card">
+          <Row>
             <Col md="7">
-              <h2>Trigger Card</h2>
-              <Row>
-                <Col className="mb-3">
-                  <h6>Trigger Name</h6>
-                  {isEditName ? (
-                    <div className="d-flex align-items-center">
-                      <Input
-                        type="text"
-                        onChange={(e) => {
-                          setActiveName(e.target.value)
-                          setIsEdited(false)
-                        }}
-                        onKeyDown={onKeyDown}
-                        className={error.name ? 'danger-border' : ''}
-                        value={activeName}
-                        style={{ width: '250px' }}
-                      />
-                    </div>
-                  ) : (
-                    <div className="d-flex align-items-center">
-                      <span>{activeName}</span>
-                      <Edit
-                        className="ms-3"
-                        onClick={() => {
-                          setIsEditName(true)
-                        }}
-                      />
-                    </div>
-                  )}
-                </Col>
-                <Col className="text-end mb-3">
-                  {tempStatus === 'on' ? (
-                    <h6>Trigger On</h6>
-                  ) : (
-                    <h6>Trigger Off</h6>
-                  )}
 
-                  <StatusToggle
-                    tempStatus={tempStatus}
-                    setTempStatus={setTempStatus}
+          <Row className="pt-5">
+            <Col md="7">
+              {isEditName ? (
+                <div className="d-flex align-items-center">
+                  <Input
+                    type="text"
+                    onChange={(e) => {
+                      setActiveName(e.target.value)
+                      setIsEdited(false)
+                    }}
+                    onKeyDown={onKeyDown}
+                    className={error.name ? 'danger-border' : ''}
+                    value={activeName}
+                    style={{ width: '250px' }}
                   />
-                </Col>
-              </Row>
+                </div>
+              ) : (
+                <div className="d-flex align-items-center">
+                  <h2 className="m-0 p-0">{activeName}</h2>
+                  <Edit
+                    className="ms-3"
+                    onClick={() => {
+                      setIsEditName(true)
+                    }}
+                  />
+                </div>
+              )}
+            </Col>
+            <Col className="text-end mb-3">
+              <h6>Trigger {tempStatus}</h6>
+
+              <StatusToggle
+                tempStatus={tempStatus}
+                setTempStatus={setTempStatus}
+              />
+            </Col>
+          </Row>
 
               <Row>
                 <Col className="mb-3">
-                  <h6>Location</h6>
                   <TriggerLocation location={location} />
                 </Col>
               </Row>

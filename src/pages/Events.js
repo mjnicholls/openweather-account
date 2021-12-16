@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { Card, CardBody, CardHeader, Row, Col, Button } from 'reactstrap'
 
 import { getEvents } from '../api/api'
-import CreateNewTriggerButton from '../components/CreateNewTriggerButton'
+import CreateNewTriggerButton from '../components/CreateTriggerButton'
 import Event from '../components/Event'
 import EventOld from '../components/EventOld'
 import EventPlaceholder from '../components/EventPlaceholder'
@@ -63,7 +63,7 @@ const Events = () => {
             ))}
           </Row>
         </>
-      ) : (
+      ) : data.length ? (
         <Row>
           {data.map((day) => (
             <React.Fragment key={day.day}>
@@ -131,7 +131,14 @@ const Events = () => {
             </React.Fragment>
           ))}
         </Row>
-      )}
+      ) :
+      <Row>
+        <Col>
+          <h4>No events</h4>
+        </Col>
+      </Row>
+
+      }
     </div>
   )
 }

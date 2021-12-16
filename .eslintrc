@@ -8,6 +8,7 @@
     "prettier/prettier": "warn",
     "spaced-comment": "warn",
     "react/prop-types": "warn",
+    "no-nested-ternary": "warn",
     "react/react-in-jsx-scope": 0,
     "arrow-body-style": 1,
     "import/order": [

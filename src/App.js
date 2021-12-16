@@ -11,11 +11,12 @@ import CreateTrigger from './pages/CreateTrigger'
 import Events from './pages/Events'
 import TriggerList from './pages/Triggers'
 import ViewTrigger from './pages/ViewTrigger'
+// import ViewTrigger from './pages/ViewTriggerNew'
 import store from './store'
 
 const App = () => (
   <Provider store={store}>
-    <div className="App">
+    <div>
       <HeaderTrigger />
       <Container fluid="xl" style={{ marginTop: '60px' }}>
         <BrowserRouter>

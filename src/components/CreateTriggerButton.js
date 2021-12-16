@@ -44,18 +44,16 @@ const CreateNewTriggerButton = ({ triggerNumber }) => {
 
   return (
     <>
-      {alert}
       {triggerNumber >= maxTriggers ? (
-        <Button className="button-active shadow-none" onClick={tariffError}>
+        <button type="button" className="button-active" onClick={tariffError}>
           Create new trigger
-        </Button>
+        </button>
       ) : (
-        <Link to="/create">
-          <Button className="button-active shadow-none">
-            Create new trigger
-          </Button>
+        <Link role="button" to="/create" className="button-active shadow-none">
+          Create new trigger
         </Link>
       )}
+      {alert}
     </>
   )
 }

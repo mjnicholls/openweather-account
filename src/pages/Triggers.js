@@ -4,24 +4,27 @@ import { css } from '@emotion/react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import BeatLoader from 'react-spinners/BeatLoader'
-import { Card, CardBody, Row, Col, Table, Button } from 'reactstrap'
+import { Card, CardBody, Row, Col, Table } from 'reactstrap'
 
 import { getTriggers } from '../api/api'
 import '../App.scss'
-import CreateNewTriggerButton from '../components/CreateNewTriggerButton'
+import CreateNewTriggerButton from '../components/CreateTriggerButton'
 import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
 import { conditionToText } from '../utils/conditionText'
+import TriggerLocation from '../components/TriggerLocation'
 
 const selectUserId = (state) => state.auth.user.id
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 
 const Triggers = () => {
-  const userId = useSelector(selectUserId)
 
+  const userId = useSelector(selectUserId)
   const emailsAllowed = useSelector(selectEmailsAllowed)
 
   const [isLoading, setIsLoading] = useState(true)
+  const [data, setData] = useState([])
+
   const color = '#EB6E4B'
 
   const override = css`
@@ -32,8 +35,6 @@ const Triggers = () => {
     margin-bottom: 100px;
     margin-right: 15px;
   `
-
-  const [data, setData] = useState([])
 
   useEffect(() => {
     setIsLoading(true)
@@ -51,6 +52,18 @@ const Triggers = () => {
 
   return (
     <div className="min-vh-100">
+      <Row className="py-5">
+        <Col>
+          <h2 className="m-0 p-0">Triggers</h2>
+        </Col>
+        <Col className="text-end title">
+            <Link to="/events" role="button" className="button-neutral shadow-none">
+              To events
+            </Link>
+          <CreateNewTriggerButton triggerNumber={data.length} />
+        </Col>
+      </Row>
+
       {isLoading ? (
         <div className="d-flex flex-column mh-100 align-items-center justify-content-center">
           <p>Fetching triggers...</p>
@@ -61,22 +74,7 @@ const Triggers = () => {
             size={15}
           />
         </div>
-      ) : (
-        <div>
-          <Row className="py-5">
-            <Col>
-              <h2 className="m-0 p-0">Triggers</h2>
-            </Col>
-            <Col className="text-end title">
-              <Link to="/events">
-                <Button className="button-neutral shadow-none">
-                  To events
-                </Button>
-              </Link>
-              <CreateNewTriggerButton triggerNumber={data.length} />
-            </Col>
-          </Row>
-
+      ) : data.length ? (
           <Row>
             <Col className="mb-0" md="12" mt="20">
               <Card>
@@ -85,11 +83,11 @@ const Triggers = () => {
                     <thead>
                       <tr>
                         <th>&nbsp;</th>
-                        <th>Trigger Name</th>
-                        <th>Trigger Condition</th>
+                        <th>Name</th>
+                        <th>Condition</th>
                         <th>Location</th>
                         <th>Notify</th>
-                        {emailsAllowed !== 'free' && (
+                        {emailsAllowed && (
                           <th className="email">Emails</th>
                         )}
                         <th colSpan={3}>&nbsp;</th>
@@ -115,12 +113,12 @@ const Triggers = () => {
                               <td className="text-nowrap">
                                 {conditionToText(trigger.condition)}
                               </td>
-                              <td>{trigger.location.name}</td>
+                              <td><TriggerLocation location={trigger.location} showIcon={false}/></td>
                               <td className="text-nowrap">
                                 {trigger.days}{' '}
                                 {trigger.days === 1 ? 'day' : 'days'}
                               </td>
-                              {emailsAllowed !== 'free' && (
+                              {emailsAllowed && (
                                 <td>{trigger.recipients.length}</td>
                               )}
                               <td
@@ -160,8 +158,10 @@ const Triggers = () => {
               </Card>
             </Col>
           </Row>
-        </div>
-      )}
+      ) :
+        <Row>
+          <Col><p><b>No triggers</b></p></Col>
+        </Row>}
     </div>
   )
 }
