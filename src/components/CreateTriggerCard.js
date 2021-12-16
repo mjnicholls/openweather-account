@@ -84,16 +84,11 @@ const CreateTriggerCard = () => {
         <br />
 
         <Col className="text-end">
-          <Link to="/triggers">
-            <Button
-              className="button-neutral shadow-none"
-              data-dismiss="modal"
-              type="button"
-            >
+          <Link to="/dashboard/triggers" role="button" className="button-neutral shadow-none">
+          
               To All Triggers
-            </Button>
+         
           </Link>
-          <Link to="/create">
             <Button
               className="button-active shadow-none"
               data-dismiss="modal"
@@ -102,7 +97,6 @@ const CreateTriggerCard = () => {
             >
               Create New Trigger
             </Button>
-          </Link>
         </Col>
       </div>
     </>

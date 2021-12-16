@@ -25,6 +25,8 @@ const Triggers = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState([])
 
+  const [isUpdated, setIsUpdated] = useState(false)
+
   const color = '#EB6E4B'
 
   const override = css`
@@ -57,7 +59,7 @@ const Triggers = () => {
           <h2 className="m-0 p-0">Triggers</h2>
         </Col>
         <Col className="text-end title">
-            <Link to="/events" role="button" className="button-neutral shadow-none">
+            <Link to="/dashboard/events" role="button" className="button-neutral shadow-none">
               To events
             </Link>
           <CreateNewTriggerButton triggerNumber={data.length} />
@@ -103,7 +105,7 @@ const Triggers = () => {
                               <td>
                                 <Link
                                   to={{
-                                    pathname: '/trigger',
+                                    pathname: '/dashboard/trigger',
                                     state: trigger,
                                   }}
                                 >
@@ -147,6 +149,8 @@ const Triggers = () => {
                                   userId={userId}
                                   data={data}
                                   setData={setData}
+                                  isUpdated={isUpdated}
+                                  setIsUpdated={setIsUpdated}
                                 />
                               </td>
                             </tr>

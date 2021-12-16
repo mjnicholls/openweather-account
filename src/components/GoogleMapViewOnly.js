@@ -10,7 +10,7 @@ import placeMarker from './placeMarker'
 const handleApiLoaded = (mapInstance, coords) => {
   /* eslint-disable-next-line */
   const position = new google.maps.LatLng(coords.lat, coords.lng)
-  placeMarker(position, mapInstance, null)
+  placeMarker(position, mapInstance)
 }
 
 const createMapOptions = () => ({
@@ -25,7 +25,7 @@ const InfoWindow = ({ show, location }) =>
       className="mapPop"
       style={{
         marginLeft: '-150px',
-        marginTop: '-180px',
+        marginTop: '-170px',
       }}
     >
       <h5>{location.name}</h5>
@@ -75,6 +75,7 @@ const ViewOnlyMap = ({ mapRef, location }) => {
           setIsInfoWindow={setIsInfoWindow}
           location={tempLocation}
           style={{ paddingTop: '20px' }}
+          
         />
       </GoogleMapReact>
     </div>

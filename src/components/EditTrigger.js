@@ -11,6 +11,7 @@ import htmlError from '../pages/CreateTrigger'
 import StatusToggle from './StatusToggle'
 
 const EditTrigger = ({ userId, id, name, status, setData, close }) => {
+  
   const [error, setError] = useState({})
 
   const [activeName, setActiveName] = useState(name)
@@ -57,7 +58,6 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
 
     patchTrigger(data)
       .then(() => {
-        console.log('data')
         refreshData()
         setIsUpdated(true)
       })
@@ -122,7 +122,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
                 {error.activeName}
               </div>
             </Col>
-            <Col md="4" className="editStatus">
+            <Col md="4">
               <Label> Trigger On/Off </Label>
               <StatusToggle
                 tempStatus={tempStatus}

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Button, Col } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 const selectTriggersLimit = (state) => state.auth.limits.max_triggers
 const selectSubscriptionPlan = (state) => state.auth.user.tariff_full
@@ -49,7 +49,7 @@ const CreateNewTriggerButton = ({ triggerNumber }) => {
           Create new trigger
         </button>
       ) : (
-        <Link role="button" to="/create" className="button-active shadow-none">
+        <Link role="button" to="/dashboard/triggers/create" className="button-active shadow-none">
           Create new trigger
         </Link>
       )}

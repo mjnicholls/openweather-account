@@ -241,9 +241,9 @@ const ViewTrigger = () => {
 
           <Row className="search-box">
             <Col className="text-left">
-              <Link to="/triggers">
+
                 <Button className="button-neutral">Back</Button>
-              </Link>
+        
             </Col>
             <Col className="text-end">
               <DeleteTriggerCard id={id} userId={userId} />

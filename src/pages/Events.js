@@ -46,7 +46,7 @@ const Events = () => {
           <h2 className="m-0 p-0">Events</h2>
         </Col>
         <Col className="text-end title">
-          <Link to="/triggers">
+          <Link to="/dashboard/triggers">
             <Button className="button-neutral shadow-none">To triggers</Button>
           </Link>
           <CreateNewTriggerButton />

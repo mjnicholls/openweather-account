@@ -14,7 +14,7 @@ import EmailNotifs from '../components/EmailNotifcation'
 import GoogleMapCreate from '../components/GoogleMapCreate'
 import PriorNotifs from '../components/PriorNotifications'
 import SearchBox from '../components/SearchBox'
-import TriggerName from '../components/TriggerName'
+import LocationName from '../components/LocationName'
 import TriggerNameOnly from '../components/TriggerNameOnly'
 import '../App.scss'
 import { noBlankErrorMessage } from '../config'
@@ -136,7 +136,6 @@ const CreateTrigger = () => {
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"
-        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <CreateTriggerCard close={hideAlert} />
       </ReactBSAlert>,
@@ -152,14 +151,13 @@ const CreateTrigger = () => {
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"
-        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <br />
         <p>
           Something went wrong on our end. Please make note of the error message
           below and contact us:
         </p>
-        <p style={{ color: 'red' }}>{JSON.stringify(whoops).slice(1, -1)}</p>
+        <p>{JSON.stringify(whoops).slice(1, -1)}</p>
         <br />
         <Col className="text-end">
           <Button className="button-active shadow-none" href="mailto:info@openweathermap.org">Contact</Button>
@@ -177,7 +175,6 @@ const CreateTrigger = () => {
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"
-        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <br />
         <p>
@@ -237,11 +234,7 @@ const CreateTrigger = () => {
             <TriggerNameOnly
                   name={name}
                   setName={setName}
-                  location={location}
                   error={error}
-                  isSet={isSet}
-                  setIsSet={setIsSet}
-                  onChange={(e) => handleChange('name', e.target.value)}
                 />
               <SearchBox
                 mapRef={mapRef}
@@ -254,14 +247,8 @@ const CreateTrigger = () => {
                 setIsSet={setIsSet}
               />
               {isSet ? (
-                <TriggerName
-                  name={name}
-                  setName={setName}
+                <LocationName
                   location={location}
-                  error={error}
-                  isSet={isSet}
-                  setIsSet={setIsSet}
-                  onChange={(e) => handleChange('name', e.target.value)}
                 />
               ) : null}
               <Condition condition={condition} setCondition={setCondition} />

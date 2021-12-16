@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 const StatusToggle = ({ tempStatus, setTempStatus }) => {
 
   return (
+    <div className='statusToggle'>
     <label className="switch">
       <input
         type="checkbox"
@@ -14,7 +15,9 @@ const StatusToggle = ({ tempStatus, setTempStatus }) => {
         }}
       />
       <span className="slider round"></span>
-    </label>)
+    </label>
+    </div>
+    )
 }
 
 StatusToggle.propTypes = {

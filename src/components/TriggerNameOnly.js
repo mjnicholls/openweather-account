@@ -2,81 +2,41 @@ import React, { useState } from 'react'
 
 import PropTypes from 'prop-types'
 import { Col, Row, Input } from 'reactstrap'
-
+import classNames from 'classnames'
 import { noBlankErrorMessage } from '../config'
 import '../App.scss'
 
-const TriggerNameOnly = ({ name, setName }) => {
-
-
-  const [error, setError] = useState('')
-
-
-  const validationName = () => {
-    setError({})
-    let newError = {}
-    if (name === '') {
-      newError = {
-        name: noBlankErrorMessage,
-      }
-    }
-
-    if (Object.keys(newError).length) {
-      setError(newError)
-      return false
-    }
-
-    return true
-  }
-
-  const onNameChange = (e) => {
-    validationName(name)
-    setName(e.target.value)
-  }
+const TriggerNameOnly = ({ name, setName, error, setError }) => {
 
 
 
   return (
-    <Row className="mb-4 mt-3">
-      <Col className="mb-3">
-        <h6>Trigger Name</h6>
-          <div className="d-flex align-items-center">
+<>
+    <Row className="mt-3">
+    <Col className="mb-2">
+      <h6>Trigger Name</h6>
+    </Col>
+  </Row>
+
+   <Row className="search-fox">
             <Input
               type="text"
-              onChange={onNameChange}
+              onChange={(e) => setName(e.target.value)}
               className={error.name ? 'danger-border' : ''}
-              style={{ width: '250px' }}
+              style={{ width: '96%', marginTop: '7px', marginLeft:'10px', marginBottom:'20px' }}
             />
-          </div>
-      </Col>
-    </Row>
-
-    /*
-    <Row className="search-fox">
-      <Col className="mb-3">
-        <h6>Trigger name</h6>
-        <FormGroup>
-          <Input
-            type="text"
-            value={name}
-            onChange={onNameChange}
-            className={error.name ? 'danger-border' : ''}
-          />
-
-          <div
-            className={classnames(
+                <div
+            className={classNames(
               'invalid-feedback ',
               error.name ? 'd-block' : '',
             )}
           >
             {error.name}
           </div>
-        </FormGroup>
-      </Col>
+     
     </Row>
-  )
-
-            */
+</>
+    
   )
 }
 

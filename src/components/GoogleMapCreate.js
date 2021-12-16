@@ -39,7 +39,7 @@ const InfoWindow = ({
       className="mapPop"
       style={{
         marginLeft: '-150px',
-        marginTop: '-160px',
+        marginTop: '-155px',
       }}
     >
       <h5>{location.name}</h5>
@@ -55,13 +55,13 @@ const InfoWindow = ({
             {location.lon.toFixed(6)}
           </p>
         </div>
-        <div className="body">
+        <div className="search-fox">
           {isClicked ? null : (
             <>
               {showButton && (
                 <button
                   type="button"
-                  className="button-active"
+                  className="button-active shadow-none"
                   onClick={onSetLocationClick}
                 >
                   Set location
