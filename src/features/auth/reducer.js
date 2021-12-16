@@ -9,7 +9,7 @@ const initialState = {
   limits: {
     email_recipients: true,
     // max_email_recipients: 10,
-    max_triggers: 3,
+    max_triggers: 10,
   },
 }
 
@@ -19,3 +19,4 @@ export default function authReducer(state = initialState, action) {
       return state
   }
 }
+

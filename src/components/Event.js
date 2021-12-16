@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { EnvelopeAlt, Location } from 'react-ikonate'
+import { EnvelopeAlt } from 'react-ikonate'
 import { Link } from 'react-router-dom'
 
 import { conditionToText } from '../utils/conditionText'
+import TriggerLocation from './TriggerLocation'
 
 const Event = ({ trigger, index }) => {
 
@@ -45,13 +46,7 @@ const Event = ({ trigger, index }) => {
           </div>
         )}
       </div>
-      <div className="d-flex align-items-center">
-        <Location />
-        <span className="ms-1">
-          {trigger.location.name} ({trigger.location.lat.toFixed(2)},{' '}
-          {trigger.location.lon.toFixed(2)})
-        </span>
-      </div>
+      <TriggerLocation location={trigger.location} />
       <div>
         <span>{conditionToText(trigger.condition)}</span>
       </div>
