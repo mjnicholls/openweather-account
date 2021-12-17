@@ -25,43 +25,49 @@ const SearchBox = ({
 
   return (
     <div className="mt-3">
-      <h6 className=""> Search location by {activeTab === 'location' ? 'name' : 'coordinates'}</h6>
+      <h6 className="">
+        {' '}
+        Search location by {activeTab === 'location' ? 'name' : 'coordinates'}
+      </h6>
       {activeTab === 'location' ? (
-            <AutoCompleteForm
-              mapRef={mapRef}
-              setLocation={setLocation}
-              error={error}
-              location={location}
-              setIsName={setIsName}
-              isName={isName}
-              name={name}
-              setName={setName}
-              isSet={isSet}
-              setIsSet={setIsSet}
-            />
-
+        <AutoCompleteForm
+          mapRef={mapRef}
+          setLocation={setLocation}
+          error={error}
+          location={location}
+          setIsName={setIsName}
+          isName={isName}
+          name={name}
+          setName={setName}
+          isSet={isSet}
+          setIsSet={setIsSet}
+        />
       ) : (
-            <CoordinatesSearch
-              mapRef={mapRef}
-              setLocation={setLocation}
-              location={location}
-              name={name}
-              setName={setName}
-              isSet={isSet}
-              setIsSet={setIsSet}
-            />
+        <CoordinatesSearch
+          mapRef={mapRef}
+          setLocation={setLocation}
+          location={location}
+          name={name}
+          setName={setName}
+          isSet={isSet}
+          setIsSet={setIsSet}
+        />
       )}
       <Row className="mt-3 text-end">
         <Col className="text-end">
           <Button
-            className= {`shadow-none ${activeTab === 'location' ? 'button-active' : 'button-neutral' }`}
+            className={`shadow-none ${
+              activeTab === 'location' ? 'button-active' : 'button-neutral'
+            }`}
             onClick={() => setActiveTab('location')}
             aria-pressed="true"
           >
             <span>Location</span>
           </Button>
           <Button
-            className= {`shadow-none ${activeTab === 'location' ?  'button-neutral' : 'button-active' }`}
+            className={`shadow-none ${
+              activeTab === 'location' ? 'button-neutral' : 'button-active'
+            }`}
             onClick={() => setActiveTab('coordinates')}
             aria-pressed="true"
           >

@@ -13,9 +13,8 @@ const DeleteTriggerCard = ({ id, userId, data, setData }) => {
     setAlert(null)
   }
 
-
   const onCancel = () => {
-    console.log("Click on cacncel")
+    console.log('Click on cacncel')
     hideAlert()
   }
 
