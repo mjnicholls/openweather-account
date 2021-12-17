@@ -42,7 +42,7 @@ const CreateTriggerCard = ({ close }) => {
       onConfirm={close}
     >
       {newTrigger ? (
-        <div className="text-start">
+        <div className="text-start my-3">
           <div className="thumbnail" style={{ fontWeight: 'bold' }}>
             {newTrigger.name}
           </div>
@@ -54,7 +54,7 @@ const CreateTriggerCard = ({ close }) => {
             <span>Email recipients: {newTrigger.recipients.length}</span>
           </div>
 
-          <div className="padded-block small-text">
+          <div className="padded-block small-text my-3">
             <span>* Trigger events will be shown based on UTC time.</span>
             <span>
               ** If there are events, associated with the trigger, you will be

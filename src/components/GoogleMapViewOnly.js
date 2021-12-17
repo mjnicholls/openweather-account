@@ -75,7 +75,6 @@ const ViewOnlyMap = ({ mapRef, location }) => {
           setIsInfoWindow={setIsInfoWindow}
           location={tempLocation}
           style={{ paddingTop: '20px' }}
-          
         />
       </GoogleMapReact>
     </div>

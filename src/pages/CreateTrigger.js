@@ -26,10 +26,6 @@ const selectLimits = (state) => state.auth.limits
 const CreateTrigger = () => {
   const mapRef = useRef(null)
 
-  const refreshPage = () => {
-    window.location.reload(true)
-  }
-
   const userId = useSelector(selectUserId)
 
   const myLimits = useSelector(selectLimits)
@@ -146,7 +142,12 @@ const CreateTrigger = () => {
         <p>{JSON.stringify(whoops).slice(1, -1)}</p>
         <br />
         <Col className="text-end">
-          <Button className="button-active shadow-none" href="mailto:info@openweathermap.org">Contact</Button>
+          <Button
+            className="button-active shadow-none"
+            href="mailto:info@openweathermap.org"
+          >
+            Contact
+          </Button>
         </Col>
       </ReactBSAlert>,
     )
@@ -216,11 +217,7 @@ const CreateTrigger = () => {
             {alert}
             <h2>Create Trigger</h2>
             <div className="pt-5 pb-5">
-            <TriggerNameOnly
-                  name={name}
-                  setName={setName}
-                  error={error}
-                />
+              <TriggerNameOnly name={name} setName={setName} error={error} />
               <SearchBox
                 mapRef={mapRef}
                 location={location}
@@ -231,11 +228,7 @@ const CreateTrigger = () => {
                 isSet={isSet}
                 setIsSet={setIsSet}
               />
-              {isSet ? (
-                <LocationName
-                  location={location}
-                />
-              ) : null}
+              {isSet ? <LocationName location={location} /> : null}
               <Condition condition={condition} setCondition={setCondition} />
               <PriorNotifs days={days} setDays={setDays} />
               {myLimits.email_recipients === false ? null : (

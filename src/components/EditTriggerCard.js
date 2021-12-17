@@ -1,4 +1,5 @@
 import React from 'react'
+
 import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { Edit } from 'react-ikonate'
@@ -7,7 +8,6 @@ import { Button } from 'reactstrap'
 import EditTrigger from './EditTrigger'
 
 const EditTriggerCard = ({ id, userId, name, status, setData }) => {
-  
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {

@@ -17,7 +17,7 @@ const PriorNotifs = ({ days, setDays }) => {
     <>
       <Row>
         <Col className="mb-3">
-          <h6>Prior Notifications</h6>
+          <h6>Notify me</h6>
         </Col>
       </Row>
       <Row>

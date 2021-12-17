@@ -16,7 +16,7 @@ const EmailList = ({ recipients }) => {
   return emailsAllowed ? (
     <Row>
       <Col>
-        <h6>Email recipients</h6>
+        <h6>Send email notifications to</h6>
         {recipients.length ? (
           recipients
             .slice(0, openEmails)

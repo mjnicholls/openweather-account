@@ -80,8 +80,8 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
   return (
     <>
       <Row className="mt-4">
-        <Col className="mb-3">
-          <h6>Email Notification</h6>
+        <Col>
+          <h6>Send email notifications</h6>
         </Col>
       </Row>
 

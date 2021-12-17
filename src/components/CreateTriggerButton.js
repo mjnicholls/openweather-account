@@ -50,7 +50,11 @@ const CreateTriggerButton = ({ triggerNumber }) => {
           Create new trigger
         </button>
       ) : (
-        <Link role="button" to="/dashboard/triggers/create" className="button-active shadow-none">
+        <Link
+          role="button"
+          to="/dashboard/triggers/create"
+          className="button-active shadow-none"
+        >
           New trigger
         </Link>
       )}

@@ -1,8 +1,10 @@
+/* eslint-disable */
+
 import React from 'react'
 
 import './App.scss'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Container } from 'reactstrap'
 
 import FooterTrigger from './components/Footer'
@@ -20,11 +22,13 @@ const App = () => (
       <HeaderTrigger />
       <Container fluid="xxl" className="app-content">
         <BrowserRouter>
+          <Switch>
           <Route path="/dashboard/triggers/create" component={CreateTrigger} />
           <Route path="/dashboard/triggers" component={TriggerList} />
           <Route path="/dashboard/trigger" component={ViewTrigger} />
           <Route path="/dashboard/events" component={Events} />
-          {/* <Redirect from="/" to="/events" /> */}
+          {/* <Redirect from="/" to="/dashboard/events" /> */}
+          </Switch>
         </BrowserRouter>
       </Container>
       <FooterTrigger />

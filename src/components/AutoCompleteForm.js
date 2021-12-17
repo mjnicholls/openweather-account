@@ -38,14 +38,12 @@ const AutoCompleteForm = ({
 
   return (
     <div>
-      <Row className="mt-3">
+      <Row className="search-fox">
         <Col className="mb-2">
-          <h6>Search location by name</h6>
           <FormGroup>
             <Autocomplete
               apiKey={process.env.REACT_APP_GOOGLE_MAP_KEY}
               className={error.location ? 'danger-border' : ''}
-              style={{ width: '100%', marginTop: '7px' }}
               onPlaceSelected={(place) => {
                 onPlaceSelected(place)
                 setIsSet(true)

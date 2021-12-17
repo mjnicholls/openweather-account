@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
@@ -25,17 +27,6 @@ const Triggers = () => {
 
   const [isUpdated, setIsUpdated] = useState(false)
 
-  const color = '#EB6E4B'
-
-  const override = css`
-    display: inline-block;
-    margin: 0 auto;
-    border-color: #eb6e4b;
-    margin-top: 150px;
-    margin-bottom: 100px;
-    margin-right: 15px;
-  `
-
   useEffect(() => {
     setIsLoading(true)
     getTriggers(userId)
@@ -57,9 +48,13 @@ const Triggers = () => {
           <h2 className="m-0 p-0">Triggers</h2>
         </Col>
         <Col className="text-end title">
-            <Link to="/dashboard/events" role="button" className="button-neutral shadow-none">
-              To events
-            </Link>
+          <Link
+            to="/dashboard/events"
+            role="button"
+            className="button-neutral shadow-none"
+          >
+            To events
+          </Link>
           <CreateNewTriggerButton triggerNumber={data.length} />
         </Col>
       </Row>
@@ -69,8 +64,8 @@ const Triggers = () => {
       ) : data.length ? (
         <Row>
           <Col className="mb-0" md="12" mt="20">
-            <Card>
-              <CardBody>
+            <Card className="mb-5">
+              <CardBody className="p-0">
                 <Table className="mb-3 material-table">
                   <thead>
                     <tr>
@@ -93,7 +88,7 @@ const Triggers = () => {
                             <td>
                               <Link
                                 to={{
-                                  pathname: '/trigger',
+                                  pathname: '/dashboard/trigger',
                                   state: trigger,
                                 }}
                               >
@@ -129,36 +124,36 @@ const Triggers = () => {
                                 trigger.status.slice(1)}
                             </td>
 
-                              <td>
-                                <EditTriggerCard
-                                  id={trigger.id}
-                                  userId={userId}
-                                  data={data}
-                                  setData={setData}
-                                  name={trigger.name}
-                                  status={trigger.status}
-                                />
-                              </td>
-                              <td>
-                                <DeleteTriggerCardX
-                                  id={trigger.id}
-                                  userId={userId}
-                                  data={data}
-                                  setData={setData}
-                                  isUpdated={isUpdated}
-                                  setIsUpdated={setIsUpdated}
-                                />
-                              </td>
-                            </tr>
-                          ),
-                      )}
-                    </tbody>
-                  </Table>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-      ) :
+                            <td>
+                              <EditTriggerCard
+                                id={trigger.id}
+                                userId={userId}
+                                data={data}
+                                setData={setData}
+                                name={trigger.name}
+                                status={trigger.status}
+                              />
+                            </td>
+                            <td>
+                              <DeleteTriggerCardX
+                                id={trigger.id}
+                                userId={userId}
+                                data={data}
+                                setData={setData}
+                                isUpdated={isUpdated}
+                                setIsUpdated={setIsUpdated}
+                              />
+                            </td>
+                          </tr>
+                        ),
+                    )}
+                  </tbody>
+                </Table>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      ) : (
         <Row>
           <Col>
             <p>

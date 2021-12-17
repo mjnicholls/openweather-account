@@ -9,9 +9,14 @@ import DeleteTrigger from './DeleteTrigger'
 const DeleteTriggerCard = ({ id, userId, data, setData }) => {
   const [alert, setAlert] = React.useState(null)
 
-
   const hideAlert = () => {
-    setAlert()
+    setAlert(null)
+  }
+
+
+  const onCancel = () => {
+    console.log("Click on cacncel")
+    hideAlert()
   }
 
   const htmlAlert = () => {
@@ -19,7 +24,7 @@ const DeleteTriggerCard = ({ id, userId, data, setData }) => {
       <ReactBSAlert
         title="Delete Trigger?"
         onConfirm={() => hideAlert()}
-        onCancel={() => hideAlert()}
+        onCancel={onCancel}
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"

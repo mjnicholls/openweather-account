@@ -2,10 +2,8 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-const StatusToggle = ({ tempStatus, setTempStatus }) => {
-
-  return (
-    <div className='statusToggle'>
+const StatusToggle = ({ tempStatus, setTempStatus }) => (
+  <div className="statusToggle">
     <label className="switch">
       <input
         type="checkbox"
@@ -16,9 +14,8 @@ const StatusToggle = ({ tempStatus, setTempStatus }) => {
       />
       <span className="slider round"></span>
     </label>
-    </div>
-    )
-}
+  </div>
+)
 
 StatusToggle.propTypes = {
   tempStatus: PropTypes.string,

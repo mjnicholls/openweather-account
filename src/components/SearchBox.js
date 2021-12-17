@@ -24,10 +24,9 @@ const SearchBox = ({
   const [activeTab, setActiveTab] = useState('location')
 
   return (
-    <>
+    <div className="mt-3">
+      <h6 className=""> Search location by {activeTab === 'location' ? 'name' : 'coordinates'}</h6>
       {activeTab === 'location' ? (
-        <Row className="search-fox">
-          <Col>
             <AutoCompleteForm
               mapRef={mapRef}
               setLocation={setLocation}
@@ -40,35 +39,8 @@ const SearchBox = ({
               isSet={isSet}
               setIsSet={setIsSet}
             />
-          </Col>
-          <Row className="mt-1 text-end">
-            <Col className="text-end">
-              <Button
-                size="sm"
-                className={classNames('button-active shadow-none', {
-                  active: activeTab === 'location',
-                })}
-                onClick={() => setActiveTab('location')}
-                aria-pressed="true"
-              >
-                <span>Location</span>
-              </Button>
-              <Button
-                size="sm"
-                className={classNames('button-neutral shadow-none', {
-                  active: activeTab === 'coordinates',
-                })}
-                onClick={() => setActiveTab('coordinates')}
-                aria-pressed="true"
-              >
-                <span>Coordinates</span>
-              </Button>
-            </Col>
-          </Row>
-        </Row>
+
       ) : (
-        <Row className="search-fox">
-          <Col>
             <CoordinatesSearch
               mapRef={mapRef}
               setLocation={setLocation}
@@ -78,34 +50,26 @@ const SearchBox = ({
               isSet={isSet}
               setIsSet={setIsSet}
             />
-          </Col>
-          <Row className="mt-3 text-end">
-            <Col className="text-end">
-              <Button
-                size="sm"
-                className={classNames('button-neutral shadow-none', {
-                  active: activeTab === 'location',
-                })}
-                onClick={() => setActiveTab('location')}
-                aria-pressed="true"
-              >
-                <span>Location</span>
-              </Button>
-              <Button
-                size="sm"
-                className={classNames('button-active shadow-none', {
-                  active: activeTab === 'coordinates',
-                })}
-                onClick={() => setActiveTab('coordinates')}
-                aria-pressed="true"
-              >
-                <span>Coordinates</span>
-              </Button>
-            </Col>
-          </Row>
-        </Row>
       )}
-    </>
+      <Row className="mt-3 text-end">
+        <Col className="text-end">
+          <Button
+            className= {`shadow-none ${activeTab === 'location' ? 'button-active' : 'button-neutral' }`}
+            onClick={() => setActiveTab('location')}
+            aria-pressed="true"
+          >
+            <span>Location</span>
+          </Button>
+          <Button
+            className= {`shadow-none ${activeTab === 'location' ?  'button-neutral' : 'button-active' }`}
+            onClick={() => setActiveTab('coordinates')}
+            aria-pressed="true"
+          >
+            <span>Coordinates</span>
+          </Button>
+        </Col>
+      </Row>
+    </div>
   )
 }
 

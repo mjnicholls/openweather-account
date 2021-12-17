@@ -4,17 +4,16 @@ import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { Close } from 'react-ikonate'
 import { Button } from 'reactstrap'
+
 import { getTriggers } from '../api/api'
 import DeleteTrigger from './DeleteTrigger'
 
 const DeleteTriggerCardX = ({ id, userId, data, setData }) => {
-  
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
     setAlert(null)
   }
-
 
   const htmlAlert = () => {
     setAlert(

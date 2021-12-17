@@ -146,8 +146,12 @@ const ViewTrigger = () => {
         <p>Your trigger has been updated.</p>
 
         <Col className="text-end">
-          <Link to="/dashboard/triggers" className="button-active shadow-none" role="button">
-              Back to all triggers
+          <Link
+            to="/dashboard/triggers"
+            className="button-active shadow-none"
+            role="button"
+          >
+            Back to all triggers
           </Link>
         </Col>
       </ReactBSAlert>,
@@ -172,7 +176,12 @@ const ViewTrigger = () => {
         <p>{JSON.stringify(whoops).slice(1, -1)}</p>
         <br />
         <Col className="text-end">
-          <Button className="button-active shadow-none" href="mailto:info@openweathermap.org">Contact</Button>
+          <Button
+            className="button-active shadow-none"
+            href="mailto:info@openweathermap.org"
+          >
+            Contact
+          </Button>
         </Col>
       </ReactBSAlert>,
     )
@@ -234,7 +243,6 @@ const ViewTrigger = () => {
                   <StatusToggle
                     tempStatus={tempStatus}
                     setTempStatus={setTempStatus}
-            
                   />
                 </Col>
               </Row>
@@ -324,8 +332,12 @@ const ViewTrigger = () => {
 
               <Row className="search-box">
                 <Col className="text-left">
-                  <Link to="/dashboard/triggers" className="button-neutral shadow-none" role="button">
-                 Back
+                  <Link
+                    to="/dashboard/triggers"
+                    className="button-neutral shadow-none"
+                    role="button"
+                  >
+                    Back
                   </Link>
                 </Col>
                 <Col className="text-end">

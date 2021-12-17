@@ -66,12 +66,6 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
 
   return (
     <>
-      <Row className="mt-3">
-        <Col className="mb-2">
-          <h6>Search location by coordinates</h6>
-        </Col>
-      </Row>
-
       <Row className="search-fox">
         <Col md="1">Lat</Col>
         <Col md="4">

@@ -73,12 +73,15 @@ const Events = () => {
                   <Col className="mb-0" md="12" mt="10">
                     <Card className="mb-5">
                       <CardHeader>
-                        <div className="d-flex align-items-center justify-content-between" style={{paddingTop: "8pt", paddingBottom: "8pt"}}>
-                        <h3 className="mb-0">{toDate(day.day)}</h3>
-                        <NumberEventsBadge number={day.triggers.length} />
+                        <div
+                          className="d-flex align-items-center justify-content-between"
+                          style={{ paddingTop: '8pt', paddingBottom: '8pt' }}
+                        >
+                          <h3 className="mb-0">{toDate(day.day)}</h3>
+                          <NumberEventsBadge number={day.triggers.length} />
                         </div>
                       </CardHeader>
-                      <CardBody>
+                      <CardBody className="p-0">
                         {day.triggers.length ? (
                           day.triggers
                             .slice(0, openEventsN)
@@ -117,7 +120,7 @@ const Events = () => {
                               {day.triggers
                                 .slice(openEventsN)
                                 .map((trigger, index) => (
-                                  <EventOld
+                                  <Event
                                     trigger={trigger}
                                     index={index + openEventsN}
                                     key={trigger.id}

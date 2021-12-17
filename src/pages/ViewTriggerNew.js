@@ -113,8 +113,12 @@ const ViewTrigger = () => {
         <p>Your trigger has been updated.</p>
 
         <Col className="text-end">
-        <Link to="/dashboard/triggers" className="button-active shadow-none" role="button">
-              Back to all triggers
+          <Link
+            to="/dashboard/triggers"
+            className="button-active shadow-none"
+            role="button"
+          >
+            Back to all triggers
           </Link>
         </Col>
       </ReactBSAlert>,
@@ -195,7 +199,7 @@ const ViewTrigger = () => {
 
           <Row>
             <Col className="mb-3">
-              <h6>Trigger Condition</h6>
+              <h6>An event is generated when</h6>
               <ThumbnailCondition condition={condition} />
             </Col>
           </Row>
@@ -203,7 +207,7 @@ const ViewTrigger = () => {
           <Row>
             <Col className="mb-3">
               <h6>Notify me</h6>
-              <p>{notificationText(days)}</p>
+              <span>{notificationText(days)}</span>
             </Col>
           </Row>
 

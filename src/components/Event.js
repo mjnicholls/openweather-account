@@ -4,7 +4,7 @@ import { EnvelopeAlt } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import {conditionToText, notificationText} from '../utils/utils'
+import { conditionToText, notificationText } from '../utils/utils'
 import ThumbnailCondition from './ThumbnailCondition'
 import ThumbnailLocation from './ThumbnailLocation'
 
@@ -15,13 +15,13 @@ const Event = ({ trigger, index }) => {
   const emailsRecipients = trigger.recipients.length
 
   return (
-    <div className="mb-4" style={{borderBottom: "1px solid #f2f2f2"}}>
-      <div className=" single-event">
+    <div  style={{ borderBottom: '1px solid #f2f2f2' }}>
+      <div className="single-event p-4">
         <div>{index + 1}</div>
         <div>
           <Link
             to={{
-              pathname: '/trigger',
+              pathname: '/dashboard/trigger',
               state: trigger,
             }}
           >
@@ -44,9 +44,7 @@ const Event = ({ trigger, index }) => {
                 emailsRecipients === 1 ? '' : 's'
               } sent`}
             />
-            <span
-              className="ms-1 small-text"
-            >
+            <span className="ms-1 small-text">
               {`${emailsRecipients} email${
                 emailsRecipients === 1 ? '' : 's'
               } sent`}

@@ -1008,7 +1008,7 @@ a {
     text-align: left!important;
 
   }
-  Label {
+  label {
     text-align: left!important;
   }
   p {
@@ -1028,7 +1028,7 @@ a {
 
   thead {
     th {
-      padding: 8pt;
+      padding: 16pt;
     }
   }
 
@@ -1038,13 +1038,17 @@ a {
     }
     tr {
       td {
-        padding: 8pt;
+        padding: 16pt;
         border-top: 1px solid $brand-grey;
         border-bottom: none;
       }
     }
   }
 
+}
+
+.padded {
+  padding: 8pt;
 }
 
 .padded-block {
@@ -1054,7 +1058,7 @@ a {
 }
 
 .thumbnail {
-  padding: 8pt;
+
   display: flex;
   align-items: center;
   margin-right: 8pt;

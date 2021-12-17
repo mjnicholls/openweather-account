@@ -11,7 +11,6 @@ import htmlError from '../pages/CreateTrigger'
 import StatusToggle from './StatusToggle'
 
 const EditTrigger = ({ userId, id, name, status, setData, close }) => {
-  
   const [error, setError] = useState({})
 
   const [activeName, setActiveName] = useState(name)
@@ -79,7 +78,6 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
 
   return (
     <div>
-      <hr />
       {isUpdated ? (
         <>
           <Row>
@@ -100,7 +98,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
         </>
       ) : (
         <>
-          <Row className="search-box">
+          <Row className="search-box text-start">
             <Col md="8">
               <Label> Name </Label>
               <Input
@@ -123,7 +121,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
               </div>
             </Col>
             <Col md="4">
-              <Label> Trigger On/Off </Label>
+              <Label>{tempStatus === "on" ? "Active" : "Inactive"}</Label>
               <StatusToggle
                 tempStatus={tempStatus}
                 setTempStatus={setTempStatus}

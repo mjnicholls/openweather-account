@@ -33,7 +33,7 @@ const DeleteTrigger = ({ id, userId, setData, close }) => {
       })
   }
 
-    useEffect(() => {
+  useEffect(() => {
     getEventsByTriggerId(id, userId)
       .then((res) => {
         setEvents(res.data)
@@ -53,14 +53,14 @@ const DeleteTrigger = ({ id, userId, setData, close }) => {
           </Row>
           <Row>
             <Col className="text-end">
-                <Button
-                  className="button-active shadow-none"
-                  data-dismiss="modal"
-                  type="button"
-                  onClick={close}
-                >
-                  Back to Triggers
-                </Button>
+              <Button
+                className="button-active shadow-none"
+                data-dismiss="modal"
+                type="button"
+                onClick={close}
+              >
+                Back to Triggers
+              </Button>
             </Col>
           </Row>
         </>
