@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useRef, useState, useEffect } from 'react'
 
 import { css } from '@emotion/react'
@@ -14,6 +15,7 @@ import EmailNotifs from '../components/EmailNotifcation'
 import GoogleMapCreate from '../components/GoogleMapCreate'
 import PriorNotifs from '../components/PriorNotifications'
 import SearchBox from '../components/SearchBox'
+// import SearchBoxNew from '../components/SearchBoxNew'
 import LocationName from '../components/LocationName'
 import TriggerNameOnly from '../components/TriggerNameOnly'
 import '../App.scss'
