@@ -27,7 +27,9 @@ const Event = ({ trigger, index }) => {
           >
             <h6 className="m-0">{trigger.name}</h6>
           </Link>
-          <ThumbnailLocation location={trigger.location} />
+          <div className="mt-2">
+            <ThumbnailLocation location={trigger.location} />
+          </div>
           <span>{conditionToText(trigger.condition)}</span>
         </div>
         {emailsAllowed && (
