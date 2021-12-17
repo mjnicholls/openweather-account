@@ -99,7 +99,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
         </>
       ) : (
         <>
-          <Row className="search-box text-start">
+          <Row className="container-main text-start">
             <Col md="8">
               <Label> Name </Label>
               <Input

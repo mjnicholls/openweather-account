@@ -127,9 +127,7 @@ const CreateTrigger = () => {
   }
 
   const errorAlert = () => {
-    setAlert(
-      <ErrorModal setWhoops={setWhoops} whoops={whoops} close={hideAlert} />,
-    )
+    setAlert(<ErrorModal whoops={whoops} close={hideAlert} />)
   }
 
   const tariffError = () => {

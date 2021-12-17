@@ -9,7 +9,7 @@ import '../App.scss'
 const TriggerNameOnly = ({ name, setName, error }) => (
   <>
     <h6>Trigger name</h6>
-    <div className="search-fox">
+    <div className="container-main">
       <Input
         type="text"
         onChange={(e) => setName(e.target.value)}
