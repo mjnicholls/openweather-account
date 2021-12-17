@@ -1,26 +1,25 @@
 /* eslint-disable */
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 import AutoCompleteFormNew from './AutoCompleteFormNew'
 
 const SearchBoxNew = ({
-    mapRef,
-    location,
-    setLocation,
-    error,
-    name,
-    setName,
-    isName,
-    setIsName,
-    isSet,
-    setIsSet
-  }) => {
-
+  mapRef,
+  location,
+  setLocation,
+  error,
+  name,
+  setName,
+  isName,
+  setIsName,
+  isSet,
+  setIsSet,
+}) => {
   const [activeTab, setActiveTab] = useState('location')
 
   return (
     <div>
-      {activeTab ?
+      {activeTab ? (
         <AutoCompleteFormNew
           mapRef={mapRef}
           setLocation={setLocation}
@@ -32,7 +31,8 @@ const SearchBoxNew = ({
           setName={setName}
           isSet={isSet}
           setIsSet={setIsSet}
-        /> : null}
+        />
+      ) : null}
     </div>
   )
 }
