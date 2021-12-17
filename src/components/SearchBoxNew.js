@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react'
 
 import { Button } from 'reactstrap'
@@ -17,12 +16,14 @@ const SearchBoxNew = ({
   setIsName,
   isSet,
   setIsSet,
+  searchBoxRef,
+  isDropDown,
+  setIsDropDown
 }) => {
   const [isSearchByName, setIsSearchByName] = useState(true)
-  const [isDropDown, setIsDropDown] = useState(false)
 
   return (
-    <div className="my-3">
+    <div className="my-3" style={{position: "relative"}} ref={searchBoxRef}>
       {isSearchByName ? (
         <AutoCompleteFormNew
           mapRef={mapRef}
@@ -47,10 +48,32 @@ const SearchBoxNew = ({
           setName={setName}
           isSet={isSet}
           setIsSet={setIsSet}
+          isDropDown={isDropDown}
+          setIsDropDown={setIsDropDown}
         />
       )}
       {isDropDown && (
-        <div className="padded">
+        <div className="padded search-pop-up" style={{display: "flex", justifyContent: "space-between"}}>
+          <div>
+            <Button
+              className={`padded-button ${
+                isSearchByName ? 'padded-button-active' : ''
+              }`}
+              onClick={() => setIsSearchByName(true)}
+              aria-pressed="true"
+            >
+              <span>Location</span>
+            </Button>
+            <Button
+              className={`padded-button ${
+                isSearchByName ? '' : 'padded-button-active'
+              }`}
+              onClick={() => setIsSearchByName(false)}
+              aria-pressed="true"
+            >
+              <span>Coordinates</span>
+            </Button>
+          </div>
           <Button
             className={`padded-button ${
               isSearchByName ? 'padded-button-active' : ''
@@ -58,16 +81,7 @@ const SearchBoxNew = ({
             onClick={() => setIsSearchByName(true)}
             aria-pressed="true"
           >
-            <span>Location</span>
-          </Button>
-          <Button
-            className={`padded-button ${
-              isSearchByName ? '' : 'padded-button-active'
-            }`}
-            onClick={() => setIsSearchByName(false)}
-            aria-pressed="true"
-          >
-            <span>Coordinates</span>
+            <span>Set</span>
           </Button>
         </div>
       )}

@@ -15,6 +15,33 @@ const Condition = ({ condition, setCondition }) => {
     setCondition(newCondition)
   }
 
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? '#f2f2f2' : '#ffffff',
+      color: "#48484a",
+      padding: "8pt",
+    }),
+    control: (provided) => ({
+      // none of react-select's styles are passed to <Control />
+      // width: 200,
+      ...provided,
+      borderRadius: 0,
+      border: "none",
+      borderBottom: "1px solid #ced4da",
+      padding: "4pt 0",
+      boxShadow: 'none'
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: 0,
+      margin: 0,
+      padding: 0,
+      borderColor: "#ced4da",
+      boxShadow: "rgba(0, 0, 0, 0.28) 0px 8px 28px"
+    })
+  }
+
   return (
     <>
       <Row>
@@ -25,13 +52,14 @@ const Condition = ({ condition, setCondition }) => {
 
       <Row className="search-box">
         <Col md="6">
-          <Label className="conditions">Weather parameter</Label>
+          <Label>Weather parameter</Label>
           <FormGroup>
             <Select
               value={variables.find((el) => el.value === condition.variable)}
               onChange={(option) => handleChange('variable', option.value)}
               classNamePrefix="react-select"
               options={variables}
+              styles={customStyles}
             />
           </FormGroup>
           <Label className="conditions">Condition</Label>
@@ -41,6 +69,7 @@ const Condition = ({ condition, setCondition }) => {
               onChange={(option) => handleChange('condition', option.value)}
               classNamePrefix="react-select"
               options={conditions}
+              styles={customStyles}
             />
           </FormGroup>
         </Col>
@@ -53,6 +82,7 @@ const Condition = ({ condition, setCondition }) => {
                 handleChange('value', parseFloat(e.target.value))
               }
               value={condition.value}
+              className="input-marketplace"
             />
           </FormGroup>
           <Label className="conditions">Units</Label>
@@ -62,6 +92,7 @@ const Condition = ({ condition, setCondition }) => {
               value={units.find((el) => el.value === condition.units)}
               onChange={(option) => handleChange('units', option.value)}
               options={units}
+              styles={customStyles}
             />
           </FormGroup>
         </Col>

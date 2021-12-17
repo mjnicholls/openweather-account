@@ -1013,7 +1013,7 @@ a {
   }
 }
 
-input.input-marketplace {
+@mixin mp-input {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
   background-color: transparent;
@@ -1043,6 +1043,16 @@ input.input-marketplace {
   &.danger-border {
     border-color: $danger-red;
   }
+}
+
+.input-marketplace {
+  input {
+    @include mp-input;
+  }
+}
+
+input.input-marketplace, input.marketplace-input__input {
+  @include mp-input;
 }
 
 .padded-button {
@@ -1087,4 +1097,15 @@ input.input-marketplace {
   &.hdpi.pac-logo:after {
     background-image: none;
   }
+}
+
+.search-pop-up {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.28) 0px 8px 28px;
+  margin: 0;
+  padding: 15px 10px;
+  outline: none;
 }

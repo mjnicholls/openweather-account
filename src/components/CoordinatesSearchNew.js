@@ -8,7 +8,7 @@ import { Col, Row, FormGroup, Button, Input } from 'reactstrap'
 import { noBlankErrorMessage } from '../config'
 import placeMarker from './placeMarker'
 
-const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
+const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet, isDropDown, setIsDropDown }) => {
   const [error, setError] = useState({})
 
   const latRangeError = 'Value cannot be below -90 or above 90'
@@ -46,6 +46,11 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
     return true
   }
 
+
+  const onFocus = () => {
+    setIsDropDown(true)
+  }
+
   const onSetLocationClick = () => {
     if (validate()) {
       /* eslint-disable-next-line */
@@ -77,6 +82,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
             setLocation({ ...location, lat: parseFloat(e.target.value) })
           }}
           placeholder="Latitude"
+          onFocus={onFocus}
         />
         <div
           className={classnames(
@@ -98,6 +104,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
             setLocation({ ...location, lon: parseFloat(e.target.value) })
           }}
           placeholder="Longitude"
+          onFocus={onFocus}
         />
         <div
           className={classnames(

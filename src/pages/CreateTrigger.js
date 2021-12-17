@@ -181,6 +181,20 @@ const CreateTrigger = () => {
 
   const [data, setData] = useState([])
 
+
+  const [isDropDown, setIsDropDown] = useState(false)
+  const searchBoxRef = useRef();
+
+  const handleClickOtsideSearchBox = e => {
+    if (searchBoxRef.current.contains(e.target)) {
+      // inside click
+      return;
+    }
+    setIsDropDown(false)
+    // outside click
+    // ... do whatever on click outside here ...
+};
+
   useEffect(() => {
     setIsLoading(true)
     getTriggers(userId)
@@ -194,6 +208,15 @@ const CreateTrigger = () => {
         setIsLoading(false)
       })
   }, [userId])
+
+  useEffect(() => {
+    // add when mounted
+    document.addEventListener("mousedown", handleClickOtsideSearchBox);
+    // return function to be called when unmounted
+    return () => {
+      document.removeEventListener("mousedown", handleClickOtsideSearchBox);
+    };
+  }, []);
 
   const handleChange = (key, value) => {
     const newLocation = { ...location }
@@ -228,6 +251,9 @@ const CreateTrigger = () => {
                 name={name}
                 isSet={isSet}
                 setIsSet={setIsSet}
+                searchBoxRef={searchBoxRef}
+                isDropDown={isDropDown}
+                setIsDropDown={setIsDropDown}
               />
               {isSet ? <LocationName location={location} /> : null}
               <Condition condition={condition} setCondition={setCondition} />
