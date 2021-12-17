@@ -6,7 +6,7 @@ import { Row, Col, Button } from 'reactstrap'
 
 import { getEvents } from '../api/api'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
-import Days from '../components/Days'
+import Day from '../components/Day'
 import EventPlaceholder from '../components/EventPlaceholder'
 import '../App.scss'
 
@@ -62,7 +62,13 @@ const Events = () => {
       ) : data.length ? (
         <Row>
           {data.map((day) => (
-            <Days day={day} />
+            <Col md="6">
+              <Row>
+                <Col className="mb-0" md="12" mt="10">
+                  <Day day={day} key={day.day} />
+                </Col>
+              </Row>
+            </Col>
           ))}
         </Row>
       ) : (
