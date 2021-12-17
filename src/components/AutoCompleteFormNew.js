@@ -1,10 +1,8 @@
-/*eslint-disable*/
 import React from 'react'
 import '../App.scss'
 import classnames from 'classnames/index'
 import PropTypes from 'prop-types'
 import Autocomplete from 'react-google-autocomplete'
-import { Col, Row, FormGroup } from 'reactstrap'
 import placeMarker from './placeMarker'
 
 const AutoCompleteForm = ({
@@ -13,6 +11,8 @@ const AutoCompleteForm = ({
   setLocation,
   error,
   setIsSet,
+  isDropDown,
+  setIsDropDown,
 }) => {
 
   const onPlaceSelected = (place) => {
@@ -37,8 +37,16 @@ const AutoCompleteForm = ({
     }
   }
 
+  const onFocus = () => {
+    setIsDropDown(true)
+  }
+
+  const onBlur = () => {
+    setIsDropDown(false)
+  }
+
   return (
-    <div>
+    <>
       <Autocomplete
         apiKey={process.env.REACT_APP_GOOGLE_MAP_KEY}
         className={`input-marketplace ${error.location ? 'danger-border' : ''}`}
@@ -49,7 +57,10 @@ const AutoCompleteForm = ({
         onChange={(e) => {
           setLocation({ ...location, name: e.target.value })
         }}
+        onFocus={onFocus}
+        // onBlur={onBlur}
         value={location.name}
+        placeholder="Enter location"
       />
       <div
         className={classnames(
@@ -59,7 +70,7 @@ const AutoCompleteForm = ({
       >
         {error.location}
       </div>
-    </div>
+    </>
   )
 }
 

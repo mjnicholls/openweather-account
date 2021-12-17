@@ -8,18 +8,16 @@ import '../App.scss'
 
 const TriggerNameOnly = ({ name, setName, error }) => (
   <>
-    <h6>Trigger name</h6>
-    <div className="search-fox">
-      <Input
-        type="text"
-        onChange={(e) => setName(e.target.value)}
-        className={error.name ? 'danger-border' : ''}
-      />
-      <div
-        className={classNames('invalid-feedback ', error.name ? 'd-block' : '')}
-      >
-        {error.name}
-      </div>
+    <Input
+      type="text"
+      onChange={(e) => setName(e.target.value)}
+      className={`input-marketplace ${error.name ? 'danger-border' : ''}`}
+      placeholder="Enter trigger name"
+    />
+    <div
+      className={classNames('invalid-feedback ', error.name ? 'd-block' : '')}
+    >
+      {error.name}
     </div>
   </>
 )

@@ -14,8 +14,8 @@ import EmailNotifs from '../components/EmailNotifcation'
 import GoogleMapCreate from '../components/GoogleMapCreate'
 import LocationName from '../components/LocationName'
 import PriorNotifs from '../components/PriorNotifications'
-import SearchBox from '../components/SearchBox'
-// import SearchBoxNew from '../components/SearchBoxNew'
+// import SearchBox from '../components/SearchBox'
+import SearchBox from '../components/SearchBoxNew'
 import TriggerNameOnly from '../components/TriggerNameOnly'
 import '../App.scss'
 import { noBlankErrorMessage } from '../config'
@@ -216,7 +216,7 @@ const CreateTrigger = () => {
         <Row>
           <Col md="7">
             {alert}
-            <h2>Create Trigger</h2>
+            <h2>New trigger</h2>
             <div className="pt-5 pb-5">
               <TriggerNameOnly name={name} setName={setName} error={error} />
               <SearchBox
