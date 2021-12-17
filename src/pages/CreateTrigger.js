@@ -19,6 +19,7 @@ import SearchBox from '../components/SearchBox'
 import TriggerNameOnly from '../components/TriggerNameOnly'
 import '../App.scss'
 import { noBlankErrorMessage } from '../config'
+import ErrorModal from '../components/ErrorModal'
 
 const selectUserId = (state) => state.auth.user.id
 
@@ -110,7 +111,7 @@ const CreateTrigger = () => {
       .catch((err) => {
         if (err.response) {
           setWhoops(err.response.data.message)
-          htmlError()
+          errorAlert()
         }
       })
   }
@@ -125,32 +126,9 @@ const CreateTrigger = () => {
     setAlert(<CreateTriggerCard close={hideAlert} />)
   }
 
-  const htmlError = () => {
+  const errorAlert = () => {
     setAlert(
-      <ReactBSAlert
-        title="Whoops!"
-        onConfirm={() => hideAlert()}
-        onCancel={() => hideAlert()}
-        showConfirm={false}
-        showCloseButton
-        customClass="bs-alerts"
-      >
-        <br />
-        <p>
-          Something went wrong on our end. Please make note of the error message
-          below and contact us:
-        </p>
-        <p>{JSON.stringify(whoops).slice(1, -1)}</p>
-        <br />
-        <Col className="text-end">
-          <Button
-            className="button-active shadow-none"
-            href="mailto:info@openweathermap.org"
-          >
-            Contact
-          </Button>
-        </Col>
-      </ReactBSAlert>,
+      <ErrorModal setWhoops={setWhoops} whoops={whoops} close={hideAlert} />,
     )
   }
 

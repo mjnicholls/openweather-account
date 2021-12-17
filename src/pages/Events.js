@@ -62,15 +62,13 @@ const Events = () => {
       ) : data.length ? (
         <Row>
           {data.map((day) => (
-            <React.Fragment key={day.day}>
-              <Col md="6">
-                <Row>
-                  <Col className="mb-0" md="12" mt="10">
-                    <Day day={day} />
-                  </Col>
-                </Row>
-              </Col>
-            </React.Fragment>
+            <Col md="6">
+              <Row>
+                <Col className="mb-0" md="12" mt="10">
+                  <Day day={day} key={day.day} />
+                </Col>
+              </Row>
+            </Col>
           ))}
         </Row>
       ) : (

@@ -9,6 +9,7 @@ import { Row, Col, Input, Button } from 'reactstrap'
 import { patchTrigger } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import EmailList from '../components/EmailList'
+import ErrorModal from '../components/ErrorModal'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import StatusToggle from '../components/StatusToggle'
 import ThumbnailLocation from '../components/ThumbnailLocation'
@@ -89,7 +90,7 @@ const ViewTrigger = () => {
           if (err.response) {
             console.log(err.response.data.message)
             setWhoops(err.response.data.message)
-            htmlError()
+            errorAlert()
           }
         })
     }
@@ -125,30 +126,11 @@ const ViewTrigger = () => {
     )
   }
 
-  const htmlError = () => {
+  const errorAlert = () => {
     setAlert(
-      <ReactBSAlert
-        title="Whoops!"
-        onConfirm={() => hideAlert()}
-        onCancel={() => hideAlert()}
-        showConfirm={false}
-        showCloseButton
-        customClass="bs-alerts"
-      >
-        <br />
-        <p>
-          Something went wrong on our end. Please make note of the error message
-          below and contact us:
-        </p>
-        <p>{JSON.stringify(whoops).slice(1, -1)}</p>
-        <br />
-        <Col className="text-end">
-          <Button className="button-active shadow-none">Contact</Button>
-        </Col>
-      </ReactBSAlert>,
+      <ErrorModal setWhoops={setWhoops} whoops={whoops} close={hideAlert} />,
     )
   }
-
   return (
     <div>
       {alert}
