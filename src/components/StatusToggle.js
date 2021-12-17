@@ -17,8 +17,11 @@ const StatusToggle = ({ tempStatus, setTempStatus }) => (
           opacity: 0;
           width: 0;
           height: 0;
-          &:checked + span:before {
+          &:checked + span {
             background-color: #78cbbf;
+          }
+          &:checked + span:before {
+            background-color: white;
             -webkit-transform: translateX(26px);
             -ms-transform: translateX(26px);
             transform: translateX(26px);
@@ -36,7 +39,6 @@ const StatusToggle = ({ tempStatus, setTempStatus }) => (
       <span
         css={css`
           position: absolute;
-          box-shadow: 0 0 1px #2196f3;
           cursor: pointer;
           top: 0;
           left: 0;
@@ -53,10 +55,11 @@ const StatusToggle = ({ tempStatus, setTempStatus }) => (
             width: 26px;
             left: 4px;
             bottom: 4px;
+            background-color: white;
             border-radius: 50%;
             -webkit-transition: 0.4s;
             transition: 0.4s;
-            background-color: red;
+            background-color: #78cbbf;
           }
         `}
       ></span>

@@ -178,7 +178,7 @@ const ViewTrigger = () => {
       ) : (
         <>
           {alert}
-          <Row className="trigger-card">
+          <Row className="container-main">
             <Col md="7">
               <h2>Trigger Card</h2>
               <Row>
