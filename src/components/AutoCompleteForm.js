@@ -38,7 +38,7 @@ const AutoCompleteForm = ({
 
   return (
     <div>
-      <Row className="search-fox">
+      <Row className="container-main">
         <Col className="mb-2">
           <FormGroup>
             <Autocomplete

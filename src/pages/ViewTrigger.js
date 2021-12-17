@@ -308,7 +308,7 @@ const ViewTrigger = () => {
                 </Col>
               </Row>
 
-              <Row className="search-box">
+              <Row className="container-main">
                 <Col className="text-left">
                   <Link
                     to="/dashboard/triggers"

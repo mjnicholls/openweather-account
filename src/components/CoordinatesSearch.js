@@ -66,7 +66,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
 
   return (
     <>
-      <Row className="search-fox">
+      <Row className="container-main">
         <Col md="1">Lat</Col>
         <Col md="4">
           <Input

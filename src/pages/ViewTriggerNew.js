@@ -197,7 +197,7 @@ const ViewTrigger = () => {
 
           <EventList triggerId={id} />
 
-          <Row className="search-box">
+          <Row className="container-main">
             <Col className="text-left">
               <Link to="/dashboard/triggers">
                 <Button className="button-neutral shadow-none">Back</Button>

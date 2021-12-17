@@ -50,7 +50,7 @@ const Condition = ({ condition, setCondition }) => {
         </Col>
       </Row>
 
-      <Row className="search-box">
+      <Row className="container-main">
         <Col md="6">
           <Label>Weather parameter</Label>
           <FormGroup>

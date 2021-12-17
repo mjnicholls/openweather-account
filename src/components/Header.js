@@ -85,39 +85,30 @@ const HeaderTrigger = () => {
               </div>
             </li>
             <li>
-              <a className="text-nowrap" href="/dashboard/events">
-                Events
-              </a>
+              <a href="/dashboard/events">Events</a>
             </li>
             <li>
-              <a href="/dashboard/triggers" className="text-nowrap">
-                Triggers
-              </a>
+              <a href="/dashboard/triggers">Triggers</a>
             </li>
             <li>
-              <a href="/" className="text-nowrap">
-                Documentation
-              </a>
+              <a href="/">Documentation</a>
             </li>
 
             <li>
-              <a
-                className="marketplace text-nowrap"
-                href="/dashboard/triggers/create"
-              >
+              <a className="marketplace" href="/dashboard/triggers/create">
                 New Trigger
               </a>
             </li>
             {userName ? (
-              <li className="nav-item dropdown text-nowrap d-none d-lg-block">
+              <li className="nav-item dropdown d-none d-lg-block">
                 <a
                   href="/"
-                  className="dropdown-toggle header-link text-nowrap username"
+                  className="dropdown-toggle header-link username"
                   data-toggle="dropdown"
                 >
-                  {userName}
+                  {userName.slice(0, 6)}...
                 </a>
-                <div className="dropdown-menu text-nowrap">
+                <div className="dropdown-menu">
                   <a
                     href="https://home.openweathermap.org/myservices"
                     target="_blank"
@@ -153,7 +144,6 @@ const HeaderTrigger = () => {
             ) : (
               <li>
                 <a
-                  className="text-nowrap"
                   href="https://home.openweathermap.org/users/sign_in"
                   target="_blank"
                 >
@@ -162,12 +152,7 @@ const HeaderTrigger = () => {
               </li>
             )}
             <li>
-              <a
-                href="https://home.openweathermap.org/questions"
-                className="text-nowrap"
-              >
-                Support
-              </a>
+              <a href="https://home.openweathermap.org/questions">Support</a>
             </li>
           </ul>
         </div>

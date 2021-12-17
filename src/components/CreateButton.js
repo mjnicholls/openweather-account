@@ -5,7 +5,7 @@ import '../App.scss'
 
 const CreateButton = () => (
   <>
-    <Row className="search-box">
+    <Row className="container-main">
       <Col md="8"></Col>
       <Col md="2">
         <Button>Cancel</Button>
