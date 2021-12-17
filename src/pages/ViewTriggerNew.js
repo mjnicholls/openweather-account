@@ -113,10 +113,8 @@ const ViewTrigger = () => {
         <p>Your trigger has been updated.</p>
 
         <Col className="text-end">
-          <Link to="/triggers">
-            <Button className="button-active shadow-none">
+        <Link to="/dashboard/triggers" className="button-active shadow-none" role="button">
               Back to all triggers
-            </Button>
           </Link>
         </Col>
       </ReactBSAlert>,
@@ -132,14 +130,13 @@ const ViewTrigger = () => {
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"
-        style={{ fontFamily: '$highlight-font-family', borderRadius: '12px' }}
       >
         <br />
         <p>
           Something went wrong on our end. Please make note of the error message
           below and contact us:
         </p>
-        <p style={{ color: 'red' }}>{JSON.stringify(whoops).slice(1, -1)}</p>
+        <p>{JSON.stringify(whoops).slice(1, -1)}</p>
         <br />
         <Col className="text-end">
           <Button className="button-active shadow-none">Contact</Button>
@@ -216,7 +213,7 @@ const ViewTrigger = () => {
 
           <Row className="search-box">
             <Col className="text-left">
-              <Link to="/triggers">
+              <Link to="/dashboard/triggers">
                 <Button className="button-neutral shadow-none">Back</Button>
               </Link>
             </Col>

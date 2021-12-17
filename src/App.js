@@ -20,10 +20,10 @@ const App = () => (
       <HeaderTrigger />
       <Container fluid="xxl" className="app-content">
         <BrowserRouter>
-          <Route path="/create" component={CreateTrigger} />
-          <Route path="/triggers" component={TriggerList} />
-          <Route path="/trigger" component={ViewTrigger} />
-          <Route path="/events" component={Events} />
+          <Route path="/dashboard/triggers/create" component={CreateTrigger} />
+          <Route path="/dashboard/triggers" component={TriggerList} />
+          <Route path="/dashboard/trigger" component={ViewTrigger} />
+          <Route path="/dashboard/events" component={Events} />
           {/* <Redirect from="/" to="/events" /> */}
         </BrowserRouter>
       </Container>

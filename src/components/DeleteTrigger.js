@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import { Button, Col, Row } from 'reactstrap'
 
 import { deleteTrigger, getEventsByTriggerId, getTriggers } from '../api/api'
 import htmlError from '../pages/CreateTrigger'
 
-const DeleteTrigger = ({ id, userId, setData }) => {
+const DeleteTrigger = ({ id, userId, setData, close }) => {
   const [events, setEvents] = useState([])
 
   const [isUpdated, setIsUpdated] = useState(false)
@@ -15,24 +14,14 @@ const DeleteTrigger = ({ id, userId, setData }) => {
   const confirmDeleteTrigger = () => {
     deleteTrigger(id, userId)
       .then(() => {
+        refreshData()
         setIsUpdated(true)
-        // refreshData()
       })
       // eslint-disable-next-line
       .catch(() => {
         htmlError()
       })
   }
-
-  useEffect(() => {
-    getEventsByTriggerId(id, userId)
-      .then((res) => {
-        setEvents(res.data)
-      })
-      .catch((err) => {
-        console.log('error', err)
-      })
-  }, [id, userId])
 
   const refreshData = () => {
     getTriggers(userId)
@@ -44,6 +33,16 @@ const DeleteTrigger = ({ id, userId, setData }) => {
       })
   }
 
+    useEffect(() => {
+    getEventsByTriggerId(id, userId)
+      .then((res) => {
+        setEvents(res.data)
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+  }, [id, userId])
+
   return (
     <div>
       <hr />
@@ -54,16 +53,14 @@ const DeleteTrigger = ({ id, userId, setData }) => {
           </Row>
           <Row>
             <Col className="text-end">
-              <Link to="/triggers">
                 <Button
                   className="button-active shadow-none"
                   data-dismiss="modal"
                   type="button"
-                  onClick={refreshData}
+                  onClick={close}
                 >
                   Back to Triggers
                 </Button>
-              </Link>
             </Col>
           </Row>
         </>
@@ -105,6 +102,7 @@ const DeleteTrigger = ({ id, userId, setData }) => {
 
 DeleteTrigger.propTypes = {
   id: PropTypes.number,
+  close: PropTypes.func,
   userId: PropTypes.string,
   setData: PropTypes.func,
 }

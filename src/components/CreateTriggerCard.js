@@ -65,7 +65,7 @@ const CreateTriggerCard = ({ close }) => {
           <Col className="pop-up-footer">
             <Link
               role="button"
-              to="/triggers"
+              to="/dashboard/triggers"
               className="button-neutral shadow-none"
             >
               To all triggers
