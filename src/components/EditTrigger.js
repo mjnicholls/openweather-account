@@ -121,7 +121,7 @@ const EditTrigger = ({ userId, id, name, status, setData, close }) => {
               </div>
             </Col>
             <Col md="4">
-              <Label>{tempStatus === "on" ? "Active" : "Inactive"}</Label>
+              <Label>{tempStatus === 'on' ? 'Active' : 'Inactive'}</Label>
               <StatusToggle
                 tempStatus={tempStatus}
                 setTempStatus={setTempStatus}

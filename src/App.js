@@ -23,11 +23,14 @@ const App = () => (
       <Container fluid="xxl" className="app-content">
         <BrowserRouter>
           <Switch>
-          <Route path="/dashboard/triggers/create" component={CreateTrigger} />
-          <Route path="/dashboard/triggers" component={TriggerList} />
-          <Route path="/dashboard/trigger" component={ViewTrigger} />
-          <Route path="/dashboard/events" component={Events} />
-          {/* <Redirect from="/" to="/dashboard/events" /> */}
+            <Route
+              path="/dashboard/triggers/create"
+              component={CreateTrigger}
+            />
+            <Route path="/dashboard/triggers" component={TriggerList} />
+            <Route path="/dashboard/trigger" component={ViewTrigger} />
+            <Route path="/dashboard/events" component={Events} />
+            {/* <Redirect from="/" to="/dashboard/events" /> */}
           </Switch>
         </BrowserRouter>
       </Container>

@@ -15,7 +15,7 @@ const Event = ({ trigger, index }) => {
   const emailsRecipients = trigger.recipients.length
 
   return (
-    <div  style={{ borderBottom: '1px solid #f2f2f2' }}>
+    <div style={{ borderBottom: '1px solid #f2f2f2' }}>
       <div className="single-event p-4">
         <div>{index + 1}</div>
         <div>

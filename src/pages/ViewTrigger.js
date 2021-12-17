@@ -243,6 +243,7 @@ const ViewTrigger = () => {
                   <StatusToggle
                     tempStatus={tempStatus}
                     setTempStatus={setTempStatus}
+                    css={css}
                   />
                 </Col>
               </Row>
