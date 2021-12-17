@@ -767,7 +767,7 @@ a {
 
 @mixin mp-input {
   -webkit-box-sizing: content-box;
-  box-sizing: content-box;
+  box-sizing: border-box;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid $input-border-grey;
@@ -778,7 +778,8 @@ a {
   -webkit-transition: border-color 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out;
   height: auto;
-  padding: .6rem 0 .4rem 0;
+  //padding: .6rem 0 .4rem 0;
+  padding: 8pt;
   display: block;
   width: 100%;
   font-size: 1rem;

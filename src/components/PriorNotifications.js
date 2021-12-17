@@ -5,6 +5,8 @@ import Select from 'react-select'
 import { Col, Row } from 'reactstrap'
 import '../App.scss'
 
+import { reactSelectStyles } from '../utils/styles'
+
 const PriorNotifs = ({ days, setDays }) => {
   const priors = [
     { value: 0, label: '0' },
@@ -31,6 +33,7 @@ const PriorNotifs = ({ days, setDays }) => {
             options={priors}
             value={priors.find((el) => el.value === 'days')}
             defaultValue={priors[0]}
+            styles={reactSelectStyles}
           />
         </Col>
         <Col md="6">

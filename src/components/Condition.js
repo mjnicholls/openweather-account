@@ -2,44 +2,19 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 import Select from 'react-select'
-import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
+import { Col, Row, FormGroup, Label } from 'reactstrap'
 
 import '../App.scss'
 import { variables, units, conditions } from '../config'
+import { reactSelectStyles } from '../utils/styles'
 import { conditionToTextLong } from '../utils/utils'
 
 const Condition = ({ condition, setCondition }) => {
+
   const handleChange = (key, value) => {
     const newCondition = { ...condition }
     newCondition[key] = value
     setCondition(newCondition)
-  }
-
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? '#f2f2f2' : '#ffffff',
-      color: "#48484a",
-      padding: "8pt",
-    }),
-    control: (provided) => ({
-      // none of react-select's styles are passed to <Control />
-      // width: 200,
-      ...provided,
-      borderRadius: 0,
-      border: "none",
-      borderBottom: "1px solid #ced4da",
-      padding: "4pt 0",
-      boxShadow: 'none'
-    }),
-    menu: (provided) => ({
-      ...provided,
-      borderRadius: 0,
-      margin: 0,
-      padding: 0,
-      borderColor: "#ced4da",
-      boxShadow: "rgba(0, 0, 0, 0.28) 0px 8px 28px"
-    })
   }
 
   return (
@@ -52,31 +27,31 @@ const Condition = ({ condition, setCondition }) => {
 
       <Row className="container-main">
         <Col md="6">
-          <Label>Weather parameter</Label>
-          <FormGroup>
+          <div>
+            <Label>Weather parameter</Label>
             <Select
               value={variables.find((el) => el.value === condition.variable)}
               onChange={(option) => handleChange('variable', option.value)}
               classNamePrefix="react-select"
               options={variables}
-              styles={customStyles}
+              styles={reactSelectStyles}
             />
-          </FormGroup>
-          <Label className="conditions">Condition</Label>
-          <FormGroup>
+          </div>
+          <div>
+            <Label>Condition</Label>
             <Select
               value={conditions.find((el) => el.value === condition.condition)}
               onChange={(option) => handleChange('condition', option.value)}
               classNamePrefix="react-select"
               options={conditions}
-              styles={customStyles}
+              styles={reactSelectStyles}
             />
-          </FormGroup>
+          </div>
         </Col>
         <Col md="6">
-          <Label className="conditions">Level</Label>
-          <FormGroup>
-            <Input
+          <div>
+            <Label>Level</Label>
+            <input
               type="number"
               onChange={(e) =>
                 handleChange('value', parseFloat(e.target.value))
@@ -84,17 +59,17 @@ const Condition = ({ condition, setCondition }) => {
               value={condition.value}
               className="input-marketplace"
             />
-          </FormGroup>
-          <Label className="conditions">Units</Label>
-          <FormGroup>
+          </div>
+          <div>
+            <Label>Units</Label>
             <Select
               classNamePrefix="react-select"
               value={units.find((el) => el.value === condition.units)}
               onChange={(option) => handleChange('units', option.value)}
               options={units}
-              styles={customStyles}
+              styles={reactSelectStyles}
             />
-          </FormGroup>
+          </div>
         </Col>
         <div className="human-readable">{conditionToTextLong(condition)}</div>
       </Row>

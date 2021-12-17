@@ -89,7 +89,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
         <Col>
           <FormGroup>
             <Input
-              className={error.email ? 'danger-border' : ''}
+              className={`input-marketplace ${error.email ? 'danger-border' : ''}`}
               type="text"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
@@ -124,7 +124,7 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
                   onChange={(e) => {
                     setActiveEmailContent(e.target.value)
                   }}
-                  className={error.email ? 'danger-border' : ''}
+                  className={`input-marketplace ${error.email ? 'danger-border' : ''}`}
                   value={activeEmailContent}
                   onKeyDown={onKeyDown}
                 />

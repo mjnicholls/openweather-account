@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useRef, useState, useEffect } from 'react'
 
 import { css } from '@emotion/react'
