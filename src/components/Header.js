@@ -3,7 +3,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import '../App.scss'
-import { gallery } from '../assets/Gallery'
 
 const selectUserName = (state) => state.auth.user.username
 
@@ -39,7 +38,10 @@ const HeaderTrigger = () => {
         <div className="input-group search d-none d-xxl-flex">
           <div className="input-group-append">
             <button className="btn btn-secondary" type="button">
-              <img src={gallery.search_bar_logo.src} alt="search bar logo" />
+              <img
+                src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_search.svg"
+                alt="search bar logo"
+              />
             </button>
           </div>
           <form
@@ -65,7 +67,7 @@ const HeaderTrigger = () => {
                 <div className="input-group-append">
                   <button className="btn btn-secondary" type="button">
                     <img
-                      src={gallery.search_bar_logo.src}
+                      src="https://home.openweathermap.org/assets/icon_search.svg"
                       alt="search bar logo"
                     />
                   </button>
@@ -109,6 +111,10 @@ const HeaderTrigger = () => {
                   className="dropdown-toggle header-link username"
                   data-toggle="dropdown"
                 >
+                  <img
+                    src="https://home.openweathermap.org/assets/icon_user.png"
+                    alt="user icon"
+                  ></img>
                   {userName.slice(0, 6)}...
                 </a>
                 <div className="dropdown-menu">
