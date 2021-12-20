@@ -87,7 +87,7 @@ const FooterTrigger = () => (
             <img
               src="https://openweathermap.org/themes/openweathermap/assets/img/mobile_app/app-store-badge.svg"
               alt="googleplay_badge"
-              width="160"
+              width="150"
               height="43"
             />
           </a>
