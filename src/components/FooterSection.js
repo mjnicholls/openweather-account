@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 import PropTypes from 'prop-types'
 
-import iconDownBlack from '../assets/img/icon_down_black.svg'
 import '../App.scss'
 
 const FooterSection = (props) => {
@@ -21,7 +20,7 @@ const FooterSection = (props) => {
 
         <img
           className="d-xl-none"
-          src={iconDownBlack}
+          src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_down_black.svg"
           alt="arrow"
           style={{ transform: open ? 'rotate(180deg)' : 'none' }}
         />

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import '../App.scss'
-import { gallery } from '../assets/Gallery'
 import FooterSection from './FooterSection'
 
 const FooterTrigger = () => (
@@ -160,7 +159,7 @@ const FooterTrigger = () => (
             <a href="https://www.instagram.com/openweathermap/">
               <img
                 className="logos"
-                src={gallery.insta.src}
+                src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_instagram.png"
                 alt="instagram_logo"
                 height="17px"
                 width="17px"
