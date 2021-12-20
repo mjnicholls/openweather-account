@@ -894,6 +894,42 @@ input.input-marketplace, input.marketplace-input__input {
   @include remove-default-button-style;
 }
 
+.triggertest {
+
+  margin-bottom: 20px;
+
+  .triggers-bold {
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: left;
+    border-bottom-width: 1px !important;
+    font-size: 16px;
+    border-top: 1px solid #f2f2f2;
+    padding-top: 8pt;
+    padding-bottom: 8pt;
+  }
+
+.triggers-new {
+
+    margin-bottom: 15px;
+    text-align: left;
+    border-bottom-width: 1px !important;
+    font-size: 16px;
+    border-top: 1px solid #f2f2f2;
+    padding-top: 8pt;
+    padding-bottom: 8pt;
+  
+  div > div.col {
+    font-family: $default-font-family;
+    font-size: 16px;
+    vertical-align: top;
+    text-align: left;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+  }
+}
+}
+
 //.dashed-list {
 //  list-style-type: none;
 //

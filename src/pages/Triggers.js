@@ -66,7 +66,7 @@ const Triggers = () => {
           <Col className="mb-0" md="12" mt="20">
             <Card className="mb-5">
               <CardBody className="p-0">
-                <Table className="mb-3 material-table">
+                <Table className="mb-3 material-table table-responsive">
                   <thead>
                     <tr>
                       <th>&nbsp;</th>
