@@ -44,7 +44,7 @@ const StatusToggle = ({ tempStatus, setTempStatus }) => (
           left: 0;
           right: 0;
           bottom: 0;
-          background-color: $brand-grey;
+          background-color: #f2f2f2;
           border-radius: 34px;
           -webkit-transition: 0.4s;
           transition: 0.4s;
@@ -59,7 +59,7 @@ const StatusToggle = ({ tempStatus, setTempStatus }) => (
             border-radius: 50%;
             -webkit-transition: 0.4s;
             transition: 0.4s;
-            background-color: #78cbbf;
+            background-color: white;
           }
         `}
       ></span>
