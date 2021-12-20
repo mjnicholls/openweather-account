@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
+import { Error } from 'react-ikonate'
 import { useSelector } from 'react-redux'
-import { Row, Col } from 'reactstrap'
 
 import { getEventsByTriggerId } from '../api/api'
+import { toDate } from '../utils/dateTime'
 import BeatLoader from './BeatLoader'
-import EventThumbnail from './ThumbnailEvent'
 
 const selectUserId = (state) => state.auth.user.id
 
@@ -33,25 +33,29 @@ const TriggerEvents = ({ triggerId }) => {
   }, [triggerId, userId])
 
   return (
-    <div className="my-5">
-      <Row>
-        <Col>
-          <h3>Upcoming events</h3>
-        </Col>
-      </Row>
-      <Row style={{ minHeight: '100px' }}>
-        <Col>
-          {isLoading ? (
-            <BeatLoader />
-          ) : events.length ? (
-            events.map((event) => (
-              <EventThumbnail key={event.id} dt={event.date} />
-            ))
-          ) : (
-            <h6 className="mb-2">No active events</h6>
-          )}
-        </Col>
-      </Row>
+    <div>
+      {isLoading ? (
+        <h6>Upcoming events</h6>
+      ) : events.length ? (
+        <h6>
+          <Error /> {events.length} upcoming event
+          {events.length === 1 ? '' : 's'}
+        </h6>
+      ) : (
+        <h6>No active events</h6>
+      )}
+
+      <div style={{ minHeight: '100px' }}>
+        {isLoading ? (
+          <BeatLoader />
+        ) : events.length ? (
+          <ul>
+            {events.map((event) => (
+              <li key={event.id}>{toDate(event.date)}</li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
     </div>
   )
 }

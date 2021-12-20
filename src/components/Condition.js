@@ -10,7 +10,6 @@ import { reactSelectStyles } from '../utils/styles'
 import { conditionToTextLong } from '../utils/utils'
 
 const Condition = ({ condition, setCondition }) => {
-
   const handleChange = (key, value) => {
     const newCondition = { ...condition }
     newCondition[key] = value

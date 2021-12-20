@@ -13,7 +13,7 @@ import ErrorModal from '../components/ErrorModal'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import StatusToggle from '../components/StatusToggle'
 import ThumbnailLocation from '../components/ThumbnailLocation'
-import EventList from '../components/TriggerEvents'
+import TriggerEvents from '../components/TriggerEvents'
 import { noBlankErrorMessage } from '../config'
 import { notificationText } from '../utils/utils'
 import '../App.scss'
@@ -136,8 +136,8 @@ const ViewTrigger = () => {
       {alert}
       <Row>
         <Col md="7">
-          <Row className="pt-5">
-            <Col md="7">
+          <Row className="pt-5 mb-4">
+            <Col md="10">
               {isEditName ? (
                 <div className="d-flex align-items-center">
                   <Input
@@ -153,18 +153,20 @@ const ViewTrigger = () => {
                   />
                 </div>
               ) : (
-                <div className="d-flex align-items-center">
-                  <h2 className="m-0 p-0">{activeName}</h2>
+                <h2 className="m-0 p-0">
+                  {activeName}
                   <Edit
-                    className="ms-3"
+                    className="ms-1"
                     onClick={() => {
                       setIsEditName(true)
                     }}
+                    fontSize="20pt"
+                    border={1}
                   />
-                </div>
+                </h2>
               )}
             </Col>
-            <Col className="text-end mb-3">
+            <Col md="2" className="text-end">
               <h6>Trigger {tempStatus}</h6>
               <StatusToggle
                 tempStatus={tempStatus}
@@ -175,28 +177,37 @@ const ViewTrigger = () => {
 
           <Row>
             <Col className="mb-3">
-              <ThumbnailLocation location={location} />
+              <h6>
+                <ThumbnailLocation location={location} />
+              </h6>
             </Col>
           </Row>
 
           <Row>
-            <Col className="mb-3">
-              <h6>An event is generated when</h6>
+            <Col className="mb-4">
+              <h6 className="m-0">Condition</h6>
               <ThumbnailCondition condition={condition} />
             </Col>
           </Row>
 
           <Row>
-            <Col className="mb-3">
-              <h6>Notify me</h6>
+            <Col className="mb-4">
+              <h6 className="m-0">Notify me</h6>
               <span>{notificationText(days)}</span>
             </Col>
           </Row>
 
-          <EmailList recipients={recipients} />
+          <Row>
+            <Col className="mb-5">
+              <EmailList recipients={recipients} />
+            </Col>
+          </Row>
 
-          <EventList triggerId={id} />
-
+          <Row>
+            <Col className="mb-5">
+              <TriggerEvents triggerId={id} />
+            </Col>
+          </Row>
           <Row className="container-main">
             <Col className="text-left">
               <Link to="/dashboard/triggers">

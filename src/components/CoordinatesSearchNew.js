@@ -8,7 +8,14 @@ import { Col, Row, FormGroup, Button, Input } from 'reactstrap'
 import { noBlankErrorMessage } from '../config'
 import placeMarker from './placeMarker'
 
-const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet, isDropDown, setIsDropDown }) => {
+const CoordinatesSearch = ({
+  mapRef,
+  location,
+  setLocation,
+  setIsSet,
+  isDropDown,
+  setIsDropDown,
+}) => {
   const [error, setError] = useState({})
 
   const latRangeError = 'Value cannot be below -90 or above 90'
@@ -46,7 +53,6 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet, isDropDown
     return true
   }
 
-
   const onFocus = () => {
     setIsDropDown(true)
   }
@@ -74,9 +80,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet, isDropDown
       <div className="flex-grow-1">
         <Input
           type="number"
-          className={`input-marketplace ${
-            error.lat ? 'danger-border' : ''
-          }`}
+          className={`input-marketplace ${error.lat ? 'danger-border' : ''}`}
           value={location.lat}
           onChange={(e) => {
             setLocation({ ...location, lat: parseFloat(e.target.value) })
@@ -96,9 +100,7 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet, isDropDown
       <div className="flex-grow-1">
         <Input
           type="number"
-          className={`input-marketplace ${
-            error.lon ? 'danger-border' : ''
-          }`}
+          className={`input-marketplace ${error.lon ? 'danger-border' : ''}`}
           value={location.lon}
           onChange={(e) => {
             setLocation({ ...location, lon: parseFloat(e.target.value) })
@@ -116,12 +118,12 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet, isDropDown
         </div>
       </div>
 
-      {/*<Button*/}
-      {/*className="button-active shadow-none"*/}
-      {/*onClick={onSetLocationClick}*/}
-      {/*>*/}
-      {/*Set*/}
-      {/*</Button>*/}
+      {/* <Button */}
+      {/* className="button-active shadow-none" */}
+      {/* onClick={onSetLocationClick} */}
+      {/* > */}
+      {/* Set */}
+      {/* </Button> */}
     </div>
   )
 }

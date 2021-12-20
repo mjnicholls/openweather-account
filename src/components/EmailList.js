@@ -1,11 +1,8 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 import PropTypes from 'prop-types'
-import { ChevronDown } from 'react-ikonate'
+import { ChevronDown, EnvelopeAlt } from 'react-ikonate'
 import { useSelector } from 'react-redux'
-import { Row, Col } from 'reactstrap'
-
-import EmailThumbnail from './ThumbnailEmail'
 
 const selectLimits = (state) => state.auth.limits.email_recipients
 
@@ -13,38 +10,63 @@ const EmailList = ({ recipients }) => {
   const emailsAllowed = useSelector(selectLimits)
   const openEmails = 3
 
+  const linkRef = useRef(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const collapseId = 'collapseEmails'
+
+  const onClickFunc = () => {
+    setIsOpen(!isOpen)
+    linkRef.current.click()
+    return true
+  }
+
   return emailsAllowed ? (
-    <Row>
-      <Col>
-        <h6>Send email notifications to</h6>
-        {recipients.length ? (
-          recipients
-            .slice(0, openEmails)
-            .map((email) => <EmailThumbnail email={email} />)
-        ) : (
-          <p>None</p>
-        )}
-        {recipients.length > openEmails && (
-          <>
+    <div>
+      {recipients.length > openEmails ? (
+        <button
+          type="button"
+          onClick={onClickFunc}
+          className="remove-default-button-style"
+        >
+          <h6>
+            <EnvelopeAlt /> {recipients.length} email recipient
+            {recipients.length === 1 ? '' : 's'}
+            <ChevronDown
+              style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
+            />
             <a
+              ref={linkRef}
               data-toggle="collapse"
-              href="#collapseEmails"
-              role="button"
+              href={`#${collapseId}`}
               aria-expanded="false"
-              aria-controls="collapseEmails"
-              className="button-neutral shadow-none see-more-collapse "
+              aria-controls={collapseId}
+              className="d-none"
             >
-              <ChevronDown className="see-more-chevron" />
+              &nbsp;
             </a>
-            <p className="collapse mt-3" id="collapseEmails">
+          </h6>
+        </button>
+      ) : (
+        <h6>
+          <EnvelopeAlt /> {recipients.length} email recipient
+          {recipients.length === 1 ? '' : 's'}
+        </h6>
+      )}
+      {recipients.length > 0 && (
+        <ul>
+          {recipients.slice(0, openEmails).map((email) => (
+            <li key={email}>{email}</li>
+          ))}
+          {recipients.length > openEmails && (
+            <div className="collapse" id={collapseId}>
               {recipients.slice(openEmails).map((email) => (
-                <EmailThumbnail email={email} />
+                <li key={email}>{email}</li>
               ))}
-            </p>
-          </>
-        )}
-      </Col>
-    </Row>
+            </div>
+          )}
+        </ul>
+      )}
+    </div>
   ) : null
 }
 

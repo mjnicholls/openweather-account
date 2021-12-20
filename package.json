@@ -36,12 +36,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "env-cmd -f .env.development react-scripts start",
-    "start:dev": "env-cmd -f .env.development react-scripts start",
-    "start:prod": "env-cmd -f .env.production react-scripts start",
-    "build": "env-cmd -f .env.development react-scripts build",
-    "build:dev": "env-cmd -f .env.development react-scripts build",
-    "build:prod": "env-cmd -f .env.production react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./ --ignore-path .gitignore",
@@ -77,6 +73,7 @@
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^2.5.1",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }

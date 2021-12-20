@@ -1,4 +1,4 @@
-const initialState = {
+let initialState = {
   user: {
     email: 'dev@openweathermap.org',
     id: 'anna',
@@ -11,6 +11,13 @@ const initialState = {
     // max_email_recipients: 10,
     max_triggers: 20,
   },
+}
+
+const gonObject = window.gon
+console.log('gonObject', gonObject)
+
+if (gonObject && Object.keys(gonObject).length) {
+  initialState = gonObject
 }
 
 export default function authReducer(state = initialState, action) {

@@ -1,29 +1,41 @@
 import React from 'react'
 
 import PropTypes from 'prop-types'
-import { Ellypsis } from 'react-ikonate'
 import { Card, CardBody, CardHeader } from 'reactstrap'
 
 import { toDate } from '../utils/dateTime'
 import Event from './Event'
-import NumberEventsBadge from './EventsPerDayCount'
+import EventsPerDay from './EventsPerDay'
 import '../App.scss'
 
 const Day = ({ day }) => {
   const openEventsN = 3
-
+  const collapseId =
+    day.triggers.length > openEventsN ? `collapse_${day.day}` : null
+  const borderRadius = '8pt' // TODO move to css
   return (
-    <Card className="mb-5">
-      <CardHeader>
+    <Card className="mb-5" style={{ borderRadius }}>
+      <CardHeader
+        style={{
+          borderTopLeftRadius: borderRadius,
+          borderTopRightRadius: borderRadius,
+        }}
+      >
         <div
           className="d-flex align-items-center justify-content-between"
           style={{ paddingTop: '8pt', paddingBottom: '8pt' }}
         >
           <h3 className="mb-0">{toDate(day.day)}</h3>
-          <NumberEventsBadge number={day.triggers.length} />
+          <EventsPerDay number={day.triggers.length} seeMoreLink={collapseId} />
         </div>
       </CardHeader>
-      <CardBody className="p-0">
+      <CardBody
+        className="p-0"
+        style={{
+          borderBottomLeftRadius: borderRadius,
+          borderBottomRightRadius: borderRadius,
+        }}
+      >
         {day.triggers.length ? (
           day.triggers
             .slice(0, openEventsN)
@@ -39,19 +51,8 @@ const Day = ({ day }) => {
         )}
 
         {day.triggers.length > openEventsN && (
-          <React.Fragment key={day.triggers.recipients}>
-            <a
-              className="link-flat see-more-collapse d-inline-flex align-items-end flex-grow-0 ms-0"
-              data-toggle="collapse"
-              href={`#collapse_${day.day}`}
-              role="button"
-              aria-expanded="false"
-              aria-controls={`collapse_${day.day}`}
-            >
-              <span>See more&nbsp;</span>
-              <Ellypsis />
-            </a>
-            <div className="collapse" id={`collapse_${day.day}`}>
+          <>
+            <div className="collapse" id={collapseId}>
               {day.triggers.slice(openEventsN).map((trigger, index) => (
                 <Event
                   trigger={trigger}
@@ -60,7 +61,7 @@ const Day = ({ day }) => {
                 />
               ))}
             </div>
-          </React.Fragment>
+          </>
         )}
       </CardBody>
     </Card>

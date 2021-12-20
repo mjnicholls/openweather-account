@@ -18,12 +18,12 @@ const SearchBoxNew = ({
   setIsSet,
   searchBoxRef,
   isDropDown,
-  setIsDropDown
+  setIsDropDown,
 }) => {
   const [isSearchByName, setIsSearchByName] = useState(true)
 
   return (
-    <div className="my-3" style={{position: "relative"}} ref={searchBoxRef}>
+    <div className="my-3" style={{ position: 'relative' }} ref={searchBoxRef}>
       {isSearchByName ? (
         <AutoCompleteFormNew
           mapRef={mapRef}
@@ -53,7 +53,10 @@ const SearchBoxNew = ({
         />
       )}
       {isDropDown && (
-        <div className="padded search-pop-up" style={{display: "flex", justifyContent: "space-between"}}>
+        <div
+          className="padded search-pop-up"
+          style={{ display: 'flex', justifyContent: 'space-between' }}
+        >
           <div>
             <Button
               className={`padded-button ${

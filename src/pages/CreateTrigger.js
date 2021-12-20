@@ -159,19 +159,18 @@ const CreateTrigger = () => {
 
   const [data, setData] = useState([])
 
-
   const [isDropDown, setIsDropDown] = useState(false)
-  const searchBoxRef = useRef();
+  const searchBoxRef = useRef()
 
-  const handleClickOtsideSearchBox = e => {
+  const handleClickOtsideSearchBox = (e) => {
     if (searchBoxRef.current.contains(e.target)) {
       // inside click
-      return;
+      return
     }
     setIsDropDown(false)
     // outside click
     // ... do whatever on click outside here ...
-};
+  }
 
   useEffect(() => {
     setIsLoading(true)
@@ -189,12 +188,12 @@ const CreateTrigger = () => {
 
   useEffect(() => {
     // add when mounted
-    document.addEventListener("mousedown", handleClickOtsideSearchBox);
+    document.addEventListener('mousedown', handleClickOtsideSearchBox)
     // return function to be called when unmounted
     return () => {
-      document.removeEventListener("mousedown", handleClickOtsideSearchBox);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleClickOtsideSearchBox)
+    }
+  }, [])
 
   const handleChange = (key, value) => {
     const newLocation = { ...location }

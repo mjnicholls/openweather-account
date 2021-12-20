@@ -7,7 +7,7 @@ import { Row, Col, Button } from 'reactstrap'
 import { getEvents } from '../api/api'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
 import Day from '../components/Day'
-import EventPlaceholder from '../components/EventPlaceholder'
+import DayPlaceholder from '../components/DayPlaceholder'
 import '../App.scss'
 
 const selectUserId = (state) => state.auth.user.id
@@ -54,7 +54,7 @@ const Events = () => {
             {[...Array(contentLoader)].map((_, index) => (
               // eslint-disable-next-line
               <Col key={index} className="my-3" md="6" mt="10">
-                <EventPlaceholder />
+                <DayPlaceholder />
               </Col>
             ))}
           </Row>
@@ -62,12 +62,8 @@ const Events = () => {
       ) : data.length ? (
         <Row>
           {data.map((day) => (
-            <Col md="6">
-              <Row>
-                <Col className="mb-0" md="12" mt="10">
-                  <Day day={day} key={day.day} />
-                </Col>
-              </Row>
+            <Col md="6" className="mb-0" key={day.day}>
+              <Day day={day} />
             </Col>
           ))}
         </Row>
