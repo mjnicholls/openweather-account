@@ -18,7 +18,7 @@ const HeaderTrigger = () => {
       >
         <a href="https://openweathermap.org/">
           <img
-            src={gallery.logo_white.src}
+            src="https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png"
             alt="Open Weather Logo"
             height="40px"
             width="93.33px"
@@ -31,7 +31,10 @@ const HeaderTrigger = () => {
           data-target="#navbarNav"
           type="button"
         >
-          <img src={gallery.hamburger.src} alt="Open menu" />
+          <img
+            src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_hamburger.svg"
+            alt="Open menu"
+          />
         </button>
         <div className="input-group search d-none d-xxl-flex">
           <div className="input-group-append">

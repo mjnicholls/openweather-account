@@ -77,14 +77,19 @@ const FooterTrigger = () => (
         <div className="col">
           <h5>Download OpenWeather App</h5>
           <a href="https://apps.apple.com/gb/app/openweather/id1535923697">
-            <img src={gallery.badge.src} alt="app_store_badge" />
+            <img
+              src="https://openweathermap.org/themes/openweathermap/assets/img/mobile_app/google-play-badge.png"
+              alt="app_store_badge"
+              width="150"
+              height="60"
+            />
           </a>
           <a href="https://play.google.com/store/apps/details?id=uk.co.openweather">
             <img
-              src={gallery.appbadge.src}
+              src="https://openweathermap.org/themes/openweathermap/assets/img/mobile_app/app-store-badge.svg"
               alt="googleplay_badge"
-              width="150"
-              height="60"
+              width="160"
+              height="43"
             />
           </a>
         </div>
@@ -101,7 +106,7 @@ const FooterTrigger = () => (
             <a href="https://github.com/search?q=openweathermap&ref=cmdform">
               <img
                 className="logos"
-                src={gallery.github.src}
+                src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_github.png"
                 alt="github_logo"
                 height="16px"
                 width="16px"
@@ -109,7 +114,7 @@ const FooterTrigger = () => (
             </a>
             <a href="https://t.me/openweathermap">
               <img
-                src={gallery.telegram.src}
+                src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_telegram.png"
                 className="logos"
                 alt="telegram_logo"
                 height="16px"
@@ -118,7 +123,7 @@ const FooterTrigger = () => (
             </a>
             <a href="https://medium.com/@openweathermap">
               <img
-                src={gallery.medium.src}
+                src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_medium.png"
                 className="logos"
                 alt="medium_logo"
                 height="16px"
@@ -127,7 +132,7 @@ const FooterTrigger = () => (
             </a>
             <a href="https://www.linkedin.com/company/9816754">
               <img
-                src={gallery.linked.src}
+                src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_linkedin.png"
                 className="logos"
                 alt="linkedin_logo"
                 height="16px"
@@ -136,7 +141,7 @@ const FooterTrigger = () => (
             </a>
             <a href="https://twitter.com/OpenWeatherMap">
               <img
-                src={gallery.twitter.src}
+                src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_twitter.png"
                 className="logos2"
                 alt="twitter_logo"
                 height="16px"
