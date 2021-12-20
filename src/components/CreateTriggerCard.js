@@ -43,23 +43,22 @@ const CreateTriggerCard = ({ close }) => {
     >
       {newTrigger ? (
         <div className="text-start my-3">
-          <div className="thumbnail" style={{ fontWeight: 'bold' }}>
-            {newTrigger.name}
-          </div>
+          <h5>{newTrigger.name}</h5>
+
           <ThumbnailLocation location={newTrigger.location} />
 
-          <div className="padded-block">
+          <div className="my-3 d-flex flex-column">
             <span>{conditionToText(newTrigger.condition)}</span>
             <span>Notification: {notificationText(newTrigger.days)}</span>
             <span>Email recipients: {newTrigger.recipients.length}</span>
           </div>
 
-          <div className="padded-block small-text my-3">
-            <span>* Trigger events will be shown based on UTC time.</span>
+          <div className="my-3 d-flex flex-column small-text">
             <span>
-              ** If there are events, associated with the trigger, you will be
+              * Events are being generated. If there are any events you will be
               able to see them shortly.
             </span>
+            <span>** Events will be shown based on UTC time.</span>
           </div>
 
           <Col className="pop-up-footer">

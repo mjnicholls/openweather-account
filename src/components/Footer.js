@@ -146,7 +146,7 @@ const FooterTrigger = () => (
             <a href="https://www.facebook.com/groups/270748973021342">
               <img
                 className="logos"
-                src={gallery.facebook.src}
+                src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_facebook.png"
                 alt="facebook_logo"
                 height="16px"
                 width="7.76px"
