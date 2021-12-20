@@ -1,6 +1,28 @@
-@import 'assets/scss/colors.scss';
-@import 'assets/scss/typography.scss';
+//@import 'assets/scss/colors.scss';
+//@import 'assets/scss/typography.scss';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
 @import '~bootstrap/scss/bootstrap';
+
+$brand-orange: #EB6E4B;
+$brand-black: #48484A;
+$brand-turquoise: #78CBBF;
+$brand-grey: #F2F2F2;
+
+$sub-color: #666;
+$secondary-light-grey: #f5f5f5;
+$input-border-grey: #ced4da;
+$danger-red: #dc3545;
+$success-green: #95b96a;
+$failure-grey: #454545;
+
+$default-font-family: Arial, sans-serif;
+$highlight-font-family: "Space Grotesk", Arial, sans-serif;
+
+$default-font-size: 16px;
+$font-size-sm: 14px;
+$font-size-nav: 11.3227px;
+$default-line-height: 20pt;
 
 .body {
   font-family: $default-font-family;
