@@ -7,7 +7,7 @@ import { useLocation, Link } from 'react-router-dom'
 import { Row, Col, Input, Button } from 'reactstrap'
 
 import BeatLoader from '../components/BeatLoader'
-import DeleteTriggerCard from '../components/DeleteTriggerCardX'
+import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import EmailList from '../components/EmailList'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import StatusToggle from '../components/StatusToggle'

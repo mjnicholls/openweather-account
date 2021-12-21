@@ -9,7 +9,7 @@ import { Row, Col } from 'reactstrap'
 import '../App.scss'
 import BeatLoader from '../components/BeatLoader'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
-import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
+import DeleteTriggerCardX from '../components/DeleteTriggerCard'
 import EditTriggerCard from '../components/EditTriggerCard'
 import ThumbnailCondition from '../components/ThumbnailCondition'
 import ThumbnailLocation from '../components/ThumbnailLocation'
@@ -67,21 +67,15 @@ const Triggers = () => {
                     <Col md="1" className="d-md-flex d-lg-none text-end">
                       <EditTriggerCard
                         id={trigger.id}
-                        userId={userId}
-                        data={data}
-                        setData={setData}
                         name={trigger.name}
                         status={trigger.status}
                       />
 
                       <DeleteTriggerCardX
                         id={trigger.id}
-                        userId={userId}
-                        data={data}
-                        setData={setData}
-                        isUpdated={isUpdated}
-                        setIsUpdated={setIsUpdated}
-                      />
+                        className="remove-default-button-style"
+                      >
+                        <Close color="#48484a" /></DeleteTriggerCardX>
                     </Col>
                     <Col className="col-md-auto">{index + 1}</Col>
                     <Col md="2">

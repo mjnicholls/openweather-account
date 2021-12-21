@@ -6,16 +6,13 @@ import { Button } from 'reactstrap'
 
 import DeleteTrigger from './DeleteTrigger'
 
-const DeleteTriggerCard = ({ id, userId, data, setData }) => {
+const DeleteTriggerCardX = (props) => {
+
+  const {id, className, children} = props
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
     setAlert(null)
-  }
-
-  const onCancel = () => {
-    console.log('Click on cancel')
-    hideAlert()
   }
 
   const htmlAlert = () => {
@@ -23,7 +20,7 @@ const DeleteTriggerCard = ({ id, userId, data, setData }) => {
       <ReactBSAlert
         title="Delete Trigger?"
         onConfirm={() => hideAlert()}
-        onCancel={onCancel}
+        onCancel={() => hideAlert()}
         showConfirm={false}
         showCloseButton
         customClass="bs-alerts"
@@ -31,9 +28,6 @@ const DeleteTriggerCard = ({ id, userId, data, setData }) => {
         <DeleteTrigger
           close={hideAlert}
           id={id}
-          userId={userId}
-          data={data}
-          setData={setData}
         />
       </ReactBSAlert>,
     )
@@ -43,25 +37,21 @@ const DeleteTriggerCard = ({ id, userId, data, setData }) => {
     <>
       {alert}
       <Button
-        className="button-neutral shadow-none"
-        type="button"
         title="Delete"
+        className={className}
         onClick={(e) => {
           htmlAlert()
           e.stopPropagation()
         }}
       >
-        Delete
+        {children}
       </Button>
     </>
   )
 }
 
-DeleteTriggerCard.propTypes = {
-  id: PropTypes.string,
-  userId: PropTypes.string,
-  data: PropTypes.object,
-  setData: PropTypes.func,
+DeleteTriggerCardX.propTypes = {
+  id: PropTypes.string
 }
 
-export default DeleteTriggerCard
+export default DeleteTriggerCardX
