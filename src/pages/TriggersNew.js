@@ -81,8 +81,7 @@ const Triggers = () => {
           {data.map(
             (trigger, index) =>
               trigger.status !== 'deleted' && (
-                <Row className="triggers-new">
-                  <React.Fragment key={trigger.id}>
+                <Row className="triggers-new" key={trigger.id}>
                     <Col md="1" className="d-md-flex d-lg-none text-end">
                       <EditTriggerCard
                         id={trigger.id}
@@ -160,7 +159,6 @@ const Triggers = () => {
                         setIsUpdated={setIsUpdated}
                       />
                     </Col>
-                  </React.Fragment>
                 </Row>
               ),
           )}
