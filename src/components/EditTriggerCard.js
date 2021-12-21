@@ -8,7 +8,6 @@ import { Button } from 'reactstrap'
 import EditTrigger from './EditTrigger'
 
 const EditTriggerCard = ({ id, name, status }) => {
-
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {

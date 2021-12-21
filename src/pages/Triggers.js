@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+/* eslint-disable */
+
+import React from 'react'
 
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Card, CardBody, Row, Col, Table } from 'reactstrap'
+import { Link, useHistory } from 'react-router-dom'
+import { Row, Col } from 'reactstrap'
 
 import '../App.scss'
 import BeatLoader from '../components/BeatLoader'
@@ -11,17 +13,19 @@ import DeleteTriggerCardX from '../components/DeleteTriggerCard'
 import EditTriggerCard from '../components/EditTriggerCard'
 import ThumbnailCondition from '../components/ThumbnailCondition'
 import ThumbnailLocation from '../components/ThumbnailLocation'
+import { Bell, Close, EnvelopeAlt } from 'react-ikonate'
 
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 const selectTriggers = (state) => state.triggers
 
 const Triggers = () => {
-
   const emailsAllowed = useSelector(selectEmailsAllowed)
   const { isFetching, error, data } = useSelector(selectTriggers)
+  const history = useHistory()
+  const handleCreateClick = () => history.push('/dashboard/triggers/create')
 
   return (
-    <div>
+    <div className="triggertest">
       <Row className="py-5">
         <Col>
           <h2 className="m-0 p-0">Triggers</h2>
@@ -30,106 +34,118 @@ const Triggers = () => {
           <Link
             to="/dashboard/events"
             role="button"
-            className="button-neutral shadow-none"
+            className="navigation-link"
           >
+            <Bell />
             To events
           </Link>
-          <CreateNewTriggerButton triggerNumber={data.length} />
+          <CreateNewTriggerButton createFunc={handleCreateClick} />
         </Col>
       </Row>
 
       {isFetching ? (
         <BeatLoader />
-        // TODO error container
-      ) : error ? <div>{error}</div> : data.length ? (
-        <Row>
-          <Col className="mb-0" md="12" mt="20">
-            <Card className="mb-5">
-              <CardBody className="p-0">
-                <Table className="mb-3 material-table table-responsive">
-                  <thead>
-                    <tr>
-                      <th>&nbsp;</th>
-                      <th>Name</th>
-                      <th>Condition</th>
-                      <th>Location</th>
-                      <th>Notify</th>
-                      {emailsAllowed && <th className="email">Emails</th>}
-                      <th colSpan={3}>&nbsp;</th>
-                    </tr>
-                  </thead>
+      ) : // TODO error container
+      error ? (
+        <div>{error}</div>
+      ) : data.length ? (
+        <>
+          <Row className="triggers-bold d-none d-lg-flex">
+            <Col className="col-md-auto">&nbsp;</Col>
+            <Col md="2">Name</Col>
+            <Col md="3">Condition</Col>
+            <Col md="3">Location</Col>
+            <Col md="1">Notify</Col>
+            {emailsAllowed && (
+              <Col md="1" className="email">
+                Emails
+              </Col>
+            )}
+            <Col colSpan={1}>&nbsp;</Col>
+          </Row>
 
-                  <tbody>
-                    {data.map(
-                      (trigger, index) =>
-                        trigger.status !== 'deleted' && (
-                          <tr key={trigger.id}>
-                            <td>{index + 1}</td>
-                            <td>
-                              <Link
-                                to={{
-                                  pathname: '/dashboard/trigger',
-                                  state: trigger,
-                                }}
-                              >
-                                {trigger.name}
-                              </Link>
-                            </td>
-                            <td className="text-nowrap">
-                              <ThumbnailCondition
-                                condition={trigger.condition}
-                              />
-                              {/* {conditionToText(trigger.condition)} */}
-                            </td>
-                            <td>
-                              <ThumbnailLocation
-                                location={trigger.location}
-                                showIcon={false}
-                              />
-                            </td>
-                            <td className="text-nowrap">
-                              {trigger.days}{' '}
-                              {trigger.days === 1 ? 'day' : 'days'}
-                            </td>
-                            {emailsAllowed && (
-                              <td>{trigger.recipients.length}</td>
-                            )}
-                            <td
-                              style={{
-                                color:
-                                  trigger.status === 'on' ? 'green' : 'red',
-                              }}
-                            >
-                              {trigger.status.charAt(0).toUpperCase() +
-                                trigger.status.slice(1)}
-                            </td>
+          {data.map(
+            (trigger, index) =>
+              trigger.status !== 'deleted' && (
+                <Row className="triggers-new">
+                  <React.Fragment key={trigger.id}>
+                    <Col md="1" className="d-md-flex d-lg-none text-end">
+                      <EditTriggerCard
+                        id={trigger.id}
+                        name={trigger.name}
+                        status={trigger.status}
+                      />
 
-                            <td>
-                              <EditTriggerCard
-                                id={trigger.id}
-                                name={trigger.name}
-                                status={trigger.status}
-                              />
-                            </td>
-                            <td>
-                              <DeleteTriggerCardX
-                                id={trigger.id}
-                              />
-                            </td>
-                          </tr>
-                        ),
+                      <DeleteTriggerCardX
+                        id={trigger.id}
+                        className="remove-default-button-style"
+                      >
+                        <Close color="#48484a" />
+                      </DeleteTriggerCardX>
+                    </Col>
+                    <Col className="col-md-auto">{index + 1}</Col>
+                    <Col md="2">
+                      <Link
+                        to={{
+                          pathname: '/dashboard/trigger',
+                          state: trigger,
+                        }}
+                      >
+                        {trigger.name}
+                      </Link>
+                    </Col>
+                    <Col md="3">
+                      <ThumbnailCondition condition={trigger.condition} />
+                      {/* {conditionToText(trigger.condition)} */}
+                    </Col>
+                    <Col md="3">
+                      <ThumbnailLocation
+                        location={trigger.location}
+                        showIcon={false}
+                      />
+                    </Col>
+                    <Col md="1">
+                      {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
+                    </Col>
+                    {emailsAllowed && (
+                      <Col>
+                        <EnvelopeAlt className="d-md-flex d-lg-none" />{' '}
+                        {trigger.recipients.length}
+                      </Col>
                     )}
-                  </tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+                    <Col
+                      md="1"
+                      style={{
+                        color: trigger.status === 'on' ? 'green' : 'red',
+                      }}
+                    >
+                      {trigger.status.charAt(0).toUpperCase() +
+                        trigger.status.slice(1)}
+                    </Col>
+
+                    <Col md="1" className="d-lg-flex d-none">
+                      <EditTriggerCard
+                        id={trigger.id}
+                        name={trigger.name}
+                        status={trigger.status}
+                      />
+                      <DeleteTriggerCardX
+                        id={trigger.id}
+                        className="remove-default-button-style"
+                      >
+                        <Close color="#48484a" />
+                      </DeleteTriggerCardX>
+                    </Col>
+                  </React.Fragment>
+                </Row>
+              ),
+          )}
+        </>
       ) : (
         <Row>
           <Col>
             <p>
-              <b>No triggers</b>
+              <b>No triggers.</b>
             </p>
           </Col>
         </Row>

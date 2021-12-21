@@ -1,8 +1,12 @@
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
-import {getTriggersAPI, createTriggerAPI, updateTriggerAPI, deleteTriggerAPI} from '../../api/api'
-import {notifyError, notifySuccess} from "../notifications/actions";
-
+import {
+  getTriggersAPI,
+  createTriggerAPI,
+  updateTriggerAPI,
+  deleteTriggerAPI,
+} from '../../api/api'
+import { notifyError, notifySuccess } from '../notifications/actions'
 
 export const TRIGGERS_START_FETCHING = 'triggers/fetch'
 export const TRIGGERS_FETCH_SUCCESS = 'triggers/fetch_success'
@@ -10,7 +14,6 @@ export const TRIGGERS_FETCH_FAILURE = 'triggers/fetch_failure'
 export const TRIGGER_ADDED = 'triggers/add'
 export const TRIGGER_UPDATED = 'triggers/update'
 export const TRIGGER_DELETED = 'triggers/delete'
-
 
 const triggersStartFetching = () => ({
   type: TRIGGERS_START_FETCHING,
@@ -44,16 +47,17 @@ export const triggerDeleted = (triggerId) => ({
 
 export const fetchTriggers = () =>
   async function addTriggerThunk(dispatch, getState) {
-  const state = getState()
+    const state = getState()
+    dispatch(triggersStartFetching())
     getTriggersAPI(state.auth.user.id)
       .then((response) => {
         dispatch(triggersFetchSuccess(response.data))
       })
       .catch((error) => {
+        dispatch(triggersFetchFailure(error.message))
         dispatch(notifyError(error.message))
       })
   }
-
 
 export const addTrigger = (data) =>
   async function addTriggerThunk(dispatch, getState) {
@@ -61,7 +65,7 @@ export const addTrigger = (data) =>
     createTriggerAPI(data, state.auth.user.id)
       .then((response) => {
         dispatch(triggerAdded(response))
-        dispatch(notifySuccess("Trigger created! "))
+        dispatch(notifySuccess('Trigger created! '))
       })
       .catch((error) => {
         dispatch(notifyError(`Error creating trigger: ${error.message}`))
@@ -84,7 +88,7 @@ export const editTrigger = (data) =>
 
 export const deleteTrigger = (triggerId) =>
   async function deleteTriggerThunk(dispatch, getState) {
-  const state = getState()
+    const state = getState()
     deleteTriggerAPI(triggerId, state.auth.user.id)
       .then(() => {
         dispatch(triggerDeleted(triggerId))

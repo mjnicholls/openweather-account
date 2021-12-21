@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Row, Col, Button } from 'reactstrap'
+import { Link, useHistory } from 'react-router-dom'
+import { Row, Col } from 'reactstrap'
 
 import { getEvents } from '../api/api'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
@@ -15,8 +15,9 @@ const selectUserId = (state) => state.auth.user.id
 const Events = () => {
   const userId = useSelector(selectUserId)
   const [isLoading, setIsLoading] = useState(true)
-
   const [data, setData] = useState([])
+  const history = useHistory()
+  const handleCreateClick = () => history.push('/dashboard/triggers/create')
 
   const contentLoader = 4
 
@@ -41,10 +42,14 @@ const Events = () => {
           <h2 className="m-0 p-0">Events</h2>
         </Col>
         <Col className="text-end title">
-          <Link to="/dashboard/triggers">
-            <Button className="button-neutral shadow-none">To triggers</Button>
+          <Link
+            role="button"
+            to="/dashboard/triggers"
+            className="navigation-link"
+          >
+            To triggers
           </Link>
-          <CreateNewTriggerButton />
+          <CreateNewTriggerButton createFunc={handleCreateClick} />
         </Col>
       </Row>
 
