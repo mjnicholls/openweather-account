@@ -12,20 +12,16 @@ import {
 axios.defaults.timeout = 15000
 
 // Trigger methods
-export const getTriggers = (userId) =>
-  /** Get a list of triggers  */
+export const getTriggersAPI = (userId) =>
   axios.get(`${getIndexURL}?user_id=${userId}`)
 
-export const postTrigger = (params) =>
-  /** Create a new trigger  */
-  axios.post(`${postTriggerURL}?user_id=${params.user_id}`, params)
+export const createTriggerAPI = (params, userId) =>
+  axios.post(`${postTriggerURL}?user_id=${userId}`, params)
 
-export const patchTrigger = (params) =>
-  /** Update a trigger  */
-  axios.patch(`${patchTriggerURL}?user_id=${params.user_id}`, params)
+export const updateTriggerAPI = (params, userId) =>
+  axios.patch(`${patchTriggerURL}?user_id=${userId}`, {...params, user_id: userId})
 
-export const deleteTrigger = (id, userId) =>
-  /** Delete a trigger  */
+export const deleteTriggerAPI = (id, userId) =>
   axios.delete(`${deleteTriggerURL}/${id}`, {
     params: { user_id: userId },
   })

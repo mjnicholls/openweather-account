@@ -1,46 +1,26 @@
 /* eslint-disable */
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 
-import { getTriggers } from '../api/api'
 import '../App.scss'
 import BeatLoader from '../components/BeatLoader'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
-import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
+import DeleteTriggerCardX from '../components/DeleteTriggerCard'
 import EditTriggerCard from '../components/EditTriggerCard'
 import ThumbnailCondition from '../components/ThumbnailCondition'
 import ThumbnailLocation from '../components/ThumbnailLocation'
-import { EnvelopeAlt } from 'react-ikonate'
+import { Close, EnvelopeAlt } from 'react-ikonate'
 
-const selectUserId = (state) => state.auth.user.id
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
+const selectTriggers = (state) => state.triggers
 
 const Triggers = () => {
-  const userId = useSelector(selectUserId)
   const emailsAllowed = useSelector(selectEmailsAllowed)
-
-  const [isLoading, setIsLoading] = useState(true)
-  const [data, setData] = useState([])
-
-  const [isUpdated, setIsUpdated] = useState(false)
-
-  useEffect(() => {
-    setIsLoading(true)
-    getTriggers(userId)
-      .then((res) => {
-        setData(res.data)
-      })
-      .catch((err) => {
-        console.log('error', err)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }, [userId])
+  const { isFetching, error, data } = useSelector(selectTriggers)
 
   return (
     <div className="triggertest">
@@ -60,9 +40,10 @@ const Triggers = () => {
         </Col>
       </Row>
 
-      {isLoading ? (
+      {isFetching ? (
         <BeatLoader />
-      ) : data.length ? (
+        // TODO error container
+      ) : error ? <div>{error}</div> : data.length ? (
         <>
           <Row className="triggers-bold d-none d-lg-flex">
             <Col className="col-md-auto">&nbsp;</Col>
@@ -85,21 +66,15 @@ const Triggers = () => {
                     <Col md="1" className="d-md-flex d-lg-none text-end">
                       <EditTriggerCard
                         id={trigger.id}
-                        userId={userId}
-                        data={data}
-                        setData={setData}
                         name={trigger.name}
                         status={trigger.status}
                       />
 
                       <DeleteTriggerCardX
                         id={trigger.id}
-                        userId={userId}
-                        data={data}
-                        setData={setData}
-                        isUpdated={isUpdated}
-                        setIsUpdated={setIsUpdated}
-                      />
+                        className="remove-default-button-style"
+                      >
+                        <Close color="#48484a" /></DeleteTriggerCardX>
                     </Col>
                     <Col className="col-md-auto">{index + 1}</Col>
                     <Col md="2">
@@ -144,20 +119,14 @@ const Triggers = () => {
                     <Col md="1" className="d-lg-flex d-none">
                       <EditTriggerCard
                         id={trigger.id}
-                        userId={userId}
-                        data={data}
-                        setData={setData}
                         name={trigger.name}
                         status={trigger.status}
                       />
                       <DeleteTriggerCardX
                         id={trigger.id}
-                        userId={userId}
-                        data={data}
-                        setData={setData}
-                        isUpdated={isUpdated}
-                        setIsUpdated={setIsUpdated}
-                      />
+                        className="remove-default-button-style"
+                      >
+                        <Close color="#48484a" /></DeleteTriggerCardX>
                     </Col>
                 </Row>
               ),

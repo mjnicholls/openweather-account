@@ -1,110 +1,53 @@
 import React, { useState, useEffect } from 'react'
 
 import PropTypes from 'prop-types'
-import { Button, Col, Row } from 'reactstrap'
+import { useDispatch } from 'react-redux'
+import { Button } from 'reactstrap'
 
-import { deleteTrigger, getEventsByTriggerId, getTriggers } from '../api/api'
-import htmlError from '../pages/CreateTrigger'
+import { getEventsByTriggerId } from '../api/api'
+import { deleteTrigger } from "../features/triggers/actions";
 
-const DeleteTrigger = ({ id, userId, setData, close }) => {
+const DeleteTrigger = ({ id, close }) => {
   const [events, setEvents] = useState([])
-
-  const [isUpdated, setIsUpdated] = useState(false)
+  const dispatch = useDispatch()
 
   const confirmDeleteTrigger = () => {
-    deleteTrigger(id, userId)
-      .then(() => {
-        refreshData()
-        setIsUpdated(true)
-      })
-      // eslint-disable-next-line
-      .catch(() => {
-        htmlError()
-      })
-  }
-
-  const refreshData = () => {
-    getTriggers(userId)
-      .then((res) => {
-        setData(res.data)
-      })
-      .catch((err) => {
-        console.log('error', err)
-      })
+    dispatch(deleteTrigger(id))
+    close()
   }
 
   useEffect(() => {
-    getEventsByTriggerId(id, userId)
+    getEventsByTriggerId(id)
       .then((res) => {
         setEvents(res.data)
       })
       .catch((err) => {
         console.log('error', err)
       })
-  }, [id, userId])
+  }, [id])
 
   return (
     <div>
-      <hr />
-      {isUpdated ? (
-        <>
-          <Row>
-            <p>Your trigger has been deleted.</p>
-          </Row>
-          <Row>
-            <Col className="text-end">
-              <Button
-                className="button-active shadow-none"
-                data-dismiss="modal"
-                type="button"
-                onClick={close}
-              >
-                Back to Triggers
-              </Button>
-            </Col>
-          </Row>
-        </>
-      ) : (
-        <>
-          <Row>
-            {events.length === 0 ? (
-              <Col>
-                <br />
-                <p>Are you sure you want to delete your trigger?</p>
-              </Col>
-            ) : (
-              <Col>
-                <br />
-                <p>
-                  There are {events.length} active events for this trigger. Are
-                  you sure you want to delete it?
-                </p>
-              </Col>
-            )}
-          </Row>
-          <br />
-
-          <Col className="text-end">
-            <Button
-              className="button-active shadow-none"
-              data-dismiss="modal"
-              type="button"
-              onClick={confirmDeleteTrigger}
-            >
-              Delete
-            </Button>
-          </Col>
-        </>
-      )}
+      <p>{events.length ?  `There are ${events.length} active events for this trigger. Are
+        you sure you want to delete it?` : 'Are you sure you want to delete your trigger?'}
+      </p>
+      <div className="text-end">
+        <Button
+          className="button-active shadow-none"
+          data-dismiss="modal"
+          type="button"
+          onClick={confirmDeleteTrigger}
+        >
+          Delete
+        </Button>
+      </div>
     </div>
   )
 }
 
 DeleteTrigger.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   close: PropTypes.func,
-  userId: PropTypes.string,
-  setData: PropTypes.func,
 }
 
 export default DeleteTrigger

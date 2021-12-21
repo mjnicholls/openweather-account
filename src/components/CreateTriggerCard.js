@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Col } from 'reactstrap'
 
-import { getTriggers } from '../api/api'
+import { getTriggersAPI } from '../api/api'
 import { conditionToText, notificationText } from '../utils/utils'
 import BeatLoader from './BeatLoader'
 import CreateTriggerButton from './CreateTriggerButton'
@@ -21,7 +21,7 @@ const CreateTriggerCard = ({ close }) => {
   const [newTrigger, setNewTrigger] = useState(null)
 
   useEffect(() => {
-    getTriggers(userId)
+    getTriggersAPI(userId)
       .then((res) => {
         setData(res.data)
         setNewTrigger(res.data[res.data.length - 1])

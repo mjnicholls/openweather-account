@@ -1,45 +1,24 @@
-/* eslint-disable */
-
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, CardBody, Row, Col, Table } from 'reactstrap'
 
-import { getTriggers } from '../api/api'
 import '../App.scss'
 import BeatLoader from '../components/BeatLoader'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
-import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
+import DeleteTriggerCardX from '../components/DeleteTriggerCard'
 import EditTriggerCard from '../components/EditTriggerCard'
 import ThumbnailCondition from '../components/ThumbnailCondition'
 import ThumbnailLocation from '../components/ThumbnailLocation'
 
-const selectUserId = (state) => state.auth.user.id
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
+const selectTriggers = (state) => state.triggers
 
 const Triggers = () => {
-  const userId = useSelector(selectUserId)
+
   const emailsAllowed = useSelector(selectEmailsAllowed)
-
-  const [isLoading, setIsLoading] = useState(true)
-  const [data, setData] = useState([])
-
-  const [isUpdated, setIsUpdated] = useState(false)
-
-  useEffect(() => {
-    setIsLoading(true)
-    getTriggers(userId)
-      .then((res) => {
-        setData(res.data)
-      })
-      .catch((err) => {
-        console.log('error', err)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }, [userId])
+  const { isFetching, error, data } = useSelector(selectTriggers)
 
   return (
     <div>
@@ -59,9 +38,10 @@ const Triggers = () => {
         </Col>
       </Row>
 
-      {isLoading ? (
+      {isFetching ? (
         <BeatLoader />
-      ) : data.length ? (
+        // TODO error container
+      ) : error ? <div>{error}</div> : data.length ? (
         <Row>
           <Col className="mb-0" md="12" mt="20">
             <Card className="mb-5">
@@ -127,9 +107,6 @@ const Triggers = () => {
                             <td>
                               <EditTriggerCard
                                 id={trigger.id}
-                                userId={userId}
-                                data={data}
-                                setData={setData}
                                 name={trigger.name}
                                 status={trigger.status}
                               />
@@ -137,11 +114,6 @@ const Triggers = () => {
                             <td>
                               <DeleteTriggerCardX
                                 id={trigger.id}
-                                userId={userId}
-                                data={data}
-                                setData={setData}
-                                isUpdated={isUpdated}
-                                setIsUpdated={setIsUpdated}
                               />
                             </td>
                           </tr>

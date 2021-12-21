@@ -3,16 +3,23 @@ import React, { useState } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { Edit, Close, Ok } from 'react-ikonate'
-import { Button, Col, Row, FormGroup, Input } from 'reactstrap'
+import { useSelector } from 'react-redux'
+import { Button, Col, FormGroup, Input, Label, Row } from 'reactstrap'
+import { ReactMultiEmail, isEmail } from 'react-multi-email';
 
 import '../App.scss'
 import { validateEmail } from '../utils/validation'
 
-const EmailNotifs = ({ recipients, setRecipients }) => {
+const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
+
+
+const EmailNotifications = ({ recipients, setRecipients }) => {
   const [email, setEmail] = useState('')
   const [error, setError] = useState({})
   const [activeEmail, setActiveEmail] = useState(null)
   const [activeEmailContent, setActiveEmailContent] = useState('')
+
+  const areEmailsAllowed = useSelector(selectEmailsAllowed)
 
   const noBlankErrorMessage = 'Cannot be blank'
   const emailErrorMessage = 'Must be a valid email address'
@@ -31,7 +38,6 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
     setEmail('')
     setActiveEmail(null)
     setActiveEmailContent('')
-    console.log('**', email)
   }
 
   const deleteEmail = (index) => {
@@ -77,43 +83,34 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
     }
   }
 
-  return (
+  return ( areEmailsAllowed ?
     <>
-      <Row className="mt-4">
-        <Col>
-          <h6>Send email notifications</h6>
-        </Col>
-      </Row>
+      <Label>Email notifications to</Label>
+      <div className="d-flex align-items-center">
+        <input
+          className={`owm-selector ${
+            error.email ? 'danger-border' : ''
+          }`}
+          type="text"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        <Button className="button-neutral shadow-none" onClick={addEmail}>
+          Add email
+        </Button>
+      </div>
+        <div
+          className={classnames(
+            'invalid-feedback',
+            error.email ? 'd-block' : '',
+          )}
+        >
+          {error.email}
 
-      <Row className="search-fox mb-4">
-        <Col>
-          <FormGroup>
-            <Input
-              className={`input-marketplace ${
-                error.email ? 'danger-border' : ''
-              }`}
-              type="text"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-          </FormGroup>
-          <div
-            className={classnames(
-              'invalid-feedback',
-              error.email ? 'd-block' : '',
-            )}
-          >
-            {error.email}
-          </div>
-        </Col>
-        <Col>
-          <FormGroup>
-            <Button className="button-active shadow-none" onClick={addEmail}>
-              Add email
-            </Button>
-          </FormGroup>
-        </Col>
-      </Row>
+      </div>
+
+
+
 
       {/* eslint-disable-next-line */}
       {recipients.map((email, index) =>
@@ -162,13 +159,13 @@ const EmailNotifs = ({ recipients, setRecipients }) => {
           </>
         ),
       )}
-    </>
+    </> : null
   )
 }
 
-EmailNotifs.propTypes = {
+EmailNotifications.propTypes = {
   recipients: PropTypes.array,
   setRecipients: PropTypes.func,
 }
 
-export default EmailNotifs
+export default EmailNotifications

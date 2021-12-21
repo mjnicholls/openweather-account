@@ -8,7 +8,7 @@ import { useLocation, Link } from 'react-router-dom'
 import BeatLoader from 'react-spinners/BeatLoader'
 import { Row, Col, Input, Button } from 'reactstrap'
 
-import { patchTrigger, getEventsByTriggerId } from '../api/api'
+import { updateTriggerAPI, getEventsByTriggerId } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import ViewOnlyMap from '../components/GoogleMapViewOnly'
 import StatusToggle from '../components/StatusToggle'
@@ -100,7 +100,7 @@ const ViewTrigger = () => {
     }
 
     if (Object.keys(data).length) {
-      patchTrigger(data)
+      updateTriggerAPI(data)
         .then(() => {
           updateAlert()
         })
