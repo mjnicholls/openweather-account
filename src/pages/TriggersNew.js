@@ -13,7 +13,7 @@ import DeleteTriggerCardX from '../components/DeleteTriggerCardX'
 import EditTriggerCard from '../components/EditTriggerCard'
 import ThumbnailCondition from '../components/ThumbnailCondition'
 import ThumbnailLocation from '../components/ThumbnailLocation'
-import { Close } from 'react-ikonate'
+import { Close, EnvelopeAlt } from 'react-ikonate'
 
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 const selectTriggers = (state) => state.triggers
@@ -45,7 +45,7 @@ const Triggers = () => {
         // TODO error container
       ) : error ? <div>{error}</div> : data.length ? (
         <>
-          <Row className="triggers-bold d-flex d-sm-none">
+          <Row className="triggers-bold d-none d-lg-flex">
             <Col className="col-md-auto">&nbsp;</Col>
             <Col md="2">Name</Col>
             <Col md="3">Condition</Col>
@@ -62,8 +62,27 @@ const Triggers = () => {
           {data.map(
             (trigger, index) =>
               trigger.status !== 'deleted' && (
-                <Row className="triggers-new" key={trigger.id}>
-                  <React.Fragment >
+                <Row className="triggers-new">
+                  <React.Fragment key={trigger.id}>
+                    <Col md="1" className="d-md-flex d-lg-none text-end">
+                      <EditTriggerCard
+                        id={trigger.id}
+                        userId={userId}
+                        data={data}
+                        setData={setData}
+                        name={trigger.name}
+                        status={trigger.status}
+                      />
+
+                      <DeleteTriggerCardX
+                        id={trigger.id}
+                        userId={userId}
+                        data={data}
+                        setData={setData}
+                        isUpdated={isUpdated}
+                        setIsUpdated={setIsUpdated}
+                      />
+                    </Col>
                     <Col className="col-md-auto">{index + 1}</Col>
                     <Col md="2">
                       <Link
@@ -75,7 +94,7 @@ const Triggers = () => {
                         {trigger.name}
                       </Link>
                     </Col>
-                    <Col md="3" className="text-nowrap">
+                    <Col md="3">
                       <ThumbnailCondition condition={trigger.condition} />
                       {/* {conditionToText(trigger.condition)} */}
                     </Col>
@@ -85,10 +104,15 @@ const Triggers = () => {
                         showIcon={false}
                       />
                     </Col>
-                    <Col md="1" className="text-nowrap">
+                    <Col md="1">
                       {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
                     </Col>
-                    {emailsAllowed && <Col>{trigger.recipients.length}</Col>}
+                    {emailsAllowed && (
+                      <Col>
+                        <EnvelopeAlt className="d-md-flex d-lg-none" />{' '}
+                        {trigger.recipients.length}
+                      </Col>
+                    )}
                     <Col
                       md="1"
                       style={{
@@ -99,13 +123,12 @@ const Triggers = () => {
                         trigger.status.slice(1)}
                     </Col>
 
-                    <Col md="1">
+                    <Col md="1" className="d-lg-flex d-none">
                       <EditTriggerCard
                         id={trigger.id}
                         name={trigger.name}
                         status={trigger.status}
                       />
-                      {'  '}
                       <DeleteTriggerCardX
                         id={trigger.id}
                         className="remove-default-button-style"

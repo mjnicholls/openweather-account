@@ -114,6 +114,7 @@ const HeaderTrigger = () => {
                   <img
                     src="https://home.openweathermap.org/assets/icon_user.png"
                     alt="user icon"
+                    className="d-flex d-xl-none"
                   ></img>
                   {userName.slice(0, 6)}...
                 </a>
