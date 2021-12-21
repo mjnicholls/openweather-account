@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { Button } from 'reactstrap'
 
 import { getEventsByTriggerId } from '../api/api'
-import { deleteTrigger } from "../features/triggers/actions";
+import { deleteTrigger } from '../features/triggers/actions'
 
 const DeleteTrigger = ({ id, close }) => {
   const [events, setEvents] = useState([])
@@ -28,8 +28,11 @@ const DeleteTrigger = ({ id, close }) => {
 
   return (
     <div>
-      <p>{events.length ?  `There are ${events.length} active events for this trigger. Are
-        you sure you want to delete it?` : 'Are you sure you want to delete your trigger?'}
+      <p>
+        {events.length
+          ? `There are ${events.length} active events for this trigger. Are
+        you sure you want to delete it?`
+          : 'Are you sure you want to delete your trigger?'}
       </p>
       <div className="text-end">
         <Button

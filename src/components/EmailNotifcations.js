@@ -4,14 +4,12 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { Edit, Close, Ok } from 'react-ikonate'
 import { useSelector } from 'react-redux'
-import { Button, Col, FormGroup, Input, Label, Row } from 'reactstrap'
-import { ReactMultiEmail, isEmail } from 'react-multi-email';
+import { Button, Col, Input, Label, Row } from 'reactstrap'
 
 import '../App.scss'
 import { validateEmail } from '../utils/validation'
 
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
-
 
 const EmailNotifications = ({ recipients, setRecipients }) => {
   const [email, setEmail] = useState('')
@@ -83,14 +81,12 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
     }
   }
 
-  return ( areEmailsAllowed ?
+  return areEmailsAllowed ? (
     <>
       <Label>Email notifications to</Label>
       <div className="d-flex align-items-center">
         <input
-          className={`owm-selector ${
-            error.email ? 'danger-border' : ''
-          }`}
+          className={`owm-selector ${error.email ? 'danger-border' : ''}`}
           type="text"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
@@ -99,18 +95,11 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
           Add email
         </Button>
       </div>
-        <div
-          className={classnames(
-            'invalid-feedback',
-            error.email ? 'd-block' : '',
-          )}
-        >
-          {error.email}
-
+      <div
+        className={classnames('invalid-feedback', error.email ? 'd-block' : '')}
+      >
+        {error.email}
       </div>
-
-
-
 
       {/* eslint-disable-next-line */}
       {recipients.map((email, index) =>
@@ -159,8 +148,8 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
           </>
         ),
       )}
-    </> : null
-  )
+    </>
+  ) : null
 }
 
 EmailNotifications.propTypes = {

@@ -31,7 +31,7 @@ export const owmSelectorStyle = {
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isSelected ? '#f2f2f2' : '#ffffff',
-    padding: "8pt",
+    padding: '8pt',
     color: '#48484a',
     // padding: "8pt",
   }),
@@ -47,7 +47,7 @@ export const owmSelectorStyle = {
     borderBottomRightRadius: state.menuIsOpen ? 0 : borderRadius,
     padding: borderRadius,
     boxShadow: 'none',
-    minWidth: "200px"
+    minWidth: '200px',
   }),
   menu: (provided) => ({
     ...provided,
@@ -58,7 +58,7 @@ export const owmSelectorStyle = {
     borderTop: 'none',
     borderBottomLeftRadius: borderRadius,
     borderBottomRightRadius: borderRadius,
-    boxShadow: 'none'
+    boxShadow: 'none',
   }),
-  indicatorSeparator: () => ({display:'none'})
+  indicatorSeparator: () => ({ display: 'none' }),
 }

@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { ReactMultiEmail } from 'react-multi-email'
+
+import { ReactMultiEmail, isEmail } from 'react-multi-email'
 import 'react-multi-email/style.css'
 
-const EmailMulti = ({ recipients }) => {
-  const [emails, setEmails] = React.useState([])
+const EmailMulti = ({ recipients, setRecipients }) => {
+  const [email, setEmail] = React.useState([])
 
   const styles = {
     fontFamily: 'sans-serif',
@@ -14,25 +15,36 @@ const EmailMulti = ({ recipients }) => {
     margin: '20px',
   }
 
+  const addEmail = () => {
+    setRecipients([...recipients, email])
+    setEmail(email)
+  }
+
   return (
     <div style={styles}>
-      <h2>react-multi-email</h2>
       <ReactMultiEmail
         placeholder="Input your Email Address"
-        emails={emails}
-        onChange={(e) => setEmails(e.target.value)}
+        emails={email}
+        // validateEmail={(email) => { isEmail(email) }}
+        onChange={addEmail}
         getLabel={(emails, index, removeEmail) => (
           <div data-tag key={index}>
             {emails}
-            <span data-tag-handle onClick={() => removeEmail(index)}>
-              ×
+            <span
+              role="textbox"
+              tabIndex={0}
+              data-tag-handle
+              onClick={() => removeEmail(index)}
+              onKeyDown={() => removeEmail(index)}
+            >
+              x
             </span>
           </div>
         )}
       />
       <br />
       <h4>react-multi-email value</h4>
-      <p>{emails.join(', ') || 'empty'}</p>
+      <p>{email.join(', ') || 'empty'}</p>
     </div>
   )
 }

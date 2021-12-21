@@ -42,8 +42,10 @@ const Triggers = () => {
 
       {isFetching ? (
         <BeatLoader />
-        // TODO error container
-      ) : error ? <div>{error}</div> : data.length ? (
+      ) : // TODO error container
+      error ? (
+        <div>{error}</div>
+      ) : data.length ? (
         <>
           <Row className="triggers-bold d-none d-lg-flex">
             <Col className="col-md-auto">&nbsp;</Col>
@@ -63,71 +65,73 @@ const Triggers = () => {
             (trigger, index) =>
               trigger.status !== 'deleted' && (
                 <Row className="triggers-new" key={trigger.id}>
-                    <Col md="1" className="d-md-flex d-lg-none text-end">
-                      <EditTriggerCard
-                        id={trigger.id}
-                        name={trigger.name}
-                        status={trigger.status}
-                      />
+                  <Col md="1" className="d-md-flex d-lg-none text-end">
+                    <EditTriggerCard
+                      id={trigger.id}
+                      name={trigger.name}
+                      status={trigger.status}
+                    />
 
-                      <DeleteTriggerCardX
-                        id={trigger.id}
-                        className="remove-default-button-style"
-                      >
-                        <Close color="#48484a" /></DeleteTriggerCardX>
-                    </Col>
-                    <Col className="col-md-auto">{index + 1}</Col>
-                    <Col md="2">
-                      <Link
-                        to={{
-                          pathname: '/dashboard/trigger',
-                          state: trigger,
-                        }}
-                      >
-                        {trigger.name}
-                      </Link>
-                    </Col>
-                    <Col md="3">
-                      <ThumbnailCondition condition={trigger.condition} />
-                      {/* {conditionToText(trigger.condition)} */}
-                    </Col>
-                    <Col md="3">
-                      <ThumbnailLocation
-                        location={trigger.location}
-                        showIcon={false}
-                      />
-                    </Col>
-                    <Col md="1">
-                      {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
-                    </Col>
-                    {emailsAllowed && (
-                      <Col>
-                        <EnvelopeAlt className="d-md-flex d-lg-none" />{' '}
-                        {trigger.recipients.length}
-                      </Col>
-                    )}
-                    <Col
-                      md="1"
-                      style={{
-                        color: trigger.status === 'on' ? 'green' : 'red',
+                    <DeleteTriggerCardX
+                      id={trigger.id}
+                      className="remove-default-button-style"
+                    >
+                      <Close color="#48484a" />
+                    </DeleteTriggerCardX>
+                  </Col>
+                  <Col className="col-md-auto">{index + 1}</Col>
+                  <Col md="2">
+                    <Link
+                      to={{
+                        pathname: '/dashboard/trigger',
+                        state: trigger,
                       }}
                     >
-                      {trigger.status.charAt(0).toUpperCase() +
-                        trigger.status.slice(1)}
+                      {trigger.name}
+                    </Link>
+                  </Col>
+                  <Col md="3">
+                    <ThumbnailCondition condition={trigger.condition} />
+                    {/* {conditionToText(trigger.condition)} */}
+                  </Col>
+                  <Col md="3">
+                    <ThumbnailLocation
+                      location={trigger.location}
+                      showIcon={false}
+                    />
+                  </Col>
+                  <Col md="1">
+                    {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
+                  </Col>
+                  {emailsAllowed && (
+                    <Col>
+                      <EnvelopeAlt className="d-md-flex d-lg-none text-nowrap" />{' '}
+                      {trigger.recipients.length}
                     </Col>
+                  )}
+                  <Col
+                    md="1"
+                    style={{
+                      color: trigger.status === 'on' ? 'green' : 'red',
+                    }}
+                  >
+                    {trigger.status.charAt(0).toUpperCase() +
+                      trigger.status.slice(1)}
+                  </Col>
 
-                    <Col md="1" className="d-lg-flex d-none">
-                      <EditTriggerCard
-                        id={trigger.id}
-                        name={trigger.name}
-                        status={trigger.status}
-                      />
-                      <DeleteTriggerCardX
-                        id={trigger.id}
-                        className="remove-default-button-style"
-                      >
-                        <Close color="#48484a" /></DeleteTriggerCardX>
-                    </Col>
+                  <Col md="1" className="d-lg-flex d-none text-nowrap">
+                    <EditTriggerCard
+                      id={trigger.id}
+                      name={trigger.name}
+                      status={trigger.status}
+                    />
+                    <DeleteTriggerCardX
+                      id={trigger.id}
+                      className="remove-default-button-style text-nowrap"
+                    >
+                      <Close color="#48484a" />
+                    </DeleteTriggerCardX>
+                  </Col>
                 </Row>
               ),
           )}

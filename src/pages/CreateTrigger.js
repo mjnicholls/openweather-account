@@ -5,14 +5,14 @@ import React, { useRef, useState, useEffect } from 'react'
 import { css } from '@emotion/react'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
-import {Link, useHistory} from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import BeatLoader from 'react-spinners/BeatLoader'
 import { Button, Col, Row } from 'reactstrap'
 
 import { createTriggerAPI, getTriggersAPI } from '../api/api'
 import Condition from '../components/Condition'
 import CreateTriggerCard from '../components/CreateTriggerCard'
-import EmailNotifs from '../components/EmailNotifcations'
+//import EmailNotifs from '../components/EmailNotifcations'
 import GoogleMapCreate from '../components/GoogleMapCreate'
 import LocationName from '../components/LocationName'
 import Notifications from '../components/Notifications'
@@ -22,7 +22,8 @@ import TriggerNameOnly from '../components/TriggerNameOnly'
 import '../App.scss'
 import { noBlankErrorMessage } from '../config'
 import ErrorModal from '../components/ErrorModal'
-import {ChevronLeft} from "react-ikonate";
+import { ChevronLeft } from 'react-ikonate'
+//import EmailMulti from '../components/EmailMulti'
 
 const selectUserId = (state) => state.auth.user.id
 
@@ -218,14 +219,16 @@ const CreateTrigger = () => {
             {alert}
             <Row>
               <Col className="mt-3">
-                <Link role="button" to="/dashboard/triggers" >
-                  <div className="navigation-link"><ChevronLeft fontSize="2rem" />To all triggers</div>
+                <Link role="button" to="/dashboard/triggers">
+                  <div className="navigation-link">
+                    <ChevronLeft fontSize="2rem" />
+                    To all triggers
+                  </div>
                 </Link>
               </Col>
             </Row>
             <h2>New trigger</h2>
             <div className="pt-5 pb-5">
-
               <TriggerNameOnly name={name} setName={setName} error={error} />
               <SearchBox
                 mapRef={mapRef}
@@ -254,10 +257,10 @@ const CreateTrigger = () => {
               <Row className="mt-4">
                 <Col className="text-end">
                   {/*<Button*/}
-                    {/*className="button-neutral shadow-none"*/}
-                    {/*onClick={goToPreviousPath}*/}
+                  {/*className="button-neutral shadow-none"*/}
+                  {/*onClick={goToPreviousPath}*/}
                   {/*>*/}
-                    {/*Cancel*/}
+                  {/*Cancel*/}
                   {/*</Button>*/}
 
                   {data.length >= myLimits.max_triggers ? (

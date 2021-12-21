@@ -7,8 +7,7 @@ import { Button } from 'reactstrap'
 import DeleteTrigger from './DeleteTrigger'
 
 const DeleteTriggerCardX = (props) => {
-
-  const {id, className, children} = props
+  const { id, className, children } = props
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
@@ -25,10 +24,7 @@ const DeleteTriggerCardX = (props) => {
         showCloseButton
         customClass="bs-alerts"
       >
-        <DeleteTrigger
-          close={hideAlert}
-          id={id}
-        />
+        <DeleteTrigger close={hideAlert} id={id} />
       </ReactBSAlert>,
     )
   }
@@ -51,7 +47,7 @@ const DeleteTriggerCardX = (props) => {
 }
 
 DeleteTriggerCardX.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
 }
 
 export default DeleteTriggerCardX

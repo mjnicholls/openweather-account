@@ -70,7 +70,8 @@ const Condition = ({ condition, setCondition }) => {
             />
           </div>
         </Col>
-      </Row><span className="human-readable">{conditionToTextLong(condition)}</span>
+      </Row>
+      <span className="human-readable">{conditionToTextLong(condition)}</span>
     </div>
   )
 }

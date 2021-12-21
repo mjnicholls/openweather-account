@@ -16,7 +16,6 @@ const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 const selectTriggers = (state) => state.triggers
 
 const Triggers = () => {
-
   const emailsAllowed = useSelector(selectEmailsAllowed)
   const { isFetching, error, data } = useSelector(selectTriggers)
 
@@ -40,8 +39,10 @@ const Triggers = () => {
 
       {isFetching ? (
         <BeatLoader />
-        // TODO error container
-      ) : error ? <div>{error}</div> : data.length ? (
+      ) : // TODO error container
+      error ? (
+        <div>{error}</div>
+      ) : data.length ? (
         <Row>
           <Col className="mb-0" md="12" mt="20">
             <Card className="mb-5">
@@ -112,9 +113,7 @@ const Triggers = () => {
                               />
                             </td>
                             <td>
-                              <DeleteTriggerCardX
-                                id={trigger.id}
-                              />
+                              <DeleteTriggerCardX id={trigger.id} />
                             </td>
                           </tr>
                         ),
