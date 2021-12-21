@@ -6,7 +6,7 @@ import { Col, Row, FormGroup, Label } from 'reactstrap'
 
 import '../App.scss'
 import { variables, units, conditions } from '../config'
-import { reactSelectStyles } from '../utils/styles'
+import { owmSelectorStyle } from '../utils/styles'
 import { conditionToTextLong } from '../utils/utils'
 
 const Condition = ({ condition, setCondition }) => {
@@ -17,14 +17,14 @@ const Condition = ({ condition, setCondition }) => {
   }
 
   return (
-    <>
+    <div className="my-5">
       <Row>
         <Col className="mb-1">
-          <h6>Trigger condition</h6>
+          <h5>Trigger condition</h5>
         </Col>
       </Row>
 
-      <Row className="container-main">
+      <Row>
         <Col md="6">
           <div>
             <Label>Weather parameter</Label>
@@ -33,7 +33,7 @@ const Condition = ({ condition, setCondition }) => {
               onChange={(option) => handleChange('variable', option.value)}
               classNamePrefix="react-select"
               options={variables}
-              styles={reactSelectStyles}
+              styles={owmSelectorStyle}
             />
           </div>
           <div>
@@ -43,7 +43,7 @@ const Condition = ({ condition, setCondition }) => {
               onChange={(option) => handleChange('condition', option.value)}
               classNamePrefix="react-select"
               options={conditions}
-              styles={reactSelectStyles}
+              styles={owmSelectorStyle}
             />
           </div>
         </Col>
@@ -56,7 +56,7 @@ const Condition = ({ condition, setCondition }) => {
                 handleChange('value', parseFloat(e.target.value))
               }
               value={condition.value}
-              className="input-marketplace"
+              className="owm-selector"
             />
           </div>
           <div>
@@ -66,13 +66,12 @@ const Condition = ({ condition, setCondition }) => {
               value={units.find((el) => el.value === condition.units)}
               onChange={(option) => handleChange('units', option.value)}
               options={units}
-              styles={reactSelectStyles}
+              styles={owmSelectorStyle}
             />
           </div>
         </Col>
-        <div className="human-readable">{conditionToTextLong(condition)}</div>
-      </Row>
-    </>
+      </Row><span className="human-readable">{conditionToTextLong(condition)}</span>
+    </div>
   )
 }
 

@@ -5,23 +5,24 @@ import React, { useRef, useState, useEffect } from 'react'
 import { css } from '@emotion/react'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import BeatLoader from 'react-spinners/BeatLoader'
 import { Button, Col, Row } from 'reactstrap'
 
-import { postTrigger, getTriggers } from '../api/api'
+import { createTriggerAPI, getTriggersAPI } from '../api/api'
 import Condition from '../components/Condition'
 import CreateTriggerCard from '../components/CreateTriggerCard'
-import EmailNotifs from '../components/EmailNotifcation'
+import EmailNotifs from '../components/EmailNotifcations'
 import GoogleMapCreate from '../components/GoogleMapCreate'
 import LocationName from '../components/LocationName'
-import PriorNotifs from '../components/PriorNotifications'
+import Notifications from '../components/Notifications'
 // import SearchBox from '../components/SearchBox'
 import SearchBox from '../components/SearchBoxNew'
 import TriggerNameOnly from '../components/TriggerNameOnly'
 import '../App.scss'
 import { noBlankErrorMessage } from '../config'
 import ErrorModal from '../components/ErrorModal'
+import {ChevronLeft} from "react-ikonate";
 
 const selectUserId = (state) => state.auth.user.id
 
@@ -106,7 +107,7 @@ const CreateTrigger = () => {
       return
     }
 
-    postTrigger(data)
+    createTriggerAPI(data)
       .then(() => {
         htmlAlert()
       })
@@ -174,7 +175,7 @@ const CreateTrigger = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    getTriggers(userId)
+    getTriggersAPI(userId)
       .then((res) => {
         setData(res.data)
       })
@@ -187,9 +188,8 @@ const CreateTrigger = () => {
   }, [userId])
 
   useEffect(() => {
-    // add when mounted
+    // detect click outside location search box
     document.addEventListener('mousedown', handleClickOtsideSearchBox)
-    // return function to be called when unmounted
     return () => {
       document.removeEventListener('mousedown', handleClickOtsideSearchBox)
     }
@@ -216,8 +216,16 @@ const CreateTrigger = () => {
         <Row>
           <Col md="7">
             {alert}
+            <Row>
+              <Col className="mt-3">
+                <Link role="button" to="/dashboard/triggers" >
+                  <div className="navigation-link"><ChevronLeft fontSize="2rem" />To all triggers</div>
+                </Link>
+              </Col>
+            </Row>
             <h2>New trigger</h2>
             <div className="pt-5 pb-5">
+
               <TriggerNameOnly name={name} setName={setName} error={error} />
               <SearchBox
                 mapRef={mapRef}
@@ -233,22 +241,24 @@ const CreateTrigger = () => {
                 setIsDropDown={setIsDropDown}
               />
               {isSet ? <LocationName location={location} /> : null}
+
               <Condition condition={condition} setCondition={setCondition} />
-              <PriorNotifs days={days} setDays={setDays} />
-              {myLimits.email_recipients === false ? null : (
-                <EmailNotifs
-                  recipients={recipients}
-                  setRecipients={setRecipients}
-                />
-              )}
+
+              <Notifications
+                days={days}
+                setDays={setDays}
+                recipients={recipients}
+                setRecipients={setRecipients}
+              />
+
               <Row className="mt-4">
                 <Col className="text-end">
-                  <Button
-                    className="button-neutral shadow-none"
-                    onClick={goToPreviousPath}
-                  >
-                    Cancel
-                  </Button>
+                  {/*<Button*/}
+                    {/*className="button-neutral shadow-none"*/}
+                    {/*onClick={goToPreviousPath}*/}
+                  {/*>*/}
+                    {/*Cancel*/}
+                  {/*</Button>*/}
 
                   {data.length >= myLimits.max_triggers ? (
                     <Button

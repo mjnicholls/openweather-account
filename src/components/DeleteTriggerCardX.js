@@ -2,13 +2,13 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
-import { Close } from 'react-ikonate'
 import { Button } from 'reactstrap'
 
-import { getTriggers } from '../api/api'
 import DeleteTrigger from './DeleteTrigger'
 
-const DeleteTriggerCardX = ({ id, userId, data, setData }) => {
+const DeleteTriggerCardX = (props) => {
+
+  const {id, className, children} = props
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
@@ -28,9 +28,6 @@ const DeleteTriggerCardX = ({ id, userId, data, setData }) => {
         <DeleteTrigger
           close={hideAlert}
           id={id}
-          userId={userId}
-          data={data}
-          setData={setData}
         />
       </ReactBSAlert>,
     )
@@ -40,30 +37,21 @@ const DeleteTriggerCardX = ({ id, userId, data, setData }) => {
     <>
       {alert}
       <Button
-        size="sm"
         title="Delete"
-        className="shadow-none"
-        style={{
-          backgroundColor: 'transparent',
-          border: 'none',
-          padding: '0px',
-        }}
+        className={className}
         onClick={(e) => {
           htmlAlert()
           e.stopPropagation()
         }}
       >
-        <Close color="#48484a" />
+        {children}
       </Button>
     </>
   )
 }
 
 DeleteTriggerCardX.propTypes = {
-  id: PropTypes.string,
-  userId: PropTypes.string,
-  data: PropTypes.array,
-  setData: PropTypes.func,
+  id: PropTypes.string
 }
 
 export default DeleteTriggerCardX

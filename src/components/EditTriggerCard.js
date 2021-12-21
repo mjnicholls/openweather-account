@@ -7,14 +7,15 @@ import { Button } from 'reactstrap'
 
 import EditTrigger from './EditTrigger'
 
-const EditTriggerCard = ({ id, userId, name, status, setData }) => {
+const EditTriggerCard = ({ id, name, status }) => {
+
   const [alert, setAlert] = React.useState(null)
 
   const hideAlert = () => {
     setAlert(null)
   }
 
-  const htmlAlert = () => {
+  const showUpdatePopUp = () => {
     setAlert(
       <ReactBSAlert
         title="Update Trigger"
@@ -24,14 +25,7 @@ const EditTriggerCard = ({ id, userId, name, status, setData }) => {
         showCloseButton
         customClass="bs-alerts"
       >
-        <EditTrigger
-          close={hideAlert}
-          id={id}
-          userId={userId}
-          name={name}
-          status={status}
-          setData={setData}
-        />
+        <EditTrigger id={id} name={name} status={status} close={hideAlert} />
       </ReactBSAlert>,
     )
   }
@@ -48,7 +42,7 @@ const EditTriggerCard = ({ id, userId, name, status, setData }) => {
         title="Update"
         className="text-end shadow-none"
         onClick={(e) => {
-          htmlAlert()
+          showUpdatePopUp()
           e.stopPropagation()
         }}
       >
@@ -61,8 +55,6 @@ const EditTriggerCard = ({ id, userId, name, status, setData }) => {
 EditTriggerCard.propTypes = {
   id: PropTypes.string,
   status: PropTypes.string,
-  userId: PropTypes.string,
-  setData: PropTypes.func,
   name: PropTypes.string,
 }
 

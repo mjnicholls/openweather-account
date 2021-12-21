@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React from 'react'
 
 import './App.scss'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
 import { Container } from 'reactstrap'
 
 import FooterTrigger from './components/Footer'
@@ -13,9 +15,14 @@ import TriggerList from './pages/TriggersNew'
 // import ViewTrigger from './pages/ViewTrigger'
 import ViewTrigger from './pages/ViewTriggerNew'
 import store from './store'
+import {fetchTriggers} from "./features/triggers/actions";
+import NotificationMessage from './components/NotificationMessage'
+import 'react-toastify/dist/ReactToastify.css';
+store.dispatch(fetchTriggers())
 
 const App = () => (
   <Provider store={store}>
+
     <div className="app">
       <HeaderTrigger />
       <Container fluid="xxl" className="app-content">
@@ -34,6 +41,18 @@ const App = () => (
       </Container>
       <FooterTrigger />
     </div>
+    <ToastContainer
+      position="bottom-right"
+      autoClose={5000}
+      hideProgressBar={true}
+      newestOnTop
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
+    <NotificationMessage />
   </Provider>
 )
 
