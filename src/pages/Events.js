@@ -45,7 +45,7 @@ const Events = () => {
           <Link
             role="button"
             to="/dashboard/triggers"
-            className="navigation-link"
+            className="button-neutral"
           >
             To triggers
           </Link>

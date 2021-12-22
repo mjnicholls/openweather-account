@@ -50,10 +50,10 @@ const CreateTriggerButton = ({ createFunc }) => {
       {alert}
       <button
         type="button"
-        className="navigation-link"
+        className="button-active shadow-none"
         onClick={triggerN >= maxTriggers ? tariffError : createFunc}
       >
-        <Plus />
+        {/* <Plus /> */}
         Create new trigger
       </button>
     </>
