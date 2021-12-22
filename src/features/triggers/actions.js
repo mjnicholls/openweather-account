@@ -48,11 +48,13 @@ export const triggerDeleted = (triggerId) => ({
 export const fetchTriggers = () =>
   async function addTriggerThunk(dispatch, getState) {
     const state = getState()
+    dispatch(triggersStartFetching())
     getTriggersAPI(state.auth.user.id)
       .then((response) => {
         dispatch(triggersFetchSuccess(response.data))
       })
       .catch((error) => {
+        dispatch(triggersFetchFailure(error.message))
         dispatch(notifyError(error.message))
       })
   }

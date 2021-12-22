@@ -16,7 +16,10 @@ export const getTriggersAPI = (userId) =>
   axios.get(`${getIndexURL}?user_id=${userId}`)
 
 export const createTriggerAPI = (params, userId) =>
-  axios.post(`${postTriggerURL}?user_id=${userId}`, params)
+  axios.post(`${postTriggerURL}?user_id=${userId}`, {
+    ...params,
+    user_id: userId,
+  })
 
 export const updateTriggerAPI = (params, userId) =>
   axios.patch(`${patchTriggerURL}?user_id=${userId}`, {

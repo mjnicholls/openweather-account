@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react'
 
 import './App.scss'
@@ -9,15 +8,16 @@ import { Container } from 'reactstrap'
 
 import FooterTrigger from './components/Footer'
 import HeaderTrigger from './components/Header'
+import NotificationMessage from './components/NotificationMessage'
+import { fetchTriggers } from './features/triggers/actions'
 import CreateTrigger from './pages/CreateTrigger'
 import Events from './pages/Events'
-import TriggerList from './pages/TriggersNew'
+import TriggerList from './pages/Triggers'
 // import ViewTrigger from './pages/ViewTrigger'
 import ViewTrigger from './pages/ViewTriggerNew'
 import store from './store'
-import { fetchTriggers } from './features/triggers/actions'
-import NotificationMessage from './components/NotificationMessage'
 import 'react-toastify/dist/ReactToastify.css'
+
 store.dispatch(fetchTriggers())
 
 const App = () => (
@@ -43,7 +43,7 @@ const App = () => (
     <ToastContainer
       position="bottom-right"
       autoClose={5000}
-      hideProgressBar={true}
+      hideProgressBar
       newestOnTop
       closeOnClick
       rtl={false}

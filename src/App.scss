@@ -898,6 +898,13 @@ input.input-marketplace, input.marketplace-input__input {
   padding: 0;
   font: inherit;
   outline: inherit;
+  &:hover, &:focus, &:active {
+    color: inherit;
+    background: none;
+    border: none;
+    outline: inherit;
+    box-shadow: none !important;
+  }
 }
 
 .remove-default-button-style {
@@ -1052,8 +1059,17 @@ input.input-marketplace, input.marketplace-input__input {
 }
 
 .navigation-link {
-  display: flex;
+  @include remove-default-button-style;
+  display: inline-flex;
   align-items: center;
   font-weight: bold;
   color: #48484a;
+  margin-left: 16pt;
+  svg {
+    margin-right: 3pt;
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
 }

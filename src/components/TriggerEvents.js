@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import PropTypes from 'prop-types'
 import { Error } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 
@@ -58,6 +59,10 @@ const TriggerEvents = ({ triggerId }) => {
       </div>
     </div>
   )
+}
+
+TriggerEvents.propTypes = {
+  triggerId: PropTypes.string,
 }
 
 export default TriggerEvents
