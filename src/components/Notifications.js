@@ -6,7 +6,6 @@ import { Label } from 'reactstrap'
 import '../App.scss'
 
 import { owmSelectorStyle } from '../utils/styles'
-import EmailMulti from './EmailMulti'
 import EmailNotifications from './EmailNotifcations'
 
 const Notifications = ({ days, setDays, recipients, setRecipients }) => {
@@ -51,7 +50,6 @@ const Notifications = ({ days, setDays, recipients, setRecipients }) => {
         recipients={recipients}
         setRecipients={setRecipients}
       />
-      <EmailMulti recipients={recipients} setRecipients={setRecipients} />
     </>
   )
 }

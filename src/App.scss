@@ -1073,3 +1073,13 @@ input.input-marketplace, input.marketplace-input__input {
     margin-left: 0;
   }
 }
+
+.item {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: $brand-grey;
+  padding: 5px;
+  margin-bottom: 1em;
+  border-radius: 8px;
+  margin-right: 5px;
+}

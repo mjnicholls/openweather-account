@@ -22,10 +22,23 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
   const noBlankErrorMessage = 'Cannot be blank'
   const emailErrorMessage = 'Must be a valid email address'
 
-  const addEmail = () => {
-    if (isEmailValid(email)) {
-      setRecipients([...recipients, email])
-      setEmail('')
+  /*
+  const styles = {
+    fontFamily: 'sans-serif',
+    width: '500px',
+    border: '1px solid #eee',
+    background: '#f3f3f3',
+    padding: '25px',
+    margin: '20px',
+  }
+  */
+
+  const addEmail = (e) => {
+    if (e.key === 'Enter') {
+      if (isEmailValid(email)) {
+        setRecipients([...recipients, email])
+        setEmail('')
+      }
     }
   }
 
@@ -75,33 +88,55 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
     return true
   }
 
-  const onKeyDown = (e, index) => {
-    if (e.keyCode === 13) {
-      saveEmail(index)
-    }
-  }
-
   return areEmailsAllowed ? (
     <>
-      <Label>Email notifications to</Label>
-      <div className="d-flex align-items-center">
-        <input
-          className={`owm-selector ${error.email ? 'danger-border' : ''}`}
-          type="text"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-        <Button className="button-neutral shadow-none" onClick={addEmail}>
-          Add email
-        </Button>
-      </div>
+      <h5 className="mt-4">Email notifications to:</h5>
       <div
         className={classnames('invalid-feedback', error.email ? 'd-block' : '')}
       >
         {error.email}
       </div>
+      <div>
+        <Row>
+          <Col>
+            <Input
+              className={`owm-selector ${error.email ? 'danger-border' : ''}`}
+              type="text"
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={addEmail}
+              value={email}
+            />
+          </Col>
+          <Col>
+            {/* eslint-disable-next-line */}
+            {recipients.map((email, index) =>
+              email === activeEmail ? null : (
+                <>
+                  <label className="item" data-tag key={email}>
+                    {email}
+                    <span
+                      role="textbox"
+                      tabIndex={0}
+                      data-tag-handle
+                      onClick={() => deleteEmail(index)}
+                      onKeyDown={() => deleteEmail(index)}
+                    >
+                      <Close name="Delete" onClick={() => deleteEmail(index)} />
+                    </span>
+                  </label>
+                </>
+              ),
+            )}
+          </Col>
+        </Row>
+        {/*
+        <Button className="button-neutral shadow-none" onClick={addEmail}>
+          Add email
+        </Button>
+        */}
+      </div>
 
-      {/* eslint-disable-next-line */}
+      {/* 
       {recipients.map((email, index) =>
         email === activeEmail ? (
           <>
@@ -148,6 +183,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
           </>
         ),
       )}
+     */}
     </>
   ) : null
 }

@@ -8,13 +8,13 @@ import { Button, Col, Row } from 'reactstrap'
 import Condition from '../components/Condition'
 import CreateTriggerButton from '../components/CreateTriggerButton'
 import CreateTriggerCard from '../components/CreateTriggerCard'
+import ErrorModal from '../components/ErrorModal'
 import GoogleMapCreate from '../components/GoogleMapCreate'
 import LocationName from '../components/LocationName'
 import Notifications from '../components/Notifications'
 import SearchBox from '../components/SearchBoxNew'
 import TriggerNameOnly from '../components/TriggerName'
 import { noBlankErrorMessage } from '../config'
-import ErrorModal from '../components/ErrorModal'
 import { addTrigger } from '../features/triggers/actions'
 
 const CreateTrigger = () => {
@@ -174,12 +174,12 @@ const CreateTrigger = () => {
 
           <Row className="mt-4">
             <Col className="text-end">
-              {/*<Button*/}
-              {/*className="button-neutral shadow-none"*/}
-              {/*onClick={goToPreviousPath}*/}
-              {/*>*/}
-              {/*Cancel*/}
-              {/*</Button>*/}
+              {/* <Button */}
+              {/* className="button-neutral shadow-none" */}
+              {/* onClick={goToPreviousPath} */}
+              {/* > */}
+              {/* Cancel */}
+              {/* </Button> */}
               <CreateTriggerButton createFunc={createTrigger} />
             </Col>
           </Row>
