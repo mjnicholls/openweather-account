@@ -4,9 +4,10 @@ import * as React from 'react'
 import { ReactMultiEmail, isEmail } from 'react-multi-email'
 import 'react-multi-email/style.css'
 import { validateEmail } from '../utils/validation'
+import { Row } from 'reactstrap'
 
 const EmailMulti = ({ recipients, setRecipients }) => {
-  const [email, setEmail] = React.useState([])
+  const [email, setEmail] = React.useState('')
 
   const styles = {
     fontFamily: 'sans-serif',
@@ -18,19 +19,18 @@ const EmailMulti = ({ recipients, setRecipients }) => {
   }
 
   const addEmail = () => {
-    setRecipients([...recipients, email])
-    setEmail(email)
+    setRecipients([...recipients])
+    setEmail('')
+    console.log('email', email)
   }
 
   const isEmailValid = (val) => {
     console.log('isEmailValid')
     if (!validateEmail(val)) {
-      console.log('1')
       return false
     }
 
     if (recipients.includes(val)) {
-      console.log('1')
       return false
     }
 
@@ -38,31 +38,30 @@ const EmailMulti = ({ recipients, setRecipients }) => {
   }
 
   return (
-    <div style={styles}>
-      <ReactMultiEmail
-        placeholder="Input your Email Address"
-        emails={email}
-        validateEmail={(email) => isEmailValid(email)}
-        onChange={addEmail}
-        getLabel={(emails, index, removeEmail) => (
-          <div data-tag key={index}>
-            {emails}
-            <span
-              role="textbox"
-              tabIndex={0}
-              data-tag-handle
-              onClick={() => removeEmail(index)}
-              onKeyDown={() => removeEmail(index)}
-            >
-              x
-            </span>
-          </div>
-        )}
-      />
-      <br />
-      <h4>react-multi-email value</h4>
-      <p>{email.join(', ') || 'empty'}</p>
-    </div>
+    <>
+      <div style={styles}>
+        <ReactMultiEmail
+          placeholder="Input your Email Address"
+          emails={email}
+          validateEmail={(email) => isEmailValid(email)}
+          onChange={(e) => setEmail(e.target.value)}
+          getLabel={(emails, index, removeEmail) => (
+            <div data-tag key={index}>
+              {emails}
+              <span
+                role="textbox"
+                tabIndex={0}
+                data-tag-handle
+                onClick={() => removeEmail(index)}
+                onKeyDown={() => removeEmail(index)}
+              >
+                x
+              </span>
+            </div>
+          )}
+        />
+      </div>
+    </>
   )
 }
 
