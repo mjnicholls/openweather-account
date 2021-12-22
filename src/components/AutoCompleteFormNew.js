@@ -42,10 +42,6 @@ const AutoCompleteForm = ({
     setIsDropDown(true)
   }
 
-  const onBlur = () => {
-    setIsDropDown(false)
-  }
-
   return (
     <>
       <Autocomplete
@@ -55,12 +51,11 @@ const AutoCompleteForm = ({
           onPlaceSelected(place)
           setIsSet(true)
         }}
-        onChange={(e) => {
-          setLocation({ ...location, name: e.target.value })
-        }}
+        // onChange={(e) => {
+        //   setLocation({ ...location, name: e.target.value })
+        // }}
         onFocus={onFocus}
-        // onBlur={onBlur}
-        value={location.name}
+        // value={location.name}
         placeholder="Enter location"
       />
       <div

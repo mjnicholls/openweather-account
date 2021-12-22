@@ -154,7 +154,7 @@ const CreateTrigger = () => {
             setIsDropDown={setIsDropDown}
           />
 
-          {isSet ? <LocationName location={location} /> : null}
+          {/*{isSet ? <LocationName location={location} /> : null}*/}
 
           <Condition condition={condition} setCondition={setCondition} />
 

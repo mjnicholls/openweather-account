@@ -90,7 +90,11 @@ const SearchBoxNew = ({
           </Button>
         </div>
       )}
-      <EditableInput content={location.name} setContent={(val) => {setLocation({...location, name: val})}}/>
+      {location.lat && location.lon &&
+        <div className="my-3">
+          <EditableInput content={location.name} setContent={(val) => {setLocation({...location, name: val})}}/>
+        </div>
+      }
     </div>
   )
 }
