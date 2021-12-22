@@ -4,6 +4,8 @@ import { Button } from 'reactstrap'
 
 import AutoCompleteFormNew from './AutoCompleteFormNew'
 import CoordinatesSearchNew from './CoordinatesSearchNew'
+import EditableInput from './EditableInput'
+
 
 const SearchBoxNew = ({
   mapRef,
@@ -88,6 +90,7 @@ const SearchBoxNew = ({
           </Button>
         </div>
       )}
+      <EditableInput content={location.name} setContent={(val) => {setLocation({...location, name: val})}}/>
     </div>
   )
 }

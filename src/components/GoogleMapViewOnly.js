@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
 import placeMarker from './placeMarker'
+import {mapStyle} from "../utils/styles";
 
 const handleApiLoaded = (mapInstance, coords) => {
   /* eslint-disable-next-line */
@@ -58,7 +59,7 @@ const ViewOnlyMap = ({ mapRef, location }) => {
   }
 
   return (
-    <div id="map" style={{ height: '100%', width: '100%', minHeight: '350px' }}>
+    <div id="map" style={mapStyle}>
       <GoogleMapReact
         ref={mapRef}
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_KEY }}

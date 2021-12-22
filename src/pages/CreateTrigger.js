@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useRef, useState, useEffect } from 'react'
 
 import { ChevronLeft } from 'react-ikonate'
@@ -8,12 +9,12 @@ import { Button, Col, Row } from 'reactstrap'
 import Condition from '../components/Condition'
 import CreateTriggerButton from '../components/CreateTriggerButton'
 import CreateTriggerCard from '../components/CreateTriggerCard'
+import EditableInput from '../components/EditableInput'
 import ErrorModal from '../components/ErrorModal'
 import GoogleMapCreate from '../components/GoogleMapCreate'
 import LocationName from '../components/LocationName'
 import Notifications from '../components/Notifications'
 import SearchBox from '../components/SearchBoxNew'
-import TriggerNameOnly from '../components/TriggerName'
 import { noBlankErrorMessage } from '../config'
 import { addTrigger } from '../features/triggers/actions'
 
@@ -83,16 +84,6 @@ const CreateTrigger = () => {
     dispatch(addTrigger(data))
 
     //  TODO add creation success / failure
-    // createTriggerAPI(data)
-    //   .then(() => {
-    //     htmlAlert()
-    //   })
-    //   .catch((err) => {
-    //     if (err.response) {
-    //       setWhoops(err.response.data.message)
-    //       errorAlert()
-    //     }
-    //   })
   }
 
   const hideAlert = () => {
@@ -147,7 +138,8 @@ const CreateTrigger = () => {
         </Row>
         <h2>New trigger</h2>
         <div className="pt-5 pb-5">
-          <TriggerNameOnly name={name} setName={setName} error={error} />
+          <EditableInput content={name} setContent={setName} error={error.name} />
+
           <SearchBox
             mapRef={mapRef}
             location={location}
@@ -161,6 +153,7 @@ const CreateTrigger = () => {
             isDropDown={isDropDown}
             setIsDropDown={setIsDropDown}
           />
+
           {isSet ? <LocationName location={location} /> : null}
 
           <Condition condition={condition} setCondition={setCondition} />

@@ -92,7 +92,7 @@ $default-line-height: 20pt;
 
   .navbar-collapse.show {
     .navbar-nav {
-      height: calc(100vh - 50px);
+      height: calc(100vh - 50px) !important;
       overflow: scroll;
       padding-bottom: 50px;
     }
@@ -144,7 +144,7 @@ $default-line-height: 20pt;
     li {
       padding: 0;
 
-      a {
+      a, button {
         color: white;
         text-decoration: none;
         display: block;
@@ -898,8 +898,9 @@ input.input-marketplace, input.marketplace-input__input {
   padding: 0;
   font: inherit;
   outline: inherit;
+
   &:hover, &:focus, &:active {
-    color: inherit;
+    //color: inherit;
     background: none;
     border: none;
     outline: inherit;
@@ -1071,5 +1072,13 @@ input.input-marketplace, input.marketplace-input__input {
 
   &:first-child {
     margin-left: 0;
+  }
+}
+
+
+.padding-col {
+  .col, .col-md-6 {
+    margin-bottom: 8pt;
+    margin-top: 6pt;
   }
 }

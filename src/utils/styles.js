@@ -62,3 +62,10 @@ export const owmSelectorStyle = {
   }),
   indicatorSeparator: () => ({ display: 'none' }),
 }
+
+
+export const mapStyle = {
+  height: '100%',
+  width: '100%',
+  minHeight: '350px'
+}

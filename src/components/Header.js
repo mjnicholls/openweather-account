@@ -106,18 +106,18 @@ const HeaderTrigger = () => {
             </li>
             {userName ? (
               <li className="nav-item dropdown d-none d-lg-block">
-                <a
-                  href="/"
-                  className="dropdown-toggle header-link username"
+                <button
+                  type="button"
+                  className="dropdown-toggle header-link username remove-default-button-style"
                   data-toggle="dropdown"
                 >
                   <img
                     src="https://home.openweathermap.org/assets/icon_user.png"
                     alt="user icon"
                     className="d-flex d-xl-none"
-                  ></img>
+                  />
                   {userName.slice(0, 6)}...
-                </a>
+                </button>
                 <div className="dropdown-menu">
                   <a
                     href="https://home.openweathermap.org/myservices"
