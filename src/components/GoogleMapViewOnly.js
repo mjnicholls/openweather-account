@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import { mapStyles } from '../assets/MapStyles'
 import '../App.scss'
-import placeMarker from './placeMarker'
+import placeMarker from '../utils/placeMarker'
 import {mapStyle} from "../utils/styles";
 
 const handleApiLoaded = (mapInstance, coords) => {

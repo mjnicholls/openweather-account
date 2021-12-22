@@ -4,7 +4,6 @@ import GoogleMapReact from 'google-map-react'
 import PropTypes from 'prop-types'
 
 import { mapStyles } from '../assets/MapStyles'
-import placeMarker from './placeMarker'
 import {mapStyle} from "../utils/styles";
 import InfoWindow from './InfoWindow'
 
@@ -16,10 +15,6 @@ const Map = ({
   isButtonInfoWindow
 }) => {
   const onClickMap = ({ lat, lng }) => {
-    // eslint-disable-next-line
-    // const pos = new google.maps.LatLng(lat, lng) // TODO
-    // eslint-disable-next-line
-    // placeMarker(pos, mapRef.current.map_)
     setTempLocation({
       lat,
       lon: lng,

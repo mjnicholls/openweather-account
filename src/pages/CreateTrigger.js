@@ -13,10 +13,10 @@ import EditableInput from '../components/EditableInput'
 import ErrorModal from '../components/ErrorModal'
 import Map from '../components/Map'
 import Notifications from '../components/Notifications'
-import SearchBox from '../components/SearchBoxNew'
+import SearchBox from '../components/LocationSearchBox'
 import { noBlankErrorMessage } from '../config'
 import { addTrigger } from '../features/triggers/actions'
-import placeMarker from '../components/placeMarker'
+import placeMarker from '../utils/placeMarker'
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
@@ -159,13 +159,12 @@ const CreateTrigger = () => {
           <SearchBox
             mapRef={mapRef}
             location={location}
+            setLocation={setLocation}
             tempLocation={tempLocation}
             setTempLocation={setTempLocation}
             onChange={(e) => handleChange('location', e.target.value)}
             error={error}
             name={name}
-            isSet={isSet}
-            setIsSet={setIsSet}
             searchBoxRef={searchBoxRef}
             isDropDown={isDropDown}
             setIsDropDown={setIsDropDown}

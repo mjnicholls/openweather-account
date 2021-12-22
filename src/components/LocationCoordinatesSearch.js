@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { Input } from 'reactstrap'
 
 import { noBlankErrorMessage } from '../config'
-import placeMarker from './placeMarker'
 
 const CoordinatesSearch = ({
   mapRef,
@@ -52,15 +51,10 @@ const CoordinatesSearch = ({
 
   const setCoordinates = () => {
     if (validate()) {
-      // const pos = new google.maps.LatLng(tempLocation.lat, tempLocation.lon)
-      // if (mapRef && mapRef.current) {
-        /* eslint-disable-next-line */
-        // placeMarker(pos, mapRef.current.map_)
       setTempLocation({
         ...localTempLocation,
         name: 'Custom location',
       })
-      console.log('set')
     }
   }
 

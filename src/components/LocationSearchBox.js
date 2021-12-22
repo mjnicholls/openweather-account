@@ -1,13 +1,16 @@
+/* eslint-disable */
+
 import React, { useState } from 'react'
 
 import { Button } from 'reactstrap'
 
-import AutoCompleteFormNew from './AutoCompleteFormNew'
-import CoordinatesSearchNew from './CoordinatesSearchNew'
+import AutoCompleteFormNew from './LocationAutoCompleteSearch'
+import CoordinatesSearchNew from './LocationCoordinatesSearch'
+import LocationName from './LocationName'
 import EditableInput from './EditableInput'
 
 
-const SearchBoxNew = ({
+const LocationSearchBox = ({
   mapRef,
   location,
   setLocation,
@@ -20,7 +23,6 @@ const SearchBoxNew = ({
   setIsDropDown,
 }) => {
   const [isSearchByName, setIsSearchByName] = useState(true)
-
 
   return (
     <div>
@@ -80,11 +82,12 @@ const SearchBoxNew = ({
       </div>
       {location.lat && location.lon &&
         <div className="my-3">
-          <EditableInput content={location.name} setContent={(val) => {setLocation({...location, name: val})}}/>
+          <LocationName location={location} setLocation={setLocation} />
+          {/*<EditableInput content={location.name} setContent={(val) => {setLocation({...location, name: val})}}/>*/}
         </div>
       }
     </div>
   )
 }
 
-export default SearchBoxNew
+export default LocationSearchBox
