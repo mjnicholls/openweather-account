@@ -9,11 +9,8 @@ import placeMarker from './placeMarker'
 
 const AutoCompleteForm = ({
   mapRef,
-  location,
-  setLocation,
+  setTempLocation,
   error,
-  setIsSet,
-  isDropDown,
   setIsDropDown,
 }) => {
   const onPlaceSelected = (place) => {
@@ -24,7 +21,7 @@ const AutoCompleteForm = ({
       place.geometry &&
       place.geometry.location
     ) {
-      setLocation({
+      setTempLocation({
         name: place.formatted_address,
         lat: place.geometry.location.lat(),
         lon: place.geometry.location.lng(),
@@ -46,16 +43,11 @@ const AutoCompleteForm = ({
     <>
       <Autocomplete
         apiKey={process.env.REACT_APP_GOOGLE_MAP_KEY}
-        className={`input-marketplace ${error.location ? 'danger-border' : ''}`}
+        className={`owm-selector w-100 ${error.location ? 'danger-border' : ''}`}
         onPlaceSelected={(place) => {
           onPlaceSelected(place)
-          setIsSet(true)
         }}
-        // onChange={(e) => {
-        //   setLocation({ ...location, name: e.target.value })
-        // }}
         onFocus={onFocus}
-        // value={location.name}
         placeholder="Enter location"
       />
       <div
@@ -71,7 +63,7 @@ const AutoCompleteForm = ({
 }
 
 AutoCompleteForm.propTypes = {
-  setLocation: PropTypes.func,
+  setTempLocation: PropTypes.func,
   error: PropTypes.object,
   mapRef: PropTypes.object,
 }

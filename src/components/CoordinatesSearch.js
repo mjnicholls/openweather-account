@@ -125,7 +125,8 @@ const CoordinatesSearch = ({ mapRef, location, setLocation, setIsSet }) => {
 CoordinatesSearch.propTypes = {
   location: PropTypes.object,
   setLocation: PropTypes.func,
-  mapRef: PropTypes.func,
+  setTempLocation: PropTypes.func,
+  mapRef: PropTypes.object,
   setIsSet: PropTypes.bool,
 }
 

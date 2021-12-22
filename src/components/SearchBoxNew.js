@@ -11,55 +11,61 @@ const SearchBoxNew = ({
   mapRef,
   location,
   setLocation,
+  tempLocation,
+  setTempLocation,
   error,
-  name,
-  setName,
-  isName,
   setIsName,
-  isSet,
-  setIsSet,
   searchBoxRef,
   isDropDown,
   setIsDropDown,
 }) => {
   const [isSearchByName, setIsSearchByName] = useState(true)
 
+
   return (
-    <div className="my-3" style={{ position: 'relative' }} ref={searchBoxRef}>
-      {isSearchByName ? (
-        <AutoCompleteFormNew
-          mapRef={mapRef}
-          setLocation={setLocation}
-          error={error}
-          location={location}
-          setIsName={setIsName}
-          isName={isName}
-          name={name}
-          setName={setName}
-          isSet={isSet}
-          setIsSet={setIsSet}
-          isDropDown={isDropDown}
-          setIsDropDown={setIsDropDown}
-        />
-      ) : (
-        <CoordinatesSearchNew
-          mapRef={mapRef}
-          setLocation={setLocation}
-          location={location}
-          name={name}
-          setName={setName}
-          isSet={isSet}
-          setIsSet={setIsSet}
-          isDropDown={isDropDown}
-          setIsDropDown={setIsDropDown}
-        />
-      )}
-      {isDropDown && (
-        <div
-          className="padded search-pop-up"
-          style={{ display: 'flex', justifyContent: 'space-between' }}
-        >
-          <div>
+    <div>
+      <div className="my-3 flex-grow-1" style={{ position: 'relative' }} ref={searchBoxRef}>
+        {isSearchByName ? (
+          <AutoCompleteFormNew
+            mapRef={mapRef}
+            setTempLocation={setTempLocation}
+            error={error}
+            setIsDropDown={setIsDropDown}
+          />
+        ) : (
+          <CoordinatesSearchNew
+            mapRef={mapRef}
+            tempLocation={tempLocation}
+            setTempLocation={setTempLocation}
+            setIsDropDown={setIsDropDown}
+            error={error}
+          />
+        )}
+        {isDropDown && (
+          <div
+            className="padded search-pop-up"
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <div>
+              <Button
+                className={`padded-button ${
+                  isSearchByName ? 'padded-button-active' : ''
+                }`}
+                onClick={() => setIsSearchByName(true)}
+                aria-pressed="true"
+              >
+                <span>Location</span>
+              </Button>
+              <Button
+                className={`padded-button ${
+                  isSearchByName ? '' : 'padded-button-active'
+                }`}
+                onClick={() => setIsSearchByName(false)}
+                aria-pressed="true"
+              >
+                <span>Coordinates</span>
+              </Button>
+            </div>
             <Button
               className={`padded-button ${
                 isSearchByName ? 'padded-button-active' : ''
@@ -67,29 +73,11 @@ const SearchBoxNew = ({
               onClick={() => setIsSearchByName(true)}
               aria-pressed="true"
             >
-              <span>Location</span>
-            </Button>
-            <Button
-              className={`padded-button ${
-                isSearchByName ? '' : 'padded-button-active'
-              }`}
-              onClick={() => setIsSearchByName(false)}
-              aria-pressed="true"
-            >
-              <span>Coordinates</span>
+              <span>Set</span>
             </Button>
           </div>
-          <Button
-            className={`padded-button ${
-              isSearchByName ? 'padded-button-active' : ''
-            }`}
-            onClick={() => setIsSearchByName(true)}
-            aria-pressed="true"
-          >
-            <span>Set</span>
-          </Button>
-        </div>
-      )}
+        )}
+      </div>
       {location.lat && location.lon &&
         <div className="my-3">
           <EditableInput content={location.name} setContent={(val) => {setLocation({...location, name: val})}}/>

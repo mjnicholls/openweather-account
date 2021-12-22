@@ -11,7 +11,7 @@ const EmailMulti = ({ recipients, setRecipients }) => {
 
   const styles = {
     fontFamily: 'sans-serif',
-    width: '500px',
+    width: '100%',
     border: '1px solid #eee',
     background: '#f3f3f3',
     padding: '25px',

@@ -13,7 +13,6 @@ const MarkerSingleton = (() => {
     getInstance: (position, map) => {
       if (!instance) {
         instance = new MarkerClass(position, map)
-        // Hide the constructor so the returned object can't be new'd...
         instance.constructor = null
       } else {
         instance.setPosition(position)

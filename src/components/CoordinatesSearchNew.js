@@ -1,19 +1,15 @@
 import React, { useState } from 'react'
 
-import '../App.scss'
-import classnames from 'classnames'
 import PropTypes from 'prop-types'
-import { Col, Row, FormGroup, Button, Input } from 'reactstrap'
+import { Input } from 'reactstrap'
 
 import { noBlankErrorMessage } from '../config'
 import placeMarker from './placeMarker'
 
 const CoordinatesSearch = ({
   mapRef,
-  location,
-  setLocation,
-  setIsSet,
-  isDropDown,
+  tempLocation,
+  setTempLocation,
   setIsDropDown,
 }) => {
   const [error, setError] = useState({})
@@ -21,35 +17,26 @@ const CoordinatesSearch = ({
   const latRangeError = 'Value cannot be below -90 or above 90'
   const lngRangeError = 'Value cannot be below -180 or above 180'
 
+  const [localTempLocation, setLocalTempLocation] = useState(tempLocation)
+
   const validate = () => {
     setError({})
-    let newError = {}
+    const newError = {}
 
-    if (!location.lon && !location.lat) {
-      newError = {
-        lat: noBlankErrorMessage,
-        lng: noBlankErrorMessage,
-      }
+    if (!localTempLocation.lat && localTempLocation.lat !== 0) {
+      newError.lat = noBlankErrorMessage
+    } else if (localTempLocation.lat < -90 || localTempLocation.lat > 90) {
+      newError.lat = latRangeError
     }
-
-    if (location.lat && (location.lat < -90 || location.lat > 90)) {
-      newError = {
-        ...newError,
-        lat: latRangeError,
-      }
-    }
-
-    if (location.lon && (location.lon < -180 || location.lon > 180)) {
-      newError = {
-        ...newError,
-        lng: lngRangeError,
-      }
+    if (!localTempLocation.lon && localTempLocation.lon !== 0) {
+      newError.lon = noBlankErrorMessage
+    } else if (localTempLocation.lon < -180 || localTempLocation.lon > 180) {
+      newError.lon = lngRangeError
     }
     if (Object.keys(newError).length) {
       setError(newError)
       return false
     }
-
     return true
   }
 
@@ -57,21 +44,23 @@ const CoordinatesSearch = ({
     setIsDropDown(true)
   }
 
-  const onSetLocationClick = () => {
-    if (validate()) {
-      /* eslint-disable-next-line */
-      const pos = new google.maps.LatLng(location.lat, location.lon)
-      if (mapRef && mapRef.current) {
-        /* eslint-disable-next-line */
-        placeMarker(pos, mapRef.current.map_)
+  const onKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      setCoordinates()
+    }
+  }
 
-        setLocation({
-          lat: location.lat,
-          lon: location.lon,
-          name: 'Custom location',
-        })
-        setIsSet(true)
-      }
+  const setCoordinates = () => {
+    if (validate()) {
+      // const pos = new google.maps.LatLng(tempLocation.lat, tempLocation.lon)
+      // if (mapRef && mapRef.current) {
+        /* eslint-disable-next-line */
+        // placeMarker(pos, mapRef.current.map_)
+      setTempLocation({
+        ...localTempLocation,
+        name: 'Custom location',
+      })
+      console.log('set')
     }
   }
 
@@ -80,19 +69,17 @@ const CoordinatesSearch = ({
       <div className="flex-grow-1">
         <Input
           type="number"
-          className={`input-marketplace ${error.lat ? 'danger-border' : ''}`}
-          value={location.lat}
+          style={{borderRight: 'none', borderTopRightRadius: 0, borderBottomRightRadius: 0}}
+          className={`owm-selector ${error.lat ? 'danger-border' : ''}`}
+          value={localTempLocation.lat}
           onChange={(e) => {
-            setLocation({ ...location, lat: parseFloat(e.target.value) })
+            setLocalTempLocation({ ...localTempLocation, lat: parseFloat(e.target.value) })
           }}
           placeholder="Latitude"
           onFocus={onFocus}
         />
         <div
-          className={classnames(
-            'invalid-feedback ',
-            error.lat ? 'd-block' : '',
-          )}
+          className={`invalid-feedback ${error.lat ? 'd-block' : ''}`}
         >
           {error.lat}
         </div>
@@ -100,39 +87,31 @@ const CoordinatesSearch = ({
       <div className="flex-grow-1">
         <Input
           type="number"
-          className={`input-marketplace ${error.lon ? 'danger-border' : ''}`}
-          value={location.lon}
+          style={{borderLeft: 'none', borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}
+          className={`owm-selector ${error.lon ? 'danger-border' : ''}`}
+          value={localTempLocation.lon}
           onChange={(e) => {
-            setLocation({ ...location, lon: parseFloat(e.target.value) })
+            setLocalTempLocation({ ...localTempLocation, lon: parseFloat(e.target.value) })
           }}
           placeholder="Longitude"
           onFocus={onFocus}
+          onKeyDown={onKeyDown}
         />
         <div
-          className={classnames(
-            'invalid-feedback ',
-            error.lon ? 'd-block' : '',
-          )}
+          className={`invalid-feedback ${error.lon ? 'd-block' : ''}`}
         >
           {error.lon}
         </div>
       </div>
-
-      {/* <Button */}
-      {/* className="button-active shadow-none" */}
-      {/* onClick={onSetLocationClick} */}
-      {/* > */}
-      {/* Set */}
-      {/* </Button> */}
     </div>
   )
 }
 
 CoordinatesSearch.propTypes = {
-  location: PropTypes.object,
-  setLocation: PropTypes.func,
-  mapRef: PropTypes.func,
-  setIsSet: PropTypes.bool,
+  tempLocation: PropTypes.object,
+  setTempLocation: PropTypes.func,
+  mapRef: PropTypes.object,
+  setIsDropDown: PropTypes.func,
 }
 
 export default CoordinatesSearch

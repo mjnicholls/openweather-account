@@ -11,12 +11,12 @@ import CreateTriggerButton from '../components/CreateTriggerButton'
 import CreateTriggerCard from '../components/CreateTriggerCard'
 import EditableInput from '../components/EditableInput'
 import ErrorModal from '../components/ErrorModal'
-import GoogleMapCreate from '../components/GoogleMapCreate'
-import LocationName from '../components/LocationName'
+import Map from '../components/Map'
 import Notifications from '../components/Notifications'
 import SearchBox from '../components/SearchBoxNew'
 import { noBlankErrorMessage } from '../config'
 import { addTrigger } from '../features/triggers/actions'
+import placeMarker from '../components/placeMarker'
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
@@ -29,6 +29,28 @@ const CreateTrigger = () => {
     lat: '',
     lon: '',
   })
+
+  const [tempLocation, setTempLocation] = useState({...location})
+
+  useEffect(() => {
+    setTempLocation(location)
+  }, [location])
+
+  useEffect(() => {
+    if (tempLocation.lat && tempLocation.lon) {
+      const position = new google.maps.LatLng(tempLocation.lat, tempLocation.lon)
+      placeMarker(position, mapRef.current.map_)
+    }
+  }, [tempLocation])
+
+  useEffect(() => {
+    // detect click outside location search box
+    document.addEventListener('mousedown', handleClickOtsideSearchBox)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOtsideSearchBox)
+    }
+  }, [])
+
   const [name, setName] = useState('')
 
   const [condition, setCondition] = useState({
@@ -100,13 +122,7 @@ const CreateTrigger = () => {
 
   const [isDropDown, setIsDropDown] = useState(false)
   const searchBoxRef = useRef()
-  useEffect(() => {
-    // detect click outside location search box
-    document.addEventListener('mousedown', handleClickOtsideSearchBox)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOtsideSearchBox)
-    }
-  }, [])
+
 
   const handleClickOtsideSearchBox = (e) => {
     if (searchBoxRef.current.contains(e.target)) {
@@ -143,7 +159,8 @@ const CreateTrigger = () => {
           <SearchBox
             mapRef={mapRef}
             location={location}
-            setLocation={setLocation}
+            tempLocation={tempLocation}
+            setTempLocation={setTempLocation}
             onChange={(e) => handleChange('location', e.target.value)}
             error={error}
             name={name}
@@ -179,13 +196,12 @@ const CreateTrigger = () => {
         </div>
       </Col>
       <Col md="5">
-        <GoogleMapCreate
+        <Map
           mapRef={mapRef}
-          location={location}
+          tempLocation={tempLocation}
           setLocation={setLocation}
-          setIsSet={setIsSet}
-          setIsClicked={setIsClicked}
-          isClicked={isClicked}
+          setTempLocation={setTempLocation}
+          isButtonInfoWindow={location !== tempLocation}
         />
       </Col>
     </Row>
