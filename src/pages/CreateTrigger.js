@@ -23,7 +23,7 @@ import '../App.scss'
 import { noBlankErrorMessage } from '../config'
 import ErrorModal from '../components/ErrorModal'
 import { ChevronLeft } from 'react-ikonate'
-//import EmailMulti from '../components/EmailMulti'
+import EmailMulti from '../components/EmailMulti'
 
 const selectUserId = (state) => state.auth.user.id
 
@@ -246,7 +246,7 @@ const CreateTrigger = () => {
               {isSet ? <LocationName location={location} /> : null}
 
               <Condition condition={condition} setCondition={setCondition} />
-
+<EmailMulti />
               <Notifications
                 days={days}
                 setDays={setDays}
