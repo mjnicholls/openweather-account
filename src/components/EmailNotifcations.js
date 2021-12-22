@@ -15,7 +15,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
   const [email, setEmail] = useState('')
   const [error, setError] = useState({})
   const [activeEmail, setActiveEmail] = useState(null)
-  const [activeEmailContent, setActiveEmailContent] = useState('')
+  // const [activeEmailContent, setActiveEmailContent] = useState('')
 
   const areEmailsAllowed = useSelector(selectEmailsAllowed)
 
@@ -42,6 +42,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
     }
   }
 
+  /*
   const saveEmail = (index) => {
     const recipientsCopy = [...recipients]
     recipientsCopy[index] = activeEmailContent
@@ -50,6 +51,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
     setActiveEmail(null)
     setActiveEmailContent('')
   }
+  */
 
   const deleteEmail = (index) => {
     const recipientsCopy = [...recipients]
@@ -91,7 +93,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
   return areEmailsAllowed ? (
     <>
       <h5 className="mt-4">Email notifications to:</h5>
-      <div>
+      <div style={{ paddingLeft: '10px' }}>
         <Row>
           <Input
             className={`owm-selector ${error.email ? 'danger-border' : ''}`}
