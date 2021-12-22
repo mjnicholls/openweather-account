@@ -141,7 +141,7 @@ const Triggers = () => {
         <Row>
           <Col>
             <p>
-              <b>No triggers.</b>
+              <b>No triggers</b>
             </p>
           </Col>
         </Row>

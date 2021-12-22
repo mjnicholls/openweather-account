@@ -76,7 +76,7 @@ const Events = () => {
         <Row>
           <Col>
             <p>
-              <b>No triggers</b>
+              <b>No events</b>
             </p>
           </Col>
         </Row>

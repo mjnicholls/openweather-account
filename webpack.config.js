@@ -1,6 +1,7 @@
 const path = require('path')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 const glob = require('glob')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -9,7 +10,7 @@ module.exports = {
       .map((f) => path.resolve(__dirname, f)),
   },
   output: {
-    filename: 'build/static/js/bundle.min.js',
+    filename: '../build/static/js/dashboard.min.js',
   },
   module: {
     rules: [
