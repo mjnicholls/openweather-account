@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux'
 
 import { Button, Col, Row, Input, Label } from 'reactstrap'
 
-import '../App.scss'
 import { editTrigger } from '../features/triggers/actions'
 import { noBlankErrorMessage } from '../config'
 import StatusToggle from './StatusToggle'

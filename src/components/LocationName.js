@@ -1,18 +1,21 @@
 /* eslint-disable */
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import EditableInput from './EditableInput'
 
 const LocationName = ({ location, setLocation }) => {
-
   const [wasEdited, setWasEdited] = useState(false)
-  const getContent = () => wasEdited ? String({...location}.name) :
-    `${String({...location}.name)}, (${{...location}.lat.toFixed(2)}, ${{...location}.lon.toFixed(2)})`
+  const getContent = () =>
+    wasEdited
+      ? String({ ...location }.name)
+      : `${String({ ...location }.name)}, (${{ ...location }.lat.toFixed(
+          2,
+        )}, ${{ ...location }.lon.toFixed(2)})`
 
   const setContent = (val) => {
-    setLocation({...location, name: val})
+    setLocation({ ...location, name: val })
     setWasEdited(true)
   }
 
@@ -22,7 +25,7 @@ const LocationName = ({ location, setLocation }) => {
     <Row className="mb-4 mt-3">
       <Col className="mb-3">
         <h6>Location Name</h6>
-        <EditableInput content={getContent()} setContent={setContent}  />
+        <EditableInput content={getContent()} setContent={setContent} />
       </Col>
     </Row>
   )
@@ -30,7 +33,7 @@ const LocationName = ({ location, setLocation }) => {
 
 LocationName.propTypes = {
   location: PropTypes.object,
-  setLocation: PropTypes.func
+  setLocation: PropTypes.func,
 }
 
 export default LocationName

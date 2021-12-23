@@ -1078,3 +1078,14 @@ input.input-marketplace, input.marketplace-input__input {
   margin-right: 5px;
   margin-top: 10px;
 }
+
+.item-view {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: $brand-grey;
+  padding: 5px;
+  border-radius: 8px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+
+}

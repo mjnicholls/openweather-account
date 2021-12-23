@@ -2,7 +2,6 @@ import React from 'react'
 
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { Button, Col } from 'reactstrap'
-import '../App.scss'
 
 const ErrorModal = ({ close, whoops }) => (
   <ReactBSAlert

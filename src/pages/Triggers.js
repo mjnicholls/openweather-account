@@ -1,18 +1,16 @@
 import React from 'react'
 
+import { Close, EnvelopeAlt } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 
-import '../App.scss'
 import BeatLoader from '../components/BeatLoader'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
 import DeleteTriggerCardX from '../components/DeleteTriggerCard'
 import EditTriggerCard from '../components/EditTriggerCard'
 import ThumbnailCondition from '../components/ThumbnailCondition'
 import ThumbnailLocation from '../components/ThumbnailLocation'
-
-import { Bell, Close, EnvelopeAlt } from 'react-ikonate'
 
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 const selectTriggers = (state) => state.triggers
@@ -53,7 +51,7 @@ const Triggers = () => {
             <Col className="col-md-auto">&nbsp;</Col>
             <Col md="2">Name</Col>
             <Col md="3">Condition</Col>
-            <Col md="3">Location</Col>
+            <Col md="2">Location</Col>
             <Col md="1">Notify</Col>
             {emailsAllowed && (
               <Col md="1" className="email">
@@ -67,7 +65,10 @@ const Triggers = () => {
             (trigger, index) =>
               trigger.status !== 'deleted' && (
                 <Row className="triggers-new" key={trigger.id}>
-                  <Col md="1" className="d-md-flex d-lg-none text-end">
+                  <Col
+                    md="1"
+                    className="d-md-flex d-md-none text-end text-nowrap"
+                  >
                     <EditTriggerCard
                       id={trigger.id}
                       name={trigger.name}
@@ -96,7 +97,7 @@ const Triggers = () => {
                     <ThumbnailCondition condition={trigger.condition} />
                     {/* {conditionToText(trigger.condition)} */}
                   </Col>
-                  <Col md="3">
+                  <Col md="2">
                     <ThumbnailLocation
                       location={trigger.location}
                       showIcon={false}
@@ -106,7 +107,7 @@ const Triggers = () => {
                     {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
                   </Col>
                   {emailsAllowed && (
-                    <Col className="text-nowrap">
+                    <Col md="1" className="text-nowrap">
                       <EnvelopeAlt /> {trigger.recipients.length}
                     </Col>
                   )}
@@ -120,7 +121,7 @@ const Triggers = () => {
                       trigger.status.slice(1)}
                   </Col>
 
-                  <Col md="1" className="d-lg-flex d-none text-nowrap">
+                  <Col md="1" className="d-md-flex d-none text-nowrap">
                     <EditTriggerCard
                       id={trigger.id}
                       name={trigger.name}

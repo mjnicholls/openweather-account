@@ -8,7 +8,6 @@ import { getEvents } from '../api/api'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
 import Day from '../components/Day'
 import DayPlaceholder from '../components/DayPlaceholder'
-import '../App.scss'
 
 const selectUserId = (state) => state.auth.user.id
 

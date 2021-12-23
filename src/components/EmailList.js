@@ -55,18 +55,26 @@ const EmailList = ({ recipients }) => {
         </h6>
       )}
       {recipients.length > 0 && (
-        <ul>
+        <>
           {recipients.slice(0, openEmails).map((email) => (
-            <li key={email}>{email}</li>
+            <li>
+              <label className="item-view" key={email}>
+                {email}
+              </label>
+            </li>
           ))}
           {recipients.length > openEmails && (
             <div className="collapse" id={collapseId}>
               {recipients.slice(openEmails).map((email) => (
-                <li key={email}>{email}</li>
+                <li>
+                  <label className="item-view" key={email}>
+                    {email}
+                  </label>
+                </li>
               ))}
             </div>
           )}
-        </ul>
+        </>
       )}
     </div>
   ) : null

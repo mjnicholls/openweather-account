@@ -9,7 +9,6 @@ import CoordinatesSearchNew from './LocationCoordinatesSearch'
 import LocationName from './LocationName'
 import EditableInput from './EditableInput'
 
-
 const LocationSearchBox = ({
   mapRef,
   location,
@@ -26,7 +25,11 @@ const LocationSearchBox = ({
 
   return (
     <div>
-      <div className="my-3 flex-grow-1" style={{ position: 'relative' }} ref={searchBoxRef}>
+      <div
+        className="my-3 flex-grow-1"
+        style={{ position: 'relative' }}
+        ref={searchBoxRef}
+      >
         {isSearchByName ? (
           <AutoCompleteFormNew
             mapRef={mapRef}
@@ -80,12 +83,12 @@ const LocationSearchBox = ({
           </div>
         )}
       </div>
-      {location.lat && location.lon &&
+      {location.lat && location.lon && (
         <div className="my-3">
           <LocationName location={location} setLocation={setLocation} />
           {/*<EditableInput content={location.name} setContent={(val) => {setLocation({...location, name: val})}}/>*/}
         </div>
-      }
+      )}
     </div>
   )
 }

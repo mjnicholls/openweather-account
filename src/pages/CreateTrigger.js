@@ -37,7 +37,7 @@ const CreateTrigger = () => {
     lon: '',
   })
 
-  const [tempLocation, setTempLocation] = useState({...location})
+  const [tempLocation, setTempLocation] = useState({ ...location })
 
   const onClickMap = ({ lat, lng }) => {
     setTempLocation({
@@ -53,7 +53,10 @@ const CreateTrigger = () => {
 
   useEffect(() => {
     if (tempLocation.lat && tempLocation.lon) {
-      const position = new google.maps.LatLng(tempLocation.lat, tempLocation.lon)
+      const position = new google.maps.LatLng(
+        tempLocation.lat,
+        tempLocation.lon,
+      )
       placeMarker(position, mapRef.current.map_)
     }
   }, [tempLocation])
@@ -145,7 +148,6 @@ const CreateTrigger = () => {
   const [isDropDown, setIsDropDown] = useState(false)
   const searchBoxRef = useRef()
 
-
   const handleClickOtsideSearchBox = (e) => {
     if (searchBoxRef.current.contains(e.target)) {
       // inside click
@@ -176,7 +178,11 @@ const CreateTrigger = () => {
         </Row>
         <h2>New trigger</h2>
         <div className="pt-5 pb-5">
-          <EditableInput content={name} setContent={setName} error={error.name} />
+          <EditableInput
+            content={name}
+            setContent={setName}
+            error={error.name}
+          />
 
           <SearchBox
             mapRef={mapRef}

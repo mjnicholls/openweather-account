@@ -54,7 +54,7 @@ const TriggerEvents = ({ triggerId }) => {
         {isLoading ? (
           <BeatLoader />
         ) : events.length ? (
-          <ul>
+          <ul style={{ paddingTop: '10px' }}>
             {events.map((event) => (
               <li key={event.id}>{toDate(event.date)}</li>
             ))}
