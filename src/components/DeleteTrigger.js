@@ -7,12 +7,13 @@ import { Button } from 'reactstrap'
 import { getEventsByTriggerId } from '../api/api'
 import { deleteTrigger } from '../features/triggers/actions'
 
-const DeleteTrigger = ({ id, close }) => {
+const DeleteTrigger = ({ id, close, callback }) => {
   const [events, setEvents] = useState([])
   const dispatch = useDispatch()
 
   const confirmDeleteTrigger = () => {
     dispatch(deleteTrigger(id))
+    callback()
     close()
   }
 
@@ -49,8 +50,9 @@ const DeleteTrigger = ({ id, close }) => {
 }
 
 DeleteTrigger.propTypes = {
-  id: PropTypes.string,
+  callback: PropTypes.func,
   close: PropTypes.func,
+  id: PropTypes.string,
 }
 
 export default DeleteTrigger

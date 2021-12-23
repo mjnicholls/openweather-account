@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { Edit } from 'react-ikonate'
 import { Input } from 'reactstrap'
 
-const EditableInput = ({ content, setContent, error }) => {
+const EditableInput = ({ content, setContent, error, tagName }) => {
   const [isEdit, setIsEdit] = useState(false)
 
   const onKeyDown = (e) => {
@@ -33,15 +33,35 @@ const EditableInput = ({ content, setContent, error }) => {
     </>
   ) : (
     <div className="d-flex align-items-center">
-      <h5 className="m-0">
-        {content}
-        <Edit
-          className="ms-2"
-          onClick={() => {
-            setIsEdit(true)
-          }}
-        />
-      </h5>
+      {tagName === "p" ?
+        <p className="m-0">
+          {content}
+          <Edit
+            className="ms-2"
+            onClick={() => {
+              setIsEdit(true)
+            }}
+          />
+        </p>
+        : tagName === "h2" ?
+        <h2 className="m-0">
+          {content}
+          <Edit
+            className="ms-2"
+            onClick={() => {
+              setIsEdit(true)
+            }}
+          />
+        </h2> :
+        <h5 className="m-0">
+          {content}
+          <Edit
+            className="ms-2"
+            onClick={() => {
+              setIsEdit(true)
+            }}
+          />
+        </h5>}
     </div>
   )
 }
@@ -50,6 +70,7 @@ EditableInput.propTypes = {
   content: PropTypes.string,
   setContent: PropTypes.func,
   error: PropTypes.string,
+  tagName: PropTypes.string
 }
 
 export default EditableInput

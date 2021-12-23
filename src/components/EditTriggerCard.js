@@ -41,6 +41,7 @@ const EditTriggerCard = ({ id, name, status }) => {
         title="Update"
         className="text-end shadow-none"
         onClick={(e) => {
+          e.preventDefault()
           showUpdatePopUp()
           e.stopPropagation()
         }}

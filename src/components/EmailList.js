@@ -30,12 +30,12 @@ const EmailList = ({ recipients }) => {
         >
           <h5>
             Email recipients
-            {/*<EnvelopeAlt /> */}
-            {/*{recipients.length} email recipient*/}
-            {/*{recipients.length === 1 ? '' : 's'}*/}
-            {/*<ChevronDown*/}
-              {/*style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}*/}
-            {/*/>*/}
+            {/* <EnvelopeAlt /> */}
+            {/* {recipients.length} email recipient */}
+            {/* {recipients.length === 1 ? '' : 's'} */}
+            {/* <ChevronDown */}
+            {/* style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }} */}
+            {/* /> */}
             <a
               ref={linkRef}
               data-toggle="collapse"
@@ -55,7 +55,7 @@ const EmailList = ({ recipients }) => {
         </h6>
       )}
       {recipients.length > 0 && (
-        <>
+        <ul style={{listStyleType: 'none'}}>
           {recipients.slice(0, openEmails).map((email) => (
             <li>
               <label className="item-view" key={email}>
@@ -74,7 +74,7 @@ const EmailList = ({ recipients }) => {
               ))}
             </div>
           )}
-        </>
+        </ul>
       )}
     </div>
   ) : null

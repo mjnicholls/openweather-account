@@ -17,7 +17,7 @@ const EventsPerDay = ({ number, seeMoreLink }) => {
     <div className="d-flex-inline align-items-center">
       {number > 0 && <Error color="#ffffff" style={{ marginRight: '4pt' }} />}
       <span>
-        {number} event{number > 1 ? 's' : ''}&nbsp;
+        {number} event{number === 1 ?  '' : 's'}&nbsp;
       </span>
     </div>
   )
@@ -28,7 +28,7 @@ const EventsPerDay = ({ number, seeMoreLink }) => {
       className={`align-items-center ${
         number ? 'button-orange' : 'button-turquoise'
       }`}
-      style={{ border: 'none', display: "inline-flex" }}
+      style={{ border: 'none', display: 'inline-flex' }}
       onClick={onClickFunc}
     >
       <Content />
@@ -46,7 +46,11 @@ const EventsPerDay = ({ number, seeMoreLink }) => {
       </a>
     </button>
   ) : (
-    <div className={`d-inline-flex ${number ? 'button-orange' : 'button-turquoise'}`}>
+    <div
+      className={`d-inline-flex ${
+        number ? 'button-orange' : 'button-turquoise'
+      }`}
+    >
       <Content />
     </div>
   )

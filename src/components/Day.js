@@ -42,10 +42,8 @@ const Day = ({ day }) => {
               <Event trigger={trigger} index={index} key={trigger.id} />
             ))
         ) : (
-          <div className="row">
-            <div className="col">
-              <i>No events.</i>
-            </div>
+          <div className="m-3">
+              <p>No events</p>
           </div>
         )}
 

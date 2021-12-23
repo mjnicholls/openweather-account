@@ -49,13 +49,12 @@ export const triggerDeleted = (triggerId) => ({
 
 export const triggerCreationFailure = (error) => ({
   type: TRIGGER_CREATION_FAILURE,
-  payload: error
+  payload: error,
 })
 
 export const closeTriggerCreationNotification = () => ({
-  type: TRIGGER_CLEAR_CREATION_NOTIFICATION
+  type: TRIGGER_CLEAR_CREATION_NOTIFICATION,
 })
-
 
 export const fetchTriggers = () =>
   async function addTriggerThunk(dispatch, getState) {
@@ -76,11 +75,13 @@ export const addTrigger = (data) =>
     const state = getState()
     createTriggerAPI(data, state.auth.user.id)
       .then((response) => {
-        dispatch(triggerAdded(response))
-        dispatch(notifySuccess('Trigger created! '))
+        dispatch(triggerAdded(response.data))
+        // dispatch(notifySuccess('Trigger created! '))
+        toast.success('Trigger created! ')
       })
       .catch((error) => {
         dispatch(triggerCreationFailure(error.message))
+        toast.error(`Error creating trigger: ${error.message}`)
         // dispatch(notifyError(`Error creating trigger: ${error.message}`))
       })
   }
@@ -95,6 +96,7 @@ export const editTrigger = (data) =>
         // dispatch(notifySuccess('Trigger was updated successfully'))
       })
       .catch((error) => {
+        toast.error(`Error updating trigger: ${error.message}`)
         // dispatch(notifyError(`Error updating trigger: ${error.message}`))
       })
   }

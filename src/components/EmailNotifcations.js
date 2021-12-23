@@ -68,7 +68,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
 
   return areEmailsAllowed ? (
     <>
-      <h5 className="mt-4">Email notifications to:</h5>
+      <h5 className="mt-4">Email notifications to</h5>
       <div style={{ paddingLeft: '10px' }}>
         <Row>
           <Input
@@ -93,7 +93,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
           {recipients.map((email, index) =>
             email === activeEmail ? null : (
               <React.Fragment key={email}>
-                <label className="item" data-tag>
+                <span className="item" data-tag>
                   {email}
                   <span
                     role="textbox"
@@ -104,7 +104,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
                   >
                     <Close name="Delete" onClick={() => deleteEmail(index)} />
                   </span>
-                </label>
+                </span>
               </React.Fragment>
             ),
           )}

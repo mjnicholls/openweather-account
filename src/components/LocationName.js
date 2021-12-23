@@ -22,12 +22,15 @@ const LocationName = ({ location, setLocation }) => {
   // TODO error if empty location name
 
   return (
-    <Row className="mb-4 mt-3">
-      <Col className="mb-3">
-        <h6>Location Name</h6>
-        <EditableInput content={getContent()} setContent={setContent} />
-      </Col>
-    </Row>
+
+    <EditableInput content={getContent()} setContent={setContent} tagName="p"/>
+
+    // <Row className="mb-4 mt-3">
+    //   <Col className="mb-3">
+    //     <h6>Location Name</h6>
+    //     <EditableInput content={getContent()} setContent={setContent} tagName="p"/>
+    //   </Col>
+    // </Row>
   )
 }
 

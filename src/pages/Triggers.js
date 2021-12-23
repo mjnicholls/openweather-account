@@ -7,7 +7,7 @@ import { Row, Col } from 'reactstrap'
 
 import BeatLoader from '../components/BeatLoader'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
-import DeleteTriggerCardX from '../components/DeleteTriggerCard'
+import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import EditTriggerCard from '../components/EditTriggerCard'
 import ThumbnailCondition from '../components/ThumbnailCondition'
 import ThumbnailLocation from '../components/ThumbnailLocation'
@@ -33,7 +33,6 @@ const Triggers = () => {
             role="button"
             className="button-neutral shadow-none"
           >
-            {/* <Bell /> */}
             To events
           </Link>
           <CreateNewTriggerButton createFunc={handleCreateClick} />
@@ -64,6 +63,7 @@ const Triggers = () => {
           {data.map(
             (trigger, index) =>
               trigger.status !== 'deleted' && (
+
                 <Row className="triggers-new" key={trigger.id}>
                   <Col
                     md="1"
@@ -75,13 +75,15 @@ const Triggers = () => {
                       status={trigger.status}
                     />
 
-                    <DeleteTriggerCardX
+                    <DeleteTriggerCard
                       id={trigger.id}
                       className="remove-default-button-style"
+                      callback={() => {}}
                     >
                       <Close color="#48484a" />
-                    </DeleteTriggerCardX>
+                    </DeleteTriggerCard>
                   </Col>
+
                   <Col className="col-md-auto">{index + 1}</Col>
                   <Col md="2">
                     <Link
@@ -122,17 +124,20 @@ const Triggers = () => {
                   </Col>
 
                   <Col md="1" className="d-md-flex d-none text-nowrap">
+                   <div className="m-3">
                     <EditTriggerCard
                       id={trigger.id}
                       name={trigger.name}
                       status={trigger.status}
                     />
-                    <DeleteTriggerCardX
-                      id={trigger.id}
+                   </div>
+                    <DeleteTriggerCard
+                      callback={() => {}}
                       className="remove-default-button-style"
+                      id={trigger.id}
                     >
                       <Close color="#48484a" />
-                    </DeleteTriggerCardX>
+                    </DeleteTriggerCard>
                   </Col>
                 </Row>
               ),

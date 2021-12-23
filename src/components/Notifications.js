@@ -17,9 +17,8 @@ const Notifications = ({ days, setDays, recipients, setRecipients }) => {
   return (
     <>
       <div className="d-flex align-items-center justify-content-between">
-        <h5>Notifications: </h5>
+        <h5>Notifications</h5>
       </div>
-      {/* <Label>Up to</Label> */}
       <div className="d-flex align-items-center">
         <Select
           onChange={(option) => setDays(parseFloat(option.value))}

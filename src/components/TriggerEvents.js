@@ -36,19 +36,20 @@ const TriggerEvents = ({ triggerId }) => {
 
   return (
     <div>
-      {isLoading ? (
-        <h6>Upcoming events</h6>
-      ) : events.length ? (
-        <EventsPerDay number={events.length} seeMoreLink={null} />
+      <h5>Upcoming events</h5>
+      <EventsPerDay number={events.length} seeMoreLink={null} />
+      {/*{isLoading ? (*/}
+        {/*<h6>Upcoming events</h6>*/}
+      {/*) : events.length ? (*/}
+        {/*<EventsPerDay number={events.length} seeMoreLink={null} />*/}
+      {/*) : (*/}
+        {/*// <h6>*/}
+        {/*//   <Error /> {events.length} upcoming event*/}
+        {/*//   {events.length === 1 ? '' : 's'}*/}
+        {/*// </h6>*/}
 
-        // <h6>
-        //   <Error /> {events.length} upcoming event
-        //   {events.length === 1 ? '' : 's'}
-        // </h6>
-
-      ) : (
-        <h6>No active events</h6>
-      )}
+        {/*<h6>No active events</h6>*/}
+      {/*)}*/}
 
       <div style={{ minHeight: '100px' }}>
         {isLoading ? (

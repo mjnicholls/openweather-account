@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useRef, useState, useEffect } from 'react'
 
 import { ChevronLeft } from 'react-ikonate'
@@ -13,39 +12,48 @@ import EditableInput from '../components/EditableInput'
 import ErrorModal from '../components/ErrorModal'
 import Map from '../components/Map'
 import Notifications from '../components/Notifications'
-import SearchBox from '../components/LocationSearchBox'
+import LocationSearchBox from '../components/LocationSearchBox'
 import { noBlankErrorMessage } from '../config'
-import { addTrigger, closeTriggerCreationNotification } from '../features/triggers/actions'
+import {
+  addTrigger,
+  closeTriggerCreationNotification,
+} from '../features/triggers/actions'
 import placeMarker from '../utils/placeMarker'
 
-const selectIsTriggerCreationError = (state) => state.triggers.triggerCreationError
-const selectIsTriggerCreationSuccess = (state) => state.triggers.triggerCreationSuccess
-
+const selectIsTriggerCreationError = (state) =>
+  state.triggers.triggerCreationError
+const selectIsTriggerCreationSuccess = (state) =>
+  state.triggers.triggerCreationSuccess
 
 const CreateTrigger = () => {
+
   const mapRef = useRef(null)
+  const searchBoxRef = useRef()
+
   const dispatch = useDispatch()
 
-  const triggerCreationSuccess = useSelector(selectIsTriggerCreationError)
-  const triggerCreationFailure = useSelector(selectIsTriggerCreationSuccess)
+  const triggerCreationSuccess = useSelector(selectIsTriggerCreationSuccess)
+  const triggerCreationFailure = useSelector(selectIsTriggerCreationError)
 
-  const [alert, setAlert] = React.useState(null)
+  const history = useHistory()
 
   const [location, setLocation] = useState({
     name: '',
     lat: '',
     lon: '',
   })
-
   const [tempLocation, setTempLocation] = useState({ ...location })
-
-  const onClickMap = ({ lat, lng }) => {
-    setTempLocation({
-      lat,
-      lon: lng,
-      name: 'Custom location',
-    })
-  }
+  const [name, setName] = useState('')
+  const [condition, setCondition] = useState({
+    variable: 'temp',
+    condition: '<',
+    value: 0,
+    units: 'metric',
+  })
+  const [days, setDays] = useState(0)
+  const [recipients, setRecipients] = useState([])
+  const [error, setError] = useState({})
+  const [isDropDown, setIsDropDown] = useState(false)
 
   useEffect(() => {
     setTempLocation(location)
@@ -53,10 +61,12 @@ const CreateTrigger = () => {
 
   useEffect(() => {
     if (tempLocation.lat && tempLocation.lon) {
+      // eslint-disable-next-line
       const position = new google.maps.LatLng(
         tempLocation.lat,
         tempLocation.lon,
       )
+      // eslint-disable-next-line
       placeMarker(position, mapRef.current.map_)
     }
   }, [tempLocation])
@@ -68,39 +78,6 @@ const CreateTrigger = () => {
       document.removeEventListener('mousedown', handleClickOtsideSearchBox)
     }
   }, [])
-
-  useEffect(() => {
-    if (triggerCreationFailure) {
-      errorAlert(triggerCreationFailure)
-    }
-    }, [triggerCreationFailure])
-
-  useEffect(() => {
-    if (triggerCreationSuccess) {
-      htmlAlert()
-    }
-    }, [triggerCreationSuccess])
-
-  const [name, setName] = useState('')
-
-  const [condition, setCondition] = useState({
-    variable: 'temp',
-    condition: '<',
-    value: 0,
-    units: 'metric',
-  })
-
-  const [days, setDays] = useState(0)
-
-  const [recipients, setRecipients] = useState([])
-
-  const [error, setError] = useState({})
-
-  const history = useHistory()
-
-  const goBack = () => {
-    history.goBack()
-  }
 
   const createTrigger = () => {
     const data = {
@@ -132,21 +109,25 @@ const CreateTrigger = () => {
     //  TODO add creation success / failure
   }
 
+  const onClickMap = ({ lat, lng }) => {
+    setTempLocation({
+      lat,
+      lon: lng,
+      name: 'Custom location',
+    })
+  }
+
+  const goBack = () => {
+    try {
+      history.goBack()
+    } catch {
+      history.push('/dashboard/triggers')
+    }
+  }
+
   const hideAlert = () => {
-    setAlert(null)
     dispatch(closeTriggerCreationNotification())
   }
-
-  const htmlAlert = () => {
-    setAlert(<CreateTriggerCard close={hideAlert} />)
-  }
-
-  const errorAlert = (whoops) => {
-    setAlert(<ErrorModal whoops={whoops} close={hideAlert} />)
-  }
-
-  const [isDropDown, setIsDropDown] = useState(false)
-  const searchBoxRef = useRef()
 
   const handleClickOtsideSearchBox = (e) => {
     if (searchBoxRef.current.contains(e.target)) {
@@ -167,7 +148,12 @@ const CreateTrigger = () => {
   return (
     <Row>
       <Col md="7">
-        {alert}
+        { triggerCreationSuccess &&
+          <CreateTriggerCard trigger={triggerCreationSuccess} close={hideAlert} />
+        }
+        { triggerCreationFailure &&
+          <ErrorModal whoops={triggerCreationFailure} close={hideAlert} />
+        }
         <Row>
           <Col className="mt-3">
             <Button onClick={goBack} className="navigation-link">
@@ -176,15 +162,23 @@ const CreateTrigger = () => {
             </Button>
           </Col>
         </Row>
-        <h2>New trigger</h2>
-        <div className="pt-5 pb-5">
+
+        <Row>
+          <Col>
+        <div className="d-flex align-items-baseline">
+          <h2 className="m-0">New trigger:&nbsp;</h2>
           <EditableInput
             content={name}
             setContent={setName}
             error={error.name}
+            tagName="h2"
           />
+        </div>
+          </Col>
+        </Row>
+        <div className="pt-5 pb-5">
 
-          <SearchBox
+          <LocationSearchBox
             mapRef={mapRef}
             location={location}
             setLocation={setLocation}
@@ -197,8 +191,6 @@ const CreateTrigger = () => {
             isDropDown={isDropDown}
             setIsDropDown={setIsDropDown}
           />
-
-          {/*{isSet ? <LocationName location={location} /> : null}*/}
 
           <Condition condition={condition} setCondition={setCondition} />
 

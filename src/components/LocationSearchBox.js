@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React, { useState } from 'react'
 
 import { Button } from 'reactstrap'
@@ -7,7 +5,6 @@ import { Button } from 'reactstrap'
 import AutoCompleteFormNew from './LocationAutoCompleteSearch'
 import CoordinatesSearchNew from './LocationCoordinatesSearch'
 import LocationName from './LocationName'
-import EditableInput from './EditableInput'
 
 const LocationSearchBox = ({
   mapRef,
@@ -21,7 +18,12 @@ const LocationSearchBox = ({
   isDropDown,
   setIsDropDown,
 }) => {
+
   const [isSearchByName, setIsSearchByName] = useState(true)
+
+  const onSetClick = () => {
+    setLocation(tempLocation)
+  }
 
   return (
     <div>
@@ -30,6 +32,12 @@ const LocationSearchBox = ({
         style={{ position: 'relative' }}
         ref={searchBoxRef}
       >
+        <div className="d-flex align-items-baseline">
+          <h5>Location</h5>
+          {/*{location.lat && location.lon && (*/}
+            {/*<LocationName location={location} setLocation={setLocation} />*/}
+          {/*)}*/}
+        </div>
         {isSearchByName ? (
           <AutoCompleteFormNew
             mapRef={mapRef}
@@ -71,22 +79,23 @@ const LocationSearchBox = ({
                 <span>Coordinates</span>
               </Button>
             </div>
-            <Button
+            <button
+              type="button"
               className={`padded-button ${
-                isSearchByName ? 'padded-button-active' : ''
+                location !== tempLocation ? 'padded-button-active' : ''
               }`}
-              onClick={() => setIsSearchByName(true)}
+              onClick={onSetClick}
               aria-pressed="true"
+              disabled={location === tempLocation}
             >
               <span>Set</span>
-            </Button>
+            </button>
           </div>
         )}
       </div>
       {location.lat && location.lon && (
         <div className="my-3">
           <LocationName location={location} setLocation={setLocation} />
-          {/*<EditableInput content={location.name} setContent={(val) => {setLocation({...location, name: val})}}/>*/}
         </div>
       )}
     </div>

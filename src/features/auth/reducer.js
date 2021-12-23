@@ -1,7 +1,7 @@
 let initialState = {
   user: {
     email: 'dev@openweathermap.org',
-    id: 'anna',
+    id: 'anna1',
     tariff: 'dev',
     tariff_full: 'Developer',
     username: 'dev@openweathermap.org',
