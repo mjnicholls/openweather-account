@@ -10,7 +10,7 @@ import BeatLoader from '../components/BeatLoader'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import EditableInput from '../components/EditableInput'
 import EmailList from '../components/EmailList'
-import ViewOnlyMap from '../components/GoogleMapViewOnly'
+import Map from '../components/Map'
 import StatusToggle from '../components/StatusToggle'
 import ThumbnailLocation from '../components/ThumbnailLocation'
 import TriggerEvents from '../components/TriggerEvents'
@@ -145,7 +145,14 @@ const ViewTrigger = () => {
         </Row>
       </Col>
       <Col md="5">
-        <ViewOnlyMap mapRef={mapRef} location={trigger.location} />
+        {/*<ViewOnlyMap mapRef={mapRef} location={trigger.location} />*/}
+        <Map
+          mapRef={mapRef}
+          mapLocation={trigger.location}
+          onClickMap={() => {}}
+          isButtonInfoWindow={false}
+          isDraggable={false}
+        />
       </Col>
     </Row>
   )

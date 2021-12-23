@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import GoogleMapReact from 'google-map-react'
 import PropTypes from 'prop-types'
@@ -6,27 +6,31 @@ import PropTypes from 'prop-types'
 import { mapStyles } from '../assets/MapStyles'
 import {mapStyle} from "../utils/styles";
 import InfoWindow from './InfoWindow'
+import placeMarker from "../utils/placeMarker";
 
 const Map = ({
   mapRef,
-  tempLocation,
+  mapLocation,
   setLocation,
-  setTempLocation,
-  isButtonInfoWindow
+  onClickMap,
+  isButtonInfoWindow,
+  isDraggable=true
 }) => {
-  const onClickMap = ({ lat, lng }) => {
-    setTempLocation({
-      lat,
-      lon: lng,
-      name: 'Custom location',
-    })
-  }
-
 
   const defaultCenter = {
     lat: 51.509865,
     lng: -0.118092
   }
+
+  // useEffect(() => {
+  //   // eslint-disable-next-line
+  //   if (mapRef.current && mapRef.current.map_) {
+  //     // eslint-disable-next-line
+  //     const position = new google.maps.LatLng(mapLocation.lat, mapLocation.lon)
+  //     // eslint-disable-next-line
+  //     placeMarker(position, mapRef.current.map_)
+  //   }
+  // }, [mapRef.current])
 
   const Marker = (props) =>
     <div style={{width: "100px", height: "100px"}}>
@@ -47,24 +51,25 @@ const Map = ({
       <GoogleMapReact
         ref={mapRef}
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_KEY }}
-        center={{lat: tempLocation.lat ? tempLocation.lat : defaultCenter.lat, lng: tempLocation.lon ? tempLocation.lon : defaultCenter.lng}}
+        center={{lat: mapLocation.lat ? mapLocation.lat : defaultCenter.lat, lng: mapLocation.lon ? mapLocation.lon : defaultCenter.lng}}
         defaultZoom={9}
         yesIWantToUseGoogleMapApiInternals
         options={{
           scrollwheel: false,
           styles: mapStyles.styles,
+          draggable: isDraggable,
         }}
         onClick={onClickMap}
       >
         <InfoWindow
-          location={tempLocation}
+          location={mapLocation}
           setLocation={setLocation}
           showButton={isButtonInfoWindow}
           show
         />
         {/*<Marker*/}
-          {/*lat={tempLocation.lat}*/}
-          {/*lng={tempLocation.lon}*/}
+          {/*lat={mapLocation.lat}*/}
+          {/*lng={mapLocation.lon}*/}
         {/*/>*/}
       </GoogleMapReact>
     </div>
@@ -73,9 +78,11 @@ const Map = ({
 
 Map.propTypes = {
   mapRef: PropTypes.object,
-  tempLocation: PropTypes.object,
+  mapLocation: PropTypes.object,
   setLocation: PropTypes.func,
-  isButtonInfoWindow: PropTypes.bool
+  onClickMap: PropTypes.func,
+  isButtonInfoWindow: PropTypes.bool,
+  isDraggable: PropTypes.bool,
 }
 
 export default Map

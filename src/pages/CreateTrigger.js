@@ -32,6 +32,14 @@ const CreateTrigger = () => {
 
   const [tempLocation, setTempLocation] = useState({...location})
 
+   const onClickMap = ({ lat, lng }) => {
+    setTempLocation({
+      lat,
+      lon: lng,
+      name: 'Custom location',
+    })
+  }
+
   useEffect(() => {
     setTempLocation(location)
   }, [location])
@@ -197,9 +205,9 @@ const CreateTrigger = () => {
       <Col md="5">
         <Map
           mapRef={mapRef}
-          tempLocation={tempLocation}
+          mapLocation={tempLocation}
           setLocation={setLocation}
-          setTempLocation={setTempLocation}
+          onClickMap={onClickMap}
           isButtonInfoWindow={location !== tempLocation}
         />
       </Col>

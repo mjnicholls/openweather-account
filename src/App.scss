@@ -219,8 +219,11 @@
 .mapPop {
   width: 300px;
   background-color: #ffffff;
-  padding: 8pt;
+  padding: 12pt;
   border-radius: 8pt;
+  margin-left: -150px;
+  margin-top: -190px;
+  font-size: 1rem;
 
   h5 {
     font-weight: bold;
@@ -234,9 +237,12 @@
     flex-wrap: nowrap;
 
     p {
-      margin: 0;
-      font-size: 0.8rem;
-      font-family: $default-font-family;
+      margin: 0.3rem 0;
+      white-space: nowrap;
+    }
+
+    button {
+      margin: 0.5rem;
     }
   }
 

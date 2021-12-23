@@ -10,7 +10,7 @@ import { Row, Col, Input, Button } from 'reactstrap'
 
 import { updateTriggerAPI, getEventsByTriggerId } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
-import ViewOnlyMap from '../components/GoogleMapViewOnly'
+import Map from '../components/Map'
 import StatusToggle from '../components/StatusToggle'
 import ThumbnailLocation from '../components/ThumbnailLocation'
 import { noBlankErrorMessage } from '../config'
@@ -343,7 +343,7 @@ const ViewTrigger = () => {
               </Row>
             </Col>
             <Col md="5">
-              <ViewOnlyMap mapRef={mapRef} location={location} />
+              <Map mapRef={mapRef} location={location} />
             </Col>
           </Row>
         </>

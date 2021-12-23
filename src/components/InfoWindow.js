@@ -14,27 +14,21 @@ const InfoWindow = ({
   }
 
   return location.lat && location.lon ? (
-    <div
-      className="mapPop"
-      style={{
-        marginLeft: '-150px',
-        marginTop: '-155px',
-      }}
-    >
+    <div className="mapPop">
       <h5>{location.name}</h5>
       <hr />
       <div className="main">
         <div>
           <p>
-            <b>Latitude:</b>
+            <b>Latitude: </b>
             {location.lat.toFixed(6)}{' '}
           </p>
           <p>
-            <b>Longitude:</b>
+            <b>Longitude: </b>
             {location.lon.toFixed(6)}
           </p>
         </div>
-        <div className="search-fox">
+        <div >
           {showButton && (
             <button
               type="button"
