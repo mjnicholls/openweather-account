@@ -38,19 +38,32 @@ const TriggerEvents = ({ triggerId }) => {
       {isLoading ? (
         <h6>Upcoming events</h6>
       ) : events.length ? (
-        <h6>
-          <Error /> {events.length} upcoming event
+        <button
+          type="button"
+          disabled
+          className="d-flex align-items-center button-orange"
+          style={{ border: 'none' }}
+        >
+          <Error style={{ marginRight: '5px' }} />
+          {events.length} upcoming event
           {events.length === 1 ? '' : 's'}
-        </h6>
+        </button>
       ) : (
-        <h6>No active events</h6>
+        <button
+          type="button"
+          disabled
+          className="d-flex align-items-center button-turquoise"
+          style={{ border: 'none' }}
+        >
+          No active events
+        </button>
       )}
 
       <div style={{ minHeight: '100px' }}>
         {isLoading ? (
           <BeatLoader />
         ) : events.length ? (
-          <ul>
+          <ul style={{ paddingTop: '10px' }}>
             {events.map((event) => (
               <li key={event.id}>{toDate(event.date)}</li>
             ))}

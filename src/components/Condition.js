@@ -2,15 +2,13 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 import Select from 'react-select'
-import { Col, Row, FormGroup, Label } from 'reactstrap'
+import { Col, Row, Label } from 'reactstrap'
 
-import '../App.scss'
 import { variables, units, conditions } from '../config'
 import { owmSelectorStyle } from '../utils/styles'
 import { conditionToTextLong } from '../utils/utils'
 
 const Condition = ({ condition, setCondition }) => {
-
   const handleChange = (key, value) => {
     const newCondition = { ...condition }
     newCondition[key] = value
@@ -47,25 +45,23 @@ const Condition = ({ condition, setCondition }) => {
           />
         </Col>
         <Col md="6">
-            <Label>Level</Label>
-            <input
-              type="number"
-              onChange={(e) =>
-                handleChange('value', parseFloat(e.target.value))
-              }
-              value={condition.value}
-              className="owm-selector w-100"
-            />
+          <Label>Level</Label>
+          <input
+            type="number"
+            onChange={(e) => handleChange('value', parseFloat(e.target.value))}
+            value={condition.value}
+            className="owm-selector w-100"
+          />
         </Col>
         <Col>
-            <Label>Units</Label>
-            <Select
-              classNamePrefix="react-select"
-              value={units.find((el) => el.value === condition.units)}
-              onChange={(option) => handleChange('units', option.value)}
-              options={units}
-              styles={owmSelectorStyle}
-            />
+          <Label>Units</Label>
+          <Select
+            classNamePrefix="react-select"
+            value={units.find((el) => el.value === condition.units)}
+            onChange={(option) => handleChange('units', option.value)}
+            options={units}
+            styles={owmSelectorStyle}
+          />
         </Col>
       </Row>
       <span className="human-readable">{conditionToTextLong(condition)}</span>

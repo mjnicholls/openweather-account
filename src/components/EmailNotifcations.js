@@ -6,13 +6,12 @@ import { Close } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Input, Row } from 'reactstrap'
 
+import { noBlankErrorMessage } from '../config'
 import { validateEmail } from '../utils/validation'
-import {noBlankErrorMessage} from "../config";
 
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 
 const EmailNotifications = ({ recipients, setRecipients }) => {
-
   const [email, setEmail] = useState('')
   const [error, setError] = useState({})
   const [activeEmail, setActiveEmail] = useState(null)
@@ -94,7 +93,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
           {recipients.map((email, index) =>
             email === activeEmail ? null : (
               <React.Fragment key={email}>
-                <label className="item" data-tag >
+                <label className="item" data-tag>
                   {email}
                   <span
                     role="textbox"

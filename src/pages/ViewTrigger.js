@@ -10,14 +10,13 @@ import { Row, Col, Input, Button } from 'reactstrap'
 
 import { updateTriggerAPI, getEventsByTriggerId } from '../api/api'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
+import ErrorModal from '../components/ErrorModal'
 import Map from '../components/Map'
 import StatusToggle from '../components/StatusToggle'
 import ThumbnailLocation from '../components/ThumbnailLocation'
 import { noBlankErrorMessage } from '../config'
-import { conditionToText } from '../utils/utils'
-import '../App.scss'
 import { toDate } from '../utils/dateTime'
-import ErrorModal from '../components/ErrorModal'
+import { conditionToText } from '../utils/utils'
 
 const selectUserId = (state) => state.auth.user.id
 

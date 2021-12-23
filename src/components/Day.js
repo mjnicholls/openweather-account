@@ -6,7 +6,6 @@ import { Card, CardBody, CardHeader } from 'reactstrap'
 import { toDate } from '../utils/dateTime'
 import Event from './Event'
 import EventsPerDay from './EventsPerDay'
-import '../App.scss'
 
 const Day = ({ day }) => {
   const openEventsN = 3

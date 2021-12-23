@@ -1,6 +1,5 @@
 import React from 'react'
 
-import '../App.scss'
 import classnames from 'classnames/index'
 import PropTypes from 'prop-types'
 import Autocomplete from 'react-google-autocomplete'
@@ -43,7 +42,9 @@ const AutoCompleteForm = ({
     <>
       <Autocomplete
         apiKey={process.env.REACT_APP_GOOGLE_MAP_KEY}
-        className={`owm-selector w-100 ${error.location ? 'danger-border' : ''}`}
+        className={`owm-selector w-100 ${
+          error.location ? 'danger-border' : ''
+        }`}
         onPlaceSelected={(place) => {
           onPlaceSelected(place)
         }}

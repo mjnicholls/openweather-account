@@ -2,8 +2,6 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 import Select from 'react-select'
-import { Label } from 'reactstrap'
-import '../App.scss'
 
 import { owmSelectorStyle } from '../utils/styles'
 import EmailNotifications from './EmailNotifcations'

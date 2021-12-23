@@ -63,37 +63,47 @@ const CoordinatesSearch = ({
       <div className="flex-grow-1">
         <Input
           type="number"
-          style={{borderRight: 'none', borderTopRightRadius: 0, borderBottomRightRadius: 0}}
+          style={{
+            borderRight: 'none',
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+          }}
           className={`owm-selector ${error.lat ? 'danger-border' : ''}`}
           value={localTempLocation.lat}
           onChange={(e) => {
-            setLocalTempLocation({ ...localTempLocation, lat: parseFloat(e.target.value) })
+            setLocalTempLocation({
+              ...localTempLocation,
+              lat: parseFloat(e.target.value),
+            })
           }}
           placeholder="Latitude"
           onFocus={onFocus}
         />
-        <div
-          className={`invalid-feedback ${error.lat ? 'd-block' : ''}`}
-        >
+        <div className={`invalid-feedback ${error.lat ? 'd-block' : ''}`}>
           {error.lat}
         </div>
       </div>
       <div className="flex-grow-1">
         <Input
           type="number"
-          style={{borderLeft: 'none', borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}
+          style={{
+            borderLeft: 'none',
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          }}
           className={`owm-selector ${error.lon ? 'danger-border' : ''}`}
           value={localTempLocation.lon}
           onChange={(e) => {
-            setLocalTempLocation({ ...localTempLocation, lon: parseFloat(e.target.value) })
+            setLocalTempLocation({
+              ...localTempLocation,
+              lon: parseFloat(e.target.value),
+            })
           }}
           placeholder="Longitude"
           onFocus={onFocus}
           onKeyDown={onKeyDown}
         />
-        <div
-          className={`invalid-feedback ${error.lon ? 'd-block' : ''}`}
-        >
+        <div className={`invalid-feedback ${error.lon ? 'd-block' : ''}`}>
           {error.lon}
         </div>
       </div>

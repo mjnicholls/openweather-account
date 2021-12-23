@@ -82,7 +82,11 @@ const ViewTrigger = () => {
         </Row>
         <Row className="my-4">
           <Col md="10">
-            <EditableInput content={tempName} setContent={setTempName} error={error} />
+            <EditableInput
+              content={tempName}
+              setContent={setTempName}
+              error={error}
+            />
           </Col>
           <Col md="2" className="text-end">
             <h6>Trigger {tempStatus}</h6>
