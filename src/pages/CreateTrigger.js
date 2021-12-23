@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 
 import { ChevronLeft } from 'react-ikonate'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Button, Col, Row } from 'reactstrap'
 
@@ -15,12 +15,19 @@ import Map from '../components/Map'
 import Notifications from '../components/Notifications'
 import SearchBox from '../components/LocationSearchBox'
 import { noBlankErrorMessage } from '../config'
-import { addTrigger } from '../features/triggers/actions'
+import { addTrigger, closeTriggerCreationNotification } from '../features/triggers/actions'
 import placeMarker from '../utils/placeMarker'
+
+const selectIsTriggerCreationError = (state) => state.triggers.triggerCreationError
+const selectIsTriggerCreationSuccess = (state) => state.triggers.triggerCreationSuccess
+
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
   const dispatch = useDispatch()
+
+  const triggerCreationSuccess = useSelector(selectIsTriggerCreationError)
+  const triggerCreationFailure = useSelector(selectIsTriggerCreationSuccess)
 
   const [alert, setAlert] = React.useState(null)
 
@@ -32,7 +39,7 @@ const CreateTrigger = () => {
 
   const [tempLocation, setTempLocation] = useState({...location})
 
-   const onClickMap = ({ lat, lng }) => {
+  const onClickMap = ({ lat, lng }) => {
     setTempLocation({
       lat,
       lon: lng,
@@ -59,6 +66,18 @@ const CreateTrigger = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (triggerCreationFailure) {
+      errorAlert(triggerCreationFailure)
+    }
+    }, [triggerCreationFailure])
+
+  useEffect(() => {
+    if (triggerCreationSuccess) {
+      htmlAlert()
+    }
+    }, [triggerCreationSuccess])
+
   const [name, setName] = useState('')
 
   const [condition, setCondition] = useState({
@@ -73,12 +92,6 @@ const CreateTrigger = () => {
   const [recipients, setRecipients] = useState([])
 
   const [error, setError] = useState({})
-
-  const [isSet, setIsSet] = useState(false)
-
-  const [whoops, setWhoops] = useState('')
-
-  const [isClicked, setIsClicked] = useState(false)
 
   const history = useHistory()
 
@@ -118,13 +131,14 @@ const CreateTrigger = () => {
 
   const hideAlert = () => {
     setAlert(null)
+    dispatch(closeTriggerCreationNotification())
   }
 
   const htmlAlert = () => {
     setAlert(<CreateTriggerCard close={hideAlert} />)
   }
 
-  const errorAlert = () => {
+  const errorAlert = (whoops) => {
     setAlert(<ErrorModal whoops={whoops} close={hideAlert} />)
   }
 

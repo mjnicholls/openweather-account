@@ -14,6 +14,8 @@ export const TRIGGERS_FETCH_FAILURE = 'triggers/fetch_failure'
 export const TRIGGER_ADDED = 'triggers/add'
 export const TRIGGER_UPDATED = 'triggers/update'
 export const TRIGGER_DELETED = 'triggers/delete'
+export const TRIGGER_CREATION_FAILURE = 'triggers/creation_failure'
+export const TRIGGER_CLEAR_CREATION_NOTIFICATION = 'triggers/clear_notification'
 
 const triggersStartFetching = () => ({
   type: TRIGGERS_START_FETCHING,
@@ -45,6 +47,16 @@ export const triggerDeleted = (triggerId) => ({
   payload: triggerId,
 })
 
+export const triggerCreationFailure = (error) => ({
+  type: TRIGGER_CREATION_FAILURE,
+  payload: error
+})
+
+export const closeTriggerCreationNotification = () => ({
+  type: TRIGGER_CLEAR_CREATION_NOTIFICATION
+})
+
+
 export const fetchTriggers = () =>
   async function addTriggerThunk(dispatch, getState) {
     const state = getState()
@@ -68,7 +80,8 @@ export const addTrigger = (data) =>
         dispatch(notifySuccess('Trigger created! '))
       })
       .catch((error) => {
-        dispatch(notifyError(`Error creating trigger: ${error.message}`))
+        dispatch(triggerCreationFailure(error.message))
+        // dispatch(notifyError(`Error creating trigger: ${error.message}`))
       })
   }
 

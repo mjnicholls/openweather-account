@@ -5,12 +5,16 @@ import {
   TRIGGER_ADDED,
   TRIGGER_UPDATED,
   TRIGGER_DELETED,
+  TRIGGER_CREATION_FAILURE,
+  TRIGGER_CLEAR_CREATION_NOTIFICATION
 } from './actions'
 
 const initialState = {
   isFetching: true,
   error: null,
   data: [],
+  triggerCreationSuccess: null,
+  triggerCreationError: null
 }
 
 export default function polygonsReducer(state = initialState, action) {
@@ -28,6 +32,20 @@ export default function polygonsReducer(state = initialState, action) {
       return {
         ...state,
         data: [...state.data, action.payload],
+        triggerCreationSuccess: true
+      }
+    }
+    case TRIGGER_CREATION_FAILURE: {
+      return {
+        ...state,
+        triggerCreationError: action.payload
+      }
+    }
+    case TRIGGER_CLEAR_CREATION_NOTIFICATION: {
+      return {
+        ...state,
+        triggerCreationSuccess: null,
+        triggerCreationError: null
       }
     }
     case TRIGGER_UPDATED: {

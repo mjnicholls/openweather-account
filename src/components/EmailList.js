@@ -28,12 +28,14 @@ const EmailList = ({ recipients }) => {
           onClick={onClickFunc}
           className="remove-default-button-style"
         >
-          <h6>
-            <EnvelopeAlt /> {recipients.length} email recipient
-            {recipients.length === 1 ? '' : 's'}
-            <ChevronDown
-              style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}
-            />
+          <h5>
+            Email recipients
+            {/*<EnvelopeAlt /> */}
+            {/*{recipients.length} email recipient*/}
+            {/*{recipients.length === 1 ? '' : 's'}*/}
+            {/*<ChevronDown*/}
+              {/*style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }}*/}
+            {/*/>*/}
             <a
               ref={linkRef}
               data-toggle="collapse"
@@ -44,7 +46,7 @@ const EmailList = ({ recipients }) => {
             >
               &nbsp;
             </a>
-          </h6>
+          </h5>
         </button>
       ) : (
         <h6>

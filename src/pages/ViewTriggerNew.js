@@ -1,10 +1,9 @@
-/* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react'
 
 import { ChevronLeft } from 'react-ikonate'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, Link } from 'react-router-dom'
-import { Row, Col, Button } from 'reactstrap'
+import { Button, Col, Label, Row } from 'reactstrap'
 
 import BeatLoader from '../components/BeatLoader'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
@@ -23,8 +22,7 @@ import { editTrigger } from '../features/triggers/actions'
 const selectIsTriggersFetching = (state) => state.triggers.isFetching
 
 const ViewTrigger = () => {
-  const { state } = useLocation()
-  const { id } = state
+  const { id } = useLocation().state
 
   const [error, setError] = useState(null)
   const [tempName, setTempName] = useState('')
@@ -34,7 +32,7 @@ const ViewTrigger = () => {
 
   const isFetching = useSelector(selectIsTriggersFetching)
   const trigger = useSelector((state) => {
-    return state.triggers.data.find((trigger) => trigger.id === id)
+    return state.triggers.data.find((item) => item.id === id)
   })
 
   const mapRef = useRef(null)
@@ -51,7 +49,7 @@ const ViewTrigger = () => {
       id,
     }
 
-    if (name !== tempName) {
+    if (trigger.name !== tempName) {
       if (!tempName.length) {
         setError(noBlankErrorMessage)
         return
@@ -59,7 +57,7 @@ const ViewTrigger = () => {
       data.name = tempName
     }
 
-    if (status !== tempStatus) {
+    if (trigger.status !== tempStatus) {
       data.status = tempStatus
     }
     dispatch(editTrigger(data))
@@ -81,11 +79,11 @@ const ViewTrigger = () => {
           </Col>
         </Row>
         <Row className="my-4">
-          <Col md="10">
+          <Col md="9">
             <EditableInput content={tempName} setContent={setTempName} error={error} />
           </Col>
-          <Col md="2" className="text-end">
-            <h6>Trigger {tempStatus}</h6>
+          <Col md="3" className="text-end">
+            <Label>Trigger {tempStatus}</Label>
             <StatusToggle
               tempStatus={tempStatus}
               setTempStatus={setTempStatus}
@@ -95,22 +93,22 @@ const ViewTrigger = () => {
 
         <Row>
           <Col className="mb-3">
-            <h6>
+            <h5>
               <ThumbnailLocation location={trigger.location} />
-            </h6>
+            </h5>
           </Col>
         </Row>
 
         <Row>
           <Col className="mb-4">
-            <h6 className="m-0">Condition</h6>
+            <h5>Condition</h5>
             <ThumbnailCondition condition={trigger.condition} />
           </Col>
         </Row>
 
         <Row>
           <Col className="mb-4">
-            <h6 className="m-0">Notify me</h6>
+            <h5>Notify me</h5>
             <span>{notificationText(trigger.days)}</span>
           </Col>
         </Row>

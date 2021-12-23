@@ -25,10 +25,10 @@ const EventsPerDay = ({ number, seeMoreLink }) => {
   return seeMoreLink ? (
     <button
       type="button"
-      className={`d-flex align-items-center ${
+      className={`align-items-center ${
         number ? 'button-orange' : 'button-turquoise'
       }`}
-      style={{ border: 'none' }}
+      style={{ border: 'none', display: "inline-flex" }}
       onClick={onClickFunc}
     >
       <Content />
@@ -46,7 +46,7 @@ const EventsPerDay = ({ number, seeMoreLink }) => {
       </a>
     </button>
   ) : (
-    <div className={number ? 'button-orange' : 'button-turquoise'}>
+    <div className={`d-inline-flex ${number ? 'button-orange' : 'button-turquoise'}`}>
       <Content />
     </div>
   )

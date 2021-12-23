@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { getEventsByTriggerId } from '../api/api'
 import { toDate } from '../utils/dateTime'
 import BeatLoader from './BeatLoader'
+import EventsPerDay from './EventsPerDay'
 
 const selectUserId = (state) => state.auth.user.id
 
@@ -38,10 +39,13 @@ const TriggerEvents = ({ triggerId }) => {
       {isLoading ? (
         <h6>Upcoming events</h6>
       ) : events.length ? (
-        <h6>
-          <Error /> {events.length} upcoming event
-          {events.length === 1 ? '' : 's'}
-        </h6>
+        <EventsPerDay number={events.length} seeMoreLink={null} />
+
+        // <h6>
+        //   <Error /> {events.length} upcoming event
+        //   {events.length === 1 ? '' : 's'}
+        // </h6>
+
       ) : (
         <h6>No active events</h6>
       )}
