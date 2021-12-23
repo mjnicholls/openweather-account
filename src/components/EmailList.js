@@ -55,19 +55,15 @@ const EmailList = ({ recipients }) => {
       {recipients.length > 0 && (
         <>
           {recipients.slice(0, openEmails).map((email) => (
-            <li>
-              <label className="item-view" key={email}>
-                {email}
-              </label>
+            <li style={{ marginTop: '10px' }} key={email}>
+              <span className="item-view">{email}</span>
             </li>
           ))}
           {recipients.length > openEmails && (
             <div className="collapse" id={collapseId}>
               {recipients.slice(openEmails).map((email) => (
-                <li>
-                  <label className="item-view" key={email}>
-                    {email}
-                  </label>
+                <li style={{ marginTop: '10px' }} key={email}>
+                  <span className="item-view">{email}</span>
                 </li>
               ))}
             </div>
