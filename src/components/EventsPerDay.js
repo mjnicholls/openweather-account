@@ -17,7 +17,7 @@ const EventsPerDay = ({ number, seeMoreLink }) => {
     <div className="d-flex-inline align-items-center">
       {number > 0 && <Error color="#ffffff" style={{ marginRight: '4pt' }} />}
       <span>
-        {number} event{number === 1 ?  '' : 's'}&nbsp;
+        {number} event{number === 1 ? '' : 's'}&nbsp;
       </span>
     </div>
   )

@@ -55,7 +55,7 @@ const EmailList = ({ recipients }) => {
         </h6>
       )}
       {recipients.length > 0 && (
-        <ul style={{listStyleType: 'none'}}>
+        <ul style={{ listStyleType: 'none' }}>
           {recipients.slice(0, openEmails).map((email) => (
             <li>
               <label className="item-view" key={email}>

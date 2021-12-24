@@ -33,7 +33,7 @@ const EditableInput = ({ content, setContent, error, tagName }) => {
     </>
   ) : (
     <div className="d-flex align-items-center">
-      {tagName === "p" ?
+      {tagName === 'p' ? (
         <p className="m-0">
           {content}
           <Edit
@@ -43,7 +43,7 @@ const EditableInput = ({ content, setContent, error, tagName }) => {
             }}
           />
         </p>
-        : tagName === "h2" ?
+      ) : tagName === 'h2' ? (
         <h2 className="m-0">
           {content}
           <Edit
@@ -52,7 +52,8 @@ const EditableInput = ({ content, setContent, error, tagName }) => {
               setIsEdit(true)
             }}
           />
-        </h2> :
+        </h2>
+      ) : (
         <h5 className="m-0">
           {content}
           <Edit
@@ -61,7 +62,8 @@ const EditableInput = ({ content, setContent, error, tagName }) => {
               setIsEdit(true)
             }}
           />
-        </h5>}
+        </h5>
+      )}
     </div>
   )
 }
@@ -70,7 +72,7 @@ EditableInput.propTypes = {
   content: PropTypes.string,
   setContent: PropTypes.func,
   error: PropTypes.string,
-  tagName: PropTypes.string
+  tagName: PropTypes.string,
 }
 
 export default EditableInput

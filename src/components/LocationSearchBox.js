@@ -18,7 +18,6 @@ const LocationSearchBox = ({
   isDropDown,
   setIsDropDown,
 }) => {
-
   const [isSearchByName, setIsSearchByName] = useState(true)
 
   const onSetClick = () => {
@@ -34,9 +33,9 @@ const LocationSearchBox = ({
       >
         <div className="d-flex align-items-baseline">
           <h5>Location</h5>
-          {/*{location.lat && location.lon && (*/}
-            {/*<LocationName location={location} setLocation={setLocation} />*/}
-          {/*)}*/}
+          {/* {location.lat && location.lon && ( */}
+          {/* <LocationName location={location} setLocation={setLocation} /> */}
+          {/* )} */}
         </div>
         {isSearchByName ? (
           <AutoCompleteFormNew

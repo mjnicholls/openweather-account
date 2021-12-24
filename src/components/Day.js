@@ -43,7 +43,7 @@ const Day = ({ day }) => {
             ))
         ) : (
           <div className="m-3">
-              <p>No events</p>
+            <p>No events</p>
           </div>
         )}
 

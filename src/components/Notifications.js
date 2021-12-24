@@ -1,20 +1,25 @@
 import React from 'react'
 
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 import Select from 'react-select'
 
 import { owmSelectorStyle } from '../utils/styles'
 import EmailNotifications from './EmailNotifcations'
 
-const Notifications = ({ days, setDays, recipients, setRecipients }) => {
-  const options = [
-    { value: 0, label: '0' },
-    { value: 1, label: '1' },
-    { value: 2, label: '2' },
-    { value: 3, label: '3' },
-  ]
+const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 
-  return (
+const options = [
+  { value: 0, label: '0' },
+  { value: 1, label: '1' },
+  { value: 2, label: '2' },
+  { value: 3, label: '3' },
+]
+
+const Notifications = ({ days, setDays, recipients, setRecipients }) => {
+  const emailsAllowed = useSelector(selectEmailsAllowed)
+
+  return emailsAllowed ? (
     <>
       <div className="d-flex align-items-center justify-content-between">
         <h5>Notifications</h5>
@@ -48,7 +53,7 @@ const Notifications = ({ days, setDays, recipients, setRecipients }) => {
         setRecipients={setRecipients}
       />
     </>
-  )
+  ) : null
 }
 
 Notifications.propTypes = {

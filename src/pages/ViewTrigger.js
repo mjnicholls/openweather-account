@@ -97,12 +97,12 @@ const ViewTrigger = () => {
             </Row>
 
             <Row>
-          <Col className="mb-3">
-            <h5>
-              <ThumbnailLocation location={trigger.location} />
-            </h5>
-          </Col>
-        </Row>
+              <Col className="mb-3">
+                <h5>
+                  <ThumbnailLocation location={trigger.location} />
+                </h5>
+              </Col>
+            </Row>
 
             <Row>
               <Col className="mb-4">
@@ -123,13 +123,6 @@ const ViewTrigger = () => {
                 <EmailList recipients={trigger.recipients} />
               </Col>
             </Row>
-
-            <Row>
-              <Col className="mb-5">
-                <TriggerEvents triggerId={id} />
-              </Col>
-            </Row>
-
           </Col>
           <Col md="3" className="text-end">
             <Label>Trigger {tempStatus}</Label>
@@ -139,9 +132,18 @@ const ViewTrigger = () => {
             />
           </Col>
         </Row>
+        <Row>
+          <Col className="mb-5">
+            <TriggerEvents triggerId={id} />
+          </Col>
+        </Row>
         <Row className="container-main">
           <Col className="text-end">
-            <DeleteTriggerCard id={id} className="button-neutral" callback={deleteTriggerCallback}>
+            <DeleteTriggerCard
+              id={id}
+              className="button-neutral"
+              callback={deleteTriggerCallback}
+            >
               Delete
             </DeleteTriggerCard>
 
@@ -157,7 +159,6 @@ const ViewTrigger = () => {
             </Button>
           </Col>
         </Row>
-
       </Col>
       <Col md="5">
         {/* <ViewOnlyMap mapRef={mapRef} location={trigger.location} /> */}

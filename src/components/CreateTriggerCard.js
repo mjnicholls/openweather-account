@@ -10,7 +10,6 @@ import CreateTriggerButton from './CreateTriggerButton'
 import ThumbnailLocation from './ThumbnailLocation'
 
 const CreateTriggerCard = ({ trigger, close }) => {
-
   const history = useHistory()
 
   const handleCreateClick = () => {
@@ -60,11 +59,12 @@ const CreateTriggerCard = ({ trigger, close }) => {
           >
             To all triggers
           </Button>
-          <CreateTriggerButton createFunc={handleCreateClick}/>
+          <CreateTriggerButton createFunc={handleCreateClick} />
         </Col>
       </div>
     </ReactBSAlert>
-)}
+  )
+}
 
 CreateTriggerCard.propTypes = {
   trigger: PropTypes.object,

@@ -26,7 +26,6 @@ const selectIsTriggerCreationSuccess = (state) =>
   state.triggers.triggerCreationSuccess
 
 const CreateTrigger = () => {
-
   const mapRef = useRef(null)
   const searchBoxRef = useRef()
 
@@ -148,12 +147,15 @@ const CreateTrigger = () => {
   return (
     <Row>
       <Col md="7">
-        { triggerCreationSuccess &&
-          <CreateTriggerCard trigger={triggerCreationSuccess} close={hideAlert} />
-        }
-        { triggerCreationFailure &&
+        {triggerCreationSuccess && (
+          <CreateTriggerCard
+            trigger={triggerCreationSuccess}
+            close={hideAlert}
+          />
+        )}
+        {triggerCreationFailure && (
           <ErrorModal whoops={triggerCreationFailure} close={hideAlert} />
-        }
+        )}
         <Row>
           <Col className="mt-3">
             <Button onClick={goBack} className="navigation-link">
@@ -165,19 +167,18 @@ const CreateTrigger = () => {
 
         <Row>
           <Col>
-        <div className="d-flex align-items-baseline">
-          <h2 className="m-0">New trigger:&nbsp;</h2>
-          <EditableInput
-            content={name}
-            setContent={setName}
-            error={error.name}
-            tagName="h2"
-          />
-        </div>
+            <div className="d-flex align-items-baseline">
+              <h2 className="m-0">New trigger:&nbsp;</h2>
+              <EditableInput
+                content={name}
+                setContent={setName}
+                error={error.name}
+                tagName="h2"
+              />
+            </div>
           </Col>
         </Row>
         <div className="pt-5 pb-5">
-
           <LocationSearchBox
             mapRef={mapRef}
             location={location}
@@ -203,12 +204,6 @@ const CreateTrigger = () => {
 
           <Row className="mt-4">
             <Col className="text-end">
-              {/* <Button */}
-              {/* className="button-neutral shadow-none" */}
-              {/* onClick={goToPreviousPath} */}
-              {/* > */}
-              {/* Cancel */}
-              {/* </Button> */}
               <CreateTriggerButton createFunc={createTrigger} />
             </Col>
           </Row>

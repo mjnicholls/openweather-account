@@ -21,6 +21,15 @@ const Triggers = () => {
   const history = useHistory()
   const handleCreateClick = () => history.push('/dashboard/triggers/create')
 
+  const handleTriggerLink = (e, trigger) => {
+    if (
+      !e.target.classList.contains('edit') ||
+      !e.target.parent.classList.contains('edit')
+    ) {
+      history.push({ pathname: '/dashboard/trigger', state: trigger })
+    }
+  }
+
   return (
     <div className="triggertest">
       <Row className="py-5">
@@ -57,89 +66,85 @@ const Triggers = () => {
                 Emails
               </Col>
             )}
-            <Col colSpan={1}>&nbsp;</Col>
+            <Col colSpan={1}>Status</Col>
           </Row>
 
           {data.map(
             (trigger, index) =>
               trigger.status !== 'deleted' && (
-
-                <Row className="triggers-new" key={trigger.id}>
-                  <Col
-                    md="1"
-                    className="d-md-flex d-md-none text-end text-nowrap"
-                  >
-                    <EditTriggerCard
-                      id={trigger.id}
-                      name={trigger.name}
-                      status={trigger.status}
-                    />
-
-                    <DeleteTriggerCard
-                      id={trigger.id}
-                      className="remove-default-button-style"
-                      callback={() => {}}
+                <button
+                  type="button"
+                  onClick={(e) => handleTriggerLink(e, trigger)}
+                  className="remove-default-button-style w-100"
+                >
+                  <Row className="triggers-new" key={trigger.id}>
+                    <Col
+                      md="1"
+                      className="d-md-flex d-md-none text-end text-nowrap edit"
                     >
-                      <Close color="#48484a" />
-                    </DeleteTriggerCard>
-                  </Col>
+                      <EditTriggerCard
+                        id={trigger.id}
+                        name={trigger.name}
+                        status={trigger.status}
+                      />
 
-                  <Col className="col-md-auto">{index + 1}</Col>
-                  <Col md="2">
-                    <Link
-                      to={{
-                        pathname: '/dashboard/trigger',
-                        state: trigger,
+                      <DeleteTriggerCard
+                        id={trigger.id}
+                        className="remove-default-button-style"
+                        callback={() => {}}
+                      >
+                        <Close color="#48484a" />
+                      </DeleteTriggerCard>
+                    </Col>
+
+                    <Col className="col-md-auto">{index + 1}</Col>
+                    <Col md="2">{trigger.name}</Col>
+                    <Col md="3">
+                      <ThumbnailCondition condition={trigger.condition} />
+                      {/* {conditionToText(trigger.condition)} */}
+                    </Col>
+                    <Col md="2">
+                      <ThumbnailLocation
+                        location={trigger.location}
+                        showIcon={false}
+                      />
+                    </Col>
+                    <Col md="1">
+                      {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
+                    </Col>
+                    {emailsAllowed && (
+                      <Col md="1" className="text-nowrap">
+                        <EnvelopeAlt /> {trigger.recipients.length}
+                      </Col>
+                    )}
+                    <Col
+                      md="1"
+                      style={{
+                        color: trigger.status === 'on' ? 'green' : 'red',
                       }}
                     >
-                      {trigger.name}
-                    </Link>
-                  </Col>
-                  <Col md="3">
-                    <ThumbnailCondition condition={trigger.condition} />
-                    {/* {conditionToText(trigger.condition)} */}
-                  </Col>
-                  <Col md="2">
-                    <ThumbnailLocation
-                      location={trigger.location}
-                      showIcon={false}
-                    />
-                  </Col>
-                  <Col md="1">
-                    {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
-                  </Col>
-                  {emailsAllowed && (
-                    <Col md="1" className="text-nowrap">
-                      <EnvelopeAlt /> {trigger.recipients.length}
+                      {trigger.status.charAt(0).toUpperCase() +
+                        trigger.status.slice(1)}
                     </Col>
-                  )}
-                  <Col
-                    md="1"
-                    style={{
-                      color: trigger.status === 'on' ? 'green' : 'red',
-                    }}
-                  >
-                    {trigger.status.charAt(0).toUpperCase() +
-                      trigger.status.slice(1)}
-                  </Col>
 
-                  <Col md="1" className="d-md-flex d-none text-nowrap">
-                   <div className="m-3">
-                    <EditTriggerCard
-                      id={trigger.id}
-                      name={trigger.name}
-                      status={trigger.status}
-                    />
-                   </div>
-                    <DeleteTriggerCard
-                      callback={() => {}}
-                      className="remove-default-button-style"
-                      id={trigger.id}
-                    >
-                      <Close color="#48484a" />
-                    </DeleteTriggerCard>
-                  </Col>
-                </Row>
+                    <Col md="1" className="d-md-flex d-none text-nowrap">
+                      <div className="m-3">
+                        <EditTriggerCard
+                          id={trigger.id}
+                          name={trigger.name}
+                          status={trigger.status}
+                        />
+                      </div>
+                      <DeleteTriggerCard
+                        callback={() => {}}
+                        className="remove-default-button-style edit"
+                        id={trigger.id}
+                      >
+                        <Close color="#48484a" />
+                      </DeleteTriggerCard>
+                    </Col>
+                  </Row>
+                </button>
               ),
           )}
         </>
