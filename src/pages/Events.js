@@ -35,10 +35,10 @@ const Events = () => {
   }, [userId])
 
   return (
-    <div>
-      <Row className="py-5">
+    <div className="page-container">
+      <Row className="first-row">
         <Col>
-          <h2 className="m-0 p-0">Events</h2>
+          <h2>Events</h2>
         </Col>
         <Col className="text-end title">
           <Link

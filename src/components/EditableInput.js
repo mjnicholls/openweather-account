@@ -44,7 +44,7 @@ const EditableInput = ({ content, setContent, error, tagName }) => {
           />
         </p>
       ) : tagName === 'h2' ? (
-        <h2 className="m-0">
+        <h2 className="m-0 p-0">
           {content}
           <Edit
             className="ms-2"

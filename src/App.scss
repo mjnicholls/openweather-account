@@ -2,6 +2,7 @@
 @import 'assets/scss/typography.scss';
 @import '~bootstrap/scss/bootstrap';
 
+$borderRadiusDefault: 8pt;
 
 .body {
   font-family: $default-font-family;
@@ -714,6 +715,23 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  .page-container {
+    padding: 3rem 1rem;
+    @media (min-width: 768px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .first-row {
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: 0;
+    }
+    margin-bottom: 3rem;
+  }
 }
 
 .app-content {
@@ -897,28 +915,22 @@ input.input-marketplace, input.marketplace-input__input {
   @include remove-default-button-style;
 }
 
-.triggertest {
 
-  margin-bottom: 20px;
-
-  .triggers-bold {
-    font-weight: bold;
-    padding-bottom: 15px;
-    text-align: left;
-    border-bottom-width: 1px !important;
-    font-size: 16px;
-    border-top: 1px solid #f2f2f2;
-    padding-top: 8pt;
-    padding-bottom: 8pt;
+.triggers-bold {
+  font-weight: bold;
+  text-align: left;
+  border-bottom-width: 1px !important;
+  font-size: 16px;
+  border-top: 1px solid #f2f2f2;
+  padding-top: 8pt;
+  padding-bottom: 8pt;
   }
 
-.triggers-new {
+.trigger-item {
 
-    padding-bottom: 15px;
     text-align: left;
-    border-bottom-width: 1px !important;
+    border-bottom: 1px solid $brand-grey !important;
     font-size: 16px;
-    border-top: 1px solid #f2f2f2;
     padding-top: 8pt;
     padding-bottom: 8pt;
     &:hover {
@@ -927,14 +939,13 @@ input.input-marketplace, input.marketplace-input__input {
   
   div > div.col {
     font-family: $default-font-family;
-    font-size: 16px;
     vertical-align: top;
     text-align: left;
     font-size: 0.9rem;
     white-space: pre-wrap;
   }
 }
-}
+
 
 .owm-selector {
   display: block;
@@ -1088,4 +1099,24 @@ input.input-marketplace, input.marketplace-input__input {
   margin-right: 5px;
   margin-bottom: 5px;
   display: inline-block;
+}
+
+.card.trigger-card {
+  border-radius: $borderRadiusDefault;
+
+  //.col, .col-md-2, .col-md-3, .col-md-1 {
+  //  border-right: 1px solid black;
+  //}
+
+  .card-header {
+    border-top-left-radius: $borderRadiusDefault;
+    border-top-right-radius: $borderRadiusDefault;
+    padding-top: 12pt;
+    padding-bottom: 12pt;
+  }
+  .card-body {
+    border-bottom-left-radius: $borderRadiusDefault;
+    border-bottom-right-radius: $borderRadiusDefault;
+    padding: 0;
+  }
 }

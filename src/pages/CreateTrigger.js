@@ -146,7 +146,7 @@ const CreateTrigger = () => {
 
   return (
     <Row>
-      <Col md="7">
+      <Col md="7" className="page-container">
         {triggerCreationSuccess && (
           <CreateTriggerCard
             trigger={triggerCreationSuccess}
@@ -156,19 +156,19 @@ const CreateTrigger = () => {
         {triggerCreationFailure && (
           <ErrorModal whoops={triggerCreationFailure} close={hideAlert} />
         )}
-        <Row>
-          <Col className="mt-3">
-            <Button onClick={goBack} className="navigation-link">
-              <ChevronLeft fontSize="2rem" />
-              Back
-            </Button>
-          </Col>
-        </Row>
+        {/*<Row>*/}
+          {/*<Col className="mt-3">*/}
+            {/*<Button onClick={goBack} className="navigation-link">*/}
+              {/*<ChevronLeft fontSize="2rem" />*/}
+              {/*Back*/}
+            {/*</Button>*/}
+          {/*</Col>*/}
+        {/*</Row>*/}
 
-        <Row>
+        <Row className="first-row">
           <Col>
             <div className="d-flex align-items-baseline">
-              <h2 className="m-0">New trigger:&nbsp;</h2>
+              <h2 className="me-3">New trigger&nbsp;</h2>
               <EditableInput
                 content={name}
                 setContent={setName}
@@ -178,7 +178,7 @@ const CreateTrigger = () => {
             </div>
           </Col>
         </Row>
-        <div className="pt-5 pb-5">
+        <div>
           <LocationSearchBox
             mapRef={mapRef}
             location={location}
@@ -203,6 +203,12 @@ const CreateTrigger = () => {
           />
 
           <Row className="mt-4">
+            <Col>
+              <Button onClick={goBack} className="navigation-link">
+                <ChevronLeft fontSize="2rem" />
+                Back
+              </Button>
+            </Col>
             <Col className="text-end">
               <CreateTriggerButton createFunc={createTrigger} />
             </Col>

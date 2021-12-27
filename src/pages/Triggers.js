@@ -3,7 +3,7 @@ import React from 'react'
 import { Close, EnvelopeAlt } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { Row, Col } from 'reactstrap'
+import { Card, CardHeader, CardBody, Col, Row } from 'reactstrap'
 
 import BeatLoader from '../components/BeatLoader'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
@@ -26,15 +26,15 @@ const Triggers = () => {
       !e.target.classList.contains('edit') ||
       !e.target.parent.classList.contains('edit')
     ) {
-      history.push({ pathname: '/dashboard/trigger', state: trigger })
+      history.push({ pathname: '/dashboard/trigger', state: trigger.id })
     }
   }
 
   return (
-    <div className="triggertest">
-      <Row className="py-5">
+    <div className="page-container">
+      <Row className="first-row">
         <Col>
-          <h2 className="m-0 p-0">Triggers</h2>
+          <h2>Triggers</h2>
         </Col>
         <Col className="text-end title">
           <Link
@@ -54,33 +54,35 @@ const Triggers = () => {
       error ? (
         <div>{error}</div>
       ) : data.length ? (
-        <>
-          <Row className="triggers-bold d-none d-lg-flex">
-            <Col className="col-md-auto">&nbsp;</Col>
-            <Col md="2">Name</Col>
-            <Col md="3">Condition</Col>
-            <Col md="2">Location</Col>
-            <Col md="1">Notify</Col>
-            {emailsAllowed && (
-              <Col md="1" className="email">
-                Emails
-              </Col>
-            )}
-            <Col colSpan={1}>Status</Col>
-          </Row>
-
+        <Card className="trigger-card">
+          <CardHeader style={{fontWeight: "bold", paddingRight: 0, paddingLeft: 0}} className="d-lg-flex d-none">
+            <Row className="w-100 mx-0">
+              <Col lg="1">&nbsp;</Col>
+              <Col>Name</Col>
+              <Col lg="3">Condition</Col>
+              <Col lg="2">Location</Col>
+              <Col lg="1">Notify</Col>
+              {emailsAllowed && (
+                <Col lg="1" className="email">Emails</Col>
+              )}
+              <Col lg="1">Status</Col>
+              <Col lg="1">&nbsp;</Col>
+            </Row>
+          </CardHeader>
+          <CardBody>
           {data.map(
             (trigger, index) =>
               trigger.status !== 'deleted' && (
                 <button
                   type="button"
+                  key={trigger.id}
                   onClick={(e) => handleTriggerLink(e, trigger)}
                   className="remove-default-button-style w-100"
                 >
-                  <Row className="triggers-new" key={trigger.id}>
+                  <Row className="trigger-item mx-0 w-100" >
                     <Col
-                      md="1"
-                      className="d-md-flex d-md-none text-end text-nowrap edit"
+                      lg="1"
+                      className="d-lg-none text-end text-nowrap edit"
                     >
                       <EditTriggerCard
                         id={trigger.id}
@@ -97,28 +99,28 @@ const Triggers = () => {
                       </DeleteTriggerCard>
                     </Col>
 
-                    <Col className="col-md-auto">{index + 1}</Col>
-                    <Col md="2">{trigger.name}</Col>
-                    <Col md="3">
+                    <Col lg="1">{index + 1}</Col>
+                    <Col><b>{trigger.name}</b></Col>
+                    <Col lg="3">
                       <ThumbnailCondition condition={trigger.condition} />
                       {/* {conditionToText(trigger.condition)} */}
                     </Col>
-                    <Col md="2">
+                    <Col lg="2">
                       <ThumbnailLocation
                         location={trigger.location}
                         showIcon={false}
                       />
                     </Col>
-                    <Col md="1">
+                    <Col lg="1">
                       {trigger.days} {trigger.days === 1 ? 'day' : 'days'}
                     </Col>
                     {emailsAllowed && (
-                      <Col md="1" className="text-nowrap">
+                      <Col lg="1" className="text-nowrap">
                         <EnvelopeAlt /> {trigger.recipients.length}
                       </Col>
                     )}
                     <Col
-                      md="1"
+                      lg="1"
                       style={{
                         color: trigger.status === 'on' ? 'green' : 'red',
                       }}
@@ -127,27 +129,30 @@ const Triggers = () => {
                         trigger.status.slice(1)}
                     </Col>
 
-                    <Col md="1" className="d-md-flex d-none text-nowrap">
-                      <div className="m-3">
+                    <Col lg="1" className="d-lg-flex d-none text-nowrap">
+                      <div>
                         <EditTriggerCard
                           id={trigger.id}
                           name={trigger.name}
                           status={trigger.status}
                         />
                       </div>
-                      <DeleteTriggerCard
-                        callback={() => {}}
-                        className="remove-default-button-style edit"
-                        id={trigger.id}
-                      >
-                        <Close color="#48484a" />
-                      </DeleteTriggerCard>
+                      <div>
+                        <DeleteTriggerCard
+                          callback={() => {}}
+                          className="remove-default-button-style edit"
+                          id={trigger.id}
+                        >
+                          <Close color="#48484a" />
+                        </DeleteTriggerCard>
+                      </div>
                     </Col>
                   </Row>
                 </button>
               ),
           )}
-        </>
+          </CardBody>
+        </Card>
       ) : (
         <Row>
           <Col>

@@ -53,7 +53,7 @@ const TriggerEvents = ({ triggerId }) => {
       {/* <h6>No active events</h6> */}
       {/* )} */}
 
-      <div style={{ minHeight: '100px' }}>
+      <div>
         {isLoading ? (
           <BeatLoader />
         ) : events.length ? (

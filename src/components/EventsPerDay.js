@@ -15,7 +15,7 @@ const EventsPerDay = ({ number, seeMoreLink }) => {
 
   const Content = () => (
     <div className="d-flex-inline align-items-center">
-      {number > 0 && <Error color="#ffffff" style={{ marginRight: '4pt' }} />}
+      {number > 0 && <Error style={{ marginRight: '4pt', color: "#ffffff" }} />}
       <span>
         {number} event{number === 1 ? '' : 's'}&nbsp;
       </span>
@@ -32,7 +32,7 @@ const EventsPerDay = ({ number, seeMoreLink }) => {
       onClick={onClickFunc}
     >
       <Content />
-      <ChevronDown style={{ transform: isOpen ? 'rotate(180deg)' : 'none' }} />
+      <ChevronDown style={{ color: "#ffffff", transform: isOpen ? 'rotate(180deg)' : 'none' }} />
       <a
         className="d-none"
         data-toggle="collapse"

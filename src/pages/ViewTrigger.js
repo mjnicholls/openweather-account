@@ -71,21 +71,21 @@ const ViewTrigger = () => {
     <BeatLoader />
   ) : (
     <Row>
-      <Col md="7">
-        <Row>
-          <Col className="mt-3">
-            <Link role="button" to="/dashboard/triggers">
-              <div className="navigation-link">
-                <ChevronLeft fontSize="2rem" />
-                To all triggers
-              </div>
-            </Link>
-          </Col>
-        </Row>
+      <Col md="7" className="page-container">
+        {/*<Row>*/}
+          {/*<Col className="mt-3">*/}
+            {/*<Link role="button" to="/dashboard/triggers">*/}
+              {/*<div className="navigation-link">*/}
+                {/*<ChevronLeft fontSize="2rem" />*/}
+                {/*To all triggers*/}
+              {/*</div>*/}
+            {/*</Link>*/}
+          {/*</Col>*/}
+        {/*</Row>*/}
 
-        <Row className="mt-3">
-          <Col md="9">
-            <Row className="mb-4">
+        <Row>
+          <Col xs="9">
+            <Row className="first-row">
               <Col>
                 <EditableInput
                   content={tempName}
@@ -97,10 +97,8 @@ const ViewTrigger = () => {
             </Row>
 
             <Row>
-              <Col className="mb-3">
-                <h5>
+              <Col className="mb-5">
                   <ThumbnailLocation location={trigger.location} />
-                </h5>
               </Col>
             </Row>
 
@@ -124,7 +122,7 @@ const ViewTrigger = () => {
               </Col>
             </Row>
           </Col>
-          <Col md="3" className="text-end">
+          <Col xs="3" className="text-end">
             <Label>Trigger {tempStatus}</Label>
             <StatusToggle
               tempStatus={tempStatus}
