@@ -3,7 +3,7 @@ import React from 'react'
 import './App.scss'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, Zoom } from 'react-toastify'
 import { Container } from 'reactstrap'
 
 import FooterTrigger from './components/Footer'
@@ -50,6 +50,7 @@ const App = () => (
       draggable
       pauseOnHover
       theme="colored"
+      transition={Zoom}
     />
     <NotificationMessage />
   </Provider>

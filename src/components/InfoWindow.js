@@ -23,7 +23,7 @@ const InfoWindow = ({ show, location, setLocation, showButton }) => {
             {location.lon.toFixed(6)}
           </p>
         </div>
-        <div>
+        <div className="text-end">
           {showButton && (
             <button
               type="button"

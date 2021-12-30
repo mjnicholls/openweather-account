@@ -8,7 +8,6 @@ import Event from './Event'
 import EventsPerDay from './EventsPerDay'
 
 const Day = ({ day }) => {
-
   const openEventsN = 3
   const collapseId =
     day.triggers.length > openEventsN ? `collapse_${day.day}` : null

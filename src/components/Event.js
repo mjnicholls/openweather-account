@@ -17,7 +17,7 @@ const Event = ({ trigger, index }) => {
     <Link
       to={{
         pathname: '/dashboard/trigger',
-        state: trigger,
+        id: trigger.id,
       }}
       className="section-link"
     >

@@ -21,7 +21,6 @@ const EditableInput = ({ content, setContent, error, tagName }) => {
       <Input
         type="text"
         className={`owm-selector ${error ? 'danger-border' : ''}`}
-        style={{ maxWidth: '300px' }}
         onChange={(e) => setContent(e.target.value)}
         onKeyDown={onKeyDown}
         placeholder="Enter name" // TODO

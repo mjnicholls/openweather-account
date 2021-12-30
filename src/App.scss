@@ -4,7 +4,7 @@
 
 $borderRadiusDefault: 8pt;
 
-.body {
+body {
   font-family: $default-font-family;
   font-size: $default-font-size;
   -webkit-font-smoothing: antialiased;
@@ -18,48 +18,54 @@ $borderRadiusDefault: 8pt;
   h5,
   h6 {
     font-family: $default-font-family;
-    text-align: left
-    
   }
 }
 
-// Footer classes
-.page-footer {
-  background-color: $brand-grey;
-  font-family: $default-font-family;
-  font-size: $font-size-sm;
-  color: $brand-black;
 
-  h5 {
-    font-weight: bold;
-    font-size: 14px;
-  }
+// App layout structure
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  height:100%;
 
-  ul {
-    list-style: none;
-    padding-left: 0;
-    line-height: 20pt;
-    text-decoration: none;
+  .app-content {
+    display: flex;
+    flex: 1;
 
-    li {
-      padding: 0;
+    .page-container {
+      position: relative;
+      display: block;
+      width: 100%;
+    }
 
-      a {
-        color: $brand-black;
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
-        }
+    .page-padding {
+      padding: 3rem 1rem;
+      @media (min-width: 1400px) {
+        padding-left: 0;
+        padding-right: 0;
       }
     }
-  }
 
-  div.section-body-mobile {
-    border-bottom: 1px solid #ced4da;
+    .first-row {
+      h2 {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0;
+      }
+      margin-bottom: 3rem;
+    }
+  }
+  .space-placeholder {
+    display: flex;
+    flex-grow: 1;
+    min-height: 100px;
   }
 }
 
-// Header classes 
+
+// Header classes
 
 .page-header {
 
@@ -215,10 +221,50 @@ $borderRadiusDefault: 8pt;
   }
 }
 
+
+// Footer classes
+.page-footer {
+  background-color: $brand-grey;
+  font-family: $default-font-family;
+  font-size: $font-size-sm;
+  color: $brand-black;
+
+  h5 {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    line-height: 20pt;
+    text-decoration: none;
+
+    li {
+      padding: 0;
+
+      a {
+        color: $brand-black;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  div.section-body-mobile {
+    border-bottom: 1px solid #ced4da;
+  }
+}
+
+
+
 // map popup styles
 
 .mapPop {
-  width: 300px;
+  width: 310px;
+
   background-color: #ffffff;
   padding: 12pt;
   border-radius: 8pt;
@@ -227,13 +273,18 @@ $borderRadiusDefault: 8pt;
   font-size: 1rem;
 
   h5 {
+    white-space: nowrap;
     font-weight: bold;
     font-family: $highlight-font-family;
+    width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .main {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-top: 0;
     flex-wrap: nowrap;
 
@@ -243,7 +294,7 @@ $borderRadiusDefault: 8pt;
     }
 
     button {
-      margin: 0.5rem;
+      font-size: $small-font-size;
     }
   }
 
@@ -416,12 +467,6 @@ a {
     margin-bottom: 40px;
     text-align: left
   }
-
-  .mapPop {
-    padding-bottom: 20px;
-    padding-top: 20px;
-  }
-
   .bottom {
     margin-bottom: 15px;
   }
@@ -651,6 +696,37 @@ a {
   }
 }
 
+
+.create-trigger-alert {
+  text-align: left;
+  @media screen and (min-width: 768px) {
+    min-width: 500pt;
+  }
+}
+
+.trigger-confirmation {
+  text-align: left;
+
+  .trigger-confirmation-table {
+    margin: 16pt 0;
+    .col-sm-4 {
+      font-size: $small-font-size;
+      font-weight: 400;
+      margin: 4pt 0;
+    }
+  }
+
+  .trigger-confirmation-notification {
+    margin: 32pt 0 48pt;
+    font-style: italic;
+    font-size: $small-font-size;
+  }
+
+  button {
+    font-size: $small-font-size;
+  }
+}
+
 .material-table {
 
   thead {
@@ -709,33 +785,6 @@ a {
   .card-header {
     border-bottom: 1px solid $brand-grey;
   }
-}
-
-.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  .page-container {
-    padding: 3rem 1rem;
-    @media (min-width: 768px) {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
-
-  .first-row {
-    h2 {
-      margin-top: 0;
-      margin-bottom: 0;
-      padding: 0;
-    }
-    margin-bottom: 3rem;
-  }
-}
-
-.app-content {
-  flex: 1 0 auto;
 }
 
 .loader-container {
@@ -853,7 +902,7 @@ input.input-marketplace, input.marketplace-input__input {
 
     .pac-icon {
       margin-right: 0.5rem;
-      background: url('https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/geo_icon.png') no-repeat;
+      background: url('https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_geo.png') no-repeat;
       background-size: 15px 17px;
     }
   }
@@ -903,7 +952,7 @@ input.input-marketplace, input.marketplace-input__input {
   outline: inherit;
 
   &:hover, &:focus, &:active {
-    //color: inherit;
+    color: inherit;
     background: none;
     border: none;
     outline: inherit;
@@ -952,13 +1001,14 @@ input.input-marketplace, input.marketplace-input__input {
   border-radius: 4pt;
   border: 1px solid $brand-grey;
   padding: 8pt;
-  //width: 100%;
+  width: 100%;
   &:focus {
     outline: none;
     border: 1px solid $brand-grey;
     box-shadow: none;
   }
   &.danger-border {
+    color: $danger-red;
     border-color: $danger-red;
   }
 }
@@ -1060,14 +1110,19 @@ input.input-marketplace, input.marketplace-input__input {
   display: inline-flex;
   align-items: center;
   font-weight: bold;
-  color: #48484a;
+  color: $brand-black;
   margin-left: 16pt;
+
   svg {
     margin-right: 3pt;
   }
 
   &:first-child {
     margin-left: 0;
+  }
+
+  &:hover, &:focus {
+    color: #000000;
   }
 }
 

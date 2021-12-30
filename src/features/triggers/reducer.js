@@ -13,8 +13,8 @@ const initialState = {
   isFetching: true,
   error: null,
   data: [],
-  triggerCreationSuccess: false,
-  triggerCreationError: false,
+  triggerCreationSuccess: null,
+  triggerCreationError: null,
 }
 
 export default function polygonsReducer(state = initialState, action) {

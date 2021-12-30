@@ -6,7 +6,6 @@ import {
   updateTriggerAPI,
   deleteTriggerAPI,
 } from '../../api/api'
-import { notifyError, notifySuccess } from '../notifications/actions'
 
 export const TRIGGERS_START_FETCHING = 'triggers/fetch'
 export const TRIGGERS_FETCH_SUCCESS = 'triggers/fetch_success'
@@ -66,7 +65,6 @@ export const fetchTriggers = () =>
       })
       .catch((error) => {
         dispatch(triggersFetchFailure(error.message))
-        dispatch(notifyError(error.message))
       })
   }
 
@@ -77,7 +75,7 @@ export const addTrigger = (data) =>
       .then((response) => {
         dispatch(triggerAdded(response.data))
         // dispatch(notifySuccess('Trigger created! '))
-        toast.success('Trigger created! ')
+        // toast.success('Trigger created! ')
       })
       .catch((error) => {
         dispatch(triggerCreationFailure(error.message))

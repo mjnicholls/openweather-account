@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { ChevronLeft } from 'react-ikonate'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { Button, Col, Row } from 'reactstrap'
 
 import Condition from '../components/Condition'
@@ -12,7 +13,7 @@ import EditableInput from '../components/EditableInput'
 import ErrorModal from '../components/ErrorModal'
 import Map from '../components/Map'
 import Notifications from '../components/Notifications'
-import LocationSearchBox from '../components/LocationSearchBox'
+import Location from '../components/Location'
 import { noBlankErrorMessage } from '../config'
 import {
   addTrigger,
@@ -53,9 +54,14 @@ const CreateTrigger = () => {
   const [recipients, setRecipients] = useState([])
   const [error, setError] = useState({})
   const [isDropDown, setIsDropDown] = useState(false)
+  const [isLocationNameEdited, setIsLocationNameEdited] = useState(false)
 
   useEffect(() => {
-    setTempLocation(location)
+    setTempLocation({
+      ...tempLocation,
+      lat: location.lat,
+      lon: location.lon
+    })
   }, [location])
 
   useEffect(() => {
@@ -72,11 +78,31 @@ const CreateTrigger = () => {
 
   useEffect(() => {
     // detect click outside location search box
-    document.addEventListener('mousedown', handleClickOtsideSearchBox)
+    document.addEventListener('mousedown', handleClickOutsideSearchBox)
     return () => {
-      document.removeEventListener('mousedown', handleClickOtsideSearchBox)
+      document.removeEventListener('mousedown', handleClickOutsideSearchBox)
     }
   }, [])
+
+  const setNameFunc = (val) => {
+    setError({
+      ...error,
+      name: null
+    })
+    setName(val)
+  }
+
+  const setLocationNameAware = (val) => {
+    setError({
+      ...error,
+      location: null
+    })
+    setLocation({
+      ...val,
+      name: isLocationNameEdited ?
+        location.name : `${val.name} (${val.lat.toFixed(2)}, ${val.lat.toFixed(2)})`,
+    })
+  }
 
   const createTrigger = () => {
     const data = {
@@ -91,21 +117,27 @@ const CreateTrigger = () => {
     setError({})
 
     const newError = {}
-
+    let toastMessage = ''
     if (!name) {
       newError.name = noBlankErrorMessage
+      toastMessage = 'Please enter trigger name. '
     }
     if (!location.lat || !location.lon || !location.name) {
-      newError.location = noBlankErrorMessage
+      if (tempLocation.lat && tempLocation.lon) {
+        newError.location = "You haven't set the location. Please click on the Set location button on the map"
+      } else {
+        newError.location = noBlankErrorMessage
+      }
+
+      toastMessage += 'Please enter trigger location. '
     }
 
     if (Object.keys(newError).length) {
       setError(newError)
+      toast.error(toastMessage)
       return
     }
     dispatch(addTrigger(data))
-
-    //  TODO add creation success / failure
   }
 
   const onClickMap = ({ lat, lng }) => {
@@ -128,7 +160,7 @@ const CreateTrigger = () => {
     dispatch(closeTriggerCreationNotification())
   }
 
-  const handleClickOtsideSearchBox = (e) => {
+  const handleClickOutsideSearchBox = (e) => {
     if (searchBoxRef.current.contains(e.target)) {
       // inside click
       return
@@ -145,86 +177,108 @@ const CreateTrigger = () => {
   }
 
   return (
-    <Row>
-      <Col md="7" className="page-container">
-        {triggerCreationSuccess && (
-          <CreateTriggerCard
-            trigger={triggerCreationSuccess}
-            close={hideAlert}
-          />
-        )}
-        {triggerCreationFailure && (
-          <ErrorModal whoops={triggerCreationFailure} close={hideAlert} />
-        )}
-        {/*<Row>*/}
+    <div className="page-container">
+      <Row>
+        <Col md="7" className="page-padding">
+          {triggerCreationSuccess && (
+            <CreateTriggerCard
+              trigger={triggerCreationSuccess}
+              close={hideAlert}
+            />
+          )}
+          {triggerCreationFailure && (
+            <ErrorModal whoops={triggerCreationFailure} close={hideAlert} />
+          )}
+          {/*<Row>*/}
           {/*<Col className="mt-3">*/}
-            {/*<Button onClick={goBack} className="navigation-link">*/}
-              {/*<ChevronLeft fontSize="2rem" />*/}
-              {/*Back*/}
-            {/*</Button>*/}
+          {/*<Button onClick={goBack} className="navigation-link">*/}
+          {/*<ChevronLeft fontSize="2rem" />*/}
+          {/*Back*/}
+          {/*</Button>*/}
           {/*</Col>*/}
-        {/*</Row>*/}
+          {/*</Row>*/}
 
-        <Row className="first-row">
-          <Col>
-            <div className="d-flex align-items-baseline">
-              <h2 className="me-3">New trigger&nbsp;</h2>
+          <Row className="first-row">
+            <Col>
+              <h2>New trigger</h2>
+            </Col>
+          </Row>
+
+          <Row className="mb-4">
+            <Col>
+              <h5>Name</h5>
               <EditableInput
                 content={name}
-                setContent={setName}
+                setContent={setNameFunc}
                 error={error.name}
                 tagName="h2"
               />
-            </div>
-          </Col>
-        </Row>
-        <div>
-          <LocationSearchBox
-            mapRef={mapRef}
-            location={location}
-            setLocation={setLocation}
-            tempLocation={tempLocation}
-            setTempLocation={setTempLocation}
-            onChange={(e) => handleChange('location', e.target.value)}
-            error={error}
-            name={name}
-            searchBoxRef={searchBoxRef}
-            isDropDown={isDropDown}
-            setIsDropDown={setIsDropDown}
-          />
+            </Col>
+          </Row>
 
-          <Condition condition={condition} setCondition={setCondition} />
+          <Row className="mb-4">
+            <Col>
+              <Location
+                mapRef={mapRef}
+                location={location}
+                setLocation={setLocation}
+                tempLocation={tempLocation}
+                setTempLocation={setTempLocation}
+                onChange={(e) => handleChange('location', e.target.value)}
+                error={error}
+                setError={setError}
+                name={name}
+                searchBoxRef={searchBoxRef}
+                isDropDown={isDropDown}
+                setIsDropDown={setIsDropDown}
+                setIsLocationNameEdited={setIsLocationNameEdited}
+              />
+            </Col>
+          </Row>
 
-          <Notifications
-            days={days}
-            setDays={setDays}
-            recipients={recipients}
-            setRecipients={setRecipients}
-          />
+          <Row className="mb-4">
+            <Col>
+              <Condition condition={condition} setCondition={setCondition} />
+            </Col>
+          </Row>
 
-          <Row className="mt-4">
+          <Row className="mb-4">
+            <Col>
+              <Notifications
+                days={days}
+                setDays={setDays}
+                recipients={recipients}
+                setRecipients={setRecipients}
+              />
+            </Col>
+          </Row>
+
+          <div className="space-placeholder">&nbsp;</div>
+          <Row>
             <Col>
               <Button onClick={goBack} className="navigation-link">
                 <ChevronLeft fontSize="2rem" />
                 Back
               </Button>
             </Col>
+
             <Col className="text-end">
               <CreateTriggerButton createFunc={createTrigger} />
             </Col>
           </Row>
-        </div>
-      </Col>
-      <Col md="5">
-        <Map
-          mapRef={mapRef}
-          mapLocation={tempLocation}
-          setLocation={setLocation}
-          onClickMap={onClickMap}
-          isButtonInfoWindow={location !== tempLocation}
-        />
-      </Col>
-    </Row>
+
+        </Col>
+        <Col md="5">
+          <Map
+            mapRef={mapRef}
+            mapLocation={tempLocation}
+            setLocation={setLocationNameAware}
+            onClickMap={onClickMap}
+            isButtonInfoWindow={location.lat !== tempLocation.lat || location.lon !== tempLocation.lon}
+          />
+        </Col>
+      </Row>
+    </div>
   )
 }
 

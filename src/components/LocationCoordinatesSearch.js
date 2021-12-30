@@ -1,120 +1,96 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 
 import PropTypes from 'prop-types'
-import { Input } from 'reactstrap'
-
-import { noBlankErrorMessage } from '../config'
 
 const CoordinatesSearch = ({
-  mapRef,
-  tempLocation,
-  setTempLocation,
+  coordsLocation,
+  setCoordsLocation,
   setIsDropDown,
+  setCoordinates,
+  error,
+  setError
 }) => {
-  const [error, setError] = useState({})
 
-  const latRangeError = 'Value cannot be below -90 or above 90'
-  const lngRangeError = 'Value cannot be below -180 or above 180'
-
-  const [localTempLocation, setLocalTempLocation] = useState(tempLocation)
-
-  const validate = () => {
-    setError({})
-    const newError = {}
-
-    if (!localTempLocation.lat && localTempLocation.lat !== 0) {
-      newError.lat = noBlankErrorMessage
-    } else if (localTempLocation.lat < -90 || localTempLocation.lat > 90) {
-      newError.lat = latRangeError
-    }
-    if (!localTempLocation.lon && localTempLocation.lon !== 0) {
-      newError.lon = noBlankErrorMessage
-    } else if (localTempLocation.lon < -180 || localTempLocation.lon > 180) {
-      newError.lon = lngRangeError
-    }
-    if (Object.keys(newError).length) {
-      setError(newError)
-      return false
-    }
-    return true
-  }
+  const lonRef = useRef(null)
 
   const onFocus = () => {
     setIsDropDown(true)
   }
 
-  const onKeyDown = (e) => {
+  const onKeyDownLat = (e) => {
+    setError({
+      ...error,
+      lat: null
+    })
     if (e.keyCode === 13) {
-      setCoordinates()
+      lonRef.current.focus()
     }
   }
 
-  const setCoordinates = () => {
-    if (validate()) {
-      setTempLocation({
-        ...localTempLocation,
-        name: 'Custom location',
-      })
+  const onKeyDownLon = (e) => {
+    setError({
+      ...error,
+      lon: null
+    })
+    if (e.keyCode === 13) {
+      setCoordinates()
     }
   }
 
   return (
     <div className="d-flex">
       <div className="flex-grow-1">
-        <Input
+        <input
           type="number"
           style={{
-            borderRight: 'none',
+            borderRight: error.lat ? '1px solid red' : 'none',
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
           }}
           className={`owm-selector ${error.lat ? 'danger-border' : ''}`}
-          value={localTempLocation.lat}
+          value={coordsLocation.lat}
           onChange={(e) => {
-            setLocalTempLocation({
-              ...localTempLocation,
+            setCoordsLocation({
+              ...coordsLocation,
               lat: parseFloat(e.target.value),
             })
           }}
           placeholder="Latitude"
           onFocus={onFocus}
+          onKeyDown={onKeyDownLat}
         />
-        <div className={`invalid-feedback ${error.lat ? 'd-block' : ''}`}>
-          {error.lat}
-        </div>
       </div>
       <div className="flex-grow-1">
-        <Input
+        <input
+          ref={lonRef}
           type="number"
           style={{
-            borderLeft: 'none',
+            borderLeft: error.lon ? '1px solid red' : 'none',
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
           }}
           className={`owm-selector ${error.lon ? 'danger-border' : ''}`}
-          value={localTempLocation.lon}
+          value={coordsLocation.lon}
           onChange={(e) => {
-            setLocalTempLocation({
-              ...localTempLocation,
+            setCoordsLocation({
+              ...coordsLocation,
               lon: parseFloat(e.target.value),
             })
           }}
           placeholder="Longitude"
           onFocus={onFocus}
-          onKeyDown={onKeyDown}
+          onKeyDown={onKeyDownLon}
         />
-        <div className={`invalid-feedback ${error.lon ? 'd-block' : ''}`}>
-          {error.lon}
-        </div>
       </div>
     </div>
   )
 }
 
 CoordinatesSearch.propTypes = {
-  tempLocation: PropTypes.object,
-  setTempLocation: PropTypes.func,
-  mapRef: PropTypes.object,
+  coordsLocation: PropTypes.object,
+  error: PropTypes.object,
+  setCoordinates: PropTypes.func,
+  setCoordsLocation: PropTypes.func,
   setIsDropDown: PropTypes.func,
 }
 

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import classnames from 'classnames/index'
 import PropTypes from 'prop-types'
 import Autocomplete from 'react-google-autocomplete'
 
@@ -10,8 +9,10 @@ const AutoCompleteForm = ({
   mapRef,
   setTempLocation,
   error,
+  setError,
   setIsDropDown,
 }) => {
+
   const onPlaceSelected = (place) => {
     if (
       mapRef &&
@@ -34,6 +35,13 @@ const AutoCompleteForm = ({
     }
   }
 
+  const onStartTyping = () => {
+    setError({
+      ...error,
+      location: null
+    })
+  }
+
   const onFocus = () => {
     setIsDropDown(true)
   }
@@ -49,16 +57,10 @@ const AutoCompleteForm = ({
           onPlaceSelected(place)
         }}
         onFocus={onFocus}
+        onChange={onStartTyping}
         placeholder="Enter location"
       />
-      <div
-        className={classnames(
-          'invalid-feedback ',
-          error.location ? 'd-block' : '',
-        )}
-      >
-        {error.location}
-      </div>
+
     </>
   )
 }

@@ -5,7 +5,7 @@ import FooterSection from './FooterSection'
 
 const FooterTrigger = () => (
   <footer className="page-footer p-4">
-    <div className="container-xl">
+    <div className="container-xxl">
       <div className="row">
         <div className="col-xl-4 mt-4">
           <FooterSection header="Weather Dashboard">
@@ -21,9 +21,7 @@ const FooterTrigger = () => (
                 </a>
               </li>
               <li>
-                <a href="/" target="_blank">
-                  Support Center
-                </a>
+                <a href="/questions">Support Center</a>
               </li>
             </ul>
           </FooterSection>

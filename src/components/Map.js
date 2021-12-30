@@ -75,10 +75,10 @@ const Map = ({
           showButton={isButtonInfoWindow}
           show
         />
-        {/* <Marker */}
-        {/* lat={mapLocation.lat} */}
-        {/* lng={mapLocation.lon} */}
-        {/* /> */}
+        {/*<Marker*/}
+        {/*lat={mapLocation.lat}*/}
+        {/*lng={mapLocation.lon}*/}
+        {/*/>*/}
       </GoogleMapReact>
     </div>
   )
