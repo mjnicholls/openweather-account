@@ -59,6 +59,8 @@ const Notifications = ({ days, setDays, recipients, setRecipients }) => {
 Notifications.propTypes = {
   days: PropTypes.number,
   setDays: PropTypes.func,
+  recipients: PropTypes.arrayOf(PropTypes.string),
+  setRecipients: PropTypes.func,
 }
 
 export default Notifications

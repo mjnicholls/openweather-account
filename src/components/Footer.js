@@ -1,6 +1,5 @@
 import React from 'react'
 
-import '../App.scss'
 import FooterSection from './FooterSection'
 
 const FooterTrigger = () => (

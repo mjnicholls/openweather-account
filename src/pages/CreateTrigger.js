@@ -60,7 +60,7 @@ const CreateTrigger = () => {
     setTempLocation({
       ...tempLocation,
       lat: location.lat,
-      lon: location.lon
+      lon: location.lon,
     })
   }, [location])
 
@@ -87,7 +87,7 @@ const CreateTrigger = () => {
   const setNameFunc = (val) => {
     setError({
       ...error,
-      name: null
+      name: null,
     })
     setName(val)
   }
@@ -95,12 +95,13 @@ const CreateTrigger = () => {
   const setLocationNameAware = (val) => {
     setError({
       ...error,
-      location: null
+      location: null,
     })
     setLocation({
       ...val,
-      name: isLocationNameEdited ?
-        location.name : `${val.name} (${val.lat.toFixed(2)}, ${val.lat.toFixed(2)})`,
+      name: isLocationNameEdited
+        ? location.name
+        : `${val.name} (${val.lat.toFixed(2)}, ${val.lat.toFixed(2)})`,
     })
   }
 
@@ -123,13 +124,17 @@ const CreateTrigger = () => {
       toastMessage = 'Please enter trigger name. '
     }
     if (!location.lat || !location.lon || !location.name) {
-      if (tempLocation.lat && tempLocation.lon) {
-        newError.location = "You haven't set the location. Please click on the Set location button on the map"
+      if (location.lat && location.lon && !location.name) {
+        newError.locationName = noBlankErrorMessage
+        toastMessage += 'Please enter trigger location name. '
+      } else if (tempLocation.lat && tempLocation.lon) {
+        newError.location =
+          "You haven't set the location. Please click on the Set location button on the map"
+        toastMessage += 'Please set trigger location. '
       } else {
         newError.location = noBlankErrorMessage
+        toastMessage += 'Please enter trigger location. '
       }
-
-      toastMessage += 'Please enter trigger location. '
     }
 
     if (Object.keys(newError).length) {
@@ -266,7 +271,6 @@ const CreateTrigger = () => {
               <CreateTriggerButton createFunc={createTrigger} />
             </Col>
           </Row>
-
         </Col>
         <Col md="5">
           <Map
@@ -274,7 +278,10 @@ const CreateTrigger = () => {
             mapLocation={tempLocation}
             setLocation={setLocationNameAware}
             onClickMap={onClickMap}
-            isButtonInfoWindow={location.lat !== tempLocation.lat || location.lon !== tempLocation.lon}
+            isButtonInfoWindow={
+              location.lat !== tempLocation.lat ||
+              location.lon !== tempLocation.lon
+            }
           />
         </Col>
       </Row>

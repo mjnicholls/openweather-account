@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import PropTypes from 'prop-types'
-import { Error } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 
 import { getEventsByTriggerId } from '../api/api'
@@ -38,20 +37,8 @@ const TriggerEvents = ({ triggerId }) => {
     <div>
       <div className="d-flex justify-content-between align-items-center">
         <h5>Upcoming events</h5>
-        <EventsPerDay number={events.length} seeMoreLink={null} />
+        <EventsPerDay number={events.length} />
       </div>
-      {/* {isLoading ? ( */}
-      {/* <h6>Upcoming events</h6> */}
-      {/* ) : events.length ? ( */}
-      {/* <EventsPerDay number={events.length} seeMoreLink={null} /> */}
-      {/* ) : ( */}
-      {/* // <h6> */}
-      {/* //   <Error /> {events.length} upcoming event */}
-      {/* //   {events.length === 1 ? '' : 's'} */}
-      {/* // </h6> */}
-
-      {/* <h6>No active events</h6> */}
-      {/* )} */}
 
       <div>
         {isLoading ? (

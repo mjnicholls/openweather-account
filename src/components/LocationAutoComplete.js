@@ -1,18 +1,18 @@
+/* eslint-disable */
 import React from 'react'
 
 import PropTypes from 'prop-types'
-import Autocomplete from 'react-google-autocomplete'
+import Autocomplete, { usePlacesWidget } from 'react-google-autocomplete'
 
 import placeMarker from '../utils/placeMarker'
 
-const AutoCompleteForm = ({
+const AutoComplete = ({
   mapRef,
   setTempLocation,
   error,
   setError,
   setIsDropDown,
 }) => {
-
   const onPlaceSelected = (place) => {
     if (
       mapRef &&
@@ -38,7 +38,7 @@ const AutoCompleteForm = ({
   const onStartTyping = () => {
     setError({
       ...error,
-      location: null
+      location: null,
     })
   }
 
@@ -46,29 +46,28 @@ const AutoCompleteForm = ({
     setIsDropDown(true)
   }
 
-  return (
-    <>
-      <Autocomplete
-        apiKey={process.env.REACT_APP_GOOGLE_MAP_KEY}
-        className={`owm-selector w-100 ${
-          error.location ? 'danger-border' : ''
-        }`}
-        onPlaceSelected={(place) => {
-          onPlaceSelected(place)
-        }}
-        onFocus={onFocus}
-        onChange={onStartTyping}
-        placeholder="Enter location"
-      />
+  const { ref } = usePlacesWidget({
+    apiKey: process.env.REACT_APP_GOOGLE_MAP_KEY,
+    onPlaceSelected: (place) => onPlaceSelected(place),
+  })
 
-    </>
+  return (
+    <Autocomplete
+      className={`owm-selector w-100 ${error.location ? 'danger-border' : ''}`}
+      onPlaceSelected={(place) => {
+        onPlaceSelected(place)
+      }}
+      onFocus={onFocus}
+      onChange={onStartTyping}
+      placeholder="Enter location"
+    />
   )
 }
 
-AutoCompleteForm.propTypes = {
+AutoComplete.propTypes = {
   setTempLocation: PropTypes.func,
   error: PropTypes.object,
   mapRef: PropTypes.object,
 }
 
-export default AutoCompleteForm
+export default AutoComplete

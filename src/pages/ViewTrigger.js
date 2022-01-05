@@ -11,12 +11,11 @@ import EditableInput from '../components/EditableInput'
 import EmailList from '../components/EmailList'
 import Map from '../components/Map'
 import StatusToggle from '../components/StatusToggle'
-import ThumbnailCondition from '../components/ThumbnailCondition'
 import ThumbnailLocation from '../components/ThumbnailLocation'
 import TriggerEvents from '../components/TriggerEvents'
 import { noBlankErrorMessage } from '../config'
 import { editTrigger } from '../features/triggers/actions'
-import { notificationText } from '../utils/utils'
+import { conditionToText, notificationText } from '../utils/utils'
 import { ChevronLeft } from 'react-ikonate'
 
 const selectIsTriggersFetching = (state) => state.triggers.isFetching
@@ -111,7 +110,7 @@ const ViewTrigger = () => {
                 <Row>
                   <Col className="mb-4">
                     <h5>Condition</h5>
-                    <ThumbnailCondition condition={trigger.condition} />
+                    <span>{conditionToText(trigger.condition)}</span>
                   </Col>
                 </Row>
 

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 
-import AutoCompleteForm from './LocationAutoCompleteSearch'
-import CoordinatesSearch from './LocationCoordinatesSearch'
-import LocationName from './LocationName'
-import {coordinatesError} from '../utils/validation'
+import PropTypes from 'prop-types'
+
+import { coordinatesError } from '../utils/validation'
+import EditableInput from './EditableInput'
+import AutoCompleteForm from './LocationAutoComplete'
+import CoordinatesSearch from './LocationCoordinates'
 
 const Location = ({
   mapRef,
@@ -17,30 +19,37 @@ const Location = ({
   searchBoxRef,
   isDropDown,
   setIsDropDown,
-  setIsLocationNameEdited
+  setIsLocationNameEdited,
 }) => {
-
   const [isSearchByName, setIsSearchByName] = useState(true)
   const [coordsTempLocation, setCoordsTempLocation] = useState(tempLocation)
 
   const setCoordinates = () => {
     setError({})
-    const coordsError = coordinatesError(coordsTempLocation.lat, coordsTempLocation.lon)
+    const coordsError = coordinatesError(
+      coordsTempLocation.lat,
+      coordsTempLocation.lon,
+    )
     if (coordsError) {
       setError(coordsError)
       setIsDropDown(false)
       return
     }
     setTempLocation({
+      ...coordsTempLocation,
       name: 'Custom location',
-      ...coordsTempLocation
     })
     setIsDropDown(false)
   }
 
   const canSetCoordinates = () =>
     tempLocation.lat !== coordsTempLocation.lat ||
-                tempLocation.lon !== coordsTempLocation.lon
+    tempLocation.lon !== coordsTempLocation.lon
+
+  const setLocationName = (val) => {
+    setLocation({ ...location, name: val })
+    setIsLocationNameEdited(true)
+  }
 
   return (
     <div>
@@ -72,9 +81,7 @@ const Location = ({
           />
         )}
         {isDropDown && (
-          <div
-            className="padded search-pop-up d-flex justify-content-between"
-          >
+          <div className="padded search-pop-up d-flex justify-content-between">
             <div>
               <button
                 type="button"
@@ -97,37 +104,54 @@ const Location = ({
                 Coordinates
               </button>
             </div>
-            {!isSearchByName && <button
-              type="button"
-              className={`padded-button ${
-                canSetCoordinates() ? 'padded-button-active' : ''
-              }`}
-              onClick={setCoordinates}
-              aria-pressed="true"
-              disabled={!canSetCoordinates()}
-            >
-              Set
-            </button>}
+            {!isSearchByName && (
+              <button
+                type="button"
+                className={`padded-button ${
+                  canSetCoordinates() ? 'padded-button-active' : ''
+                }`}
+                onClick={setCoordinates}
+                aria-pressed="true"
+                disabled={!canSetCoordinates()}
+              >
+                Set
+              </button>
+            )}
           </div>
         )}
       </div>
       {location.lat && location.lon && (
         <div className="my-3">
-          <LocationName
-            location={location}
-            setLocation={setLocation}
-            setIsLocationNameEdited={setIsLocationNameEdited}
+          <EditableInput
+            content={location.name}
+            setContent={setLocationName}
+            tagName="p"
+            error={error.locationName}
           />
         </div>
       )}
-      {error.lat && <div className='invalid-feedback d-block'>{error.lat}</div>}
-      {error.lon && <div className='invalid-feedback d-block'>{error.lon}</div>}
-      {error.location &&
-        <div className='invalid-feedback d-block'>
-          {error.location}
-        </div>}
+      {error.lat && <div className="invalid-feedback d-block">{error.lat}</div>}
+      {error.lon && <div className="invalid-feedback d-block">{error.lon}</div>}
+      {error.location && (
+        <div className="invalid-feedback d-block">{error.location}</div>
+      )}
     </div>
   )
+}
+
+Location.propTypes = {
+  mapRef: PropTypes.object,
+  location: PropTypes.object,
+  setLocation: PropTypes.func,
+  tempLocation: PropTypes.object,
+  setTempLocation: PropTypes.func,
+  error: PropTypes.object,
+  setError: PropTypes.func,
+  setIsName: PropTypes.func,
+  searchBoxRef: PropTypes.object,
+  isDropDown: PropTypes.bool,
+  setIsDropDown: PropTypes.func,
+  setIsLocationNameEdited: PropTypes.func,
 }
 
 export default Location

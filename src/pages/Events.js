@@ -44,7 +44,6 @@ const Events = () => {
       } else {
         res = (
           <>
-            {/*<p><b>No events</b></p>*/}
             <p>
               Here you will find notifications if the conditions of the triggers
               you created will be met.
@@ -93,6 +92,8 @@ const Events = () => {
             ))}
           </Row>
         </>
+      ) : error ? (
+        <div>{error}</div>
       ) : events.length ? (
         <Row>
           {events.map((day) => (

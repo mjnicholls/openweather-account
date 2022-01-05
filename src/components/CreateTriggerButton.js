@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
-import { Plus } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Button } from 'reactstrap'
 

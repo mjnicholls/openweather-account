@@ -17,7 +17,7 @@ const DeleteTriggerCard = (props) => {
   const htmlAlert = () => {
     setAlert(
       <ReactBSAlert
-        title="Delete Trigger?"
+        title="Delete Trigger"
         onConfirm={() => hideAlert()}
         onCancel={() => hideAlert()}
         showConfirm={false}

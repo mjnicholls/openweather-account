@@ -2,7 +2,7 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-const InfoWindow = ({ show, location, setLocation, showButton }) => {
+const InfoWindow = ({ location, setLocation, showButton }) => {
   const onSetLocationClick = (e) => {
     setLocation(location)
     e.stopPropagation()
@@ -43,7 +43,6 @@ InfoWindow.propTypes = {
   location: PropTypes.object,
   setLocation: PropTypes.func,
   showButton: PropTypes.bool,
-  show: PropTypes.bool,
 }
 
 export default InfoWindow

@@ -6,15 +6,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { ToastContainer, Zoom } from 'react-toastify'
 import { Container } from 'reactstrap'
 
-import FooterTrigger from './components/Footer'
-import HeaderTrigger from './components/Header'
-import NotificationMessage from './components/NotificationMessage'
+import Footer from './components/Footer'
+import Header from './components/Header'
 import { fetchTriggers } from './features/triggers/actions'
 import CreateTrigger from './pages/CreateTrigger'
 import Events from './pages/Events'
 import TriggerList from './pages/Triggers'
 import ViewTrigger from './pages/ViewTrigger'
 import store from './store'
+
 import 'react-toastify/dist/ReactToastify.css'
 
 store.dispatch(fetchTriggers())
@@ -22,7 +22,7 @@ store.dispatch(fetchTriggers())
 const App = () => (
   <Provider store={store}>
     <div className="app">
-      <HeaderTrigger />
+      <Header />
       <Container fluid="xxl" className="app-content">
         <BrowserRouter>
           <Switch>
@@ -37,7 +37,7 @@ const App = () => (
           </Switch>
         </BrowserRouter>
       </Container>
-      <FooterTrigger />
+      <Footer />
     </div>
     <ToastContainer
       position="bottom-right"
@@ -52,7 +52,6 @@ const App = () => (
       theme="colored"
       transition={Zoom}
     />
-    <NotificationMessage />
   </Provider>
 )
 

@@ -2,15 +2,14 @@ import React, { useRef } from 'react'
 
 import PropTypes from 'prop-types'
 
-const CoordinatesSearch = ({
+const LocationCoordinates = ({
   coordsLocation,
   setCoordsLocation,
   setIsDropDown,
   setCoordinates,
   error,
-  setError
+  setError,
 }) => {
-
   const lonRef = useRef(null)
 
   const onFocus = () => {
@@ -20,7 +19,7 @@ const CoordinatesSearch = ({
   const onKeyDownLat = (e) => {
     setError({
       ...error,
-      lat: null
+      lat: null,
     })
     if (e.keyCode === 13) {
       lonRef.current.focus()
@@ -30,7 +29,7 @@ const CoordinatesSearch = ({
   const onKeyDownLon = (e) => {
     setError({
       ...error,
-      lon: null
+      lon: null,
     })
     if (e.keyCode === 13) {
       setCoordinates()
@@ -86,12 +85,13 @@ const CoordinatesSearch = ({
   )
 }
 
-CoordinatesSearch.propTypes = {
+LocationCoordinates.propTypes = {
   coordsLocation: PropTypes.object,
   error: PropTypes.object,
+  setError: PropTypes.func,
   setCoordinates: PropTypes.func,
   setCoordsLocation: PropTypes.func,
   setIsDropDown: PropTypes.func,
 }
 
-export default CoordinatesSearch
+export default LocationCoordinates

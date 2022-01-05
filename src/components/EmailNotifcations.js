@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { Close } from 'react-ikonate'
 import { useSelector } from 'react-redux'
@@ -26,6 +25,13 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
         setRecipients([...recipients, email])
         setEmail('')
       }
+    }
+  }
+
+  const setEmailButton = () => {
+    if (isEmailValid(email)) {
+      setRecipients([...recipients, email])
+      setEmail('')
     }
   }
 
@@ -69,26 +75,35 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
   return areEmailsAllowed ? (
     <>
       <h5 className="mt-4">Email notifications to</h5>
-      <div style={{ paddingLeft: '10px' }}>
-        <Row>
-          <Input
-            className={`owm-selector ${error.email ? 'danger-border' : ''}`}
-            type="text"
-            onChange={(e) => setEmail(e.target.value)}
-            onKeyDown={addEmail}
-            value={email}
-            placeholder="Enter an email address"
-          />
-          <div
-            className={classnames(
-              'invalid-feedback',
-              error.email ? 'd-block' : '',
-            )}
-          >
-            {error.email}
+      <div>
+        <div className="d-flex align-items-center">
+          <div className="d-flex flex-column flex-grow-1">
+            <Input
+              className={`owm-selector ${error.email ? 'danger-border' : ''}`}
+              type="text"
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={addEmail}
+              value={email}
+              placeholder="Enter an email address"
+            />
+            <div className={`invalid-feedback ${error.email ? 'd-block' : ''}`}>
+              {error.email}
+            </div>
           </div>
-        </Row>
-        <Row>
+          <button
+            type="button"
+            className="padded-button"
+            // className={`padded-button ${
+            //   content.length ? 'pa dded-button-active' : ''
+            // }`}
+            onClick={setEmailButton}
+            aria-pressed="true"
+            // disabled={!content.length}
+          >
+            Set
+          </button>
+        </div>
+        <div className="my-3">
           {/* eslint-disable-next-line */}
           {recipients.map((email, index) =>
             email === activeEmail ? null : (
@@ -108,7 +123,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
               </React.Fragment>
             ),
           )}
-        </Row>
+        </div>
       </div>
     </>
   ) : null

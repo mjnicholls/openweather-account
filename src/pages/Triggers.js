@@ -9,8 +9,8 @@ import BeatLoader from '../components/BeatLoader'
 import CreateNewTriggerButton from '../components/CreateTriggerButton'
 import DeleteTriggerCard from '../components/DeleteTriggerCard'
 import EditTriggerCard from '../components/EditTriggerCard'
-import ThumbnailCondition from '../components/ThumbnailCondition'
 import ThumbnailLocation from '../components/ThumbnailLocation'
+import { conditionToText } from '../utils/utils'
 
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 const selectTriggers = (state) => state.triggers
@@ -101,10 +101,7 @@ const Triggers = () => {
                           <Col>
                             <b>{trigger.name}</b>
                           </Col>
-                          <Col lg="3">
-                            <ThumbnailCondition condition={trigger.condition} />
-                            {/* {conditionToText(trigger.condition)} */}
-                          </Col>
+                          <Col lg="3">{conditionToText(trigger.condition)}</Col>
                           <Col lg="2">
                             <ThumbnailLocation
                               location={trigger.location}

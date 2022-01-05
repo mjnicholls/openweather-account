@@ -1,5 +1,6 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
 import { EnvelopeAlt } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -55,6 +56,11 @@ const Event = ({ trigger, index }) => {
       </div>
     </Link>
   )
+}
+
+Event.propTypes = {
+  index: PropTypes.number,
+  trigger: PropTypes.object,
 }
 
 export default Event

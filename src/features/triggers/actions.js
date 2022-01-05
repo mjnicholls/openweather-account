@@ -74,13 +74,10 @@ export const addTrigger = (data) =>
     createTriggerAPI(data, state.auth.user.id)
       .then((response) => {
         dispatch(triggerAdded(response.data))
-        // dispatch(notifySuccess('Trigger created! '))
-        // toast.success('Trigger created! ')
       })
       .catch((error) => {
         dispatch(triggerCreationFailure(error.message))
         toast.error(`Error creating trigger: ${error.message}`)
-        // dispatch(notifyError(`Error creating trigger: ${error.message}`))
       })
   }
 
@@ -91,11 +88,9 @@ export const editTrigger = (data) =>
       .then(() => {
         dispatch(triggerUpdated(data))
         toast.success('Trigger was updated successfully')
-        // dispatch(notifySuccess('Trigger was updated successfully'))
       })
       .catch((error) => {
         toast.error(`Error updating trigger: ${error.message}`)
-        // dispatch(notifyError(`Error updating trigger: ${error.message}`))
       })
   }
 
@@ -105,11 +100,9 @@ export const deleteTrigger = (triggerId) =>
     deleteTriggerAPI(triggerId, state.auth.user.id)
       .then(() => {
         dispatch(triggerDeleted(triggerId))
-        // dispatch(notifySuccess('Trigger was deleted successfully'))
         toast.success('Trigger was deleted successfully')
       })
       .catch((error) => {
-        // dispatch(notifyError(`Error deleting trigger: ${error.message}`))
         toast.error(`Error deleting trigger: ${error.message}`)
       })
   }
