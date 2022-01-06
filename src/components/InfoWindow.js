@@ -2,7 +2,7 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-const InfoWindow = ({ show, location, setLocation, showButton }) => {
+const InfoWindow = ({ location, setLocation, showButton }) => {
   const onSetLocationClick = (e) => {
     setLocation(location)
     e.stopPropagation()
@@ -23,7 +23,7 @@ const InfoWindow = ({ show, location, setLocation, showButton }) => {
             {location.lon.toFixed(6)}
           </p>
         </div>
-        <div>
+        <div className="text-end">
           {showButton && (
             <button
               type="button"
@@ -43,7 +43,6 @@ InfoWindow.propTypes = {
   location: PropTypes.object,
   setLocation: PropTypes.func,
   showButton: PropTypes.bool,
-  show: PropTypes.bool,
 }
 
 export default InfoWindow

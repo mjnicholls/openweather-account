@@ -16,7 +16,7 @@ const Condition = ({ condition, setCondition }) => {
   }
 
   return (
-    <div className="my-5 padding-col">
+    <div className="padding-col">
       <Row>
         <Col className="mb-1">
           <h5>Trigger condition</h5>

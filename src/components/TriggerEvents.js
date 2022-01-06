@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 import PropTypes from 'prop-types'
-import { Error } from 'react-ikonate'
 import { useSelector } from 'react-redux'
 
 import { getEventsByTriggerId } from '../api/api'
 import { toDate } from '../utils/dateTime'
 import BeatLoader from './BeatLoader'
+import EventsPerDay from './EventsPerDay'
 
 const selectUserId = (state) => state.auth.user.id
 
@@ -35,31 +35,12 @@ const TriggerEvents = ({ triggerId }) => {
 
   return (
     <div>
-      {isLoading ? (
-        <h6>Upcoming events</h6>
-      ) : events.length ? (
-        <button
-          type="button"
-          disabled
-          className="d-flex align-items-center button-orange"
-          style={{ border: 'none' }}
-        >
-          <Error style={{ marginRight: '5px' }} />
-          {events.length} upcoming event
-          {events.length === 1 ? '' : 's'}
-        </button>
-      ) : (
-        <button
-          type="button"
-          disabled
-          className="d-flex align-items-center button-turquoise"
-          style={{ border: 'none' }}
-        >
-          No active events
-        </button>
-      )}
+      <div className="d-flex justify-content-between align-items-center">
+        <h5>Upcoming events</h5>
+        <EventsPerDay number={events.length} />
+      </div>
 
-      <div style={{ minHeight: '100px' }}>
+      <div>
         {isLoading ? (
           <BeatLoader />
         ) : events.length ? (

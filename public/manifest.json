@@ -3,7 +3,7 @@
   "name": "A lightweight and flexible visual tool for clients who want to track weather events to make decisions in advance and plan actions based on the data",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo_60x60.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }

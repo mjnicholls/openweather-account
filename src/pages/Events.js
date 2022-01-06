@@ -10,11 +10,13 @@ import Day from '../components/Day'
 import DayPlaceholder from '../components/DayPlaceholder'
 
 const selectUserId = (state) => state.auth.user.id
+const selectTriggers = (state) => state.triggers
 
 const Events = () => {
   const userId = useSelector(selectUserId)
+  const { isFetching, error, data } = useSelector(selectTriggers)
   const [isLoading, setIsLoading] = useState(true)
-  const [data, setData] = useState([])
+  const [events, setEvents] = useState([])
   const history = useHistory()
   const handleCreateClick = () => history.push('/dashboard/triggers/create')
 
@@ -24,7 +26,7 @@ const Events = () => {
     setIsLoading(true)
     getEvents(userId)
       .then((res) => {
-        setData(res.data)
+        setEvents(res.data)
       })
       .catch((err) => {
         console.log('error', err)
@@ -34,11 +36,38 @@ const Events = () => {
       })
   }, [userId])
 
+  const PlaceholderWords = () => {
+    let res = null
+    if (!isFetching) {
+      if (data.length) {
+        res = <p>No forecasted events for the next 3 days</p>
+      } else {
+        res = (
+          <>
+            <p>
+              Here you will find notifications if the conditions of the triggers
+              you created will be met.
+            </p>
+            <p>
+              Please{' '}
+              <Link to="/dashboard/triggers/create" className="link-flat">
+                create a trigger
+              </Link>{' '}
+              so that we can notify you if the specified weather events are
+              predicted in the future for any chosen location on the globe.
+            </p>
+          </>
+        )
+      }
+    }
+    return res
+  }
+
   return (
-    <div>
-      <Row className="py-5">
+    <div className="page-container page-padding">
+      <Row className="first-row">
         <Col>
-          <h2 className="m-0 p-0">Events</h2>
+          <h2>Events</h2>
         </Col>
         <Col className="text-end title">
           <Link
@@ -63,9 +92,11 @@ const Events = () => {
             ))}
           </Row>
         </>
-      ) : data.length ? (
+      ) : error ? (
+        <div>{error}</div>
+      ) : events.length ? (
         <Row>
-          {data.map((day) => (
+          {events.map((day) => (
             <Col md="6" className="mb-0" key={day.day}>
               <Day day={day} />
             </Col>
@@ -74,9 +105,7 @@ const Events = () => {
       ) : (
         <Row>
           <Col>
-            <p>
-              <b>No events</b>
-            </p>
+            <PlaceholderWords />
           </Col>
         </Row>
       )}
