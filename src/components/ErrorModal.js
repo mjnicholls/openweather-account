@@ -1,9 +1,10 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { Button, Col } from 'reactstrap'
 
-const ErrorModal = ({ close, whoops }) => (
+const ErrorModal = ({ close, error }) => (
   <ReactBSAlert
     title="Whoops!"
     onCancel={close}
@@ -17,7 +18,7 @@ const ErrorModal = ({ close, whoops }) => (
       Something went wrong on our end. Please make note of the error message
       below and contact us:
     </p>
-    <p>{JSON.stringify(whoops).slice(1, -1)}</p>
+    <p>{error}</p>
     <br />
     <Col className="text-end">
       <Button
@@ -29,5 +30,10 @@ const ErrorModal = ({ close, whoops }) => (
     </Col>
   </ReactBSAlert>
 )
+
+ErrorModal.propTypes = {
+  close: PropTypes.func,
+  error: PropTypes.string,
+}
 
 export default ErrorModal

@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Button, Col, Row } from 'reactstrap'
 
 import { conditionToText, notificationText } from '../utils/utils'

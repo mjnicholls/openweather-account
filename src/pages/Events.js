@@ -18,7 +18,10 @@ const Events = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [events, setEvents] = useState([])
   const history = useHistory()
-  const handleCreateClick = () => history.push('/dashboard/triggers/create')
+  const handleCreateClick = () =>
+    history.push('/dashboard/triggers/create', {
+      from: history.location.pathname,
+    })
 
   const contentLoader = 4
 

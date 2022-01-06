@@ -137,7 +137,6 @@ body {
   .btn.btn-secondary {
     background-color: $brand-black;
     border: none;
-    margin-left: 15px;
 
     &:hover {
       background-color: $brand-black;
@@ -632,6 +631,7 @@ a {
   white-space: nowrap;
   margin-left: 4pt;
   -webkit-appearance: button;
+  border: 1px solid $brand-black;
   &:focus{
     outline: none;
   }
@@ -819,7 +819,7 @@ a {
 .thumbnail {
 
   display: flex;
-  align-items: center;
+  align-items: baseline;
   margin-right: 8pt;
 
   svg {
@@ -862,7 +862,11 @@ a {
   margin-top: 16pt;
 }
 
-.single-event {
+.event-container {
+  border-bottom: 1px solid $brand-grey;
+}
+
+.event {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -870,10 +874,10 @@ a {
   &:hover {
     background-color: $secondary-light-grey;
   }
+  .index {
+    min-width: 28pt;
+  }
   div {
-    &:first-child {
-      min-width: 28pt;
-    }
     &:nth-child(2) {
       flex-grow: 1;
       padding-bottom: 8pt;
@@ -934,7 +938,6 @@ input.input-marketplace, input.marketplace-input__input {
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
   border: none;
-  margin-right: 15px;
   font-size: 14px;
   &:focus {
     box-shadow: none;
@@ -994,9 +997,7 @@ input.input-marketplace, input.marketplace-input__input {
   color: $sub-color;
 }
 
-.event {
-  border-bottom: 1px solid $brand-grey;
-}
+
 
 @mixin remove-default-button-style {
   display: inline;
@@ -1125,42 +1126,6 @@ input.input-marketplace, input.marketplace-input__input {
     }
 }
 
-.alert-dismissible {
-    .close {
-        top: 50%;
-        right: 1.25rem;
-        padding: 0;
-        transform: translateY(-50%);
-        color: rgba($white, .6);
-        opacity: 1;
-
-        &:hover,
-        &:focus {
-            color: rgba($white, .9);
-            opacity: 1 !important;
-        }
-
-        @include media-breakpoint-down(xs) {
-            top: 1rem;
-            right: .5rem;
-        }
-
-        &>span:not(.sr-only) {
-            font-size: 1.5rem;
-            background-color: transparent;
-            color: rgba($white, .6);
-        }
-
-        &:hover,
-        &:focus {
-            &>span:not(.sr-only) {
-                background-color: transparent;
-                color: rgba($white, .9);
-            }
-        }
-    }
-}
-
 .navigation-link {
   @include remove-default-button-style;
   display: inline-flex;
@@ -1198,26 +1163,12 @@ input.input-marketplace, input.marketplace-input__input {
   margin-bottom: 1em;
   border-radius: 8px;
   margin-right: 5px;
-  margin-top: 10px;
-}
-
-.item-view {
-  width: -moz-fit-content;
-  width: fit-content;
-  background-color: $brand-grey;
-  padding: 5px;
-  border-radius: 8px;
-  margin-right: 5px;
-  margin-bottom: 5px;
   display: inline-block;
 }
 
+
 .card.trigger-card {
   border-radius: $borderRadiusDefault;
-
-  //.col, .col-md-2, .col-md-3, .col-md-1 {
-  //  border-right: 1px solid black;
-  //}
 
   .card-header {
     border-top-left-radius: $borderRadiusDefault;

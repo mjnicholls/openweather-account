@@ -2,14 +2,14 @@
   "extends": ["@imaginary-cloud/react"],
 
   "rules": {
-    "no-unused-vars": "warn",
-    "no-console": "off",
-    "import/no-named-as-default": 0,
-    "prettier/prettier": "warn",
-    "spaced-comment": "warn",
-    "react/prop-types": "warn",
-    "no-nested-ternary": "warn",
-    "react/react-in-jsx-scope": 0,
+    "no-nested-ternary": 0,
+    "import/no-named-as-default": 1,
+    "react/react-in-jsx-scope": 1,
+    "no-unused-vars": 1,
+    "no-console": 1,
+    "prettier/prettier": 1,
+    "spaced-comment": 1,
+    "react/prop-types": 1,
     "arrow-body-style": 1,
     "import/order": [
       "warn",

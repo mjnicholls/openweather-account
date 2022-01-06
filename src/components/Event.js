@@ -22,9 +22,9 @@ const Event = ({ trigger, index }) => {
       }}
       className="section-link"
     >
-      <div className="event" style={{}}>
-        <div className="single-event p-4">
-          <div>{index + 1}</div>
+      <div className="event-container" style={{}}>
+        <div className="event p-4">
+          <div className="index">{index + 1}</div>
           <div>
             <h6 className="m-0">{trigger.name}</h6>
             <div className="mt-2">
@@ -41,13 +41,13 @@ const Event = ({ trigger, index }) => {
               } sent`}
             >
               <EnvelopeAlt
-                color="#666"
+                style={{ color: '#666' }}
                 title={`${emailsRecipients} email${
                   emailsRecipients === 1 ? '' : 's'
                 } sent`}
               />
               <span className="ms-1 small-text">{emailsRecipients}</span>
-              <span className="ms-1 small-text d-none d-xl-block">
+              <span className="ms-1 small-text d-none d-xl-block text-nowrap">
                 {` email${emailsRecipients === 1 ? '' : 's'} sent`}
               </span>
             </div>

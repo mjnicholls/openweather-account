@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import PropTypes from 'prop-types'
-import ReactBSAlert from 'react-bootstrap-sweetalert'
+import SweetAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
 import { Button } from 'reactstrap'
 
@@ -22,7 +22,7 @@ const CreateTriggerButton = ({ createFunc }) => {
 
   const tariffError = () => {
     setAlert(
-      <ReactBSAlert
+      <SweetAlert
         title="Error"
         onConfirm={() => hideAlert()}
         onCancel={() => hideAlert()}
@@ -40,7 +40,7 @@ const CreateTriggerButton = ({ createFunc }) => {
         <div className="text-end">
           <Button className="button-active shadow-none">See plans</Button>
         </div>
-      </ReactBSAlert>,
+      </SweetAlert>,
     )
   }
 
@@ -52,7 +52,6 @@ const CreateTriggerButton = ({ createFunc }) => {
         className="button-active shadow-none"
         onClick={triggerN >= maxTriggers ? tariffError : createFunc}
       >
-        {/* <Plus /> */}
         Create new trigger
       </button>
     </>

@@ -48,6 +48,9 @@ const DeleteTriggerCard = (props) => {
 
 DeleteTriggerCard.propTypes = {
   id: PropTypes.string,
+  callback: PropTypes.func,
+  className: PropTypes.string,
+  children: PropTypes.node,
 }
 
 export default DeleteTriggerCard

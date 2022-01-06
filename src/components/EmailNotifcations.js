@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Close } from 'react-ikonate'
 import { useSelector } from 'react-redux'
-import { Input, Row } from 'reactstrap'
+import { Input } from 'reactstrap'
 
 import { noBlankErrorMessage } from '../config'
 import { validateEmail } from '../utils/validation'
@@ -100,7 +100,7 @@ const EmailNotifications = ({ recipients, setRecipients }) => {
             aria-pressed="true"
             // disabled={!content.length}
           >
-            Set
+            Add
           </button>
         </div>
         <div className="my-3">
