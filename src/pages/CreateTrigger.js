@@ -52,7 +52,7 @@ const CreateTrigger = () => {
     value: 0,
     units: 'metric',
   })
-  const [days, setDays] = useState(0)
+  const [days, setDays] = useState(3)
   const [recipients, setRecipients] = useState([])
   const [error, setError] = useState({})
   const [isDropDown, setIsDropDown] = useState(false)

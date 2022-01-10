@@ -19,7 +19,7 @@ const options = [
 const Notifications = ({ days, setDays, recipients, setRecipients }) => {
   const emailsAllowed = useSelector(selectEmailsAllowed)
 
-  return emailsAllowed ? (
+  return (
     <>
       <div className="d-flex align-items-center justify-content-between">
         <h5>Notifications</h5>
@@ -48,12 +48,15 @@ const Notifications = ({ days, setDays, recipients, setRecipients }) => {
             } or earlier`}
       </p>
       <br />
-      <EmailNotifications
-        recipients={recipients}
-        setRecipients={setRecipients}
-      />
+
+      {emailsAllowed && (
+        <EmailNotifications
+          recipients={recipients}
+          setRecipients={setRecipients}
+        />
+      )}
     </>
-  ) : null
+  )
 }
 
 Notifications.propTypes = {

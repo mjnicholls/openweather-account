@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import PropTypes from 'prop-types'
-import SweetAlert from 'react-bootstrap-sweetalert'
+import ReactBSAlert from 'react-bootstrap-sweetalert'
 import { useSelector } from 'react-redux'
 import { Button } from 'reactstrap'
 
@@ -22,7 +22,7 @@ const CreateTriggerButton = ({ createFunc }) => {
 
   const tariffError = () => {
     setAlert(
-      <SweetAlert
+      <ReactBSAlert
         title="Error"
         onConfirm={() => hideAlert()}
         onCancel={() => hideAlert()}
@@ -40,7 +40,7 @@ const CreateTriggerButton = ({ createFunc }) => {
         <div className="text-end">
           <Button className="button-active shadow-none">See plans</Button>
         </div>
-      </SweetAlert>,
+      </ReactBSAlert>,
     )
   }
 
