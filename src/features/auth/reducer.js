@@ -8,7 +8,7 @@ let initialState = {
   },
   limits: {
     email_recipients: false,
-    max_triggers: 20,
+    max_triggers: 0,
   },
 }
 

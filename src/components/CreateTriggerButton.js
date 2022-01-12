@@ -38,7 +38,11 @@ const CreateTriggerButton = ({ createFunc }) => {
           <p>Delete a trigger to add a new one.</p>
         </div>
         <div className="text-end">
-          <Button className="button-active shadow-none">See plans</Button>
+          <a
+            className="button-active shadow-none"
+            href="https://openweathermap.org/weather-dashboard#price"
+            target="_blank"
+          >See plans</a>
         </div>
       </ReactBSAlert>,
     )
