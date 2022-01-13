@@ -109,7 +109,7 @@ const CreateTrigger = () => {
       ...val,
       name: isLocationNameEdited
         ? location.name
-        : `${val.name} (${val.lat.toFixed(2)}, ${val.lat.toFixed(2)})`,
+        : `${val.name} (${val.lat.toFixed(2)}, ${val.lon.toFixed(2)})`,
     })
   }
 

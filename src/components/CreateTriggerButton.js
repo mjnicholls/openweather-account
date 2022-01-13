@@ -42,7 +42,9 @@ const CreateTriggerButton = ({ createFunc }) => {
             className="button-active shadow-none"
             href="https://openweathermap.org/weather-dashboard#price"
             target="_blank"
-          >See plans</a>
+          >
+            See plans
+          </a>
         </div>
       </ReactBSAlert>,
     )
