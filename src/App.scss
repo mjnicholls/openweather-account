@@ -819,16 +819,16 @@ a {
 .thumbnail {
 
   display: flex;
-  align-items: baseline;
+  align-items: center;
   margin-right: 8pt;
 
   svg {
+    min-width: 1em;
     margin-right: 4pt;
   }
 }
 
 .bordered {
-  //border-bottom: 1px solid #f2f2f2;
   border: 1px solid $brand-grey;
   border-radius: 4pt;
 }
@@ -836,7 +836,6 @@ a {
 .card {
   border: 1px solid $brand-grey;
   border-radius: 4pt;
-  //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 
   .card-header {
     border-bottom: 1px solid $brand-grey;
