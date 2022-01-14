@@ -1,14 +1,14 @@
 let initialState = {
   user: {
     email: null,
-    id: null,
+    id: 'anna2',
     tariff: null,
     tariff_full: null,
     username: null,
   },
   limits: {
     email_recipients: false,
-    max_triggers: 0,
+    max_triggers: 20,
   },
 }
 
