@@ -1,20 +1,18 @@
 let initialState = {
   user: {
-    email: 'dev@openweathermap.org',
-    id: 'anna1',
-    tariff: 'dev',
-    tariff_full: 'Developer',
-    username: 'dev@openweathermap.org',
+    email: null,
+    id: null,
+    tariff: null,
+    tariff_full: null,
+    username: null,
   },
   limits: {
-    email_recipients: true,
-    // max_email_recipients: 10,
+    email_recipients: false,
     max_triggers: 20,
   },
 }
 
 const gonObject = window.gon
-console.log('gonObject', gonObject)
 
 if (gonObject && Object.keys(gonObject).length) {
   initialState = gonObject

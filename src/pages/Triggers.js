@@ -19,7 +19,11 @@ const Triggers = () => {
   const emailsAllowed = useSelector(selectEmailsAllowed)
   const { isFetching, error, data } = useSelector(selectTriggers)
   const history = useHistory()
-  const handleCreateClick = () => history.push('/dashboard/triggers/create')
+
+  const handleCreateClick = () =>
+    history.push('/dashboard/triggers/create', {
+      from: history.location.pathname,
+    })
 
   return (
     <div className="page-container page-padding">
@@ -157,7 +161,11 @@ const Triggers = () => {
             <p>
               Here you will find the list of all your created triggers. To
               create a trigger, please follow to the{' '}
-              <Link to="/dashboard/triggers/create" className="link-flat">
+              <Link
+                to="/dashboard/triggers/create"
+                className="link-flat"
+                state={{ from: history.location.pathname }}
+              >
                 New trigger
               </Link>{' '}
               section.

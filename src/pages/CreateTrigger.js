@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useRef, useState, useEffect } from 'react'
 
 import { ChevronLeft } from 'react-ikonate'
@@ -25,6 +26,7 @@ const selectIsTriggerCreationError = (state) =>
   state.triggers.triggerCreationError
 const selectIsTriggerCreationSuccess = (state) =>
   state.triggers.triggerCreationSuccess
+const selectUserId = (state) => state.auth.user.id
 
 const CreateTrigger = () => {
   const mapRef = useRef(null)
@@ -34,9 +36,9 @@ const CreateTrigger = () => {
 
   const triggerCreationSuccess = useSelector(selectIsTriggerCreationSuccess)
   const triggerCreationFailure = useSelector(selectIsTriggerCreationError)
+  const userId = useSelector(selectUserId)
 
   const history = useHistory()
-
   const [location, setLocation] = useState({
     name: '',
     lat: '',
@@ -50,11 +52,25 @@ const CreateTrigger = () => {
     value: 0,
     units: 'metric',
   })
-  const [days, setDays] = useState(0)
+  const [days, setDays] = useState(3)
   const [recipients, setRecipients] = useState([])
   const [error, setError] = useState({})
   const [isDropDown, setIsDropDown] = useState(false)
   const [isLocationNameEdited, setIsLocationNameEdited] = useState(false)
+
+  useEffect(() => {
+    // detect click outside location search box
+    document.addEventListener('mousedown', handleClickOutsideSearchBox)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideSearchBox)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!userId) {
+      history.push('/users/sign_in')
+    }
+  }, [userId])
 
   useEffect(() => {
     setTempLocation({
@@ -76,14 +92,6 @@ const CreateTrigger = () => {
     }
   }, [tempLocation])
 
-  useEffect(() => {
-    // detect click outside location search box
-    document.addEventListener('mousedown', handleClickOutsideSearchBox)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutsideSearchBox)
-    }
-  }, [])
-
   const setNameFunc = (val) => {
     setError({
       ...error,
@@ -101,14 +109,17 @@ const CreateTrigger = () => {
       ...val,
       name: isLocationNameEdited
         ? location.name
-        : `${val.name} (${val.lat.toFixed(2)}, ${val.lat.toFixed(2)})`,
+        : `${val.name} (${val.lat.toFixed(2)}, ${val.lon.toFixed(2)})`,
     })
   }
 
   const createTrigger = () => {
     const data = {
       location,
-      condition,
+      condition: {
+        ...condition,
+        value: parseFloat(condition.value)
+      },
       days,
       name,
       recipients,
@@ -154,9 +165,9 @@ const CreateTrigger = () => {
   }
 
   const goBack = () => {
-    try {
+    if (history.location.state) {
       history.goBack()
-    } catch {
+    } else {
       history.push('/dashboard/triggers')
     }
   }
@@ -192,7 +203,7 @@ const CreateTrigger = () => {
             />
           )}
           {triggerCreationFailure && (
-            <ErrorModal whoops={triggerCreationFailure} close={hideAlert} />
+            <ErrorModal error={triggerCreationFailure} close={hideAlert} />
           )}
           {/*<Row>*/}
           {/*<Col className="mt-3">*/}

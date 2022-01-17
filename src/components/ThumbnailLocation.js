@@ -4,11 +4,9 @@ import PropTypes from 'prop-types'
 import { Location } from 'react-ikonate'
 
 const ThumbnailLocation = ({ location, showIcon = true }) => (
-  <div className="thumbnail" style={{ paddingLeft: 0 }}>
+  <div className="thumbnail ps-0">
     {showIcon && <Location className="me-1" />}
-    <span>
-      {location.name} ({location.lat.toFixed(3)}, {location.lon.toFixed(3)})
-    </span>
+    <span>{location.name}</span>
   </div>
 )
 

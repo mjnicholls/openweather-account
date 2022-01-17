@@ -10,16 +10,16 @@ import EmailNotifications from './EmailNotifcations'
 const selectEmailsAllowed = (state) => state.auth.limits.email_recipients
 
 const options = [
-  { value: 0, label: '0' },
-  { value: 1, label: '1' },
-  { value: 2, label: '2' },
   { value: 3, label: '3' },
+  { value: 2, label: '2' },
+  { value: 1, label: '1' },
+  { value: 0, label: '0' },
 ]
 
 const Notifications = ({ days, setDays, recipients, setRecipients }) => {
   const emailsAllowed = useSelector(selectEmailsAllowed)
 
-  return emailsAllowed ? (
+  return (
     <>
       <div className="d-flex align-items-center justify-content-between">
         <h5>Notifications</h5>
@@ -48,12 +48,15 @@ const Notifications = ({ days, setDays, recipients, setRecipients }) => {
             } or earlier`}
       </p>
       <br />
-      <EmailNotifications
-        recipients={recipients}
-        setRecipients={setRecipients}
-      />
+
+      {emailsAllowed && (
+        <EmailNotifications
+          recipients={recipients}
+          setRecipients={setRecipients}
+        />
+      )}
     </>
-  ) : null
+  )
 }
 
 Notifications.propTypes = {

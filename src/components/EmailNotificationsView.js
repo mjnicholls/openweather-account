@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const selectLimits = (state) => state.auth.limits.email_recipients
 
-const EmailList = ({ recipients }) => {
+const EmailNotificationsView = ({ recipients }) => {
   const emailsAllowed = useSelector(selectLimits)
 
   return emailsAllowed ? (
@@ -13,7 +13,7 @@ const EmailList = ({ recipients }) => {
       <h5>Email recipients</h5>
       {recipients.length ? (
         recipients.map((email) => (
-          <span className="item-view" key={email}>
+          <span className="item" key={email}>
             {email}
           </span>
         ))
@@ -24,8 +24,8 @@ const EmailList = ({ recipients }) => {
   ) : null
 }
 
-EmailList.propTypes = {
+EmailNotificationsView.propTypes = {
   recipients: PropTypes.arrayOf(PropTypes.string),
 }
 
-export default EmailList
+export default EmailNotificationsView

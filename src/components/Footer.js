@@ -55,7 +55,7 @@ const FooterTrigger = () => (
         </div>
 
         <div className="col-xl-4 mt-4">
-          <FooterSection header="About Us">
+          <FooterSection header="About us">
             <ul>
               <li>
                 OpenWeather is a team of IT experts and data scientists that has

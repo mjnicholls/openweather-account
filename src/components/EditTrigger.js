@@ -1,14 +1,11 @@
-/* eslint-disable */
 import React, { useState } from 'react'
 
-import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
-
 import { Button, Col, Row, Input, Label } from 'reactstrap'
 
-import { editTrigger } from '../features/triggers/actions'
 import { noBlankErrorMessage } from '../config'
+import { editTrigger } from '../features/triggers/actions'
 import StatusToggle from './StatusToggle'
 
 const EditTrigger = ({ id, name, status, close }) => {
@@ -51,9 +48,7 @@ const EditTrigger = ({ id, name, status, close }) => {
             value={tempName}
             name="name"
           />
-          <div
-            className={classnames('invalid-feedback', error ? 'd-block' : '')}
-          >
+          <div className={`invalid-feedback ${error ? 'd-block' : ''}`}>
             {error}
           </div>
         </Col>

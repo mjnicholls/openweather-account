@@ -10,8 +10,6 @@ const HeaderTrigger = () => {
   const [isDropDown, setIsDropDown] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // navbar navbar-expand-xxl
-
   return (
     <nav className={`page-header ${isMenuOpen ? 'open' : ''}`}>
       <div className="container-xxl">
@@ -24,7 +22,6 @@ const HeaderTrigger = () => {
               width="93.33px"
             />
           </a>
-
 
           <button
             className="remove-default-button-style d-xxl-none"
@@ -88,64 +85,47 @@ const HeaderTrigger = () => {
               </a>
             </li>
             {userName ? (
-              <li className="d-none d-lg-block">
-                <Dropdown
-                  isOpen={isDropDown}
-                  toggle={() => setIsDropDown(!isDropDown)}
-                >
-                  <DropdownToggle className="remove-default-button-style d-flex align-items-center justify-content-center pt-0 pb-0">
-                    <div className="inner-user-container">{userName}</div>
-                    <img
-                      src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_down_white.svg"
-                      alt="Caret"
-                    />
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <a
-                      href="https://home.openweathermap.org/myservices"
-                      target="_blank"
-                    >
-                      My Services
-                    </a>
-                    <a
-                      href="https://home.openweathermap.org/api_keys"
-                      target="_blank"
-                    >
-                      My API Keys
-                    </a>
-                    <a
-                      href="https://home.openweathermap.org/payments"
-                      target="_blank"
-                    >
-                      My Payments
-                    </a>
-                    <a
-                      href="https://home.openweathermap.org/home"
-                      target="_blank"
-                    >
-                      My Profile
-                    </a>
-                    <a
-                      href="https://home.openweathermap.org/users/sign_out"
-                      target="_blank"
-                    >
-                      Logout
-                    </a>
-                  </DropdownMenu>
-                </Dropdown>
-              </li>
+              <>
+                <li className="d-none d-lg-block">
+                  <Dropdown
+                    isOpen={isDropDown}
+                    toggle={() => setIsDropDown(!isDropDown)}
+                  >
+                    <DropdownToggle className="remove-default-button-style d-flex align-items-center justify-content-center pt-0 pb-0">
+                      <img
+                        className="d-xxl-none"
+                        src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_user.png"
+                        alt="Caret"
+                      />
+                      <div className="inner-user-container">{userName}</div>
+                      <img
+                        className="d-none d-xxl-block"
+                        src="https://openweathermap.org/themes/openweathermap/assets/img/owm_icons/icon_down_white.svg"
+                        alt="Caret"
+                      />
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <a href="/myservices">My Services</a>
+                      <a href="/api_keys">My API Keys</a>
+                      <a href="/payments">My Payments</a>
+                      <a href="/home">My Profile</a>
+                      <a href="/users/logout">Logout</a>
+                    </DropdownMenu>
+                  </Dropdown>
+                </li>
+                <li className="d-xxl-none">
+                  <a href="/users/logout">Logout</a>
+                </li>
+              </>
             ) : (
               <li>
-                <a
-                  href="https://home.openweathermap.org/users/sign_in"
-                  target="_blank"
-                >
+                <a href="/users/sign_in" target="_blank">
                   Sign In
                 </a>
               </li>
             )}
             <li>
-              <a href="https://home.openweathermap.org/questions">Support</a>
+              <a href="/questions">Support</a>
             </li>
           </ul>
         </div>

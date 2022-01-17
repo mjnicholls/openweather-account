@@ -48,7 +48,7 @@ const Condition = ({ condition, setCondition }) => {
           <Label>Level</Label>
           <input
             type="number"
-            onChange={(e) => handleChange('value', parseFloat(e.target.value))}
+            onChange={(e) => handleChange('value', e.target.value)}
             value={condition.value}
             className="owm-selector w-100"
           />

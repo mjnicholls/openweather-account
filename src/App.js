@@ -6,8 +6,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { ToastContainer, Zoom } from 'react-toastify'
 import { Container } from 'reactstrap'
 
+import ErrorBoundary from './components/ErrorBoundary'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import ScrollToTop from './components/ScrollToTop'
 import { fetchTriggers } from './features/triggers/actions'
 import CreateTrigger from './pages/CreateTrigger'
 import Events from './pages/Events'
@@ -24,18 +26,21 @@ const App = () => (
     <div className="app">
       <Header />
       <Container fluid="xxl" className="app-content">
-        <BrowserRouter>
-          <Switch>
-            <Route
-              path="/dashboard/triggers/create"
-              component={CreateTrigger}
-            />
-            <Route path="/dashboard/triggers" component={TriggerList} />
-            <Route path="/dashboard/trigger" component={ViewTrigger} />
-            <Route path="/dashboard/events" component={Events} />
-            {/* <Redirect from="/" to="/dashboard/events" /> */}
-          </Switch>
-        </BrowserRouter>
+        <ErrorBoundary>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Switch>
+              <Route
+                path="/dashboard/triggers/create"
+                component={CreateTrigger}
+              />
+              <Route path="/dashboard/triggers" component={TriggerList} />
+              <Route path="/dashboard/trigger" component={ViewTrigger} />
+              <Route path="/dashboard/events" component={Events} />
+              {/* <Redirect from="/" to="/dashboard/events" /> */}
+            </Switch>
+          </BrowserRouter>
+        </ErrorBoundary>
       </Container>
       <Footer />
     </div>
