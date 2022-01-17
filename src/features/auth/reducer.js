@@ -1,7 +1,7 @@
 let initialState = {
   user: {
     email: null,
-    id: 'anna2',
+    id: null,
     tariff: null,
     tariff_full: null,
     username: null,

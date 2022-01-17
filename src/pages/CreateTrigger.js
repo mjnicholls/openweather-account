@@ -116,7 +116,10 @@ const CreateTrigger = () => {
   const createTrigger = () => {
     const data = {
       location,
-      condition,
+      condition: {
+        ...condition,
+        value: parseFloat(condition.value)
+      },
       days,
       name,
       recipients,
