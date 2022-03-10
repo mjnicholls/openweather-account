@@ -66,11 +66,13 @@ const CreateTrigger = () => {
     }
   }, [])
 
+
   useEffect(() => {
     if (!userId) {
       history.push('/users/sign_in')
     }
   }, [userId])
+  
 
   useEffect(() => {
     setTempLocation({
@@ -146,6 +148,11 @@ const CreateTrigger = () => {
         newError.location = noBlankErrorMessage
         toastMessage += 'Please enter trigger location. '
       }
+    }
+    var test = ''
+    if (test = condition.value < 0 && condition.variable != "temp") {
+      newError.test = "Cannot be negative for wind speed or precipitation"
+      toastMessage += 'Cannot be negative for wind speed or precipitation. '
     }
 
     if (Object.keys(newError).length) {
@@ -254,7 +261,7 @@ const CreateTrigger = () => {
 
           <Row className="mb-4">
             <Col>
-              <Condition condition={condition} setCondition={setCondition} />
+              <Condition condition={condition} setCondition={setCondition}/>
             </Col>
           </Row>
 

@@ -33,6 +33,7 @@ const Condition = ({ condition, setCondition }) => {
             options={variables}
             styles={owmSelectorStyle}
           />
+          <p>{condition.variable === 'temp' ? 'pie' : 'no pie'}</p>
         </Col>
         <Col md="6">
           <Label>Condition</Label>
@@ -50,9 +51,27 @@ const Condition = ({ condition, setCondition }) => {
             type="number"
             onChange={(e) => handleChange('value', e.target.value)}
             value={condition.value}
-            className="owm-selector w-100"
+            className={`owm-selector ${
+              condition.value < 0 && condition.variable !== 'temp'
+                ? 'danger-border'
+                : ''
+            }`}
           />
+          <div
+            className={`invalid-feedback ${
+              condition.value < 0 && condition.variable !== 'temp'
+                ? 'd-block'
+                : ''
+            }`}
+          >
+            <p style={{ color: 'red' }}>
+              {condition.value < 0 && condition.variable !== 'temp'
+                ? 'Cannot be negative for wind speed or precipitation'
+                : ''}
+            </p>
+          </div>
         </Col>
+
         <Col>
           <Label>Units</Label>
           <Select

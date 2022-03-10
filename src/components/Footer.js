@@ -15,7 +15,7 @@ const FooterTrigger = () => (
                 </a>
               </li>
               <li>
-                <a href="/" target="_blank">
+                <a href="https://openweathermap.org/weather-dashboard/dashboard-documentation" target="_blank">
                   User Documentation
                 </a>
               </li>
