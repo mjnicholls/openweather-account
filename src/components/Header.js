@@ -37,7 +37,7 @@ const HeaderTrigger = () => {
           <div className="break d-xxl-none"></div>
 
           <ul className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
-            <li className="d-xxl-none">
+            <li className="d-sm-none d-md-none">
               <div className="input-group search ms-auto">
                 <div className="input-group-append">
                   <button className="btn btn-secondary" type="button">

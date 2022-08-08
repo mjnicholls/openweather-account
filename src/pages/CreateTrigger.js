@@ -67,11 +67,11 @@ const CreateTrigger = () => {
   }, [])
 
 
-  useEffect(() => {
-    if (!userId) {
-      history.push('/users/sign_in')
-    }
-  }, [userId])
+  //useEffect(() => {
+   // if (!userId) {
+   //   history.push('/users/sign_in')
+   // }
+  //}, [userId])
   
 
   useEffect(() => {
