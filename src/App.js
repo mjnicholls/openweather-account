@@ -28,8 +28,13 @@ const App = () => (
       <Container fluid="xxl" className="app-content">
         <ErrorBoundary>
           <BrowserRouter>
+          {/*  The recommended interface for running React Router in a web browser.
+          A <BrowserRouter> stores the current location in the browser's 
+          address bar using clean URLs and navigates using the browser's built-in history stack. */}
             <ScrollToTop />
             <Switch>
+
+              {/*Switch is a way of exclusively rendering a route, matches with existing route.*/ }
               <Route
                 path="/dashboard/triggers/create"
                 component={CreateTrigger}

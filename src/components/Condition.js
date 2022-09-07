@@ -9,6 +9,7 @@ import { owmSelectorStyle } from '../utils/styles'
 import { conditionToTextLong } from '../utils/utils'
 
 const Condition = ({ condition, setCondition }) => {
+  
   const handleChange = (key, value) => {
     const newCondition = { ...condition }
     newCondition[key] = value
@@ -33,7 +34,7 @@ const Condition = ({ condition, setCondition }) => {
             options={variables}
             styles={owmSelectorStyle}
           />
-          <p>{condition.variable === 'temp' ? 'pie' : 'no pie'}</p>
+          <p>{condition.variable === 'temp' ? '' : ''}</p>
         </Col>
         <Col md="6">
           <Label>Condition</Label>

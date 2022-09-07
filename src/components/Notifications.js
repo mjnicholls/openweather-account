@@ -19,6 +19,9 @@ const options = [
 const Notifications = ({ days, setDays, recipients, setRecipients }) => {
   const emailsAllowed = useSelector(selectEmailsAllowed)
 
+
+
+
   return (
     <>
       <div className="d-flex align-items-center justify-content-between">
