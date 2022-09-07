@@ -7,7 +7,57 @@
 <li>JavaScript</li>
 </ul><ul>
 <li>React</li>
-</ul><h2>Setup</h2>
+</ul>
+<h2>Structure</h2>
+├───api
+├───assets
+│   └───scss
+├───components
+├───features
+│   ├───auth
+│   └───triggers
+├───pages
+└───utils
+<hr>
+<h2>Components</h2>
+<hr>
+<code>BeatLoader.js</code>
+<p>Displays a customised graphic while waiting for page to load.</p>
+<code>Condition.js</code>
+<p>Displays a series of weather parameters.</p>
+<code>CreateTriggerButton.js</code>
+<p>Checks the amount of triggers on user's tarriff before allowing them to proceed with creating a trigger.</p>
+<code>CreateTriggerCard.js</code>
+<p>Displays alert population with the user's trigger information upon creation of trigger.</p>
+<code>Day.js</code>
+<p>Displays information on events per day.</p>
+<code>DeleteTrigger.js</code> / <code>DeleteTriggerCard.js</code>
+<p>Displays existing events for this trigger and shows a confirmation modal before user chooses to delete trigger.</p>
+<code>EditableInput.js</code>
+<p>Reusable component for editing and saving trigger names.</p>
+<code>EditTrigger.js</code> / <code>EditTriggerCard.js</code>
+<p>Displays modal allowing user to change name and status of their trigger and updates on save.</p>
+<code>EmailNotifications.js</code>
+<p>Allows user to add email addresses for notifications, edit or delete, and checks for emails already listed.</p>
+<code>ErrorModal.js</code>
+<p>Standard error modal for incorrect or failed requests.</p>
+<code>InfoWindow.js</code>
+<p>Displays a window on the map when clicked or when location is selected in form.</p>
+<code>Location.js</code>
+<p>Displays subcomponents for location and coordinates.</p>
+<code>LocationAutoComplete.js</code>
+<p>Displays location using Google autocomplete API.</p>
+<code>LocationAutoComplete.js</code>
+<p>Displays form for submitting coordinates to the Google map.</p>
+<code>Map.js</code>
+<p>Displays customised Google Map component.</p>
+<code>Notifications.js</code>
+<p>Displays dropdown menu and responsive alert message.</p>
+<code>StatusToggle.js</code>
+<p>For on/off toggle with custom CSS in component.</p>
+<code>TriggerEvents.js</code>
+<p>Displays event total for each trigger.</p>
+<h2>Setup (React Template)</h2>
 <hr><p>In the project directory, you can run:</p>
 <h3><code>npm start</code></h3>
 <p>Runs the app in the development mode.<br>
@@ -28,18 +78,3 @@ Your app is ready to be deployed!</p>
 <p>If you aren’t satisfied with the build tool and configuration choices, you can <code>eject</code> at any time. This command will remove the single build dependency from your project.</p>
 <p>Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except <code>eject</code> will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.</p>
 <p>You don’t have to ever use <code>eject</code>. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.</p>
-<h2>Learn More</h2>
-<p>You can learn more in the <a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</p>
-<p>To learn React, check out the <a href="https://reactjs.org/">React documentation</a>.</p>
-<h3>Code Splitting</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/code-splitting">https://facebook.github.io/create-react-app/docs/code-splitting</a></p>
-<h3>Analyzing the Bundle Size</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size">https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size</a></p>
-<h3>Making a Progressive Web App</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app">https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app</a></p>
-<h3>Advanced Configuration</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/advanced-configuration">https://facebook.github.io/create-react-app/docs/advanced-configuration</a></p>
-<h3>Deployment</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/deployment">https://facebook.github.io/create-react-app/docs/deployment</a></p>
-<h3><code>npm run build</code> fails to minify</h3>
-<p>This section has moved here: <a href="https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify">https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify</a></p>
