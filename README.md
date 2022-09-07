@@ -9,15 +9,15 @@
 <li>React</li>
 </ul>
 <h2>Structure</h2>
-├───api
-├───assets
-│   └───scss
-├───components
-├───features
-│   ├───auth
-│   └───triggers
-├───pages
-└───utils
+<p>├───api</p>
+<p>├───assets</p>
+<p>│   └───scss</p>
+<p>├───components</p>
+<p>├───features</p>
+<p>│   ├───auth</p>
+<p>│   └───triggers</p>
+<p>├───pages</p>
+<p>└───utils</p>
 <hr>
 <h2>Components</h2>
 <hr>
