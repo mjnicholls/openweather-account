@@ -82,7 +82,7 @@ Your app is ready to be deployed!</p>
 <p>Test server URL</p>
 <code>git push</code>
 <p>1. Push the changes on your branch.</p>
-<code>ssh USERNAME@phase.owm.io<code>
+<code>ssh USERNAME@phase.owm.io</code>
 <p>2. Make sure pipelines have passed. You can see it in gitlab in either Repository/Commits section.</p>
 <code>(https://gitlab.openweathermap.org/frontend/owm-account/-/commits/your_branch)</code>
 <p>CI/CD Pipelines</p>
