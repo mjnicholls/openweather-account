@@ -81,11 +81,16 @@ Your app is ready to be deployed!</p>
 <code>https://dashboard-weather.owm.io/forecasted-events</code>
 <p>Test server URL</p>
 <code>git push</code>
-1. Push the changes on your branch.
+<p>1. Push the changes on your branch.</p>
 <code>ssh USERNAME@phase.owm.io<code>
 <p>2. Make sure pipelines have passed. You can see it in gitlab in either Repository/Commits section.</p>
-<code>(https://gitlab.openweathermap.org/frontend/owm-account/-/commits/your_branch)</code> or CI/CD Pipelines <code>(https://gitlab.openweathermap.org/frontend/owm-account/-/pipelines)</code>
+<code>(https://gitlab.openweathermap.org/frontend/owm-account/-/commits/your_branch)</code>
+<p>CI/CD Pipelines</p>
+<code>(https://gitlab.openweathermap.org/frontend/owm-account/-/pipelines)</code>
 <p>3. Update the container on the server:</p>
-<code>ssh YOURNAME@phase.owm.io</code> (log in to the server)
-<code>cd /opt/containers/weather-dashboard</code> (move to your project folder)
-<code>./update.sh --branch name-- </code> (call update on the branch you are pushing, in this case <code>./update.sh your_branch</code>) 
+<code>ssh YOURNAME@phase.owm.io</code>
+<p>log in to the server</p>
+<code>cd /opt/containers/weather-dashboard</code>
+<p>move to your project folder</p>
+<code>./update.sh --branch name-- </code>
+<p>call update on the branch you are pushing, in this case <code>./update.sh your_branch</code>)</p> 
