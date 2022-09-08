@@ -1,7 +1,7 @@
 <h1>owm-account</h1>
 <hr><p>Personal account for OWM written in React.JS</p><h2>General Information</h2>
 <hr><ul>
-<li>Create user-customised triggers and events for forecasted weather.</li>
+Create user-customised triggers and events for forecasted weather.
 </ul><h2>Structure</h2>
 <hr>
 <pre>├───api
@@ -22,7 +22,7 @@
 <code>CreateTriggerButton.js</code>
 <p>Checks the amount of triggers on user's tarriff before allowing them to proceed with creating a trigger.</p>
 <code>CreateTriggerCard.js</code>
-<p>Displays alert population with the user's trigger information upon creation of trigger.</p>
+<p>Displays alert populated with the user's trigger information upon creation of trigger.</p>
 <code>Day.js</code>
 <p>Displays information on events per day.</p>
 <code>DeleteTrigger.js</code> / <code>DeleteTriggerCard.js</code>
@@ -76,3 +76,16 @@ Your app is ready to be deployed!</p>
 <p>Runs ESLint to check for problematic patterns in your JS code.</p>
 <h3><code>npm format</code></h3>
 <p>Runs Prettier to fix problematic formatting in your code.</p>
+<h2>Deploy</h2>
+<hr>
+<code>https://dashboard-weather.owm.io/forecasted-events</code>
+<p>Test server URL</p>
+<code>git push</code>
+1. Push the changes on your branch.
+<code>ssh USERNAME@phase.owm.io<code>
+<p>2. Make sure pipelines have passed. You can see it in gitlab in either Repository/Commits section.</p>
+<code>(https://gitlab.openweathermap.org/frontend/owm-account/-/commits/your_branch)</code> or CI/CD Pipelines <code>(https://gitlab.openweathermap.org/frontend/owm-account/-/pipelines)</code>
+<p>3. Update the container on the server:</p>
+<code>ssh YOURNAME@phase.owm.io</code> (log in to the server)
+<code>cd /opt/containers/weather-dashboard</code> (move to your project folder)
+<code>./update.sh --branch name-- </code> (call update on the branch you are pushing, in this case <code>./update.sh your_branch</code>) 
