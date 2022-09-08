@@ -76,7 +76,7 @@ Your app is ready to be deployed!</p>
 <p>Runs ESLint to check for problematic patterns in your JS code.</p>
 <h3><code>npm format</code></h3>
 <p>Runs Prettier to fix problematic formatting in your code.</p>
-<h2>Deploy</h2>
+<h2>Deploy to Test Server</h2>
 <hr>
 <code>https://dashboard-weather.owm.io/forecasted-events</code>
 <p>Test server URL</p>
