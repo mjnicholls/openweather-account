@@ -2,12 +2,17 @@
 <hr><p>Personal account for OWM written in React.JS</p><h2>General Information</h2>
 <hr><ul>
 <li>Create user-customised triggers and events for forecasted weather.</li>
-</ul><h2>Technologies Used</h2>
-<hr><ul>
-<li>JavaScript</li>
-</ul><ul>
-<li>React</li>
-</ul>
+</ul><h2>Structure</h2>
+<hr>
+<pre>├───api
+├───assets
+│   └───scss
+├───components
+├───features
+│   ├───auth
+│   └───triggers
+├───pages
+└───utils</pre>
 <h2>Components</h2>
 <hr>
 <code>BeatLoader.js</code>
@@ -46,7 +51,7 @@
 <p>For on/off toggle with custom CSS in component.</p>
 <code>TriggerEvents.js</code>
 <p>Displays event total for each trigger.</p>
-<h2>Setup (React Template)</h2>
+<h2>Available Scripts</h2>
 <hr><p>In the project directory, you can run:</p>
 <h3><code>npm start</code></h3>
 <p>Runs the app in the development mode.<br>
@@ -67,3 +72,7 @@ Your app is ready to be deployed!</p>
 <p>If you aren’t satisfied with the build tool and configuration choices, you can <code>eject</code> at any time. This command will remove the single build dependency from your project.</p>
 <p>Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except <code>eject</code> will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.</p>
 <p>You don’t have to ever use <code>eject</code>. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.</p>
+<h3><code>npm run lint -- --fix</code></h3>
+<p>Runs ESLint to check for problematic patterns in your JS code.</p>
+<h3><code>npm format</code></h3>
+<p>Runs Prettier to fix problematic formatting in your code.</p>
