@@ -84,9 +84,8 @@ Your app is ready to be deployed!</p>
 <p>1. Push the changes on your branch.</p>
 <p>2. Make sure pipelines have passed. You can see it in gitlab in either Repository/Commits section.</p>
 <code>(https://gitlab.openweathermap.org/frontend/owm-account/-/commits/your_branch)</code>
-<p>CI/CD Pipelines</p>
-<code>(https://gitlab.openweathermap.org/frontend/owm-account/-/pipelines)</code>
-<br>
+<p><code>(https://gitlab.openweathermap.org/frontend/owm-account/-/pipelines)</code> CI/CD Pipelines</p>
+</br>
 <p>3. Update the container on the server:</p>
 <code>ssh YOURNAME@phase.owm.io</code>
 <p>log in to the server</p>
